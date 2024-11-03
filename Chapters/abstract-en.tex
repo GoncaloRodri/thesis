@@ -21,7 +21,7 @@
 
 % For example, for a main document written in German with abstracts written in German, English and Italian (by this order) use:
 % \begin{verbatim}
-%     \ntsetup{abstractorder={de={de,en,it}}}
+%     \ntsetup{abstractorder={en={en,pt}}}
 % \end{verbatim}
 
 % Concerning its contents, the abstracts should not exceed one page and may answer the following questions (it is essential to adapt to the usual practices of your scientific area):
@@ -33,14 +33,14 @@
 %   \item What results (implications/consequences) from the solution?
 % \end{enumerate}
 
+This thesis aims to develop a dynamic, high-performance communication network capable of countering state-of-the-art correlation attacks to ensure user anonymity and privacy, all while maintaining practical levels of throughput and latency. This project uses an existing platform leveraging K-anonymization and WebRTC-based TLS tunnels for covert communication, with advanced multipath routing and differential privacy (DP) circuits. By integrating differential privacy principles, this work aims to inject calibrated noise into traffic flows and statistical communication patterns, mitigating the risk of privacy leakage even under advanced traffic analysis and censorship attacks.
+
+Unlike traditional anonymity networks like Tor, which often face a trade-off between performance and formal privacy guarantees, our approach will use DP’s mathematically rigorous framework to provide strong privacy assurances without severely compromising network performance. Tor and similar networks prioritize either formal security with slow performance or faster operation with weaker security guarantees, leaving gaps for potential deanonymization under sophisticated attack techniques. This thesis will explore and evaluate how DP circuits can enhance the anonymity networks, creating an adaptable, privacy-preserving communication environment that offers a viable alternative for real-world applications requiring both robust anonymity and communication. 
+
 % % Palavras-chave do resumo em Inglês
 % % \begin{keywords}
 % % Keyword 1, Keyword 2, Keyword 3, Keyword 4, Keyword 5, Keyword 6, Keyword 7, Keyword 8, Keyword 9
 % % \end{keywords}
-% \keywords{
-%   One keyword \and
-%   Another keyword \and
-%   Yet another keyword \and
-%   One keyword more \and
-%   The last keyword
-% }
+\keywords{
+    Anonymity Networks \and Differential Privacy \and  Privacy-Preserving Communication \and  Covert Communication \and  WebRTC \and  Privacy Leakage \and  Traffic Analysis Attacks
+}

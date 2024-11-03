@@ -8,25 +8,44 @@
 
 \typeout{NT FILE chapter1.tex}%
 
-\chapter{Introduction}
-\label{cha:introduction}
+\chapter{Introduction}\label{cha:introduction}
 
-Nowadays, data is a valuable asset with multiple uses. With various entities seeking this data, some for questionable reasons, it is essential to allow people to surf the web with trustworthy methods that preserve their privacy and anonymity whilst maintaining good throughput and latency conditions. 
+We live in a world without borders and where any point is connected to anywhere. Communication and Internet has a heavy impact in our lives and users are become more exigent and intolerant. Users expect communication to be fast but, now more than ever, want to stay fully anonymous and preserve their privacy. Many anonymity networks sacrifice performance to ensure full anonymous communication or put at risk the anonymity for better performance.
 
-\section{Motivation}
-\label{sec:motivation}
+\section{Motivation}\label{sec:motivation}
 
-\section{Problem}
-\label{sec:problem}
+Anonymity networks are becoming more popular than ever, and it is imperative that we ensure they offer privacy guarantees whilst not sacrificing performance. Some popular anonymity networks like Tor[REF TOR] rely on practical implementation like layer routing rather than mathematical proofs. Mathematical proofs, on the other hand, can address privacy rigor and provide higher confidence against attacks. 
 
-\section{Goals}
-\label{sec:goals}
+Speeding up connections and reducing latency can be the key factor to make users switch from traditional to anonymity networks. With the rise of artificial intelligence, machine learning and various technologies and threats, it is important to ensure that anonymity networks are secure and fast.
 
-\subsection{Contributions}
-\label{sub:contributions}
+\section{Problem}\label{sec:problem}
 
-\section{Report Organization}
-\label{sec:report_organization}
+Until this day, there is no algorithm that can provide high performance and privacy guarantees at the same time. On the other hand, both aspects are crucial for the success and growth of anonymity networks.
+
+Most used and popular anonymity networks like Tor rely on practical implementation like layer routing rather than mathematical proofs and is challenging to ensure consistent and reliable privacy conditions. Mathematical proofs, however, can address privacy rigor and provide higher confidence against attacks.
+
+Artificial intelligence and machine learning are becoming more popular and powerful, and can be used to break anonymity networks. It is important to ensure that anonymity networks are secure against these threats. Evolution in network traffic analysis techniques such as deanonymization and traffic correlation cause a significant threat to anonymity networks and is mandatory to address these issues to ensure the privacy of users.
+
+The lack of standardized privacy metrics makes it difficult to compare different anonymity networks and to evaluate their performance. This makes it harder to prove users how secure and private the network is. Addressing this problem can help to increase the trust of users in anonymity networks, and to make them more popular.
+
+
+\section{Goals}\label{sec:goals}
+
+The goal is to develop a new algorithm that can be used in anonymity networks that leverages differential privacy to ensure privacy and security while maintaining high performance. As stated in Section~\ref{sec:problem}, it is important to ensure that anonymity networks are secure against threats like artificial intelligence and machine learning, and to address the lack of standardized privacy metrics to evaluate the performance of anonymity networks.
+We aim to create and implement a new algorithm that can be used in anonymity networks that leverages differential privacy to ensure privacy and security with higher performance than existing solutions. We also aim to evaluate the performance of the algorithm and compare it with other anonymity networks to prove that this solution is a viable alternative to usual anonymity networks solutions.
+To test the algorithm and its performance, we intend to realize correlation attacks on the existing networks and on our prototype and compare the results. To test performance, we will measure the latency and throughput of the algorithm and compare it with other anonymity networks.
+
+
+\subsection{Contributions}\label{sub:contributions}
+This thesis tries to address the problem of ensuring privacy and security in anonymity networks while maintaining high performance. In particular, the contributions of this thesis are:
+\begin{enumerate}
+    \item Design a new Differential Privacy Based Algorithm for Privacy Preserved Communication in Anonymity Networks.
+    \item Implement the algorithm on a real-world scenario, develop a prototype and provide a proof of concept;
+    \item Evaluate the performance of the algorithm and compare it with other anonymity networks; This contribution aims to prove if this solution is a viable alternative to usual anonymity networks solutions and if, as mention before, can allow users to switch from traditional to anonymity networks.
+\end{enumerate}
+
+\section{Report Organization}\label{sec:report_organization}
+The remainder of this report is organized as follows: Chapter~\ref{cha:related_work} introduces anonymity networks and differential privacy, as well as some other related topics. The proposal of work is presented on Chapter~\ref{cha:elaboration}, which provides some system model and guidelines for the development and discusses the proof method to verify the work. Finally, workplan is explained and addressed in Chapter~\ref{cha:workplan}.
 
 % \prependtographicspath{{Chapters/Figures/Covers/}}
 
