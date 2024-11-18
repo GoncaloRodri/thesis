@@ -4,33 +4,31 @@
 
 ## Notes
 
-Este eu o meu problema, a minha solução, o que eu quero fazer e como eu vou fazer.
+-> Motivation
+Adicionar soluções existentes e o porque não são suficientes
+'Mais recentemente ..." -> Referenciar
 
-Nao focar nos dados mas navegacao/comunicação
-Basear na construção do TOR - Parecidos
-Escrita focada e direta ao ponto
+->Problem
 
-2ª parte do abstract -> Nos fazemos assim comparado ao tor q faz assado
- -> Dif Priv => Improve the privacy of the users
- Good performance => Os meus canais tem as codições de segurança necessárias e boa performance?!
+Ver o enquadramento do ultimo artigo - related work
 
-Em qualquer afirmação, sempre justificar o porque [referencia]
+Intro -> Explorar as frases e afirmações do abstract
+Ultimo paraph Intro -> Intro para Motivação 
 
-Abstract == texto da apresentação da tese melhorado/ com toque pessoal
+Pegar em provas formais, observabilidade e anonimato 
+Não pegar na performance.
+Não vamos ter melhor performance, mas vamos ter melhor privacidade/inobservabilidade =>  trade-off
 
-Ganhar a ideia do tema da tese - minha tese, minhas ideias
+Mimiquing, Morphing, K-Anonimity
 
-Evitar ser generico
-
-Fazer capitulo 1 até fim de Oct + Bom começar o related work do Tor.
-
-1ªAs partes é factos e pouco especulativo.
+2.1 Tor -> Hugo e TorK
 
 ## Questions
 
 Referencias, como saber qual é a melhor referencia para usar? onde colocar em multiplas afirmações sobre o mesmo tema? Colocar apenas o artico/paper ou a zona do paper que fala sobre o tema?
 
 Falta-me algo mais em cada capitulo! Sinto que estão pequenos e que a informação está lá mas não está a ser bem explorada. Como posso melhorar isso? É normal repetir-me em vários capítulos?
+
 
 
 

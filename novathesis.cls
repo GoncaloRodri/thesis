@@ -781,10 +781,9 @@
 
 %--------------------------------
 % “biblatex” stuff
-% \ntaddfile{bib}{./NOVAthesisFiles/fix-bib.bib}%
-% \AtEndDocument{\nocite{novathesis-manual}}%
-% \letoptionlist{/@nt/biblatex}\@nt@biblatex@opts%
-% \RequirePackage[hyperref=auto,defernumbers=true]{biblatex}%
+\ntaddfile{bib}{./NOVAthesisFiles/fix-bib.bib}%
+\letoptionlist{/@nt/biblatex}\@nt@biblatex@opts%
+\RequirePackage[hyperref=auto,defernumbers=true]{biblatex}%
 
 %--------------------------------
 % “hyperref” stuff

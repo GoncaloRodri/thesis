@@ -8,24 +8,27 @@
 
 \typeout{NT FILE chapter2.tex}%
 
-\chapter{Related Work}
-\label{cha:related_work}
+\chapter{Related Work}\label{cha:related_work}
 
-\section{Tor Network}
-\label{sec:tor_network}
+\section{Tor Network}\label{sec:tor_network}
+Tor is a circuit-based low-latency anonymous communication service based on \textit{onion routing} for asynchronous, loosely federated onion routers [Tor: The second-generation onion router]. This protocol is a low-latency anonymity network design that tries to protect users from correlation attacks.
+The overlay network relies on \textit{Onion Routers} (ORs) that maintain TLS connection to every other onion router.
 
-\section{Anonymity Networks \& Mixnets}
-\label{sec:anonymity_networks_mixnets}
+Onion Proxy are local software, run on the client and handle connections with the users' applications, fetch the current network information and the list of \textit{Onion Routers} (ORs) and build circuits through the network. Each router maintains TLS connections to nodes they have been in contact recently and a pair of keys: long-term identity key and short-term onion key. Long-term keys are used to sign TLS certificates and its router descriptor. Short-term keys are used to decrypt requests, negotiate ephemeral keys and set up circuits.
 
-\section{K-anonymity}
-\label{sec:k_anonymity}
+Traffic travels the network through 512 bytes fixed-size cells with a header and a payload. The header contains the circuit identifier, the command to describe what to do with the payload. Based on the header's command, cells are either control cells or relay cells. Control cells are used to manage circuits and connections, while relay cells are used to carry data.
 
-\section{TorKameleon \& Stream Covered Channels}
-\label{sec:torkameleon}
+The sequences of ORs which traffic is routed through are called \textit{circuits}. The user's Onion Proxy construct circuits, negotiating a symmetric key with each OR on the circuit, one hop at a time. Circuits incrementally extends, as well as torn down. Relay cells can only be sent after a circuit is established. Once established, relay cells are encapsulated in several layers of encryption, correspondent to each node in the circuit, with the pre-negotiated keys with each router. As it passes through each node, a layer of encryption is peeled off and forward to the next node. This ensures that only the last node knows the final destination of the data, and no single node knows both the source and destination of the data.
 
-\section{Differential Privacy}
-\label{sec:differential_privacy}
 
-\section{Summary}
-\label{sec:related_work_summary}
+
+\section{Anonymity Networks \& Mixnets}\label{sec:anonymity_networks_mixnets}
+
+\section{K-anonymity}\label{sec:k_anonymity}
+
+\section{TorKameleon \& Stream Covered Channels}\label{sec:torkameleon}
+
+\section{Differential Privacy}\label{sec:differential_privacy}
+
+\section{Summary}\label{sec:related_work_summary}
 
