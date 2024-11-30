@@ -152,3 +152,193 @@ month = aug
   publisher = {USENIX Association},
   url       = {https://www.usenix.org/conference/foci12/workshop-program/presentation/winter}
 }
+
+
+@inproceedings{DeepCorr,
+  author    = {Milad Nasr and Alireza Bahramali and Amir Houmansadr},
+  title     = {DeepCorr: Strong Flow Correlation Attacks on Tor Using Deep Learning},
+  booktitle = {Proceedings of the ACM SIGSAC Conference on Computer and Communications Security},
+  year      = {2018},
+  pages     = {1962--1976},
+  publisher = {ACM},
+  address   = {Toronto, ON, Canada},
+  doi       = {10.1145/3243734.3243858},
+}
+
+@inproceedings{DeepCoFFEA,
+  author    = {Se Eun Oh and Taiji Yang and Nate Mathews and James K. Holland and Mohammad Saidur Rahman and Nicholas Hopper and Matthew Wright},
+  title     = {DeepCoFFEA: Improved Flow Correlation Attacks on Tor via Metric Learning and Amplification},
+  booktitle = {Proceedings of the IEEE Symposium on Security and Privacy},
+  year      = {2022},
+  pages     = {1915--1932},
+  publisher = {IEEE},
+  address   = {San Francisco, CA, USA},
+  doi       = {10.1109/SP46214.2022.9833742},
+}
+
+@article{TikTok,
+  author    = {Mohammad Saidur Rahman and Payap Sirinam and Nate Mathews and Kantha Girish Gangadhara and Matthew Wright},
+  title     = {Tik-Tok: The Utility of Packet Timing in Website Fingerprinting Attacks},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2020},
+  number    = {3},
+  year      = {2020},
+  pages     = {5--24},
+  publisher = {De Gruyter Open},
+  doi       = {10.2478/popets-2020-0032},
+}
+
+@inproceedings{DeepFingerprinting,
+  author = {Sirinam, Payap and Imani, Mohsen and Juarez, Marc and Wright, Matthew},
+  title = {Deep Fingerprinting: Undermining Website Fingerprinting Defenses with Deep Learning},
+  year = {2018},
+  isbn = {9781450356930},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3243734.3243768},
+  doi = {10.1145/3243734.3243768},
+  abstract = {Website fingerprinting enables a local eavesdropper to determine which websites a user is visiting over an encrypted connection. State-of-the-art website fingerprinting attacks have been shown to be effective even against Tor. Recently, lightweight website fingerprinting defenses for Tor have been proposed that substantially degrade existing attacks: WTF-PAD and Walkie-Talkie. In this work, we present Deep Fingerprinting (DF), a new website fingerprinting attack against Tor that leverages a type of deep learning called Convolutional Neural Networks (CNN) with a sophisticated architecture design, and we evaluate this attack against WTF-PAD and Walkie-Talkie. The DF attack attains over 98\% accuracy on Tor traffic without defenses, better than all prior attacks, and it is also the only attack that is effective against WTF-PAD with over 90\% accuracy. Walkie-Talkie remains effective, holding the attack to just 49.7\% accuracy. In the more realistic open-world setting, our attack remains effective, with 0.99 precision and 0.94 recall on undefended traffic. Against traffic defended with WTF-PAD in this setting, the attack still can get 0.96 precision and 0.68 recall. These findings highlight the need for effective defenses that protect against this new attack and that could be deployed in Tor.},
+  booktitle = {Proceedings of the 2018 ACM SIGSAC Conference on Computer and Communications Security},
+  pages = {1928–1943},
+  numpages = {16},
+  keywords = {Tor, deep learning, privacy, website fingerprinting},
+  location = {Toronto, Canada},
+  series = {CCS '18}
+}
+
+@inproceedings{OnlineWebFingerprinting,
+  author = {Giovanni Cherubin and Rob Jansen and Carmela Troncoso},
+  title = {Online Website Fingerprinting: Evaluating Website Fingerprinting Attacks on Tor in the Real World},
+  booktitle = {31st USENIX Security Symposium (USENIX Security 22)},
+  year = {2022},
+  isbn = {978-1-939133-31-1},
+  address = {Boston, MA},
+  pages = {753--770},
+  url = {https://www.usenix.org/conference/usenixsecurity22/presentation/cherubin},
+  publisher = {USENIX Association},
+  month = aug
+}
+
+@InProceedings{StatDisclosure,
+author="Danezis, George",
+editor="Gritzalis, Dimitris
+and De Capitani di Vimercati, Sabrina
+and Samarati, Pierangela
+and Katsikas, Sokratis",
+title="Statistical Disclosure Attacks",
+booktitle="Security and Privacy in the Age of Uncertainty",
+year="2003",
+publisher="Springer US",
+address="Boston, MA",
+pages="421--426",
+abstract="An improvement over the previously known disclosure attack is presented that allows, using statistical methods, to effectively deanonymize users of a mix system. Furthermore the statistical disclosure attack is computationally efficient, and the conditions for it to be possible and accurate are much better understood. The new attack can be generalized easily to a variety of anonymity systems beyond mix networks.",
+isbn="978-0-387-35691-4"
+}
+
+@InProceedings{PracticalStatDisclosure,
+author="Mathewson, Nick
+and Dingledine, Roger",
+editor="Martin, David
+and Serjantov, Andrei",
+title="Practical Traffic Analysis: Extending and Resisting Statistical Disclosure",
+booktitle="Privacy Enhancing Technologies",
+year="2005",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="17--34",
+abstract="We extend earlier research on mounting and resisting passive long-term end-to-end traffic analysis attacks against anonymous message systems, by describing how an eavesdropper can learn sender-receiver connections even when the substrate is a network of pool mixes, the attacker is non-global, and senders have complex behavior or generate padding messages. Additionally, we describe how an attacker can use information about message distinguishability to speed the attack. We simulate our attacks for a variety of scenarios, focusing on the amount of information needed to link senders to their recipients. In each scenario, we show that the intersection attack is slowed but still succeeds against a steady-state mix network. We find that the attack takes an impractical amount of time when message delivery times are highly variable; when the attacker can observe very little of the network; and when users pad consistently and the adversary does not know how the network behaves in their absence.",
+isbn="978-3-540-31960-3"
+}
+
+@inproceedings{kAnonymityEffectiveness,
+author = {Hopper, Nicholas and Vasserman, Eugene Y.},
+title = {On the effectiveness of k;-anonymity against traffic analysis and surveillance},
+year = {2006},
+isbn = {1595935568},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1179601.1179604},
+doi = {10.1145/1179601.1179604},
+abstract = {The goal of most research on anonymity, including all currently used systems for anonymity, is to achieve anonymity through unlinkability: an adversary should not be able to determine the correspondence between the input and output messages of the system. An alternative anonymity goal is unobservability: an adversary should not be able to determine who sends and who receives messages. We study the effect of k-anonymity, a weak form of unobservability, on two types of attacks against systems that provide only unlinkability.},
+booktitle = {Proceedings of the 5th ACM Workshop on Privacy in Electronic Society},
+pages = {9–18},
+numpages = {10},
+keywords = {k;-anonymity, mass surveillance, statistical disclosure},
+location = {Alexandria, Virginia, USA},
+series = {WPES '06}
+}
+
+@inproceedings {WalkieTalkie,
+author = {Tao Wang and Ian Goldberg},
+title = {{Walkie-Talkie}: An Efficient Defense Against Passive Website Fingerprinting Attacks},
+booktitle = {26th USENIX Security Symposium (USENIX Security 17)},
+year = {2017},
+isbn = {978-1-931971-40-9},
+address = {Vancouver, BC},
+pages = {1375--1390},
+url = {https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/wang-tao},
+publisher = {USENIX Association},
+month = aug
+}
+
+@inproceedings{Supersequence,
+  author    = {Tao Wang and Xiang Cai and Rishab Nithyanand and Rob Johnson and Ian Goldberg},
+  title     = {Effective Attacks and Provable Defenses for Website Fingerprinting},
+  booktitle = {Proceedings of the 23rd USENIX Security Symposium},
+  year      = {2014},
+  pages     = {143--156},
+  publisher = {USENIX Association},
+  address   = {San Diego, CA, USA},
+  url       = {https://www.usenix.org/conference/usenixsecurity14/technical-sessions/presentation/wang_tao},
+}
+
+@inproceedings{Glove,
+author = {Nithyanand, Rishab and Cai, Xiang and Johnson, Rob},
+title = {Glove: A Bespoke Website Fingerprinting Defense},
+year = {2014},
+isbn = {9781450331487},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2665943.2665950},
+doi = {10.1145/2665943.2665950},
+abstract = {Website fingerprinting attacks have recently emerged as a serious threat against web browsing privacy mechanisms, such as SSL, Tor, and encrypting tunnels. Researchers have proposed numerous attacks and defenses, and the Tor project currently includes both network- and browser-level defenses against these attacks, but published defenses have high overhead, poor security, or both.In this paper we present preliminary results of {Glove}, a new SSH based defense. Glove is based on the observation that current defenses are expensive not because website traces are different, but because the defense, operating blindly, does not know how to add cover traffic and therefore, puts it everywhere. Instead, Glove uses existing knowledge of a websites traces to add cover traffic conservatively while maintaining high levels of security. Further, Glove satisfies the information theoretic definitions of security defined in prior work -- i.e., it is resistant to any fingerprinting adversary. Our simulations show that Glove performs better than all currently proposed SSH based defenses in terms of the security-overhead trade-off.},
+booktitle = {Proceedings of the 13th Workshop on Privacy in the Electronic Society},
+pages = {131–134},
+numpages = {4},
+keywords = {anonymity, website fingerprinting},
+location = {Scottsdale, Arizona, USA},
+series = {WPES '14}
+}
+
+@inproceedings{TrafficMorphing,
+  title={Traffic Morphing: An Efficient Defense Against Statistical Traffic Analysis},
+  author={Charles V. Wright and Scott E. Coull and Fabian Monrose},
+  booktitle={Network and Distributed System Security Symposium},
+  year={2009},
+  url={https://api.semanticscholar.org/CorpusID:2562331}
+}
+
+@article{nunes2023kfunnels,
+  author = {Vítor Nunes and José Brás and Afonso Carvalho and Diogo Barradas and Kevin Gallagher and Nuno Santos},
+  title = {Enhancing the Unlinkability of Circuit-Based Anonymous Communications with k-Funnels},
+  journal = {Proceedings of the ACM on Networking},
+  volume = {1},
+  number = {CoNEXT3},
+  pages = {Article 18},
+  year = {2023},
+  month = {December},
+  doi = {10.1145/3629140},
+  publisher = {ACM},
+  url = {https://doi.org/10.1145/3629140}
+}
+
+@manual{novathesis-manual,
+ 	title        = {{The NOVAthesis \LaTeX\ Template User's Manual}},
+ 	author       = {João M. Lourenço},
+ 	organization = {NOVA University Lisbon},
+ 	year         = {2021},
+ 	url          = {https://github.com/joaomlourenco/novathesis/raw/main/template.pdf},
+   keywords =     {novathesis-manual},
+ }
+
+

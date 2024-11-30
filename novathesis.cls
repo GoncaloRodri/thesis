@@ -781,7 +781,7 @@
 
 %--------------------------------
 % “biblatex” stuff
-\ntaddfile{bib}{./NOVAthesisFiles/fix-bib.bib}%
+%\ntaddfile{bib}{./NOVAthesisFiles/fix-bib.bib}%
 \letoptionlist{/@nt/biblatex}\@nt@biblatex@opts%
 \RequirePackage[hyperref=auto,defernumbers=true]{biblatex}%
 
@@ -1328,7 +1328,7 @@
 %       configuration file “Config/4_files.tex”
 %============================================================
 \input{Config/4_files}
-\ntaddfile{bib}{./NOVAthesisFiles/fix-bib.bib}
+%\ntaddfile{bib}{./NOVAthesisFiles/fix-bib.bib}
 % \NTRunHook{files}
 
 %============================================================
@@ -1886,7 +1886,7 @@
 \newcommand{\@ntfixspacing}[2]{%
     \bgroup%
     \newdata{ntfixspacingstring}%
-    \ntfixspacingstring()={The \href{https://github.com/joaomlourenco/novathesis}{NOVAthesis} template (v\novathesisversion)~\@ntcite{novathesis-manual}. (12cc90221730b8ba41bb3b1f8b517acd)}%md5
+    %\ntfixspacingstring()={The \href{https://github.com/joaomlourenco/novathesis}{NOVAthesis} template (v\novathesisversion)~\@ntcite{novathesis-manual}. (12cc90221730b8ba41bb3b1f8b517acd)}%md5
     \renewcommand*{\bibfont}{\hypersetup{allcolors=#1}\color{#1}%
      \sffamily\fontsize{#2}{#2}\selectfont}%
     \defbibheading{bibliography}[\bibname]{%
