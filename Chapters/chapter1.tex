@@ -37,24 +37,25 @@ Anonymity networks remain vulnerable to attacks such as traffic analysis, which 
 
 %%% Traffic Encapsulation
 
+Traffic encapsulation is a method that conceals data by embedding packets within other data formats or protocols, thereby obfuscating their true content. This technique leverages protocols, such as those for web browsing and video streaming, to disguise network traffic, making it indistinguishable.~\cite*{TorKameleon, StegoTorus, Protozoa, Stegozoa, Freewave}
+
 %%% Fully Encrypted Protocols
 
+
+
 %%% Traffic Shapping
-Traffic Shaping is a technique that bla bla bla
+Traffic Shaping is another technique that aims to regulate data transmission to optimize network performance and to prevent timing and correlation attacks, contributing for privacy-prevention.  
+Similarly, traffic shuffling is a technique that focus on reordering packets, with statistical or cryptographic techniques, to make it difficult for an attacker to correlate the traffic.~\cite*{DAENet, Karaoke, Riposte, Loopix, Dissent}
 
 Researchers have proposed various solutions.~\citeauthor{kAnonymityEffectiveness} demonstrated that K-Anonymity is effective against traffic analysis attacks, such as Statistical Disclosure and long-term intersection attacks.~\cite{kAnonymityEffectiveness}~\citeauthor{nunes2023kfunnels} proposed BriK, a Tor pluggable transport, that ensures uniform traffic patterns to make users indistinguishable.~\cite{nunes2023kfunnels} Some work as Walkie-Talkie~\cite{WalkieTalkie}, Supersequence~\cite{Supersequence} and Glove~\cite{Glove} also use traffic shaping for defending against website fingerprinting attacks.~\citeauthor{TrafficMorphing} proposed Traffic Morphing~\cite{TrafficMorphing}, a traffic shaping technique that uses a Markov Chain to generate traffic patterns that are indistinguishable from the original traffic.
 %%% Others
 
 %% Intro to especific & existing solutions
-
-
-  
-
-To enforce and improve Tor's privacy and attack resistance, researchers have proposed various solutions[ADD SOME PAPERS ABOUT BRIDGES/TOR RELAY NODES/TOR-ONION-SERVICES/TOR HIDDEN SERVICES]. More recently, other solutions have emerged, such as Tor-strengthening mechanisms based on K-anonymity input covert channels [Horta 22 + J.Teixeira MA THESIS FCT/UNL], TorKameleon that employes K-anonymization techniques and covert WebRTC-based channels traffic encapsulation [TORKAMELEON REF],
+%To enforce and improve Tor's privacy and attack resistance, researchers have proposed various solutions[ADD SOME PAPERS ABOUT BRIDGES/TOR RELAY NODES/TOR-ONION-SERVICES/TOR HIDDEN SERVICES]. More recently, other solutions have emerged, such as Tor-strengthening mechanisms based on K-anonymity input covert channels [Horta 22 + J.Teixeira MA THESIS FCT/UNL], TorKameleon that employs K-anonymization techniques and covert WebRTC-based channels traffic encapsulation [TORKAMELEON REF],
 
 % TODO: Isto entra aqui de forma um pouco intensa. Se utilizares traffic shapping para explicar, como disse na nota do paragrafo anteriro, podes dizer que existem algumas soluçoes que usam privacidade diferencial (citar o artigo que disse no disc) e depois sim falar de privacidade diferencial, o porque de ser fixe, e como nunca foi usada para o tor.
 
-Differential Privacy is a privacy-preserving technique that introduces controlled noise into data and query results, preventing sensitive information from being exposed. This controlled noise can be parameterized and adjusted to provide a trade-off between privacy and utility. In this context, the formal proofs that Differential Privacy provides can be used to ensure privacy rigor and provide higher confidence against attacks.
+%sDifferential Privacy is a privacy-preserving technique that introduces controlled noise into data and query results, preventing sensitive information from being exposed. This controlled noise can be parameterized and adjusted to provide a trade-off between privacy and utility. In this context, the formal proofs that Differential Privacy provides can be used to ensure privacy rigor and provide higher confidence against attacks.
 
 
 

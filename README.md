@@ -21,7 +21,25 @@ Não vamos ter melhor performance, mas vamos ter melhor privacidade/inobservabil
 
 Mimiquing, Morphing, K-Anonimity
 
+Ver KIST - Kernel-inforned Soket Transport for Tor
+
+Add scheduler to TOR RW. Relate performance driven Scheduler and Security driven Schedulers
+
+
+Add schedule and anticorrelation on motivation.
+
 2.1 Tor -> Hugo e TorK
+
+3 - Tor ou Mirace (Hugo)
+  Tor Scheduler ou integração no trabalho do Mirace 
+
+  Prototipo 1 -> Entry Relay only
+
+  P2 -> All Relays in the circuit
+
+
+
+
 
 ## Questions
 
@@ -47,7 +65,7 @@ The structure of the repository is as follows:
 - Anonymity Networks and Mixnets
 - K-anonymity
 - TorKameleon & Stream Covered Channels
-- Differencial Privacy
+- Differential Privacy
 - Summary [1 paragraph]
 
 3. **Elaboration Approval** [max 5 pages]
