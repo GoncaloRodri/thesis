@@ -25,9 +25,10 @@ The sequences of ORs which traffic is routed through are called \textit{circuits
 \section{Anonymity Networks \& Mixnets}\label{sec:anonymity_networks_mixnets}
 
 % TODO: Check (Chaum, 1981) for mix network concept
-Mix networks (Mixnets) were introduced by~\citeauthor{Chaum2003}\cite{Chaum2003} as a public key cryptography based protocol designed to obscure the relationship between senders and receivers in a communication network, as well as its content, without the need for a universal trusted authority. Mixnets consists of a series of intermediary servers, called mixes, through which messages are decrypted, encrypted, randomly permuted and sent forward. 
-To transmit messages, participants encapsulate their data within successive layers of encryption, with each layer corresponding to a specific mix in the network—a method conceptually akin to onion routing~\cite{OnionRouting}. The length of the encrypted messages is proportional to the number of mixes. Upon receiving a message, each mix removes the outermost layer of encryption, processes the decrypted instructions, and forwards the partially decrypted message to the subsequent mix. This iterative procedure continues until the message arrives at the final mix, which removes the last layer of encryption and transmits the plaintext message to the intended recipient. By design, this system ensures that no single mix possesses complete knowledge of both the sender's identity and the recipient's address, thereby achieving a robust level of anonymity. 
-
+Mix networks (Mixnets) were introduced by~\citeauthor{Chaum2003}~\cite{Chaum2003} as a public key cryptography based protocol designed to obscure the relationship between senders and receivers in a communication network, as well as its content, without the need for a universal trusted authority. Mixnets consist of a series of intermediary servers, called `mixes', through which messages are decrypted, encrypted, randomly permuted and sent forward. 
+To transmit messages, participants encapsulate their data within successive layers of encryption, with each layer corresponding to a specific mix in the network — a method conceptually akin to onion routing~\cite{OnionRouting}. The length of the encrypted messages is proportional to the number of mixes. Upon receiving a message, each mix removes the outermost layer of encryption, processes the decrypted instructions, and forwards the partially decrypted message to the subsequent mix. This iterative procedure continues until the message arrives at the final mix, which removes the last layer of encryption and transmits the plaintext message to the intended recipient. By design, this system ensures that no single mix possesses complete knowledge of both the sender's identity and the recipient's address, thereby achieving a robust level of anonymity. 
+Various designs of mixnets have been proposed, based on~\citeauthor{Chaum2003} work, addressing multiple security and performance issues. Mixmaster allows the sender of a message to remain anonymous to the
+recipient. Mixminion uses fixed sized messages and supports anonymous replies and ensuires forward anonymity using link encryption between nodes.
 Onion Routing~\cite{OnionRouting} followed a similar approach, but focused on low latency communication.
 
 
@@ -42,4 +43,5 @@ Onion Routing~\cite{OnionRouting} followed a similar approach, but focused on lo
 \section{Differential Privacy}\label{sec:differential_privacy}
 
 \section{Summary}\label{sec:related_work_summary}
+
 
