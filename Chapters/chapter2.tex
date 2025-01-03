@@ -27,14 +27,26 @@ The sequences of ORs which traffic is routed through are called \textit{circuits
 % TODO: Check (Chaum, 1981) for mix network concept
 Mix networks (Mixnets) were introduced by~\citeauthor{Chaum2003}~\cite{Chaum2003} as a public key cryptography based protocol designed to obscure the relationship between senders and receivers in a communication network, as well as its content, without the need for a universal trusted authority. Mixnets consist of a series of intermediary servers, called `mixes', through which messages are decrypted, encrypted, randomly permuted and sent forward. 
 To transmit messages, participants encapsulate their data within successive layers of encryption, with each layer corresponding to a specific mix in the network — a method conceptually akin to onion routing~\cite{OnionRouting}. The length of the encrypted messages is proportional to the number of mixes. Upon receiving a message, each mix removes the outermost layer of encryption, processes the decrypted instructions, and forwards the partially decrypted message to the subsequent mix. This iterative procedure continues until the message arrives at the final mix, which removes the last layer of encryption and transmits the plaintext message to the intended recipient. By design, this system ensures that no single mix possesses complete knowledge of both the sender's identity and the recipient's address, thereby achieving a robust level of anonymity. 
-Various designs of mixnets have been proposed, based on~\citeauthor{Chaum2003} work, addressing multiple security and performance issues. Mixmaster allows the sender of a message to remain anonymous to the
-recipient. Mixminion uses fixed sized messages and supports anonymous replies and ensuires forward anonymity using link encryption between nodes.
-Onion Routing~\cite{OnionRouting} followed a similar approach, but focused on low latency communication.
 
+Various designs of mixnets have been proposed, based on~\citeauthor{Chaum2003} work, addressing multiple security and performance issues. Flash Mixing, introduced by \citeauthor{FlashMixing}~\cite{FlashMixing}, focuses on achieving strong anonymity guarantees with reduced latency and computational overhead by shuffling messages, broadcasting the encrypted list to all mixes, who then together compute the output. Hybrid Mixnets~\cite*{HybridMixJakobsson, HybridMixMiyako} efficiently combine public-key and symmetric-key cryptography. Real-time Mixnets~\cite{RealTimeMix} aim voice and data communication where continuous data streams have to be transmitted and provide low-latency communication, as long as a certain delay at the start of a connection is tolerable.
+Work on this field has focused both on security and privacy guarantees, as well as on performance and scalability, with the goal of providing a practical and efficient solution for anonymous communication. Mixmaster~\cite{Mixmaster} allows the sender of a message to remain anonymous to the recipient. Mixminion~\cite{Mixminion} uses fixed sized messages and supports anonymous replies and ensures forward anonymity using link encryption between nodes.
+Onion Routing~\cite{OnionRouting} followed a similar approach, but focused on low latency communication, where messages are encrypted in layers and decrypted by a chain of authorized nodes. 
 
+Tor~\cite{dingledine2004tor} is one of the most popular low latency anonymity system and protects against sender-receiver message linking against a partially global adversary and ensures perfect forward secrecy, messages' integrity, and congestion control. However, Tor is vulnerable to traffic analysis attacks, in case the adversary is able to observe the entry and exit points of the network. 
 
+Mix-In-Place (MIP)~\cite{MixInPlace} is a mixnet that uses a cascade of functions in a single proxy, instead of multiple intermediary nodes, to provide anonymity, and proving more resistant to traffic analysis attacks. 
 
+Vuvuzela~\cite{Vuvuzela} operates in rounds, leading to offline users' inability to receive messages and all messages must transverse a single chain of relay servers. This design protects against both active and passive adversaries unless there is no honest mix node in the network.
 
+% MIXNEXT THAT USE DF
+Loopix~\cite{Loopix}
+
+Groove~\cite{Groove}
+
+Stadium~\cite{Stadium} is a horizontally scalable metadata-private messaging system design to provide strong privacy guarantees against adversaries capable of monitoring and manipulating traffic, by using techniques like differential privacy and parallel mixing. Unlike Vuvuzela, this mixnet system distributes the workload among hundreds of services.
+
+% MixNets Analysis
+Mixnets have been analyzed in terms of security and privacy guarantees, as well as performance and scalability. \citeauthor{AnalysisMixNetsYeZhu} revealed that flow-correlation attacks can be used to de-anonymize users in mixnets, in relation to the system parameterization, such as sample size, noise  level, payload flow rate, and detection rate.~\cite{AnalysisMixNetsYeZhu}.~\citeauthor{TrafficAnalysisLowMixnet} demonstrated that mix networks are vulnerable to timing analysis, even with defenses in place, by the use of advanced statistical techniques, such as cross-correlation and machine learning, successfully de-anonymizing users.~\cite{TrafficAnalysisLowMixnet}.
 
 \section{K-anonymity}\label{sec:k_anonymity}
 

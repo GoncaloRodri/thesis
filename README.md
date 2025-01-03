@@ -38,7 +38,24 @@ Add schedule and anticorrelation on motivation.
   P2 -> All Relays in the circuit
 
 
+Na introdução, dar mais enfase aos ataques e o que estamos a reseolver e como (com scheduler).
 
+ANtes do problem ja temos q ter uma noçao do problema. nao conseguimos se a ideia ainda estiver mto vaga
+
+Palavras Chave: Evitar COmProtocols sejam non-fingerprintable, Anonimity, 
+
+Temos q fazer aparecer estas palavras ^^^
+
+FOcar e levar o leiitor ao shceduler.
+E
+Explicar traffic correlation asap, é algo improtatne para o leitor
+
+Mirace como subsecttion das mixnets
+
+Na Diff Privacy, falar sobre tecnicas
+
+
+Target: 
 
 
 ## Questions

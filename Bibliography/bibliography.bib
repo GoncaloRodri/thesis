@@ -120,7 +120,7 @@ month = aug
   author       = {Jonathan L. Zittrain and Robert Faris and Helmi Noman and Justin Clark and Casey Tilton and Ryan Morrison-Westphal},
   title        = {The Shifting Landscape of Global Internet Censorship},
   year         = {2017},
-  publisher    = {Berkman Klein Center for Internet & Society},
+  publisher    = {Berkman Klein Center for Internet \& Society},
   note         = {Accessed: 2024-11-17},
   url          = {https://www.ssrn.com/abstract=2993485}
 }
@@ -476,4 +476,174 @@ pages = {},
 title = {Hiding Routing Information},
 isbn = {978-3-540-61996-3},
 doi = {10.1007/3-540-61996-8_37}
+}
+
+@inproceedings{FlashMixing,
+author = {Jakobsson, Markus},
+title = {Flash mixing},
+year = {1999},
+isbn = {1581130996},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/301308.301333},
+doi = {10.1145/301308.301333},
+booktitle = {Proceedings of the Eighteenth Annual ACM Symposium on Principles of Distributed Computing},
+pages = {83–89},
+numpages = {7},
+location = {Atlanta, Georgia, USA},
+series = {PODC '99}
+}
+
+@inproceedings{HybridMixJakobsson,
+author = {Jakobsson, Markus and Juels, Ari},
+title = {An optimally robust hybrid mix network},
+year = {2001},
+isbn = {1581133839},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/383962.384046},
+doi = {10.1145/383962.384046},
+abstract = {We present a mix network that achieves efficient integration of public-key and symmetric-key operations. This hybrid mix network is capable of natural processing of arbitrarily long input elements, and is fast in both practical and asymptotic senses. While the overhead in the size of input elements is linear in the number of mix servers, it is quite small in practice. In contrast to previous hybrid constructions, ours has optimal robustness, that is, robustness against any minority coalition of malicious servers.},
+booktitle = {Proceedings of the Twentieth Annual ACM Symposium on Principles of Distributed Computing},
+pages = {284–292},
+numpages = {9},
+location = {Newport, Rhode Island, USA},
+series = {PODC '01}
+}
+
+@inproceedings{HybridMixMiyako,
+  title={A Length-Invariant Hybrid Mix},
+  booktitle={Advances in Cryptology - ASIACRYPT 2000, 6th International Conference on the Theory and Application of Cryptology and Information Security, Kyoto, Japan, December 3-7, 2000, Proceedings},
+  series={Lecture Notes in Computer Science},
+  publisher={Springer},
+  volume={1976},
+  pages={178-191},
+  doi={10.1007/3-540-44448-3_14},
+  author={Miyako Ohkubo and Masayuki Abe},
+  year=2000
+}
+
+@article{RealTimeMix,
+author = {Jerichow, A. and Muller, J. and Pfitzmann, A. and Pfitzmann, B. and Waidner, M.},
+title = {Real-time mixes: a bandwidth-efficient anonymity protocol},
+year = {2006},
+issue_date = {September 2006},
+publisher = {IEEE Press},
+volume = {16},
+number = {4},
+issn = {0733-8716},
+url = {https://doi.org/10.1109/49.668973},
+doi = {10.1109/49.668973},
+abstract = {We present techniques for efficient anonymous communication with real-time constraints as necessary for services like telephony, where a continuous data stream has to be transmitted. For concreteness, we present the detailed protocols for the narrow-band ISDN (integrated services digital network), although the heart of our techniques-anonymous channels-can also be applied to other networks. For ISDN, we achieve the same data rate as without anonymity, using the same subscriber lines and without any significant modifications to the long-distance network. A precise performance analysis is given. Our techniques are based on mixes, a method for anonymous communication for e-mail-like services introduced by D. Chaum (1981)},
+journal = {IEEE J.Sel. A. Commun.},
+month = sep,
+pages = {495–509},
+numpages = {15}
+}
+
+@inproceedings{Mixmaster,
+  title={Mixmaster Protocol Version 2},
+  author={Ursula. Moeller},
+  year={2004},
+  url={https://api.semanticscholar.org/CorpusID:215824742}
+}
+
+@inproceedings{Mixminion,
+  author={Danezis, G. and Dingledine, R. and Mathewson, N.},
+  booktitle={2003 Symposium on Security and Privacy, 2003.}, 
+  title={Mixminion: design of a type III anonymous remailer protocol}, 
+  year={2003},
+  volume={},
+  number={},
+  pages={2-15},
+  keywords={Protocols;Cryptography;Postal services;Intrusion detection;Network servers;Web server;Public key;Statistics;Internet;Protection},
+  doi={10.1109/SECPRI.2003.1199323}
+}
+
+@inproceedings{MixInPlace,
+author = {Nipane, Nilesh and Dacosta, Italo and Traynor, Patrick},
+title = {"Mix-in-Place" anonymous networking using secure function evaluation},
+year = {2011},
+isbn = {9781450306720},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2076732.2076742},
+doi = {10.1145/2076732.2076742},
+abstract = {Anonymous communications systems generally trade off performance for strong cryptographic guarantees of privacy. However, a number of applications with moderate performance requirements (e.g., chat) may require both properties. In this paper, we develop a new architecture that provides provably unlinkable and efficient communications using a single intermediary node. Nodes participating in these Mix-In-Place Networks (MIPNets) exchange messages through a mailbox in an Oblivious Proxy (OP). Clients leverage Secure Function Evaluation (SFE) to send and receive their messages from the OP while blindly but reversibly modifying the appearance of all other messages (i.e., mixing in place) in the mailbox. While an Oblivious Proxy will know that a client participated in exchanges, it can not be certain which, if any, messages that client transmitted or received. We implement and measure our proposed design using a modified version of Fairplay and note reductions in execution times of greater than 98\% over the na\"{\i}ve application of garbled circuits. We then develop a chat application on top of the MIPNet architecture and demonstrate its practical use for as many as 100 concurrent users. Our results demonstrate the potential to use SFE-enabled "mixing" in a single proxy as a means of providing provable deniability for applications with near real-time performance requirements.},
+booktitle = {Proceedings of the 27th Annual Computer Security Applications Conference},
+pages = {63–72},
+numpages = {10},
+location = {Orlando, Florida, USA},
+series = {ACSAC '11}
+}
+
+@inproceedings{Vuvuzela,
+author = {van den Hooff, Jelle and Lazar, David and Zaharia, Matei and Zeldovich, Nickolai},
+title = {Vuvuzela: scalable private messaging resistant to traffic analysis},
+year = {2015},
+isbn = {9781450338349},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2815400.2815417},
+doi = {10.1145/2815400.2815417},
+abstract = {Private messaging over the Internet has proven challenging to implement, because even if message data is encrypted, it is difficult to hide metadata about who is communicating in the face of traffic analysis. Systems that offer strong privacy guarantees, such as Dissent [36], scale to only several thousand clients, because they use techniques with superlinear cost in the number of clients (e.g., each client broadcasts their message to all other clients). On the other hand, scalable systems, such as Tor, do not protect against traffic analysis, making them ineffective in an era of pervasive network monitoring.Vuvuzela is a new scalable messaging system that offers strong privacy guarantees, hiding both message data and metadata. Vuvuzela is secure against adversaries that observe and tamper with all network traffic, and that control all nodes except for one server. Vuvuzela's key insight is to minimize the number of variables observable by an attacker, and to use differential privacy techniques to add noise to all observable variables in a way that provably hides information about which users are communicating. Vuvuzela has a linear cost in the number of clients, and experiments show that it can achieve a throughput of 68,000 messages per second for 1 million users with a 37-second end-to-end latency on commodity servers.},
+booktitle = {Proceedings of the 25th Symposium on Operating Systems Principles},
+pages = {137–152},
+numpages = {16},
+location = {Monterey, California},
+series = {SOSP '15}
+}
+
+@inproceedings {Groove,
+author = {Ludovic Barman and Moshe Kol and David Lazar and Yossi Gilad and Nickolai Zeldovich},
+title = {Groove: Flexible {Metadata-Private} Messaging},
+booktitle = {16th USENIX Symposium on Operating Systems Design and Implementation (OSDI 22)},
+year = {2022},
+isbn = {978-1-939133-28-1},
+address = {Carlsbad, CA},
+pages = {735--750},
+url = {https://www.usenix.org/conference/osdi22/presentation/barman},
+publisher = {USENIX Association},
+month = jul
+}
+
+@inproceedings{Stadium,
+author = {Tyagi, Nirvan and Gilad, Yossi and Leung, Derek and Zaharia, Matei and Zeldovich, Nickolai},
+title = {Stadium: A Distributed Metadata-Private Messaging System},
+year = {2017},
+isbn = {9781450350853},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3132747.3132783},
+doi = {10.1145/3132747.3132783},
+abstract = {Private communication over the Internet remains a challenging problem. Even if messages are encrypted, it is hard to deliver them without revealing metadata about which pairs of users are communicating. Scalable anonymity systems, such as Tor, are susceptible to traffic analysis attacks that leak metadata. In contrast, the largest-scale systems with metadata privacy require passing all messages through a small number of providers, requiring a high operational cost for each provider and limiting their deployability in practice.This paper presents Stadium, a point-to-point messaging system that provides metadata and data privacy while scaling its work efficiently across hundreds of low-cost providers operated by different organizations. Much like Vuvuzela, the current largest-scale metadata-private system, Stadium achieves its provable guarantees through differential privacy and the addition of noisy cover traffic. The key challenge in Stadium is limiting the information revealed from the many observable traffic links of a highly distributed system, without requiring an overwhelming amount of noise. To solve this challenge, Stadium introduces techniques for distributed noise generation and differentially private routing as well as a verifiable parallel mixnet design where the servers collaboratively check that others follow the protocol. We show that Stadium can scale to support 4x more users than Vuvuzela using servers that cost an order of magnitude less to operate than Vuvuzela nodes.},
+booktitle = {Proceedings of the 26th Symposium on Operating Systems Principles},
+pages = {423–440},
+numpages = {18},
+keywords = {verifiable shuffle, mixnet, differential privacy, anonymous communication},
+location = {Shanghai, China},
+series = {SOSP '17}
+}
+
+@INPROCEEDINGS{AnalysisMixNetsYeZhu,
+  author={Ye Zhu and Xinwen Fu and Bettati, R. and Wei Zhao},
+  booktitle={GLOBECOM '05. IEEE Global Telecommunications Conference, 2005.}, 
+  title={Anonymity analysis of mix networks against flow-correlation attacks}, 
+  year={2005},
+  volume={3},
+  number={},
+  pages={5 pp.-},
+  keywords={Timing;Cryptography;Telecommunication traffic;Relays;Computer science;Application software;Noise level;Payloads;Failure analysis;Guidelines},
+  doi={10.1109/GLOCOM.2005.1577959}
+}
+
+@inproceedings{TrafficAnalysisLowMixnet,
+author = {Shmatikov, Vitaly and Wang, Ming-Hsiu},
+year = {2006},
+month = {01},
+pages = {18-33},
+title = {Timing Analysis in Low-Latency Mix Networks: Attacks and Defenses},
+volume = {4189},
+isbn = {978-3-540-44601-9},
+doi = {10.1007/11863908_2}
 }
