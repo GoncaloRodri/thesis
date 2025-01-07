@@ -250,24 +250,6 @@ abstract="We extend earlier research on mounting and resisting passive long-term
 isbn="978-3-540-31960-3"
 }
 
-@inproceedings{kAnonymityEffectiveness,
-author = {Hopper, Nicholas and Vasserman, Eugene Y.},
-title = {On the effectiveness of k;-anonymity against traffic analysis and surveillance},
-year = {2006},
-isbn = {1595935568},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/1179601.1179604},
-doi = {10.1145/1179601.1179604},
-abstract = {The goal of most research on anonymity, including all currently used systems for anonymity, is to achieve anonymity through unlinkability: an adversary should not be able to determine the correspondence between the input and output messages of the system. An alternative anonymity goal is unobservability: an adversary should not be able to determine who sends and who receives messages. We study the effect of k-anonymity, a weak form of unobservability, on two types of attacks against systems that provide only unlinkability.},
-booktitle = {Proceedings of the 5th ACM Workshop on Privacy in Electronic Society},
-pages = {9–18},
-numpages = {10},
-keywords = {k;-anonymity, mass surveillance, statistical disclosure},
-location = {Alexandria, Virginia, USA},
-series = {WPES '06}
-}
-
 @inproceedings {WalkieTalkie,
 author = {Tao Wang and Ian Goldberg},
 title = {{Walkie-Talkie}: An Efficient Defense Against Passive Website Fingerprinting Attacks},
@@ -657,4 +639,84 @@ title = {Stop- and- Go-MIXes Providing Probabilistic Anonymity in an Open System
 volume = {1525},
 isbn = {978-3-540-65386-8},
 doi = {10.1007/3-540-49380-8_7}
+}
+
+@article{KAnonSweeney,
+author = {Sweeney, Latanya},
+title = {k-anonymity: a model for protecting privacy},
+year = {2002},
+issue_date = {October 2002},
+publisher = {World Scientific Publishing Co., Inc.},
+address = {USA},
+volume = {10},
+number = {5},
+issn = {0218-4885},
+url = {https://doi.org/10.1142/S0218488502001648},
+doi = {10.1142/S0218488502001648},
+abstract = {Consider a data holder, such as a hospital or a bank, that has a privately held collection of person-specific, field structured data. Suppose the data holder wants to share a version of the data with researchers. How can a data holder release a version of its private data with scientific guarantees that the individuals who are the subjects of the data cannot be re-identified while the data remain practically useful? The solution provided in this paper includes a formal protection model named k-anonymity and a set of accompanying policies for deployment. A release provides k-anonymity protection if the information for each person contained in the release cannot be distinguished from at least k-1 individuals whose information also appears in the release. This paper also examines re-identification attacks that can be realized on releases that adhere to k- anonymity unless accompanying policies are respected. The k-anonymity protection model is important because it forms the basis on which the real-world systems known as Datafly, µ-Argus and k-Similar provide guarantees of privacy protection.},
+journal = {Int. J. Uncertain. Fuzziness Knowl.-Based Syst.},
+month = oct,
+pages = {557–570},
+numpages = {14},
+keywords = {data anonymity, data fusion, data privacy, privacy, re-identification}
+}
+
+@article{IdentifyPeopleSweeney,
+	author = {Sweeney, Latanya},
+  title = {Simple Demographics Often Identify People Uniquely},
+	journal = {Carnegie Mellon University, Data Privacy},
+	year = {2000},
+	type = {Working paper},
+	url = {http://dataprivacylab.org/projects/identifiability/},
+}
+
+@inproceedings{DissentNumbers,
+author = {Wolinsky, David Isaac and Corrigan-Gibbs, Henry and Ford, Bryan and Johnson, Aaron},
+title = {Dissent in numbers: making strong anonymity scale},
+year = {2012},
+isbn = {9781931971966},
+publisher = {USENIX Association},
+address = {USA},
+abstract = {Current anonymous communication systems make a trade-off between weak anonymity among many nodes, via onion routing, and strong anonymity among few nodes, via DC-nets. We develop novel techniques in Dissent, a practical group anonymity system, to increase by over two orders of magnitude the scalability of strong, traffic analysis resistant approaches. Dissent derives its scalability from a client/server architecture, in which many unreliable clients depend on a smaller and more robust, but administratively decentralized, set of servers. Clients trust only that at least one server in the set is honest, but need not know or choose which server to trust. Unlike the quadratic costs of prior peer-to-peer DC-nets schemes, Dissent's client/server design makes communication and processing costs linear in the number of clients, and hence in anonymity set size. Further, Dissent's servers can unilaterally ensure progress, even if clients respond slowly or disconnect at arbitrary times, ensuring robustness against client churn, tail latencies, and DoS attacks. On DeterLab, Dissent scales to 5,000 online participants with latencies as low as 600 milliseconds for 600-client groups. An anonymous Web browsing application also shows that Dissent's performance suffices for interactive communication within smaller local-area groups.},
+booktitle = {Proceedings of the 10th USENIX Conference on Operating Systems Design and Implementation},
+pages = {179–192},
+numpages = {14},
+location = {Hollywood, CA, USA},
+series = {OSDI'12}
+}
+
+@inproceedings{kAnonymityEffectiveness,
+author = {Hopper, Nicholas and Vasserman, Eugene Y.},
+title = {On the effectiveness of k;-anonymity against traffic analysis and surveillance},
+year = {2006},
+isbn = {1595935568},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1179601.1179604},
+doi = {10.1145/1179601.1179604},
+abstract = {The goal of most research on anonymity, including all currently used systems for anonymity, is to achieve anonymity through unlinkability: an adversary should not be able to determine the correspondence between the input and output messages of the system. An alternative anonymity goal is unobservability: an adversary should not be able to determine who sends and who receives messages. We study the effect of k-anonymity, a weak form of unobservability, on two types of attacks against systems that provide only unlinkability.},
+booktitle = {Proceedings of the 5th ACM Workshop on Privacy in Electronic Society},
+pages = {9–18},
+numpages = {10},
+keywords = {k;-anonymity, mass surveillance, statistical disclosure},
+location = {Alexandria, Virginia, USA},
+series = {WPES '06}
+}
+
+@inproceedings{TASP,
+author = {Hayes, Jamie and Troncoso, Carmela and Danezis, George},
+title = {TASP: Towards Anonymity Sets that Persist},
+year = {2016},
+isbn = {9781450345699},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2994620.2994635},
+doi = {10.1145/2994620.2994635},
+abstract = {Anonymous communication systems are vulnerable to long term passive "intersection attacks". Not all users of an anonymous communication system will be online at the same time, this leaks some information about who is talking to who. A global passive adversary observing all communications can learn the set of potential recipients of a message with more and more confidence over time. Nearly all deployed anonymous communication tools offer no protection against such attacks. In this work, we introduce TASP, a protocol used by an anonymous communication system that mitigates intersection attacks by intelligently grouping clients together into anonymity sets. We find that with a bandwidth overhead of just 8\% we can dramatically extend the time necessary to perform a successful intersection attack.},
+booktitle = {Proceedings of the 2016 ACM on Workshop on Privacy in the Electronic Society},
+pages = {177–180},
+numpages = {4},
+keywords = {privacy, intersection, anonymity},
+location = {Vienna, Austria},
+series = {WPES '16}
 }
