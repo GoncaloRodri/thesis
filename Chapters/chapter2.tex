@@ -65,19 +65,20 @@ Mixnets have been analyzed in terms of security and privacy guarantees, as well 
 
 \section{K-anonymity}\label{sec:k_anonymity}
 
-To address the exponential growth in the number and variety of data collections containing person-specific information and the need to prevent privacy compromise, \textit{k-anonymity}~\cite{KAnonSweeney} firstly appeared as a privacy model that ensures user data anonymity not only by removing specific data with explicit identifiers, such as name, address or mobile phone number, but by ensuring that users cannot be re-identified by linking or matching the data to other data sources or by looking at unique characteristiscs. Earlier,~\citeauthor{KAnonSweeney} published that 1990 U.S. Census data could lead to user de-anonymization by linking data, where 87\% of the population in the U.S. had reported characteristics that made them unique and more than half the population were linkly to be uniquely identified by only place, gender and date of birth.~\cite{IdentifyPeopleSweeney}~\citeauthor{KAnonSweeney} defines \textit{k-anonymity} as a property satisfied by a dataset \texttt{D} if and only if each sequence of values of quasi-identifiers in \texttt{D} is indistinguishable from at least k-1 other records in \texttt{D}. This means that an certain tuple in a \texttt{D} must be indistinguishable to k-1 other tuples in \texttt{D}, based on the quasi-identifiers. This property ensures that the data is not linkable to other data sources, and the user cannot be re-identified, with stronger guarantees as k increases.
+To address the exponential growth in the number and variety of data collections containing person-specific information, and the pressing need to prevent privacy compromise, \textit{k-anonymity}~\cite{KAnonSweeney} emerged as a foundational privacy model. This model ensures data anonymity not only by removing explicit identifiers such as names, addresses, or phone numbers but also by protecting against re-identification through linking or matching data with external sources. It achieves this by mitigating the risk posed by unique characteristics within the dataset.
 
-\citeauthor{KAnoMsgTrans} defines a protocol that is sender k-anonymous if it can guarantee that an adversary, trtying to determine the sender of a particular messages, can only narrow down its search to a set of k suspects. Similarly, defines receiver k-anonymity guarantees that an adversary can only narrow down the possible receivers to a set of size k.~\cite{KAnoMsgTrans} 
+Earlier work by~\citeauthor{KAnonSweeney} demonstrated the vulnerability of anonymized data to linkage attacks using the 1990 U.S. Census. They highlighted that 87\% of the U.S. population reported characteristics that rendered them unique, and over half of the population could be uniquely identified using just three attributes: place, gender, and date of birth~\cite{IdentifyPeopleSweeney}. To counter these risks, \citeauthor{KAnonSweeney} defined \textit{k-anonymity} as a property satisfied by a dataset \(\texttt{D}\) if, and only if, each sequence of values for quasi-identifiers in \(\texttt{D}\) is indistinguishable from at least \(k-1\) other records in \(\texttt{D}\). In practical terms, any tuple in \(\texttt{D}\) must be identical to at least \(k-1\) other tuples concerning its quasi-identifiers. This property ensures that the data cannot be easily linked to other sources and protects users from re-identification, with the privacy guarantees strengthening as \(k\) increases.
 
+\citeauthor{KAnoMsgTrans} extended the concept of \textit{k-anonymity} to communication systems, defining a protocol as sender \(k\)-anonymous if it ensures that an adversary attempting to identify the sender of a message can narrow their search to a set of \(k\) potential senders. Similarly, receiver \(k\)-anonymity guarantees that an adversary can only narrow down the possible recipients to a group of \(k\)~\cite{KAnoMsgTrans}.
 
-However, \textit{k-anonymity} is still vulnerable to attacks, such as unsorted matching, complementary release and temporal attacks, according to~\citeauthor{KAnonSweeney}.~\cite{KAnonSweeney} Unsorted matching attacks focus on the order on which tuples appear in the released table, and can be simply mitigated by randomly sorting. Complementary release attacks exploit subsequent releases of data, where the attacker can combine the released data to re-identify users. Temporal attacks exploit the release of data over time, as tuples are added, changed and removed, and therefore k-anonymity guarantees must not be preserved over time. 
+Despite its foundational role, \textit{k-anonymity} remains vulnerable to several types of attacks, including unsorted matching, complementary release, and temporal attacks, as noted by~\citeauthor{KAnonSweeney}~\cite{KAnonSweeney}. Unsorted matching attacks exploit the order of tuples in a released dataset, which can be mitigated by randomizing the tuple order. Complementary release attacks arise when subsequent data releases are combined, allowing adversaries to re-identify individuals by correlating datasets. Temporal attacks exploit data changes over time, such as additions, deletions, or modifications, leading to violations of \(k\)-anonymity guarantees as datasets evolve.
 
-\citeauthor{kAnonymityEffectiveness} concluded that \textit{receiver k-anonymity} is able to improve effectiveness agains long-term intersections and statistical disclosure attacks, and that unobservability and periodic sender k-anonymity on low churn can improve mass survaillence resistance, despite not reaching optimal cost function.~\cite{kAnonymityEffectiveness} 
+Further research has explored enhancing \(k\)-anonymity to address its limitations. For instance, \citeauthor{kAnonymityEffectiveness} observed that receiver \(k\)-anonymity improves effectiveness against long-term intersection and statistical disclosure attacks. Additionally, incorporating periodic sender \(k\)-anonymity under low churn conditions enhances resistance to mass surveillance, albeit without achieving an optimal cost function~\cite{kAnonymityEffectiveness}.
 
-\citeauthor{BigdataKAnon} proposed a anonymization technique for big data privacy, combining \textit{k-anonymity} with Differential Privacy, after realizing that \textit{k-anonymity} alone is not enough to protect user privacy in big data scenarios.~\cite{BigdataKAnon} Due to social networks up-rising, the amount of data collected and stored has increased exponentially, and the need to protect user privacy has become a major concern. \citeauthor{CAMPAN} introduced a anonymization approach for social network data by masking it according to the \textit{k-anonymity} model.~\cite{CAMPAN} 
+Recognizing that \(k\)-anonymity alone may not suffice to protect privacy in the era of big data, \citeauthor{BigdataKAnon} proposed combining \(k\)-anonymity with Differential Privacy. This hybrid approach addresses the challenges posed by the massive scale and interconnected nature of modern data systems~\cite{BigdataKAnon}. Similarly, in response to the proliferation of social networks and the accompanying surge in data collection, \citeauthor{CAMPAN} introduced an anonymization technique for social network data, masking it according to the \(k\)-anonymity model~\cite{CAMPAN}.
 
+While \(k\)-anonymity offers practical privacy guarantees, it is primarily suited for systems prioritizing efficiency over robust privacy protections. It remains less applicable in scenarios where strong, comprehensive privacy guarantees are essential.
 
-K-anonimity offers some privacy guarantees, but it is most used in systems that value efficiency and not in system that require strong privacy guarantees.
 
 
 
@@ -85,52 +86,57 @@ K-anonimity offers some privacy guarantees, but it is most used in systems that 
 
 \section{Differential Privacy}\label{sec:differential_privacy}
 
-The term "Differential Privacy" (DP) was introduced by~\citeauthor{DifPrivacy}, motivated by the need to reveal useful information about underlying population, while preserving the privacy of individuals, describes that a user must not be affected by participating, or not, %TODO Finish this sentence
-
-DP provides privacy by introducing randomness. `Privacy' comes from the plausable deniability of any outcome; `Accuracy' comes from an understading of the noise generation procedure.
-
-%"Differential privacy" (DP) describes a promise, made by a data holder to a data subject: "You will not be affected, adversely or otherwise, by allowing your data to be used in any study or analysis, no matter what other studies, data sets, or information sources, are available."
-
-Differential privacy addresses the paradox of learning nothing about an individual while learning useful information about a population.
-
-DP ensures that any sequence of outputs is "essentially" equally likely to occur, independent of the presence or absence of any individual. The probabilities are taken over random choices made by the privacy mechanism and the term essentially is captured by a parameter $\varepsilon$. A smaller $\varepsilon$ will yield better privacy.
-
-For a given computational task T and a given value of $\varepsilon$ there will be many differentially private algorithms for achieving T in an $\varepsilon$-differentially private manner. When $\varepsilon$ is small, finding a highly accurate $\varepsilon$-differentially private algorithm for T can be difficult, much as finding a numerically stable algorithm for a specific computational task can require effort.
-
-%cite DifPrivacy
-In the non-interactive setting the data collector, a trusted entity,
-publishes a “sanitized” version of the collected data; the literature uses terms such as “anonymization” and “de-identification”. Traditionally, sanitization employs techniques such as data perturbation and sub-sampling, as well as removing well-known identifiers such as names, birthdates, and social security numbers.
-In the interactive setting the data collector, again trusted, provides an interface through which users may pose queries about the data, and get (possibly noisy) answers.
-%%%
-
-DP is a definition of privacy tailored to the problem of privacy-preserving data analysis.
-
-DP neutralizes linkage attacks: since being differentially private is a property of the data access mechanism, and is unrelated to the presence or absence of auxiliary information available to the adversary, access to an certain dataset does not increase the adversary's ability to perform a linkage attack on a certain user whose data is in another dataset, compared to someone whose data is not in the dataset.
-
-Is is theoretically possible to determine if an individual is in a case group due to large number of measurements involved and the relatively small number of individuals in the case group. 
-
+\textit{Differential Privacy} (DP), introduced by~\citeauthor{DifPrivacy}, addresses the critical challenge of enabling the extraction of meaningful insights about an underlying population while rigorously safeguarding individual privacy. This framework ensures that user data can be shared and analyzed without exposing individuals to adverse consequences, regardless of the presence of auxiliary information or other datasets \cite*{DifPrivacy}.
 The intuition behind DP is that each row contains the data of a single individual, and the privacy goal is to simultaneously protect every individual row while permitting statistical analysis of the dataset as a whole.
 
-DP provides privacy by introducing randomness. `Privacy' comes from the plausable deniability of any outcome; `Accuracy' comes from an understading of the noise generation procedure.
+Differential Privacy achieves its guarantees by introducing carefully calibrated randomness into the analysis process. Privacy arises from the principle of plausible deniability, ensuring that any specific outcome cannot be definitively attributed to an individual. At the same time, accuracy is preserved through a precise understanding of the noise generation mechanism. Randomization has a strong role \cite{AlgFoundationsDP}
 
-($\varepsilon$, 0)-differential privacy ensures that, for every run of the mechanisms M(x), the output observer is (almost) equally likely to be observed on every neighboring dataset, simultaneously.
-($\varepsilon$, $\delta$)-differential privacy ensures that for all adjacent x, y, the absolute value of the privacy loss will be bounded by $\varepsilon$ with probability at least 1-$\delta$.
+Under this paradigm, any sequence of outputs remains "essentially" equally likely, irrespective of whether a particular individual's data is included or excluded. The probabilities of these outputs are governed by the randomized choices of the privacy mechanism, with the degree of privacy loss quantified by a parameter, $\varepsilon$. A smaller value of $\varepsilon$ corresponds to stronger privacy guarantees, effectively balancing the trade-off between utility and privacy.For a given computational task T and a given value of $\varepsilon$ there will be many differentially private algorithms for achieving T in an $\varepsilon$-differentially private manner. When $\varepsilon$ is small, finding a highly accurate $\varepsilon$-differentially private algorithm for T can be difficult, much as finding a numerically stable algorithm for a specific computational task can require effort. 
 
-Differential Privacy has some qualitative properties worth mentioning:
+There are two primary formulations of differential privacy: 
 \begin{itemize}
-    \item Protection agains arbitrary risks, moving beyond protection against re-identification.
-    \item Automatic neutralization of linkage attacks, including all those attempted with all past, present and future datasets and other forms and sources of auxiliary information.
-    \item Quantification of privacy loss. Differential privacy is not a binary concept, and has a measure of privacy loss.
-    \item Composability. The quantification of loss also permits the analysis and control of cumulative privacy loss over multiple computations.
-    \item Group Privacy. DP permits the analysis and control of privacy loss incurred by groups.
-    \item Clusre Under Post-Processing. DP is immune to prost-processing: A data analyst, without additional knowledge about the private database, cannot compute a function of the output of a differentially private algorithm M and make it less differentially private.
+    \item \textbf{(\(\varepsilon\), 0)-Differential Privacy}: Ensures that, for every execution of a mechanism \(M(x)\), the output is (almost) equally likely to occur across all neighboring datasets.
+    \item \textbf{(\(\varepsilon\), \(\delta\))-Differential Privacy}: Provides a relaxed guarantee, where for any two adjacent datasets \(x\) and \(y\), the privacy loss is bounded by \(\varepsilon\) with probability at least \(1 - \delta\). This formulation is useful for achieving approximate privacy guarantees in scenarios where perfect differential privacy is infeasible.
 \end{itemize}
 
-DP promises that the behavior of an algorithm will be roughly unchanged even if a single entry in the dataset is modified.
+Differential Privacy offers several notable properties that make it uniquely robust:~\cite{AlgFoundationsDP}
+\begin{itemize}
+    \item \textbf{Protection Against Arbitrary Risks}: It extends privacy protection beyond traditional re-identification attacks, addressing broader privacy threats.
+    \item \textbf{Neutralization of Linkage Attacks}: DP effectively mitigates risks posed by linkage attacks, regardless of whether they are based on past, present, or future datasets or auxiliary information.
+    \item \textbf{Quantification of Privacy Loss}: Unlike binary privacy concepts, DP quantifies privacy loss, providing a measurable and interpretable framework.
+    \item \textbf{Composability}: The cumulative privacy loss from multiple computations can be analyzed and controlled, ensuring consistent privacy guarantees across workflows.
+    \item \textbf{Group Privacy}: DP allows for quantifying and managing the privacy loss of groups, extending its utility to collective data analysis.
+    \item \textbf{Closure Under Post-Processing}: Differential Privacy is inherently robust to post-processing. That is, any function of the output of a differentially private algorithm, computed without access to the underlying private dataset, cannot weaken the privacy guarantee.
+\end{itemize}
+
+DP promises that the behavior of an algorithm will be roughly unchanged even if a single entry in the dataset is modified.It is a strength of differential privacy that composition is `automatic', in that the bounds obtained hold without any special effort by the database curator.
+
+Differential Privacy can be implemented in two primary settings:~\cite{DifPrivacy}
+\begin{itemize}
+    \item \textbf{Non-Interactive Setting}: A trusted entity publishes a "sanitized" version of the dataset. This process often involves techniques such as data perturbation, sub-sampling, or removing identifiable attributes (e.g., names or social security numbers). These methods are aimed at minimizing the risk of re-identification.
+    \item \textbf{Interactive Setting}: In this model, the trusted data collector provides an interface through which analysts can submit queries and receive responses. The answers are typically noisy, with the noise calibrated to ensure differential privacy while preserving utility.
+\end{itemize}
 
 The independent use of an $\varepsilon$-differentially private algorithm and an $\varepsilon'$-differentially private algorithm, when taken together, is $(\varepsilon + \varepsilon')$-differentially private.
 
-It is a strength of differential privacy that composition is `automatic', in that the bounds obtained hold without any special effort by the database curator.
+
+\subsection{Applications of Differential Privacy}\label{subsec:applications_differential_privacy}
+
+Differential Privacy emerged as a solution for privacy-preserving data analysis
+
+
+DP neutralizes linkage attacks: since being differentially private is a property of the data access mechanism, and is unrelated to the presence or absence of auxiliary information available to the adversary, access to an certain dataset does not increase the adversary's ability to perform a linkage attack on a certain user whose data is in another dataset, compared to someone whose data is not in the dataset.
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Summary}\label{sec:related_work_summary}
 
