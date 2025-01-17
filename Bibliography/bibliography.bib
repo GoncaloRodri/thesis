@@ -811,3 +811,63 @@ month = aug,
 pages = {211–407},
 numpages = {197}
 }
+
+@article{KIST,
+author = {Jansen, Rob and Traudt, Matthew and Geddes, John and Wacek, Chris and Sherr, Micah and Syverson, Paul},
+title = {KIST: Kernel-Informed Socket Transport for Tor},
+year = {2018},
+issue_date = {February 2019},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {22},
+number = {1},
+issn = {2471-2566},
+url = {https://doi.org/10.1145/3278121},
+doi = {10.1145/3278121},
+abstract = {Tor’s growing popularity and user diversity has resulted in network performance problems that are not well understood, though performance is understood to be a significant factor in Tor’s security. A large body of work has attempted to solve performance problems without a complete understanding of where congestion occurs in Tor. In this article, we first study congestion in Tor at individual relays as well as along the entire end-to-end Tor path and find that congestion occurs almost exclusively in egress kernel socket buffers. We then analyze Tor’s socket interactions and discover two major contributors to Tor’s congestion: Tor writes sockets sequentially, and Tor writes as much as possible to each socket. To improve Tor’s performance, we design, implement, and test KIST: a new socket management algorithm that uses real-time kernel information to dynamically compute the amount to write to each socket while considering all circuits of all writable sockets when scheduling cells. We find that, in the medians, KIST reduces circuit congestion by more than 30\%, reduces network latency by 18\%, and increases network throughput by nearly 10\%. We also find that client and relay performance with KIST improves as more relays deploy it and as network load and packet loss rates increase. We analyze the security of KIST and find an acceptable performance and security tradeoff, as it does not significantly affect the outcome of well-known latency, throughput, and traffic correlation attacks. KIST has been merged and configured as the default socket scheduling algorithm in Tor version 0.3.2.1-alpha (released September 18, 2017) and became stable in Tor version 0.3.2.9 (released January 9, 2018). While our focus is Tor, our techniques and observations should help analyze and improve overlay and application performance, both for security applications and in general.},
+journal = {ACM Trans. Priv. Secur.},
+month = dec,
+articleno = {3},
+numpages = {37},
+keywords = {Tor performance, Anonymous communication}
+}
+
+@inproceedings{EWMA,
+author = {Tang, Can and Goldberg, Ian},
+title = {An improved algorithm for tor circuit scheduling},
+year = {2010},
+isbn = {9781450302456},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1866307.1866345},
+doi = {10.1145/1866307.1866345},
+abstract = {Tor is a popular anonymity-preserving network, consisting of routers run by volunteers all around the world. It protects Internet users' privacy by relaying their network traffic through a series of routers, thus concealing the linkage between the sender and the recipient. Despite the advantage of Tor's anonymizing capabilities, it also brings extra latency, which discourages more users from joining the network.One of the factors that causes the latency lies in Tor's circuit scheduling algorithm, which allows busy circuits (those with continuous traffic) to crowd out bursty circuits (those with short bursts of traffic). In this work, we propose and implement a more advanced scheduling algorithm which treats circuits differently, based on their recent activity. In this way, bursty circuits such as those used for web browsing can gain higher priority over busy ones such as used for bulk transfer; the performance for most activities over Tor is improved, while minimal overhead is incurred. Our algorithm has been incorporated into the latest build of Tor.},
+booktitle = {Proceedings of the 17th ACM Conference on Computer and Communications Security},
+pages = {329–339},
+numpages = {11},
+keywords = {Tor, latency, onion routing},
+location = {Chicago, Illinois, USA},
+series = {CCS '10}
+}
+
+@inproceedings{shadow-ndss2012,
+  title = {Shadow: Running Tor in a Box for Accurate and Efficient Experimentation},
+  author = {Jansen, Rob and Hopper, Nicholas},
+  booktitle = {Network and Distributed System Security Symposium},
+  year = {2012},
+}
+
+@inproceedings{RAPTOR,
+author = {Sun, Yixin and Edmundson, Anne and Vanbever, Laurent and Li, Oscar and Rexford, Jennifer and Chiang, Mung and Mittal, Prateek},
+title = {RAPTOR: routing attacks on privacy in tor},
+year = {2015},
+isbn = {9781931971232},
+publisher = {USENIX Association},
+address = {USA},
+abstract = {The Tor network is a widely used system for anonymous communication. However, Tor is known to be vulnerable to attackers who can observe traffic at both ends of the communication path. In this paper, we show that prior attacks are just the tip of the iceberg. We present a suite of new attacks, called Raptor, that can be launched by Autonomous Systems (ASes) to compromise user anonymity. First, AS-level adversaries can exploit the asymmetric nature of Internet routing to increase the chance of observing at least one direction of user traffic at both ends of the communication. Second, AS-level adversaries can exploit natural churn in Internet routing to lie on the BGP paths for more users over time. Third, strategic adversaries can manipulate Internet routing via BGP hijacks (to discover the users using specific Tor guard nodes) and interceptions (to perform traffic analysis). We demonstrate the feasibility of Raptor attacks by analyzing historical BGP data and Traceroute data as well as performing real-world attacks on the live Tor network, while ensuring that we do not harm real users. In addition, we outline the design of two monitoring frameworks to counter these attacks: BGP monitoring to detect control-plane attacks, and Traceroute monitoring to detect data-plane anomalies. Overall, our work motivates the design of anonymity systems that are aware of the dynamics of Internet routing.},
+booktitle = {Proceedings of the 24th USENIX Conference on Security Symposium},
+pages = {271–286},
+numpages = {16},
+location = {Washington, D.C.},
+series = {SEC'15}
+}
