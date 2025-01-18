@@ -119,10 +119,49 @@ While \(k\)-anonymity offers practical privacy guarantees, it is primarily suite
 
 \section{Differential Privacy}\label{sec:differential_privacy}
 
-\textit{Differential Privacy} (DP), introduced by~\citeauthor{DifPrivacy}, addresses the critical challenge of enabling the extraction of meaningful insights about an underlying population while rigorously safeguarding individual privacy. This framework ensures that user data can be shared and analyzed without exposing individuals to adverse consequences, regardless of the presence of auxiliary information or other datasets~\cite*{DifPrivacy}.
-The intuition behind DP is that each row contains the data of a single individual, and the privacy goal is to simultaneously protect every individual row while permitting statistical analysis of the dataset as a whole.
+\textit{Differential Privacy}~\cite*{DifPrivacy, DifPrivacyCalNoise, DP_Book}, introduced by~\citeauthor{DifPrivacyCalNoise}, is a formal notion of privacy and is a property of algorithms, rather than data like \(k\)-anonymity. A algorithm or function satifies differential privacy if for all neighboring datasets \(x\) and \(x'\), and all possible sets of outputs \(S\):
 
-Differential Privacy achieves its guarantees by introducing carefully calibrated randomness into the analysis process. Privacy arises from the principle of plausible deniability, ensuring that any specific outcome cannot be definitively attributed to an individual. At the same time, accuracy is preserved through a precise understanding of the noise generation mechanism. Randomization has a strong role~\cite{AlgFoundationsDP}.
+\begin{equation}\label{eq:dp_privacy_mechanism}
+    \frac{\Pr[F(x) \in S]}{\Pr[F(x') \in S]} \leq e^{\varepsilon}
+\end{equation}
+
+In this privacy mechanism definition, \(F\) is a randomized funtion, and its output will be similiar, with or without the data of any specific individual. Moreover, \(F\)'s randomness should be enough so that outputs do not reveal the input data. This way, we can ensure that the privacy of any individual is preserved, by ensuring plausible deniability. This happens because the output of the function cannot be correlated to any specific input, whether the input is present or not. Furthermore, the mechanism can maintain certain level of accuracy, due to having a precise understanding of the noise generation process. Differential Privacy intends to reject no malicious adversary, instead it ensures that the adversary is not capable of inferring any specific information, due to the randomness of the output.
+
+Another important requirement of differential private mechanisms is the \(\epsilon\) paramenter. This paramenter is called \textit{privacy parameter} and it controlos the `amount of privacy' that the correspondent function provides. Small values of \(\epsilon\) require \(F\) to provide very similar output when given similar inputs, originating in higher levels of privacy. On the other hand, higher values of \(\epsilon\) allow outputs to diverge more, leading to lower levels of privacy. In practice, \(\epsilon\) should be less or equal to 1, and no greater than 10, to provide meaningful privacy guarantees. 
+
+Differential Privacy originated from the challenge of enabling the extraction of meaningful insights about an underlying population while rigorously safeguarding individual privacy. Therefore, the earlier definitions of this concept were focused on datasets and queries over them. 
+
+
+The Laplace Mechanism was proposed together with the definition of Differential Privacy by~\citeauthor{DifPrivacyCalNoise}~\cite{DifPrivacyCalNoise}. The simpliest way to achieve differential privacy is by adding noice to the output of a function. The challenge is to balance the injected noise in order to have enough to satisfy the definition of DP but not too much to make the output useless. The Laplace Mechanism is a simple mechanism which, for a function \(f(x)\) that returns a real number, \(F(x)\) satifies \(\epsilon\)-differential privacy:
+
+\begin{equation}\label{eq:laplace_mechanism}
+    F(x) = f(x) + \text{Lap} (\frac{s}{\epsilon})
+\end{equation}
+
+where \(s\) is the sensitivity of the function \(f\), and \(Lap(S)\) denotes sampling from the Laplace distribution with scale \(S\) and center \(0\). 
+
+The sensitivity of a function is a measure of how much the output of the function can change when the input changes. This property is important to determine how much noise should be added to the output of the function, in order to guarantee differential privacy. 
+
+\subsection{Proporties of Differential Privacy}\label{subsec:properties_differential_privacy}
+
+In this section, we cover the three main properties of Differential Privacy: Sequential Composition, Parallel Composition and Post-Processing~\cite{DP_Book}
+
+\subsubsection{Sequential Composition}\label{subsubsec:sequential_composition}
+
+Sequential Compositions is a major property of Differential Privacy, which determines the total privacy cost of releasing multiple results of differential private mechanisms on the same input. Formally, this property states that if \(F_1(x)\) satisfies \(\epsilon\)-differential privacy and \(F_2(x)\) satisfies \(\epsilon'\)-differential privacy, then the composition of these two functions, \(G(x) = (F_1(x), F_2(x))\), satisfies \((\epsilon + \epsilon')\)-differential privacy. This property is important to algorithms that access data more than once. The bound on privacy cost given by this property is an upper bound, and the actual privacy cost can be lower than the sum of the individual privacy cost.
+
+\subsubsection{Parallel Composition}\label{subsubsec:parallel_composition}
+
+Parallel Composition can be considered as an alternative to Sequential Composition, as it determines the total privacy cost of releasing multiple results of differential private mechanisms. The idea consists on splitting a dataset into disjoint chunks and applying a differentially private mechanism to each chunk separatly. Formally, if \(F(x)\) satisfies \(\epsilon\)-differential privacy, and we split the dataset \(X\) into \(k\) disjoint chunks such that \(X = X_1 \cup X_2 \cup \ldots \cup X_k\), then the mechanism that releases all of the results \(F(x_1), \ldots F(x_k)\) satisfies \(\epsilon\)-differential privacy. Comparatively to Sequential Composition, Parallel Composition gives a better upper bound. Since \(F\) is run \(k\) times, Sequential Composition states that this procedure satisfies \(k\epsilon\)-differential privacy.
+
+An issue with Differential Privacy arises with small datasets. A large dataset is able to achieve a strong privacy guarantee with relatively weak noise, and allows the results to be useful. However, small datasets require stronger noise to achieve the same privacy guarantee.
+As we split the dataset into chunks, we must care for the utility of the results and the impact of the number of chunks that we split the dataset into. The more chunks we split the dataset into, the stronger the noise we must add to the results, and the less useful the results will be.
+
+\subsubsection{Post-Processing}\label{subsubsec:post_processing}
+
+The last property is Post-Processing and it states that is impossible to reverse the privacy protection provided by a differential privacy by post-processing the data in some way. Formally, if \(F(x)\) satisfies \(\epsilon\)-differential privacy, then for any function \(h\), \(h(F(X))\) satisfies \(\epsilon\)-differential privacy. This means that no danger will arise from performing additional computations on a output of a differential private mechanism, as the privacy guarantee will be preserved (and not reversed). This property is essetial to ensure that differential privacy is resitant against privacy attacks based on auxiliary information and that attacks effectiveness is only limited by the privacy parameter \(\epsilon\).
+
+
 
 Under this paradigm, any sequence of outputs remains "essentially" equally likely, irrespective of whether a particular individual's data is included or excluded. The probabilities of these outputs are governed by the randomized choices of the privacy mechanism, with the degree of privacy loss quantified by a parameter, $\varepsilon$. A smaller value of $\varepsilon$ corresponds to stronger privacy guarantees, effectively balancing the trade-off between utility and privacy.For a given computational task T and a given value of $\varepsilon$ there will be many differentially private algorithms for achieving T in an $\varepsilon$-differentially private manner. When $\varepsilon$ is small, finding a highly accurate $\varepsilon$-differentially private algorithm for T can be difficult, much as finding a numerically stable algorithm for a specific computational task can require effort. 
 
