@@ -18,14 +18,40 @@
 \chapter{Elaboration}
 \label{cha:elaboration}
 
+In this chapter, we give a conceptial overview of the proposed solution. We begin by presenting the general overview of the system model and the design goals in Section~\ref{sec:system_model}, followed by a more tecnical description of the techniques and tecnologies used in the implementation of the prototype in Section~\ref{sec:prototype_guidelines}. Finally, we present how we intend to test and validate our implementation in Section~\ref{sec:validation}.
+
 \section{System Model}
 \label{sec:system_model}
 
+\subsection{Initial System Model Approach}\label{subsec:initial_system_model_approach}
+
+As shown in Section~\ref{sec:problem}, Tor is a widely used network for anonymous communication. However, it has some vulnerabilities that can be exploited by attackers to de-anonymize users, such as traffic analysis attacks. Several techniques have been proposed to mitigate these attacks, such as k-anonymity, but they lack formal guarantees of privacy and are almost based on practical validations, which in real-world applications might vary. In this context, we proposed a new approach to enhance the privacy of Tor users by integrating a differential privacy mechanisms in Tor relays and on the Client side. Our approach aims to develop a Differential Private Scheduler similiar to KIST (Section~\ref{subsubsec:kist}) that will be responsible for adding noise to the traffic flows in order to protect the privacy of users. 
+The Tor scheduler handles two buffers, input and output. The first receives the cells and the second sends them. Between these two buffers, the circuit queue is responsible for managing the cells that are being processed. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/Fig1.png}
+    \caption{Tor Relay Internal Architeture}
+    \label{fig:our_system_model}
+\end{figure}
+
+\subsection{Our System Model Approach}\label{subsec:our_system_model_approach}
+
+\subsection{Differential Privacy Scheduler}\label{subsec:differential_privacy_approach}
+
 \section{Prototype Guidelines}
-\label{subsec:prototype_guidelines}
+\label{sec:prototype_guidelines}
+
+\subsection{The Tor Approach}\label{subsec:tor_approach}
+
+\subsection{The Mirace Approach}\label{subsec:mirace_approach}
 
 \section{Validation}
-\label{subsec:validation}
+\label{sec:validation}
+
+\subsection{Performance Measurements}\label{subsec:performance_measurements}
+
+\subsection{Innobservability Measurements}\label{subsec:innobservability_measurements}
 
 \section{Summary}
 \label{sec:elaboration_summary}
