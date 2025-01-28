@@ -21,6 +21,9 @@ In this chapter, we give a conceptual overview of the proposed solution. We begi
 
 \section{System Model}\label{sec:system_model}
 
+In this section, we present the system model of our proposed solution. We start bu presenting the foudation of our work in Section~\ref{subsec:initial_system_model_approach}, where we explore the current Tor Relay internal architecture and how we intend to extend its architecture. In Section~\ref{subsec:our_system_model_approach}, we present our approach to enhance the privacy of Tor users by integrating a differential privacy mechanisms in Tor relays and on the Client side. Finally, in Section~\ref{subsec:differential_privacy_approach}, we present the Differential Privacy Scheduler, or DP Scheduler, which is a component that maintains the circuit queues and is responsible for selecting the cells to be allocated in the output buffer, just like the vanilla Tor scheduler.
+Next, we present the Prototype Guidelines in Section~\ref{sec:prototype_guidelines}, where we present the two main approaches to implement our solution: the Tor Approach and the MIRACE Approach, and a brief explanation of how we intend to implement them. Finally, in Section~\ref{sec:validation}, we present how we intend to validate our work.
+
 \subsection{Initial System Model Approach}\label{subsec:initial_system_model_approach}
 
 As shown in Section~\ref{sec:problem}, Tor is a widely used network for anonymous communication. However, it has some vulnerabilities that can be exploited by attackers to de-anonymize users, such as traffic analysis attacks. Several techniques have been proposed to mitigate these attacks, such as k-anonymity, but they lack formal guarantees of privacy and are almost based on practical validations, which in real-world applications might vary. In this context, we proposed a new approach to enhance the privacy of Tor users by integrating a differential privacy mechanisms in Tor relays and on the Client side. Our approach aims to develop a Differential Private Scheduler similar to KIST (Section~\ref{subsubsec:kist}) that will be responsible for adding noise to the traffic flows in order to protect the privacy of users. 
@@ -52,13 +55,16 @@ Figure~\ref{fig:our_system_model} illustrates the enhanced Tor Relay internal ar
 
 \subsection{Differential Privacy Scheduler}\label{subsec:differential_privacy_approach}
 
-The Differential Privacy Scheduler, or DP Scheduler, is a component that maintains the circuit queues and is responsible for selecting the cells to be allocated in the output buffer, just like the vanilla Tor scheduler. In addition, the DP scheduler uses a set of parameters to allow customization on the level of privacy and performance. These parameters can be split into two categories: static, or configuration, and dynamic.
-\begin{itemize}
-  \item \textit{Static Parameters}: These parameters are set by the relay operator. One of these parameters is the queue size, called privacy window, which determines the number of cells that the DP Scheduler will consider executing the differential private algorithm and, therefore, apply noise into this window and subsequently into the traffic. Another static parameter is the privacy parameter, often denoted by $\epsilon$, which determines the level of privacy that the DP Scheduler will provide. Our work aims to provide a configurable file that allows the relay operator to set these parameters before running the relay.
-  \item \textit{Dynamic Parameters}: These parameters are calculated by the DP Scheduler based on the current state of the relay and the network. An example of dynamic parameter is the 
-\end{itemize}
+The Differential Privacy Scheduler, or DP Scheduler, is a component that maintains the circuit queues and is responsible for selecting the cells to be allocated in the output buffer, just like the vanilla Tor scheduler. In addition, the DP scheduler uses a set of parameters to allow customization on the level of privacy and performance. These parameters can be split into two categories: configuration and dynamic. This component represents a subtle change in the Tor Relay internal architecture, but we believe that it can significantly improve users' privacy, based on the differential privacy formal guarantees that we aim to provide.
 
-This component represents a subtle change in the Tor Relay internal architecture, but we believe that it can significantly improve users' privacy, based on the differential privacy formal guarantees that we aim to provide.
+\subsubsection{Configuration Parameters}\label{subsubsec:configuration_parameters}
+
+The Configuration, or Static, Parameters parameters are set by the relay operator. One of these parameters is the queue size, called privacy window, which can have two different approaches: the \textit{privacy window length} determines the number of cells that the DP Scheduler will consider executing the differential private algorithm and, therefore, apply noise into this window and subsequently into the traffic; the other approach, called \textit{privacy window time interval} determines the time, in miliseconds, to fill a buffer and, when the timer ends, the differential private mechanisms is applyed on the received packets. We will consider implementing both approachs in our prototype. 
+Another static parameter is the privacy parameter, often denoted by $\epsilon$, which determines the level of privacy that the DP Scheduler will provide. Our work aims to provide a configurable file that allows the relay operator to set these parameters before running the relay.
+
+\subsubsection{Dynamic Parameters}
+These parameters are calculated by the DP Scheduler based on the current state of the relay and the network. An example of dynamic parameter is the allowed interval of latency that our system must aim to provide. In this case, the DP Scheduler will calculate the noise to be added to the traffic in order to maintain the latency within the allowed interval. If the latency is above the interval, the value of the static parameters \(\epsilon\) may be lowered, reducing the noise injection and, therefore, improving the performance.
+
 
 \section{Prototype Guidelines}\label{sec:prototype_guidelines}
 
@@ -72,14 +78,38 @@ This approach aims to improve Tor system by providing greater guarantees and for
 
 \subsection{The MIRACE Approach}\label{subsec:mirace_approach}
 
-On the other hand, we also propose another approach for the implementation of our Differential Private Component, by extending the MIRACE work. This way, we believe that merging both path splitting and differential privacy mechanisms can provide a better privacy. 
+On the other hand, we also propose another approach for the implementation of our Differential Private Component, by extending the MIRACE work. This way, we believe that merging both path splitting and differential privacy mechanisms can provide a better privacy. This work is based on another NOVA LINCS work called TorKameleon~\cite{TorKameleon}, which is developed in Go language. The MIRACE approach consists of implementing the Innobservability Scheduler Compenent in each Relay Node used in the MIRACE network. Additionally, we aim to augment the scheduler with a formal and differential private mechanisms to levarage the MIRACE multi-path algorithm. We believe that combining traffic splitting and multipath multi-encapsulation techniques from MIRACE with the differential privacy mechanisms from our work can provide a better privacy to Tor users.
+This approach is the alternative to the Tor approach, considering that Tor source code may be more complex and harder to implement in the time frame of this work. On the other hand, the MIRACE approach uses Golang which is a simpler language and both MIRACE and TorKameleon authors represent a great support to our work.
 
 \section{Validation}\label{sec:validation}
 
+In order to validate our solution and present a trustworthy conclusion of wether our work is useful to the current Anonymity Networks State-of-the-Art or it can be ruled out for future work and reference, we will present two main types of validation: Performance Measurements and Innobservability Measurements. 
+
 \subsection{Performance Measurements}\label{subsec:performance_measurements}
+
+The Performance Measurements aim to provide a extensive and detailed analysis of the performance of our solution. In order to achieve this, we will consider various metrics, such as latency and throughput. We will also consider different scenarios where we can stress our solution in different ways, leading to a more detailed and broad analysis of the performance of our solution. We will have 5 main scenarios:
+\begin{itemize}
+  \item \textbf{iPerf}: This tool will be used to measure some critical metrics, such as latency and throughput, but also the jitter and packet loss that our solution may introduce.
+  \item \textbf{Web Browsing}: In this scenario, we consider that it is important to evaluate perfomnace measurements over a scenario where high performance is required, such as web browsing. This scenario will have a high number of small sized requests and responses. 
+  \item \textbf{File transfers}: This scenario will simulate the transfer of large files over the network to evaluate throughput and latency under sustained, high-bandwidth usage. It will help identify how the scheduler handles prolonged data flows and ensures privacy without significantly impacting performance.  
+  \item \textbf{Video Conference Meeting}: This scenario will test real-time communication with strict latency and jitter requirements. It will assess how the scheduler performs under conditions where low delay is crucial for maintaining audio and video quality.  
+  \item \textbf{Streaming}: Streaming scenarios will evaluate continuous data delivery performance, focusing on how well the scheduler maintains a balance between bandwidth usage and differential privacy guarantees, especially under varying network conditions and sustained traffic.
+\end{itemize}
+
+With these scenarios and metrics, we believe that we can provide a comprehensive analysis of the performance of our solution, which will help us to understand the trade-offs between privacy and performance. The aim is to demosntrate that our solution can provide a reasonable level of privacy without significantly impacting the performance.
 
 \subsection{Innobservability Measurements}\label{subsec:innobservability_measurements}
 
+Even though performance is a critical measurement, we believe that the privacy guarantees are the most important aspect of our solution. To do so, we will consider Website Fingerprinting as the main attacker technique over our system. To provide strong evidence of the privacy guarantees of our solution, we will consider the following machine-learning models for website fingerprinting:
+\begin{itemize}
+  \item Attack 1
+  \item Attack 2
+  \item TPR
+  \item TNR
+\end{itemize}
+
+In addition, we want to formally prove the differential private mechanisms that we aim to provide
+
 \section{Summary}\label{sec:elaboration_summary}
 
-
+We propose to implement a Innobservability Scheduler Component, based on the Tor Scheduler and considering some implementations over it, like KIST and EWMA, but aiming to provide greater and better privacy guarantees to users. By providing a formal and differential private mechanism over Relay Nodes, we intend to protect the privacy of users, whilst maintaining feasable performance levels. We will consider two main approaches from the start: the Tor Approach and the MIRACE Approach. The Tor Approach consists of extending the Tor Scheduler with our Differential Privacy Scheduler Component, whilst the MIRACE Approach consists of extending the MIRACE Relay Nodes with our Differential Privacy Scheduler Component. To validate the solution, we will consider two types of measurements: Performance and Innobservability. The Performance Measurements aim to provide a comprehensive analysis of the performance of our solution, considering different scenarios and metrics, such as latency and throughput. The Innobservability Measurements aim to provide a comprehensive analysis of the privacy guarantees of our solution, considering different scenarios and metrics, such as website fingerprinting and correlation attacks. We believe that by providing a comprehensive analysis of the performance and privacy guarantees of our solution, we can demonstrate that our solution can provide a reasonable level of privacy without significantly impacting the performance.
