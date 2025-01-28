@@ -51,7 +51,7 @@ Our approach aims to develop a differential private mechanism, called \textit{Di
     \includegraphics[width=0.8\textwidth]{Chapters/Figures/Fig2_dp.png}
     \caption{Enhanced Tor Relay with Differential Privacy  Scheduler Component}\label{fig:our_system_model}
 \end{figure}
-Figure~\ref{fig:our_system_model} illustrates the enhanced Tor Relay internal architecture with our Innobservability Scheduler Component. This component is responsible for adding noise and control to the traffic flow, focusing on improving the circuit queue scheduler algorithm. This component has a variable levels of performance and privacy, according to the parameters set by the relay or dynamically calculated.   
+Figure~\ref{fig:our_system_model} illustrates the enhanced Tor Relay internal architecture with our Unobservability Scheduler Component. This component is responsible for adding noise and control to the traffic flow, focusing on improving the circuit queue scheduler algorithm. This component has a variable levels of performance and privacy, according to the parameters set by the relay or dynamically calculated.   
 
 \subsection{Differential Privacy Scheduler}\label{subsec:differential_privacy_approach}
 
@@ -78,38 +78,42 @@ This approach aims to improve Tor system by providing greater guarantees and for
 
 \subsection{The MIRACE Approach}\label{subsec:mirace_approach}
 
-On the other hand, we also propose another approach for the implementation of our Differential Private Component, by extending the MIRACE work. This way, we believe that merging both path splitting and differential privacy mechanisms can provide a better privacy. This work is based on another NOVA LINCS work called TorKameleon~\cite{TorKameleon}, which is developed in Go language. The MIRACE approach consists of implementing the Innobservability Scheduler Compenent in each Relay Node used in the MIRACE network. Additionally, we aim to augment the scheduler with a formal and differential private mechanisms to levarage the MIRACE multi-path algorithm. We believe that combining traffic splitting and multipath multi-encapsulation techniques from MIRACE with the differential privacy mechanisms from our work can provide a better privacy to Tor users.
+On the other hand, we also propose another approach for the implementation of our Differential Private Component, by extending the MIRACE work. This way, we believe that merging both path splitting and differential privacy mechanisms can provide a better privacy. This work is based on another NOVA LINCS work called TorKameleon~\cite{TorKameleon}, which is developed in Go language. The MIRACE approach consists of implementing the Unobservability Scheduler Compenent in each Relay Node used in the MIRACE network. Additionally, we aim to augment the scheduler with a formal and differential private mechanisms to levarage the MIRACE multi-path algorithm. We believe that combining traffic splitting and multipath multi-encapsulation techniques from MIRACE with the differential privacy mechanisms from our work can provide a better privacy to Tor users.
 This approach is the alternative to the Tor approach, considering that Tor source code may be more complex and harder to implement in the time frame of this work. On the other hand, the MIRACE approach uses Golang which is a simpler language and both MIRACE and TorKameleon authors represent a great support to our work.
 
 \section{Validation}\label{sec:validation}
 
-In order to validate our solution and present a trustworthy conclusion of wether our work is useful to the current Anonymity Networks State-of-the-Art or it can be ruled out for future work and reference, we will present two main types of validation: Performance Measurements and Innobservability Measurements. 
+The main goal of this work is to provide a viable solution to the current privacy issues in Anonymity Networks, such as Tor, by using Differntial Privacy mechanisms to provide formal privacy guarantees whilst maintaining reasonable performance levels. Using DP algorithms, we aim to provide a solution that can decrease the efficiency of orrelation attacks and website fingerprinting.
+In order to validate our solution and present a trustworthy conclusion of wether our work is useful to the current Anonymity Networks State-of-the-Art or it can be ruled out for future work and reference, we will present two main types of validation: Performance Measurements and Unobservability Measurements. To execute our validation, we will use Shadow~\cite*{Shadow, Shadow2}, which is a specific experimnetation tool that allows us to test and simulate the Tor network in a simulated environment, leading to a more controlled but easier prototype implementation and validation. 
 
-\subsection{Performance Measurements}\label{subsec:performance_measurements}
+\subsection{Unobservability Measurements}\label{subsec:unobservability_measurements}
 
-The Performance Measurements aim to provide a extensive and detailed analysis of the performance of our solution. In order to achieve this, we will consider various metrics, such as latency and throughput. We will also consider different scenarios where we can stress our solution in different ways, leading to a more detailed and broad analysis of the performance of our solution. We will have 5 main scenarios:
-\begin{itemize}
-  \item \textbf{iPerf}: This tool will be used to measure some critical metrics, such as latency and throughput, but also the jitter and packet loss that our solution may introduce.
-  \item \textbf{Web Browsing}: In this scenario, we consider that it is important to evaluate perfomnace measurements over a scenario where high performance is required, such as web browsing. This scenario will have a high number of small sized requests and responses. 
-  \item \textbf{File transfers}: This scenario will simulate the transfer of large files over the network to evaluate throughput and latency under sustained, high-bandwidth usage. It will help identify how the scheduler handles prolonged data flows and ensures privacy without significantly impacting performance.  
-  \item \textbf{Video Conference Meeting}: This scenario will test real-time communication with strict latency and jitter requirements. It will assess how the scheduler performs under conditions where low delay is crucial for maintaining audio and video quality.  
-  \item \textbf{Streaming}: Streaming scenarios will evaluate continuous data delivery performance, focusing on how well the scheduler maintains a balance between bandwidth usage and differential privacy guarantees, especially under varying network conditions and sustained traffic.
-\end{itemize}
-
-With these scenarios and metrics, we believe that we can provide a comprehensive analysis of the performance of our solution, which will help us to understand the trade-offs between privacy and performance. The aim is to demosntrate that our solution can provide a reasonable level of privacy without significantly impacting the performance.
-
-\subsection{Innobservability Measurements}\label{subsec:innobservability_measurements}
-
+Unobservability is the main goal of our work. We aim to prove that Differential Privacy mechanisms can provide strong privacy guarantees and that its a real-world solution
 Even though performance is a critical measurement, we believe that the privacy guarantees are the most important aspect of our solution. To do so, we will consider Website Fingerprinting as the main attacker technique over our system. To provide strong evidence of the privacy guarantees of our solution, we will consider the following machine-learning models for website fingerprinting:
 \begin{itemize}
-  \item Attack 1
-  \item Attack 2
-  \item TPR
+  \item DeppCoFFEA
+  \item TorMarker
+  \item TirDeanon
   \item TNR
 \end{itemize}
 
 In addition, we want to formally prove the differential private mechanisms that we aim to provide
 
+
+\subsection{Performance Measurements}\label{subsec:performance_measurements}
+
+Even though the main goal of our work focus on privacy and the effectiveness of Differential Privacy, we consider performance to be the key to the success of our solution, which can be the difference between a viable solution, useful in real-world applications, and a theoretical solution which works but does not provide a real-world application due to low performance.
+This way, the Performance Measurements aim to provide a extensive and detailed analysis of the performance of our solution. In order to achieve this, we will consider various metrics, such as latency and throughput. We will also consider different scenarios where we can stress our solution in different ways, leading to a more detailed and broad analysis of the performance of our solution. We will have 5 main scenarios:
+\begin{itemize}
+  \item\textbf{iPerf:} This tool will be used to measure some critical metrics, such as latency and throughput, but also the jitter and packet loss that our solution may introduce.
+  \item\textbf{Web Browsing: } In this scenario, we consider that it is important to evaluate perfomnace measurements over a scenario where high performance is required, such as web browsing. This scenario will have a high number of small sized requests and responses. 
+  \item\textbf{File transfers: } This scenario will simulate the transfer of large files over the network to evaluate throughput and latency under sustained, high-bandwidth usage. It will help identify how the scheduler handles prolonged data flows and ensures privacy without significantly impacting performance.  
+  \item\textbf{Video Conference Meeting: } This scenario will test real-time communication with strict latency and jitter requirements. It will assess how the scheduler performs under conditions where low delay is crucial for maintaining audio and video quality.  
+  \item\textbf{Streaming: } Streaming scenarios will evaluate continuous data delivery performance, focusing on how well the scheduler maintains a balance between bandwidth usage and differential privacy guarantees, especially under varying network conditions and sustained traffic.
+\end{itemize}
+
+With these scenarios and metrics, we believe that we can provide a comprehensive analysis of the performance of our solution, which will help us to understand the trade-offs between privacy and performance. The aim is to demosntrate that our solution can provide a reasonable level of privacy without significantly impacting the performance.
+
 \section{Summary}\label{sec:elaboration_summary}
 
-We propose to implement a Innobservability Scheduler Component, based on the Tor Scheduler and considering some implementations over it, like KIST and EWMA, but aiming to provide greater and better privacy guarantees to users. By providing a formal and differential private mechanism over Relay Nodes, we intend to protect the privacy of users, whilst maintaining feasable performance levels. We will consider two main approaches from the start: the Tor Approach and the MIRACE Approach. The Tor Approach consists of extending the Tor Scheduler with our Differential Privacy Scheduler Component, whilst the MIRACE Approach consists of extending the MIRACE Relay Nodes with our Differential Privacy Scheduler Component. To validate the solution, we will consider two types of measurements: Performance and Innobservability. The Performance Measurements aim to provide a comprehensive analysis of the performance of our solution, considering different scenarios and metrics, such as latency and throughput. The Innobservability Measurements aim to provide a comprehensive analysis of the privacy guarantees of our solution, considering different scenarios and metrics, such as website fingerprinting and correlation attacks. We believe that by providing a comprehensive analysis of the performance and privacy guarantees of our solution, we can demonstrate that our solution can provide a reasonable level of privacy without significantly impacting the performance.
+We propose to implement a Unobservability Scheduler Component, based on the Tor Scheduler and considering some implementations over it, like KIST and EWMA, but aiming to provide greater and better privacy guarantees to users. By providing a formal and differential private mechanism over Relay Nodes, we intend to protect the privacy of users, whilst maintaining feasable performance levels. We will consider two main approaches from the start: the Tor Approach and the MIRACE Approach. The Tor Approach consists of extending the Tor Scheduler with our Differential Privacy Scheduler Component, whilst the MIRACE Approach consists of extending the MIRACE Relay Nodes with our Differential Privacy Scheduler Component. To validate the solution, we will consider two types of measurements: Performance and Unobservability. The Performance Measurements aim to provide a comprehensive analysis of the performance of our solution, considering different scenarios and metrics, such as latency and throughput. The Unobservability Measurements aim to provide a comprehensive analysis of the privacy guarantees of our solution, considering different scenarios and metrics, such as website fingerprinting and correlation attacks. We believe that by providing a comprehensive analysis of the performance and privacy guarantees of our solution, we can demonstrate that our solution can provide a reasonable level of privacy without significantly impacting the performance.
