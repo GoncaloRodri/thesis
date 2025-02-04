@@ -49,7 +49,7 @@ Our approach aims to develop a differential private mechanism, called \textit{Di
 \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{Chapters/Figures/Fig2_dp.png}
-    \caption{Enhanced Tor Relay with Differential Privacy  Scheduler Component}\label{fig:our_system_model}
+    \caption{Enhanced Tor Relay with Differential Privacy Scheduler Component}\label{fig:our_system_model}
 \end{figure}
 Figure~\ref{fig:our_system_model} illustrates the enhanced Tor Relay internal architecture with our Unobservability Scheduler Component. This component is responsible for adding noise and control to the traffic flow, focusing on improving the circuit queue scheduler algorithm. This component has a variable levels of performance and privacy, according to the parameters set by the relay or dynamically calculated.   
 
@@ -73,6 +73,9 @@ In order to implement the proposed solution, we have 2 main approaches: the Tor~
 \subsection{The Tor Approach}\label{subsec:tor_approach}
 
 Firstly, we will consider the approach based on extending the Tor Relay Scheduler Architecture with the implementation of a differential private mechanism capable of adding sufficient noise to the traffic flows that is able to reduce website fingerprinting and correlation attacks on the Tor network, therefore protecting the privacy of users. To implement this approach, we will use the already existing Tor source code, more specifically the scheduler component (\texttt{scheduler.h}). This approach aims to modify the \texttt{scheduler.h} file and add our differential private scheduler as part of the \texttt{scheduler\_type\_t} enum, which already contains the vanilla and the KIST~\cite{KIST} schedulers. In addition, we aim also to develop a new scheduler, using the Tor Scheduler Interface \texttt{scheduler\_t}, which implements the necessary functions in order to fit our design into Tor system. This way, the file `scheduler\_dp.c' would be added to the Tor source code.
+
+
+
 The source code is written in C language and, even though there has been some efforts to export the C code base~\cite{TorRepo} to Rust code base~\cite{TorRustRepo}, after analyzing both sources, we decided to only implement in the C language, considering that, at the time of our work, the Rust source code only represents a fraction of the Tor system, and we believe that it could affect the validation of our work.
 This approach aims to improve Tor system by providing greater guarantees and formal proof privacy-wise, and we aim to maintain reasonable performance results in order to the scheduler to be considered as an option for Tor users which may consider sacrificing some performance in order to have a better privacy. 
 
@@ -94,7 +97,7 @@ Even though performance is a critical measurement, we believe that the privacy g
   \item DeppCoFFEA
   \item TorMarker
   \item TirDeanon
-  \item TNR
+  \item Finn
 \end{itemize}
 
 In addition, we want to formally prove the differential private mechanisms that we aim to provide
@@ -107,12 +110,15 @@ This way, the Performance Measurements aim to provide a extensive and detailed a
 \begin{itemize}
   \item\textbf{iPerf:} This tool will be used to measure some critical metrics, such as latency and throughput, but also the jitter and packet loss that our solution may introduce.
   \item\textbf{Web Browsing: } In this scenario, we consider that it is important to evaluate perfomnace measurements over a scenario where high performance is required, such as web browsing. This scenario will have a high number of small sized requests and responses. 
-  \item\textbf{File transfers: } This scenario will simulate the transfer of large files over the network to evaluate throughput and latency under sustained, high-bandwidth usage. It will help identify how the scheduler handles prolonged data flows and ensures privacy without significantly impacting performance.  
-  \item\textbf{Video Conference Meeting: } This scenario will test real-time communication with strict latency and jitter requirements. It will assess how the scheduler performs under conditions where low delay is crucial for maintaining audio and video quality.  
+  \item\textbf{File transfers: } This scenario will simulate the transfer of large files over the network to evaluate throughput and latency under sustained, high-bandwidth usage, by using the OnionPerf~\cite{OnionPerf} tool which is already used by the Tor project community ti measure performamnce on files' download times over Tor. It will help identify how the scheduler handles prolonged data flows and ensures privacy without significantly impacting performance. Additionally, we consider SSH and SCP as alteranative tools to measure file transfer performance over Tor.
+  \item\textbf{Video Conference Meeting: } This scenario will test TCP real-time communication with strict latency and jitter requirements. It will assess how the scheduler performs under conditions where low delay is crucial for maintaining audio and video quality.  
   \item\textbf{Streaming: } Streaming scenarios will evaluate continuous data delivery performance, focusing on how well the scheduler maintains a balance between bandwidth usage and differential privacy guarantees, especially under varying network conditions and sustained traffic.
+  \item \textbf{Resources Allocation: } Throughout the scenarios, we will evaluate the resources allocation of the system, such as CPU and memory usage, to understand the impact of our solution in the system's resources.
 \end{itemize}
 
 With these scenarios and metrics, we believe that we can provide a comprehensive analysis of the performance of our solution, which will help us to understand the trade-offs between privacy and performance. The aim is to demosntrate that our solution can provide a reasonable level of privacy without significantly impacting the performance.
+
+\subsection{Differential Privacy Formallisms Measurements}\label{subsec:dp_formallisms_measurements}
 
 \section{Summary}\label{sec:elaboration_summary}
 
