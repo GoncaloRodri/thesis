@@ -21,12 +21,12 @@ In this chapter, we give a conceptual overview of the proposed solution. We begi
 
 \section{System Model}\label{sec:system_model}
 
-In this section, we present the system model of our proposed solution. We start by presenting the foundation of our work in Section~\ref{subsec:initial_system_model_approach}, where we explore the current Tor Relay internal architecture and how we intend to extend its architecture. In Section~\ref{subsec:our_system_model_approach}, we present our approach to enhance the privacy of Tor users by integrating a differential privacy mechanisms in Tor relays and on the Client side. Finally, in Section~\ref{subsec:differential_privacy_approach}, we present the Differential Privacy Scheduler, or DP Scheduler, which is a component that maintains the circuit queues and is responsible for selecting the cells to be allocated in the output buffer, just like the vanilla Tor scheduler.
+In this section, we present the system model of our proposed solution. We start by presenting the foundation of our work in Section~\ref{subsec:initial_system_model_approach}, where we explore the current Tor Relay internal architecture and how we intend to extend its architecture. In Section~\ref{subsec:our_system_model_approach}, we present our approach to enhance the privacy of Tor users by integrating a Differential Privacy mechanisms in Tor relays and on the Client side. Finally, in Section~\ref{subsec:differential_privacy_approach}, we present the Differential Privacy Scheduler, or DP Scheduler, which is a component that maintains the circuit queues and is responsible for selecting the cells to be allocated in the output buffer, just like the vanilla Tor scheduler.
 Next, we present the Prototype Guidelines in Section~\ref{sec:prototype_guidelines}, where we present the two main approaches to implement our solution: the Tor Approach and the MIRACE Approach, and a brief explanation of how we intend to implement them. Finally, in Section~\ref{sec:validation}, we present how we intend to validate our work.
 
 \subsection{Initial System Model Approach}\label{subsec:initial_system_model_approach}
 
-As shown in Section~\ref{sec:problem}, Tor is a widely used network for anonymous communication. However, it has some vulnerabilities that can be exploited by attackers to de-anonymize users, such as traffic analysis attacks. Several techniques have been proposed to mitigate these attacks, such as k-anonymity, but they lack formal guarantees of privacy and are almost based on practical validations, which in real-world applications might vary. In this context, we proposed a new approach to enhance the privacy of Tor users by integrating a differential privacy mechanisms in Tor relays and on the Client side. Our approach aims to develop a Differential Private Scheduler similar to KIST (Section~\ref{subsubsec:kist}) that will be responsible for adding noise to the traffic flows in order to protect the privacy of users. 
+As shown in Section~\ref{sec:problem}, Tor is a widely used network for anonymous communication. However, it has some vulnerabilities that can be exploited by attackers to de-anonymize users, such as traffic analysis attacks. Several techniques have been proposed to mitigate these attacks, such as \(k\)-Anonymity, but they lack formal guarantees of privacy and are almost based on practical validations, which in real-world applications might vary. In this context, we proposed a new approach to enhance the privacy of Tor users by integrating a Differential Privacy mechanisms in Tor relays and on the Client side. Our approach aims to develop a Differential Private Scheduler similar to KIST (Section~\ref{subsubsec:kist}) that will be responsible for adding noise to the traffic flows in order to protect the privacy of users. 
 The Tor scheduler handles two buffers, input and output. The first receives the cells and the second sends them. Between these two buffers, the circuit queue is responsible for managing the cells that are being processed. 
 
 \begin{figure}
@@ -44,7 +44,7 @@ Finally, when the relay's output buffer contains sufficient data to form a TLS p
 
 \subsection{Our System Model Approach}\label{subsec:our_system_model_approach}
 
-The Tor Relay described in Figure~\ref{fig:initial_system_model} represents a simple relay. Our goal is to provide formal guarantees of privacy to users of Tor network whilst maintaining practical levels of performance. To achieve this goal, we propose a new approach to enhance the privacy of Tor users by integrating a differential privacy mechanisms in Tor relays and on the Client side. 
+The Tor Relay described in Figure~\ref{fig:initial_system_model} represents a simple relay. Our goal is to provide formal guarantees of privacy to users of Tor network whilst maintaining practical levels of performance. To achieve this goal, we propose a new approach to enhance the privacy of Tor users by integrating a Differential Privacy mechanisms in Tor relays and on the Client side. 
 Our approach aims to develop a differential private mechanism, called \textit{Differential Privacy Scheduler Component}, that is responsible for adding noise to the traffic flows based on several parameters in order to protect the privacy of users.  
 \begin{figure}
     \centering
@@ -55,7 +55,7 @@ Figure~\ref{fig:our_system_model} illustrates the enhanced Tor Relay internal ar
 
 \subsection{Differential Privacy Scheduler}\label{subsec:differential_privacy_approach}
 
-The Differential Privacy Scheduler, or DP Scheduler, is a component that maintains the circuit queues and is responsible for selecting the cells to be allocated in the output buffer, just like the vanilla Tor scheduler. In addition, the DP scheduler uses a set of parameters to allow customization on the level of privacy and performance. These parameters can be split into two categories: configuration and dynamic. This component represents a subtle change in the Tor Relay internal architecture, but we believe that it can significantly improve users' privacy, based on the differential privacy formal guarantees that we aim to provide.
+The Differential Privacy Scheduler, or DP Scheduler, is a component that maintains the circuit queues and is responsible for selecting the cells to be allocated in the output buffer, just like the vanilla Tor scheduler. In addition, the DP scheduler uses a set of parameters to allow customization on the level of privacy and performance. These parameters can be split into two categories: configuration and dynamic. This component represents a subtle change in the Tor Relay internal architecture, but we believe that it can significantly improve users' privacy, based on the Differential Privacy formal guarantees that we aim to provide.
 
 \subsubsection{Configuration Parameters}\label{subsubsec:configuration_parameters}
 
@@ -81,44 +81,46 @@ This approach aims to improve Tor system by providing greater guarantees and for
 
 \subsection{The MIRACE Approach}\label{subsec:mirace_approach}
 
-On the other hand, we also propose another approach for the implementation of our Differential Private Component, by extending the MIRACE work. This way, we believe that merging both path splitting and differential privacy mechanisms can provide a better privacy. This work is based on another NOVA LINCS work called TorKameleon~\cite{TorKameleon}, which is developed in Go language. The MIRACE approach consists of implementing the \textit{Unobservability Scheduler Component} in each Relay Node used in the MIRACE network. Additionally, we aim to augment the scheduler with a formal and differential private mechanisms to leverage the MIRACE multi-path algorithm. We believe that combining traffic splitting and multipath multi-encapsulation techniques from MIRACE with the differential privacy mechanisms from our work can provide a better privacy to Tor users.
+On the other hand, we also propose another approach for the implementation of our Differential Private Component, by extending the MIRACE work. This way, we believe that merging both path splitting and Differential Privacy mechanisms can provide a better privacy. This work is based on another NOVA LINCS work called TorKameleon~\cite{TorKameleon}, which is developed in Go language. The MIRACE approach consists of implementing the \textit{Unobservability Scheduler Component} in each Relay Node used in the MIRACE network. Additionally, we aim to augment the scheduler with a formal and differential private mechanisms to leverage the MIRACE multi-path algorithm. We believe that combining traffic splitting and multipath multi-encapsulation techniques from MIRACE with the Differential Privacy mechanisms from our work can provide a better privacy to Tor users.
 This approach is the alternative to the Tor approach, considering that Tor source code may be more complex and harder to implement in the time frame of this work. On the other hand, the MIRACE approach uses Golang which is a simpler language and both MIRACE and TorKameleon authors represent a great support to our work.
 
 \section{Validation}\label{sec:validation}
 
 The main goal of this work is to provide a viable solution to the current privacy issues in Anonymity Networks, such as Tor, by using Differential Privacy mechanisms to provide formal privacy guarantees whilst maintaining reasonable performance levels. Using DP algorithms, we aim to provide a solution that can decrease the efficiency of correlation attacks and website fingerprinting.
-In order to validate our solution and present a trustworthy conclusion of wether our work is useful to the current Anonymity Networks State-of-the-Art or it can be ruled out for future work and reference, we will present two main types of validation: Performance Measurements and Unobservability Measurements. To execute our validation, we will use Shadow~\cite*{Shadow, Shadow2}, which is a specific experimnetation tool that allows us to test and simulate the Tor network in a simulated environment, leading to a more controlled but easier prototype implementation and validation. 
+In order to validate our solution and present a trustworthy conclusion of whether our work is useful to the current Anonymity Networks State-of-the-Art or it can be ruled out for future work and reference, we will present two main types of validation: Performance Measurements and Unobservability Measurements. To execute our validation, we will use Shadow~\cite*{Shadow, Shadow2}, which is a specific experimentation tool that allows us to test and simulate the Tor network in a simulated environment, leading to a more controlled but easier prototype implementation and validation. 
 
 \subsection{Unobservability Measurements}\label{subsec:unobservability_measurements}
 
-Unobservability is the main goal of our work. We aim to prove that Differential Privacy mechanisms can provide strong privacy guarantees and that its a real-world solution
-Even though performance is a critical measurement, we believe that the privacy guarantees are the most important aspect of our solution. To do so, we will consider Website Fingerprinting as the main attacker technique over our system. To provide strong evidence of the privacy guarantees of our solution, we will consider the following machine-learning models for website fingerprinting:
-\begin{itemize}
-  \item DeepCoFFEA
-  \item TorMarker
-  \item TirDeanon
-  \item Finn
-\end{itemize}
+Unobservability is the main goal of our work. We aim to prove that Differential Privacy mechanisms can provide strong and quantifiable privacy guarantees to users of Anonymity Networks, such as Tor. To test unobservability, we will consider using state-of-the-art Machine/Deep Learning models to simulate attacks on our solutions.
 
-In addition, we want to formally prove the differential private mechanisms that we aim to provide
+To simulate the attacks, we will consider using the following works:
+\paragraph{DeepCoFFEA~\cite{DeepCoFFEA}:} Motivated by DeepCorr~\cite{DeepCorr}, DeepCoFFEA is a flow correlation attack that combines deep learning to train a pair of feature embedding networks that respectively map Tor and exit flows into a single low-dimensional space where correlated flows are similar; pairs of embedded flows can be compared at lower cost than pairs of full traces, and also uses amplification, dividing flows into short windows and using voting across these windows to significantly reduce false positives.
+
+\paragraph{FINN~\cite{FINN}:} FINN is a flow fingerprinting technique that leverages neural networks and generates and adds slight perturbations into live flow which allows to fingerprint the traffic. This work is also based on DeepCorr~\cite{DeepCorr}.
+
+\paragraph{TorMarker~\cite{TorMarker}:} TorMarker uses traffic time-based watermarking and deep learning of traffic time properties to de-anonymize connections made through Tor. This work is based on concepts similar to DeepCorr~\cite{DeepCorr} and FINN~\cite{FINN}.
+
+\paragraph{TirDeanon~\cite{TirDeanon}:} Finally, TirDeanon is a traffic de-anonymization tool inspired in deep learning techniques that can establish traffic flow correlations and de-anonymize Tor users. 
+
+\paragraph{} With this set of tools, we aim to prove that our solution can affect negatively the effectiveness of these attacks, by using Differential Private mechanisms to add noise to the traffic flows, and also confirm the formal privacy guarantees that we aim to provide to users of Anonymity Networks.
 
 
 \subsection{Performance Measurements}\label{subsec:performance_measurements}
 
 Even though the main goal of our work focus on privacy and the effectiveness of Differential Privacy, we consider performance to be the key to the success of our solution, which can be the difference between a viable solution, useful in real-world applications, and a theoretical solution which works but does not provide a real-world application due to low performance.
 This way, the Performance Measurements aim to provide an extensive and detailed analysis of the performance of our solution. In order to achieve this, we will consider various metrics, such as latency and throughput. We will also consider different scenarios where we can stress our solution in different ways, leading to a more detailed and broad analysis of the performance of our solution. We will have 5 main scenarios:
-\begin{itemize}
-  \item\textbf{iPerf:} This tool will be used to measure some critical metrics, such as latency and throughput, but also the jitter and packet loss that our solution may introduce.
-  \item\textbf{Web Browsing: } In this scenario, we consider that it is important to evaluate performance measurements over a scenario where high performance is required, such as web browsing. This scenario will have a high number of small sized requests and responses. 
-  \item\textbf{File transfers: } This scenario will simulate the transfer of large files over the network to evaluate throughput and latency under sustained, high-bandwidth usage, by using the OnionPerf~\cite{OnionPerf} tool which is already used by the Tor project community ti measure performamnce on files' download times over Tor. It will help identify how the scheduler handles prolonged data flows and ensures privacy without significantly impacting performance. Additionally, we consider SSH and SCP as alternative tools to measure file transfer performance over Tor.
-  \item\textbf{Video Conference Meeting: } This scenario will test TCP real-time communication with strict latency and jitter requirements. It will assess how the scheduler performs under conditions where low delay is crucial for maintaining audio and video quality.  
-  \item\textbf{Streaming: } Streaming scenarios will evaluate continuous data delivery performance, focusing on how well the scheduler maintains a balance between bandwidth usage and differential privacy guarantees, especially under varying network conditions and sustained traffic.
-  \item \textbf{Resources Allocation: } Throughout the scenarios, we will evaluate the resources' allocation of the system, such as CPU and memory usage, to understand the impact of our solution in the system's resources.
-\end{itemize}
+\paragraph{iPerf:} This tool will be used to measure some critical metrics, such as latency and throughput, but also the jitter and packet loss that our solution may introduce.
+\paragraph{Web Browsing:} In this scenario, we consider that it is important to evaluate performance measurements over a scenario where high performance is required, such as web browsing. This scenario will have a high number of small sized requests and responses. 
+\paragraph{File transfers:} This scenario will simulate the transfer of large files over the network to evaluate throughput and latency under sustained, high-bandwidth usage, by using the OnionPerf~\cite{OnionPerf} tool which is already used by the Tor project community ti measure performance on files' download times over Tor. It will help identify how the scheduler handles prolonged data flows and ensures privacy without significantly impacting performance. Additionally, we consider SSH and SCP as alternative tools to measure file transfer performance over Tor.
+\paragraph{Video Conference Meeting:} This scenario will test TCP real-time communication with strict latency and jitter requirements. It will assess how the scheduler performs under conditions where low delay is crucial for maintaining audio and video quality.  
 
-With these scenarios and metrics, we believe that we can provide a comprehensive analysis of the performance of our solution, which will help us to understand the trade-offs between privacy and performance. The aim is to demonstrate that our solution can provide a reasonable level of privacy without significantly impacting the performance.
+\paragraph{Streaming:} Streaming scenarios will evaluate continuous data delivery performance, focusing on how well the scheduler maintains a balance between bandwidth usage and Differential Privacy guarantees, especially under varying network conditions and sustained traffic.
 
-\subsection{Differential Privacy Formalism Measurements}\label{subsec:dp_formallisms_measurements}
+\paragraph{Resources Allocation:} Throughout the scenarios, we will evaluate the resources' allocation of the system, such as CPU and memory usage, to understand the impact of our solution in the system's resources.
+
+\paragraph{} With these scenarios and metrics, we believe that we can provide a comprehensive analysis of the performance of our solution, which will help us to understand the trade-offs between privacy and performance. The aim is to demonstrate that our solution can provide a reasonable level of privacy without significantly impacting the performance.
+
+%\subsection{Differential Privacy Formalism Measurements}\label{subsec:dp_formallisms_measurements}
 
 \section{Summary}\label{sec:elaboration_summary}
 
