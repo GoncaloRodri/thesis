@@ -1157,12 +1157,12 @@
 \printorder(frontmatter,final):={%
   statement;       % The statement page
   copyright;       % (*) The copyright page
-  dedicatory;      % (*) Print the dedicatory
-  acknowledgements;% (*) Print the acknowledgments
-  quote;           % (*) Print the quote
+  %dedicatory;      % (*) Print the dedicatory
+  %acknowledgements;% (*) Print the acknowledgments
+  %quote;           % (*) Print the quote
   abstracts;       % Print abstracts in multiple languages.
   alllistof;       % Print all the listof defined in “6_list_of.tex”
-  printglossaries; % Print the Glossary, Acronyms, Symbols, etc…
+  %printglossaries; % Print the Glossary, Acronyms, Symbols, etc…
 }
 
 \printorder(frontmatter,provisional):={%
@@ -1173,13 +1173,13 @@
   quote;           % (*) Print the quote
   abstracts;       % Print abstracts in multiple languages.
   alllistof;       % Print all the listof defined in “6_list_of.tex”
-  printglossaries; % Print the Glossary, Acronyms, Symbols, etc…
+  %printglossaries; % Print the Glossary, Acronyms, Symbols, etc…
 }
 
 \printorder(frontmatter,working):={%
   abstracts;       % Print abstracts in multiple languages.
   alllistof;       % Print all the listof defined in “6_list_of.tex”
-  printglossaries; % Print the Glossary, Acronyms, Symbols, etc…
+  %printglossaries; % Print the Glossary, Acronyms, Symbols, etc…
 }
 
 \ifoptionequal{/novathesis/print/webography}{}{%
