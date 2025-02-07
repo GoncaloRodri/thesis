@@ -43,7 +43,7 @@ Some of these solutions have presented promising results in terms of privacy and
 
 
 \section{Problem}\label{sec:problem}
-Although anonymity networks are designed to provide robust privacy and security, advancements in traffic analysis and correlation techniques have increasingly exposed vulnerabilities, reducing their reliability and trustworthiness for users—particularly in regions where pervasive surveillance by authoritarian regimes is a critical concern. These regimes actively invest in sophisticated surveillance methods and traffic manipulation strategies to maintain control over digital communication.
+Although anonymity networks are designed to provide robust privacy and security, advancements in traffic analysis and correlation techniques have increasingly exposed vulnerabilities, reducing their reliability and trustworthiness for users — particularly in regions where pervasive surveillance by authoritarian regimes is a critical concern. These regimes actively invest in sophisticated surveillance methods and traffic manipulation strategies to maintain control over digital communication.
 
 Tor, despite being one of the most widely used anonymity networks, is not immune to these challenges. It remains vulnerable to several attack vectors, including traffic correlation, congestion-based attacks, timing-based correlations, and fingerprinting techniques.~\cite*{chakravarty2014trafficanalysis, johnson2013users,winter2012great, robjansen2019dosontor} Such vulnerabilities highlight the ongoing arms race between those striving to safeguard online anonymity and those seeking to undermine it through technical and infrastructural advancements.
 
@@ -58,13 +58,23 @@ We aim to create and implement a new algorithm that can be used in anonymity net
 To test the algorithm and its performance, we intend to realize correlation attacks on the existing networks and on our prototype and compare the results. To test performance, we will measure the latency and throughput of the algorithm and compare it with other anonymity networks.
 
 
-\subsection{Contributions}\label{sub:contributions}
-This thesis tries to address the problem of ensuring privacy and security in anonymity networks while maintaining high performance. In particular, the contributions of this thesis are:
+\subsection{Expected Contributions}\label{sub:contributions}
+
+To address the stated goal, we expect to produce the following contributions\footnote{The dissertation effort is planned as a research project task within NOVA LINCS (Nova Laboratory of Informatics and Computer Science), Computer Systems Research Group. The elaboration phase will involve integrating the expected contributions with collaborative engagement and follow-up of two PhD students: João Afonso Vilalonga and Hugo Gamaliel Pereira.}:
+
 \begin{enumerate}
-    \item Design a new Differential Privacy Based Algorithm for Privacy Preserved Communication in Anonymity Networks.
-    \item Implement the algorithm on top of the Tor network and provide a proof of concept.
-    \item Evaluate the performance of the algorithm and compare it with other anonymity networks; This contribution aims to prove if this solution is a viable alternative to usual anonymity networks solutions and if, as mention before, can allow users to switch from traditional to anonymity networks.
+    \item Definition and formalization of the system design model to incorporate differentially private-based circuits as a possible interesting solution for Tor relay nodes to improve Tor anonymity conditions against traffic fingerprinting and correlation attacks;
+
+    \item Specification of the software architecture and modular components for the engineering effort using Differential Privacy-based mechanisms and related components in extended Tor nodes;
+   
+    \item Prototyping of the proposed solution where the implemented nodes will be used in a validation testbench and publishing the prototype in open-source for the possible use of interested researchers and practitioners;
+   
+    \item Validation of the designed solution and prototype considering three main pillars: (\emph{i}) Development of formal security proofs behind the designed solution; (\emph{ii}) conduct an extensive experimental on performance indicators including communication latency, throughput, as well as resources' usage for running the proposed nodes, and (\emph{iii}) experimental observation of the unobservability properties of the designed solution against traffic correlation and fingerprinting techniques. 
+   
 \end{enumerate}
 
+In the final validation effort we will be interested in obtaining comparative metrics considering a testbench involving our designed solution and the use of the Tor network and current Tor relay nodes
+
+
 \section{Report Organization}\label{sec:report_organization}
-The remainder of this report is organized as follows: Chapter introduces anonymity networks and Differential Privacy, as well as some other related topics. The proposal of work is presented on Chapter, which provides some system model and guidelines for the development and discusses the proof method to verify the work. Finally, workplan is explained and addressed in Chapter
+The remainder of this report is organized as follows: Chapter~\ref{cha:related_work} introduces anonymity networks and Differential Privacy, as well as some other related topics. The proposal of work is presented on Chapter~\ref{cha:elaboration}, which provides some system model and guidelines for the development and discusses the proof method to verify the work. Finally, workplan is explained and addressed in Chapter~\ref{cha:workplan}.

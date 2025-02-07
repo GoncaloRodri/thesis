@@ -9,6 +9,9 @@
 \typeout{NT FILE chapter2.tex}%
 
 \chapter{Related Work}\label{cha:related_work}
+
+In this chapter, we provide a more detailed overview of the state-of-the-art concepts introduced in the previous chapter. First, we discuss the concept of Anonymity Networks and Mixnets, followed by a detailed review of notable works in this field. Next, we examine the Tor network, including key technologies such as Pluggable Transports and the Tor relay node scheduler. We then introduce \(k\)-Anonymity, and finally, we provide an in-depth overview of Differential Privacy.
+
 \section{Anonymity Networks \& Mixnets}\label{sec:anonymity_networks_mixnets}
 
 Mix networks (Mixnets) were introduced by~\citeauthor{Chaum2003}~\cite{Chaum2003} as a public key cryptography based protocol designed to obscure the relationship between senders and receivers in a communication network, as well as its content, without the need for a universal trusted authority. Mixnets consist of a series of intermediary servers, called `mixes', through which messages are decrypted, encrypted, randomly permuted and sent forward. 
@@ -178,11 +181,11 @@ Differential Privacy was initially proposed in a central model, where sensitive 
 
 Some studies have been conducted on applying Differential Privacy to communication systems~\cite{VilalongaINForum, StatPrivStreaming, NetShaper}. These studies focus on providing privacy guarantees to users and protect them against traffic analysis attacks, powered by machine learning techniques.
 
-\citeauthor{StatPrivStreaming}\cite{StatPrivStreaming} proposed a differential private mechanism for streaming data, by the use of a Chrome extension with a DP mechanism that proxies streams between the browser and the server. The extension intercepts the requests from the client, which sends requests on behalf of the client based on a differentially private mechanism, instead of instantly relaying them immediately. The authors found that differentially privacy lowered the machine learning techniques, used by the adversary, efficiency, even though the accuracy of the attack was less affected in case of the adversary training model with the same DP mechanism.
+\citeauthor{StatPrivStreaming}~\cite{StatPrivStreaming} proposed a differential private mechanism for streaming data, by the use of a Chrome extension with a DP mechanism that proxies streams between the browser and the server. The extension intercepts the requests from the client, which sends requests on behalf of the client based on a differentially private mechanism, instead of instantly relaying them immediately. The authors found that differentially privacy lowered the machine learning techniques, used by the adversary, efficiency, even though the accuracy of the attack was less affected in case of the adversary training model with the same DP mechanism.
 
 NetShaper~\cite{NetShaper} is a network side-channel mitigation system, proposed by~\citeauthor{NetShaper}, based on traffic shaping, which provides quantifiable and tunable privacy guarantees, through the use of Differential Privacy. This work shapes traffic based on a DP-mechanism that adds noise to the traffic, that can be split into 3 steps: \textit{queue, query, and post-process}. In the first step, the system queues the input traffic. After a fixed parameterizable periodic interval, the system queries the queue and adds noise to the traffic, performed by the differential private traffic shaping algorithm. Finally, the packets are post-processed and transmitted to the network. 
 
-\citeauthor{VilalongaINForum}\cite{VilalongaINForum} suggested Randomized Response could be used to strengthen the privacy of the Tor network, by adding noise to the traffic, making it harder for adversaries to correlate the traffic and de-anonymize users. The authors proposed a mechanism that uses pluggable transports to connect the client to the Tor network and a noise-adding algorithm. This algorithm sends packets based on the Randomized Response mechanism, in this case, where the algorithm chooses to send a packet or a noise packet based on a probability.
+\citeauthor{VilalongaINForum}~\cite{VilalongaINForum} suggested Randomized Response could be used to strengthen the privacy of the Tor network, by adding noise to the traffic, making it harder for adversaries to correlate the traffic and de-anonymize users. The authors proposed a mechanism that uses pluggable transports to connect the client to the Tor network and a noise-adding algorithm. This algorithm sends packets based on the Randomized Response mechanism, in this case, where the algorithm chooses to send a packet or a noise packet based on a probability.
 
 \section{Summary}\label{sec:related_work_summary}
 
