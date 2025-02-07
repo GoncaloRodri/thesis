@@ -8,56 +8,24 @@
 
 \typeout{NT FILE abstract-pt.tex}%
 
-% Independentemente da língua em que a dissertação está escrita, geralmente esta contém pelo menos dois resumos: um resumo na mesma língua do texto principal e outro resumo numa outra língua.
 
-% A ordem dos resumos varia de acordo com a escola. Se a sua escola tiver regulamentos específicos sobre a ordem dos resumos, o template (\LaTeX) \gls{novathesis} irá respeitá-los. Caso contrário, a regra padrão no template \gls{novathesis} é ter em primeiro lugar o resumo \emph{no mesmo idioma do texto principal} e depois o resumo \emph{no outro idioma}. Por exemplo, se a dissertação for escrita em português, a ordem dos resumos será primeiro o português e depois o inglês, seguido do texto principal em português. Se a dissertação for escrita em inglês, a ordem dos resumos será primeiro em inglês e depois em português, seguida do texto principal em inglês.
-% %
-% No entanto, esse pedido pode ser personalizado adicionando um dos seguintes ao arquivo \verb+5_packages.tex+.
+A Internet tornou-se uma ferramenta indispensável para aceder à informação e exercer a liberdade de expressão, um direito fundamental que dá poder aos indivíduos em todo o mundo. No entanto, os regimes autoritários e as agências governamentais tendem a suprimir este direito através de actividades de vigilância e censura. Estes esforços têm-se tornado cada vez mais sofisticados, empregando técnicas como ataques de análise de tráfego e métodos avançados de correlação de tráfego para monitorizar e minar o anonimato dos utilizadores.
 
-% \begin{verbatim}
-%     \abstractorder(<MAIN_LANG>):={<LANG_1>,...,<LANG_N>}
-% \end{verbatim}
+Em resposta à crescente procura de comunicações seguras e privadas, as redes de anonimato, como o Tor, surgiram como ferramentas essenciais para salvaguardar as comunicações em linha de ponta a ponta e combater a censura, de que milhões de pessoas dependem diariamente. No entanto, investigações recentes demonstraram que potenciais ataques de desanonimização podem ser realizados por adversários poderosos a nível estatal através da correlação de tráfego e da recolha de impressões digitais utilizando técnicas avançadas de aprendizagem automática profunda.
 
-% Por exemplo, para um documento escrito em Alemão com resumos em Alemão, Inglês e Italiano (por esta ordem), pode usar-se:
-% \begin{verbatim}
-%     \ntsetup{abstractorder={de={de,en,it}}}
-% \end{verbatim}
+Esta dissertação aborda estes desafios, reforçando as defesas da rede Tor contra os ataques acima referidos. O principal objetivo é desenvolver uma solução inovadora destinada a melhorar os nós de retransmissão Tor, tirando partido da arquitetura de software existente e introduzindo garantias formais de privacidade baseadas em circuitos privados diferenciados. Esperamos que a nossa solução proposta mantenha níveis práticos de débito e latência para a comunicação de ponta a ponta, garantindo a compatibilidade com cenários de utilização reais e proporcionando aos utilizadores uma proteção do anonimato adaptável e mais robusta.
 
-% Relativamente ao seu conteúdo, os resumos não devem ultrapassar uma página e frequentemente tentam responder às seguintes questões (é imprescindível a adaptação às práticas habituais da sua área científica):
-
-% \begin{enumerate}
-%   \item Qual é o problema?
-%   \item Porque é que é um problema interessante/desafiante?
-%   \item Qual é a proposta de abordagem/solução?
-%   \item Quais são as consequências/resultados da solução proposta?
-% \end{enumerate}
-
-% % E agora vamos fazer um teste com uma quebra de linha no hífen a ver se a \LaTeX\ duplica o hífen na linha seguinte se usarmos \verb+"-+… em vez de \verb+-+.
-% %
-% % zzzz zzz zzzz zzz zzzz zzz zzzz zzz zzzz zzz zzzz zzz zzzz zzz zzzz zzz zzzz comentar"-lhe zzz zzzz zzz zzzz
-% %
-% % Sim!  Funciona! :)
-
-% % Palavras-chave do resumo em Português
-% % \begin{keywords}
-% % Palavra-chave 1, Palavra-chave 2, Palavra-chave 3, Palavra-chave 4
-% % \end{keywords}
-% \keywords{A Feira de Empregabilidade e Empreendedorismo da Faculdade de Ciências e
-%   Primeira palavra-chave \and
-%   Outra palavra-chave \and
-%   Mais uma palavra-chave \and
-%   A última palavra-chave
-% }
-% to add an extra black line
-
-A Internet tornou-se uma ferramenta indispensável para aceder à informação e exercer a liberdade de expressão, um direito fundamental que dá poder aos indivíduos em todo o mundo. No entanto, os regimes autoritários e as agências governamentais tendem a suprimir este direito através da vigilância e da censura, recorrendo a técnicas cada vez mais sofisticadas, como os ataques de análise de tráfego, para monitorizar e comprometer o anonimato, colocando a privacidade dos utilizadores em risco. Em resposta à crescente procura de comunicações seguras e privadas, as redes de anonimato, como o Tor, surgiram como ferramentas essenciais para salvaguardar a privacidade em linha e combater a censura, nas quais milhões de pessoas confiam diariamente. No entanto, as vulnerabilidades na conceção do Tor, particularmente contra ataques de fingerprinting e de correlação, expõem fraquezas críticas que quebram a sua eficácia. 
-
-Esta dissertação aborda estes desafios, reforçando as defesas da rede Tor contra os ataques acima referidos. O principal objetivo é desenvolver uma solução inovadora que melhore a arquitetura existente do Tor, introduzindo garantias formais de privacidade. A solução foi concebida para manter níveis práticos de débito e latência, assegurando a compatibilidade com cenários de utilização reais, ao mesmo tempo que fornece aos utilizadores protecções de privacidade adaptáveis e robustas. 
-
-No centro da solução proposta está a integração dos princípios da Privacidade Diferencial para introduzir ruído cuidadosamente calibrado nos fluxos de tráfego para proteger a privacidade dos utilizadores, o que mitiga os ataques de correlação e dá aos utilizadores controlos de privacidade personalizáveis, permitindo-lhes equilibrar a privacidade e a utilidade de acordo com as suas necessidades. Tanto quanto é do nosso conhecimento, este trabalho representa um esforço pioneiro na incorporação da Privacidade Diferencial na rede Tor. Fornece um mecanismo formal, escalável e eficaz que reforça a privacidade online, resiste a técnicas de censura de última geração e defende o direito fundamental à liberdade de expressão num mundo digital cada vez mais monitorizado.
+Como já foi referido, o núcleo da solução proposta é a integração dos princípios da privacidade diferencial para introduzir dinamicamente ruído aleatório cuidadosamente delimitado nos fluxos de tráfego, atenuando os ataques de correlação e permitindo uma melhor solução resistente à recolha de impressões digitais. 
+Tanto quanto sabemos, os contributos esperados para a dissertação podem representar um esforço pioneiro na incorporação da Privacidade Diferencial na arquitetura de software dos retransmissores Tor.
+Diferencial na arquitetura de software dos nós de retransmissão Tor. Além disso, a utilização da Privacidade Diferencial permitirá a criação de um mecanismo formalmente comprovado, escalável e eficaz que reforça o anonimato online, resistente às técnicas mais avançadas de censura na Internet e que defende o direito fundamental à liberdade de expressão num mundo digital cada vez mais monitorizado.
 
 
 \keywords{
-    Redes de Anonimato, Privacidade Diferencial, Comunicação Preservadora de Privacidade, Comunicação Encoberta, Ataques de Análise de Tráfego
+    Redes de Anonimato
+    \and Privacidade Diferencial
+    \and Comunicação Preservadora de Privacidade
+    \and Ataques de Análise de Tráfego
+    \and Garantias Reforçadas de Privacidade Ponto a Ponto 
+    \and Correlação de Tráfego
 }
 

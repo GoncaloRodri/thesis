@@ -8,40 +8,21 @@
 
 \typeout{NT FILE abstract-en.tex}%
 
-% Regardless of the language in which the dissertation is written, usually there are at least two abstracts: one abstract in the same language as the main text, and another abstract in some other language.
+The internet has become an indispensable tool for accessing information and exercising freedom of speech, a fundamental right that empowers individuals worldwide. However, authoritarian regimes and government agencies tend to suppress this right through surveillance and censorship activities. These efforts have become increasingly sophisticated, employing techniques such as traffic analysis attacks and advanced traffic correlation methods to monitor and undermine user anonymity.
 
-% The abstracts' order varies with the school.  If your school has specific regulations concerning the abstracts' order, the \gls{novathesis} (\LaTeX) template will respect them.  Otherwise, the default rule in the \gls{novathesis} template is to have in first place the abstract in \emph{the same language as main text}, and then the abstract in \emph{the other language}. For example, if the dissertation is written in Portuguese, the abstracts' order will be first Portuguese and then English, followed by the main text in Portuguese. If the dissertation is written in English, the abstracts' order will be first English and then Portuguese, followed by the main text in English.
-% %
-% However, this order can be customized by adding one of the following to the file \verb+5_packages.tex+.
+In response to the growing demand for secure and private communication, anonymity networks like Tor have emerged as essential tools for safeguarding online end-to-end communication and fighting censorship, which millions of people rely on daily. However, recent research demonstrated that potential deanonymization attacks can be performed by powerful state-level adversaries by traffic correlation and fingerprinting using advanced deep machine learning techniques.
 
-% \begin{verbatim}
-%     \ntsetup{abstractorder={<LANG_1>,...,<LANG_N>}}
-%     \ntsetup{abstractorder={<MAIN_LANG>={<LANG_1>,...,<LANG_N>}}}
-% \end{verbatim}
+This dissertation addresses these challenges by strengthening Tor Network's defenses against the above-mentioned attacks. The main goal is to develop an innovative solution targeted to improve Tor relay nodes leveraging the existing software architecture by introducing formal privacy guarantees based on differentially private circuits. We expect that our proposed solution will maintain practical levels of throughput and latency for end-to-end communication, ensuring compatibility with real-world usage scenarios while providing users with adaptable and more robust anonymity protection.
 
-% For example, for a main document written in German with abstracts written in German, English and Italian (by this order) use:
-% \begin{verbatim}
-%     \ntsetup{abstractorder={en={en,pt}}}
-% \end{verbatim}
+As stated above, the core of the proposed solution is the integration of Differential Privacy principles to dynamically introduce carefully bounded random noise into traffic flows, mitigating correlation attacks and empowering a better solution resilient against fingerprinting. 
+To the best of our knowledge, the expected dissertation contributions can represent a pioneering effort in incorporating Differential
+Privacy into the software architecture of Tor relay nodes. Moreover, the use of Differential Privacy will allow for a formally proven, scalable, and effective mechanism that bolsters online anonymity, resistant against state-of-the-art internet censorship techniques and upholding the fundamental right to free expression in an increasingly monitored digital world.
 
-% Concerning its contents, the abstracts should not exceed one page and may answer the following questions (it is essential to adapt to the usual practices of your scientific area):
-
-% \begin{enumerate}
-%   \item What is the problem?
-%   \item Why is this problem interesting/challenging?
-%   \item What is the proposed approach/solution/contribution?
-%   \item What results (implications/consequences) from the solution?
-% \end{enumerate}
-
-The internet has become an indispensable tool for accessing information and exercising freedom of speech, a fundamental right that empowers individuals worldwide. However, authoritarian regimes and government agencies tend to suppress this right through surveillance and censorship by deploying increasingly sophisticated techniques, such as traffic analysis attacks, to monitor and undermine anonymity, placing users' privacy at significant risk. In response to the growing demand for secure and private communication, anonymity networks like Tor have emerged as essential tools for safeguarding online privacy and fighting censorship, which millions of people rely on daily. Yet, vulnerabilities in Tor's design, particularly against fingerprinting and correlation attacks, expose critical weaknesses that break its effectiveness.
-
-This dissertation addresses these challenges by strengthening Tor Network's defenses against the abovementioned attacks. The main goal is to develop an innovative solution that enhances Tor's existing architecture by introducing formal privacy guarantees. The solution is designed to maintain practical levels of throughput and latency, ensuring compatibility with real-world usage scenarios while providing users with adaptable and robust privacy protections. 
-
-At the core of the proposed solution is the integration of Differential Privacy principles to introduce carefully calibrated noise into traffic flows to protect users' privacy, which mitigates correlation attacks and empowers users with customizable privacy controls, allowing them to balance privacy and utility according to their needs. To the best of our knowledge, this work represents a pioneering effort in incorporating Differential Privacy into the Tor Network. It delivers a formal, scalable, and effective mechanism that bolsters online privacy, resists state-of-the-art censorship techniques, and upholds the fundamental right to free expression in an increasingly monitored digital world.
-% % Palavras-chave do resumo em Inglês
-% % \begin{keywords}
-% % Keyword 1, Keyword 2, Keyword 3, Keyword 4, Keyword 5, Keyword 6, Keyword 7, Keyword 8, Keyword 9
-% % \end{keywords}
 \keywords{
-    Anonymity Networks \and Differential Privacy \and  Privacy-Preserving Communication \and  Covert Communication \and  Traffic Analysis Attacks
+    Anonymity Networks 
+    \and Differential Privacy 
+    \and End-to-End Privacy Enhanced Guarantees 
+    \and Privacy-Preserving Communication 
+    \and Traffic Analysis Attacks
+    \and Traffic Correlation
 }
