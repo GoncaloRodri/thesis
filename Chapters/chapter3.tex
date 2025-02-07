@@ -22,7 +22,6 @@ In this chapter, we give a conceptual overview of the proposed solution. We begi
 \section{System Model}\label{sec:system_model}
 
 In this section, we present the system model of our proposed solution. We start by presenting the foundation of our work in Section~\ref{subsec:initial_system_model_approach}, where we explore the current Tor Relay internal architecture and how we intend to extend its architecture. In Section~\ref{subsec:our_system_model_approach}, we present our approach to enhance the privacy of Tor users by integrating a Differential Privacy mechanisms in Tor relays and on the Client side. Finally, in Section~\ref{subsec:differential_privacy_approach}, we present the Differential Privacy Scheduler, or DP Scheduler, which is a component that maintains the circuit queues and is responsible for selecting the cells to be allocated in the output buffer, just like the vanilla Tor scheduler.
-Next, we present the Prototype Guidelines in Section~\ref{sec:prototype_guidelines}, where we present the two main approaches to implement our solution: the Tor Approach and the MIRACE Approach, and a brief explanation of how we intend to implement them. Finally, in Section~\ref{sec:validation}, we present how we intend to validate our work.
 
 \subsection{Initial System Model Approach}\label{subsec:initial_system_model_approach}
 
