@@ -43,7 +43,7 @@ Finally, when the relay's output buffer contains sufficient data to form a TLS p
 
 \subsection{Our System Model Approach}\label{subsec:our_system_model_approach}
 
-The Tor Relay described in Figure~\ref{fig:initial_system_model} represents a simple relay. Our goal is to provide formal guarantees of privacy to users of Tor network whilst maintaining practical levels of performance. To achieve this goal, we propose a new approach to enhance the privacy of Tor users by integrating a Differential Privacy mechanisms in Tor relays and on the Client side. 
+The Tor Relay described in Figure~\ref{fig:initial_system_model} represents a simple relay. Our goal is to provide formal guarantees of privacy to users of Tor Network whilst maintaining practical levels of performance. To achieve this goal, we propose a new approach to enhance the privacy of Tor users by integrating a Differential Privacy mechanisms in Tor relays and on the Client side. 
 Our approach aims to develop a differential private mechanism, called \textit{Differential Privacy Scheduler Component}, that is responsible for adding noise to the traffic flows based on several parameters in order to protect the privacy of users.  
 \begin{figure}
     \centering
@@ -71,7 +71,7 @@ In order to implement the proposed solution, we have 2 main approaches: the Tor~
 
 \subsection{The Tor Approach}\label{subsec:tor_approach}
 
-Firstly, we will consider the approach based on extending the Tor Relay Scheduler Architecture with the implementation of a differential private mechanism capable of adding sufficient noise to the traffic flows that is able to reduce website fingerprinting and correlation attacks on the Tor network, therefore protecting the privacy of users. To implement this approach, we will use the already existing Tor source code, more specifically the scheduler component (\texttt{scheduler.h}). This approach aims to modify the \texttt{scheduler.h} file and add our differential private scheduler as part of the \texttt{scheduler\_type\_t} enum, which already contains the vanilla and the KIST~\cite{KIST} schedulers. In addition, we aim also to develop a new scheduler, using the Tor Scheduler Interface \texttt{scheduler\_t}, which implements the necessary functions in order to fit our design into Tor system. This way, the file `scheduler\_dp.c' would be added to the Tor source code.
+Firstly, we will consider the approach based on extending the Tor Relay Scheduler Architecture with the implementation of a differential private mechanism capable of adding sufficient noise to the traffic flows that is able to reduce website fingerprinting and correlation attacks on the Tor Network, therefore protecting the privacy of users. To implement this approach, we will use the already existing Tor source code, more specifically the scheduler component (\texttt{scheduler.h}). This approach aims to modify the \texttt{scheduler.h} file and add our differential private scheduler as part of the \texttt{scheduler\_type\_t} enum, which already contains the vanilla and the KIST~\cite{KIST} schedulers. In addition, we aim also to develop a new scheduler, using the Tor Scheduler Interface \texttt{scheduler\_t}, which implements the necessary functions in order to fit our design into Tor system. This way, the file `scheduler\_dp.c' would be added to the Tor source code.
 
 
 
@@ -86,7 +86,7 @@ This approach is the alternative to the Tor approach, considering that Tor sourc
 \section{Validation}\label{sec:validation}
 
 The main goal of this work is to provide a viable solution to the current privacy issues in Anonymity Networks, such as Tor, by using Differential Privacy mechanisms to provide formal privacy guarantees whilst maintaining reasonable performance levels. Using DP algorithms, we aim to provide a solution that can decrease the efficiency of correlation attacks and website fingerprinting.
-In order to validate our solution and present a trustworthy conclusion of whether our work is useful to the current Anonymity Networks State-of-the-Art or it can be ruled out for future work and reference, we will present two main types of validation: Performance Measurements and Unobservability Measurements. To execute our validation, we will use Shadow~\cite*{Shadow, Shadow2}, which is a specific experimentation tool that allows us to test and simulate the Tor network in a simulated environment, leading to a more controlled but easier prototype implementation and validation. 
+In order to validate our solution and present a trustworthy conclusion of whether our work is useful to the current Anonymity Networks State-of-the-Art or it can be ruled out for future work and reference, we will present two main types of validation: Performance Measurements and Unobservability Measurements. To execute our validation, we will use Shadow~\cite*{Shadow, Shadow2}, which is a specific experimentation tool that allows us to test and simulate the Tor Network in a simulated environment, leading to a more controlled but easier prototype implementation and validation. 
 
 \subsection{Unobservability Measurements}\label{subsec:unobservability_measurements}
 
