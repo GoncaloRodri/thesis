@@ -47,9 +47,9 @@ The absence of standardized metrics for evaluating privacy guarantees in a forma
 As stated previously in Section~\ref{sec:motivation}, it is important to ensure that Anonymity Networks are secure against threats like traffic fingerprinting and correlation attacks, empowered by deep learning techniques, and to address the lack of standardized privacy metrics to quantify the anonymity guarantees provided by these networks.
 
 To address this challenge, we add Differential Privacy (DP) into the Tor open-source project, by incorporating Differential Privacy-based mechanisms in the existing software architecture of Tor relay node, in order to dynamically inject carefully bounded random noise into traffic flows to provide formal privacy guarantees to users. 
-We take inspiration in the work of~\citeauthor{KIST}~\cite{KIST}, which proposed a congestion control scheduler for Tor that improves the network's performance by reducing latency and increasing throughput. However, KIST focus on performance improvements, and does not provide privacy guarantees nor traffic analysis attacks resistance, besides the ones already provided by Tor. Therefore, we take this work as a starting point to develop our solution, which aims to keep the conditions and improvements proposed by KIST, while adding privacy guarantees and resistance to traffic analysis attacks.
+Our work builds upon the foundation laid by~\citeauthor{KIST}~\cite{KIST}, who introduced KIST, a congestion control scheduler for Tor designed to enhance network performance by reducing latency and increasing throughput. While KIST achieves significant efficiency gains, its focus remains solely on performance, without introducing additional privacy guarantees or defenses against traffic analysis attacks beyond those inherent to Tor. Inspired by this limitation, we extend KIST's approach, not only preserving its performance benefits but also reinforcing privacy protections and bolstering resistance to traffic analysis attacks.
 
-With this solution, we are able to reinforce the Tor end-to-end communication anonymity guarantees, even under traffic fingerprinting and correlation attacks. To ensure real-world applicability of this solution, it is important to maintain practical levels of throughput and latency for end-to-end communication. 
+With this solution, we reinforce the Tor end-to-end communication anonymity guarantees, even under traffic fingerprinting and correlation attacks. To ensure real-world applicability of this solution, it is important to maintain practical levels of throughput and latency for end-to-end communication. 
 
 \subsection{Expected Contributions}\label{sub:contributions}
 
@@ -60,14 +60,14 @@ To address the stated goal, we produce the following contributions\footnote{The 
 
     \item Specification of the software architecture and modular components for the engineering effort using Differential Privacy-based mechanisms and related components in extended Tor nodes;
    
-    \item Prototyping of the proposed solution where the implemented nodes will be used in a validation testbench and publishing the prototype in open-source for the possible use of interested researchers and practitioners;
+    \item Prototyping of the proposed solution where the implemented nodes will be used in a validation test bench and publishing the prototype in open-source for the possible use of interested researchers and practitioners;
    
     \item Validation of the designed solution and prototype considering three main pillars: (\emph{i}) Development of formal security proofs behind the designed solution; (\emph{ii}) conduct an extensive experimental on performance indicators including communication latency, throughput, as well as resources' usage for running the proposed nodes, and (\emph{iii}) experimental observation of the unobservability properties of the designed solution against traffic correlation and fingerprinting techniques. 
    
 \end{enumerate}
 
-In the final validation effort we obtained comparative metrics considering a testbench involving our designed solution and the use of the Tor network and current Tor relay nodes
+In the final validation effort we obtained comparative metrics considering a test bench involving our designed solution and the use of the Tor network and current Tor relay nodes
 
 
 \section{Report Organization}\label{sec:report_organization}
-The remainder of this report is organized as follows: Chapter~\ref{cha:related_work} introduces Anonymity Networks and Differential Privacy, as well as some other related topics. The proposal of work is presented on Chapter~\ref{cha:elaboration}, which provides some system model and guidelines for the development and discusses the proof method to verify the work. Finally, workplan is explained and addressed in Chapter~\ref{cha:workplan}.
+The remainder of this report is organized as follows: Chapter~\ref{cha:related_work} introduces Anonymity Networks and Differential Privacy, as well as some other related topics. The proposal of work is presented on Chapter~\ref{cha:system_model}, which provides some system model and guidelines for the development and discusses the proof method to verify the work. Finally, workplan is explained and addressed in Chapter~\ref{cha:workplan}.
