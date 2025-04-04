@@ -1,0 +1,6 @@
+Nickname relay1
+Address 10.5.0.2
+ContactInfo relay1 <relay1 AT localhost>
+%include conf/tor.common.torrc
+%include conf/tor.relay.torrc
+%include conf/tor.non-exit.torrc

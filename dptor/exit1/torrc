@@ -1,0 +1,8 @@
+Nickname exit1
+Address 10.5.0.4
+
+ContactInfo exit1 <exit1 AT localhost>
+
+%include conf/tor.common.torrc
+%include conf/tor.relay.torrc
+%include conf/tor.exit.torrc

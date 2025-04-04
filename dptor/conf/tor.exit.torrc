@@ -1,0 +1,2 @@
+ExitRelay 1
+ExitPolicy "accept *:*"

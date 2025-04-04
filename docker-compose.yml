@@ -1,0 +1,68 @@
+services:
+  authority:
+    build:
+      context: .
+      dockerfile: authority.Dockerfile
+    volumes:
+      - ./dptor/logs:/app/tor/logs
+    networks:
+      net:
+        ipv4_address: 10.5.0.5
+    restart: always
+  relay1:
+    build:
+      context: .
+      dockerfile: relay1.Dockerfile
+    volumes:
+      - ./dptor/logs:/app/tor/logs
+    networks:
+      net:
+        ipv4_address: 10.5.0.2
+    
+  relay2:
+    build:
+      context: .
+      dockerfile: relay2.Dockerfile
+    volumes:
+      - ./dptor/logs:/app/tor/logs
+    networks:
+      net:
+        ipv4_address: 10.5.0.3
+
+  exit1:
+    build:
+        context: .
+        dockerfile: exit1.Dockerfile
+    volumes:
+      - ./dptor/logs:/app/tor/logs
+    networks:
+      net:
+        ipv4_address: 10.5.0.4  
+
+  client:
+    build:
+      context: .    
+      dockerfile: client.Dockerfile
+    ports:
+      - 9000:9000
+    volumes:
+      - ./dptor/logs:/app/tor/logs
+    networks:
+      net:
+        ipv4_address: 10.5.0.6
+
+  hs:
+    build:
+      context: .
+      dockerfile: hs.Dockerfile
+    volumes:
+      - ./dptor/logs:/app/tor/logs
+      - ./dptor/hidden_service:/root/.tor/hidden_service
+    networks:
+      net:
+        ipv4_address: 10.5.0.20
+
+networks:
+  net:
+    external: true
+      
