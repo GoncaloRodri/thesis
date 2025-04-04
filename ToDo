@@ -1,0 +1,10 @@
+- Optimize Dockerfile 
+- Try to abstract Dockerfiles for better scaling capabilities
+    - Check for abstraction on torrc files (same torrc for relays)
+- Optimize Torrc Files:
+    - Check Setting Pre Roles to Nodes
+- Beautify build.sh [Loading, Progress bar, Colors, Emojis, etc.]
+- Add README.md & LICENSE to the repository
+
+- WORK MOREEEEE!
+- BE AWESOME!

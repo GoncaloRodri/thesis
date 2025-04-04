@@ -4,7 +4,8 @@ FROM ubuntu:latest
 RUN apt update && apt install -y \
     libssl-dev libevent-dev zlib1g-dev liblzma-dev libzstd-dev \
     libcap-dev libseccomp-dev build-essential python3 pkg-config \
-    git cmake libglib2.0-dev libigraph-dev
+    git cmake libglib2.0-dev libigraph-dev \
+    tcpdump
     #&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app/tor
@@ -14,6 +15,7 @@ COPY dptor/conf/ /app/tor/conf/
 COPY dptor/hidden_service/torrc /etc/tor/torrc
 COPY dptor/hidden_service/ /app/tor/
 COPY dptor/hidden_service/ /root/.tor/
+COPY entrypoint.sh /entrypoint.sh
 
 COPY /dptor/tgen/ /app/
 
@@ -23,5 +25,6 @@ RUN ./configure && \
 
 RUN mkdir logs
 
-#CMD ["bash", "-c", "while true; do sleep 1000; done"]
-CMD ["sh", "-c", "(tor -f torrc) | tee logs/hs.tor.log"]    
+RUN mkdir logs/tcpdump
+
+ENTRYPOINT [ "/entrypoint.sh", "hs" ]

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd ~/Documents/thesis/
 echo
 echo "[+] Cleaning Docker Environment"
@@ -43,8 +45,13 @@ echo "[+] When all network is bootstrapped and ready"
 read -p "Press enter to continue"
 
 
+
 docker exec -d thesis-hs-1 sh -c "(tgen /app/server.tgenrc.graphml) | tee /app/tor/logs/server.tgen.log"
 sleep 5
+
+docker exec -d thesis-relay1-1 sh -c "tcpdump -i eth0 port 9111 -w /app/tor/logs/relay1.9111.pcap"
+docker exec -d thesis-relay2-1 sh -c "tcpdump -i eth0 port 9111 -w /app/tor/logs/relay2.9111.pcap"
+
 docker exec thesis-client-1 sh -c "(tgen /app/client.tgenrc.graphml) | tee /app/tor/logs/client.tgen.log"
 
 

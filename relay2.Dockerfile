@@ -3,7 +3,8 @@ FROM ubuntu:latest
 # Install dependencies
 RUN apt update && apt install -y \
     libssl-dev libevent-dev zlib1g-dev liblzma-dev libzstd-dev \
-    libcap-dev libseccomp-dev build-essential python3 pkg-config
+    libcap-dev libseccomp-dev build-essential python3 pkg-config \
+    tcpdump
     #&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app/tor
@@ -13,6 +14,7 @@ COPY dptor/conf/ /app/tor/conf/
 COPY dptor/relay2/torrc /etc/tor/torrc
 COPY dptor/relay2/ /app/tor/
 COPY dptor/relay2/ /root/.tor/
+COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 9112
 
@@ -22,5 +24,6 @@ RUN ./configure && \
 
 RUN mkdir logs
 
-#CMD ["bash", "-c", "while true; do sleep 1000; done"]
-CMD ["sh", "-c", "(tor -f torrc) | tee logs/relay2.tor.log"]
+RUN mkdir logs/tcpdump
+
+ENTRYPOINT [ "/entrypoint.sh", "relay2" ]
