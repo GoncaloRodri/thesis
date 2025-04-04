@@ -18,21 +18,6 @@ docker network create \
   --subnet=10.5.0.0/16 \
   net 
 
-# echo
-# echo "[+] Building File Server"
-# echo
-
-# docker build -t fileserver -f server.Dockerfile .
-
-# echo
-# echo "[+] Running File Server"
-# echo
-
-# docker run -d --name fileserver \
-#     --ip 10.5.0.10 \
-#     --network net \
-#     -v ~/Documents/thesis/dptor/logs:/app/logs \
-#     fileserver
 
 echo
 echo "[+] Launching Tor Network w/ Docker Compose"
@@ -59,9 +44,7 @@ read -p "Press enter to continue"
 
 
 docker exec -d thesis-hs-1 sh -c "(tgen /app/server.tgenrc.graphml) | tee /app/tor/logs/server.tgen.log"
-
 sleep 5
-
 docker exec thesis-client-1 sh -c "(tgen /app/client.tgenrc.graphml) | tee /app/tor/logs/client.tgen.log"
 
 
