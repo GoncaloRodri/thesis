@@ -8,7 +8,7 @@ TestingTorNetwork 1
 AssumeReachable 1
 AuthDirTestReachability 0
 NumCPUs 1
-Log info stdout
+Log debug file /app/tor/logs/debug.log
 LogTimeGranularity 3
 HeartbeatPeriod 10
 SafeLogging 0

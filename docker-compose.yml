@@ -4,17 +4,19 @@ services:
       context: .
       dockerfile: authority.Dockerfile
     volumes:
-      - ./dptor/logs:/app/tor/logs
+      - ./dptor/logs/tor/auth:/app/tor/logs
+      - ./dptor/logs/tcpdump:/app/tcpdump
     networks:
       net:
         ipv4_address: 10.5.0.5
-    restart: always
+
   relay1:
     build:
       context: .
       dockerfile: relay1.Dockerfile
     volumes:
-      - ./dptor/logs:/app/tor/logs
+      - ./dptor/logs/tor/relay1:/app/tor/logs
+      - ./dptor/logs/tcpdump:/app/tcpdump
     environment:
       - NAME=relay1
     networks:
@@ -26,7 +28,8 @@ services:
       context: .
       dockerfile: relay2.Dockerfile
     volumes:
-      - ./dptor/logs:/app/tor/logs
+      - ./dptor/logs/tor/relay2:/app/tor/logs
+      - ./dptor/logs/tcpdump:/app/tcpdump
     networks:
       net:
         ipv4_address: 10.5.0.3
@@ -36,7 +39,8 @@ services:
         context: .
         dockerfile: exit1.Dockerfile
     volumes:
-      - ./dptor/logs:/app/tor/logs
+      - ./dptor/logs/tor/exit1:/app/tor/logs
+      - ./dptor/logs/tcpdump:/app/tcpdump
     networks:
       net:
         ipv4_address: 10.5.0.4  
@@ -48,7 +52,8 @@ services:
     ports:
       - 9000:9000
     volumes:
-      - ./dptor/logs:/app/tor/logs
+      - ./dptor/logs/tor/client1:/app/tor/logs
+      - ./dptor/logs/tcpdump:/app/tcpdump
     networks:
       net:
         ipv4_address: 10.5.0.6
@@ -58,7 +63,8 @@ services:
       context: .
       dockerfile: hs.Dockerfile
     volumes:
-      - ./dptor/logs:/app/tor/logs
+      - ./dptor/logs/tor/hs:/app/tor/logs
+      - ./dptor/logs/tcpdump:/app/tcpdump
       - ./dptor/hidden_service:/root/.tor/hidden_service
     networks:
       net:

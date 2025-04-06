@@ -25,6 +25,4 @@ RUN ./configure && \
 
 RUN mkdir logs
 
-RUN mkdir logs/tcpdump
-
 ENTRYPOINT [ "/entrypoint.sh", "exit1" ]
