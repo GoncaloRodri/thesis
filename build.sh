@@ -45,15 +45,15 @@ launch_compose() {
 install_tgen() {
     echo -e "\n🔷 📦 Installing TGen while Tor nodes bootstrap..."
 
-    docker exec -d thesis-hs-1 sh -c "(cd /app/ && ./install-tgen.sh)"
-    docker exec -d thesis-client-1 sh -c "(cd /app/ && ./install-tgen.sh)"
+    docker exec -d thesis-hs-1 sh -c "(cd /app/ && ./install-tgen.sh)" || exit 1
+    docker exec -d thesis-client-1 sh -c "(cd /app/ && ./install-tgen.sh)" || exit 1
 }
 
 run_tgen() {
     echo -e "\n🔷 📦 Running TGen..."
 
-    docker exec -d thesis-hs-1 sh -c "(tgen /app/server.tgenrc.graphml) | tee /app/logs/tgen/server.tgen.log"
-    docker exec thesis-client-1 sh -c "(tgen /app/client.tgenrc.graphml) | tee /app/logs/tgen/client.tgen.log"
+    docker exec -d thesis-hs-1 sh -c "(tgen /app/server.tgenrc.graphml) | tee /app/logs/tgen/server.tgen.log" || exit 1
+    docker exec thesis-client-1 sh -c "(tgen /app/client.tgenrc.graphml) | tee /app/logs/tgen/client.tgen.log" || exit 1
 }
 
 cd ~/Documents/thesis/ || exit 1
@@ -102,37 +102,22 @@ while true; do
     esac
 done
 
+run_tgen
+
 ########################################
 # Start TCPDUMP
 ########################################
-echo
+# echo
 
-TGEN=true
+# TGEN=true
 
-read -r -p $'\033[1;33mDo you want to run tgen?\033[0m (y/n) ' tgen
-case "$tgen" in
-[Nn]*) TGEN=false ;;
-*) echo "Running TGen" ;;
-esac
+# read -r -p $'\033[1;33mDo you want to run tgen?\033[0m (y/n) ' tgen
+# case "$tgen" in
+# [Nn]*) TGEN=false ;;
+# *) echo "Running TGen" ;;
+# esac
 
-if [ "$TGEN" = true ]; then
-    docker exec -d thesis-hs-1 sh -c "(tgen /app/server.tgenrc.graphml) | tee /app/tor/logs/server.tgen.log"
-    docker exec thesis-client-1 sh -c "(tgen /app/client.tgenrc.graphml) | tee /app/tor/logs/client.tgen.log"
-fi
-
-#####################################
-# Stop Docker Environment
-#####################################
-echo
-
-STOP_DOCKER=true
-
-read -r -p $'\033[1;33mDo you want to stop docker environment?\033[0m (y/n) ' docker
-case "$docker" in
-[Nn]*) STOP_DOCKER=false ;;
-*) echo "Stopping docker environment" ;;
-esac
-
-if [ "$STOP_DOCKER" = true ]; then
-    docker compose down --remove-orphans
-fi
+# if [ "$TGEN" = true ]; then
+#     docker exec -d thesis-hs-1 sh -c "(tgen /app/server.tgenrc.graphml) | tee /app/tor/logs/server.tgen.log"
+#     docker exec thesis-client-1 sh -c "(tgen /app/client.tgenrc.graphml) | tee /app/tor/logs/client.tgen.log"
+# fi

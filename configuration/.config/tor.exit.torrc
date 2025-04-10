@@ -1,2 +1,2 @@
 ExitRelay 1
-ExitPolicy "accept *:*"
+ExitPolicy accept *:*

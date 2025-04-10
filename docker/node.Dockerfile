@@ -4,7 +4,7 @@ FROM ubuntu:latest
 RUN apt update && apt install -y \
     libssl-dev libevent-dev zlib1g-dev liblzma-dev libzstd-dev \
     libcap-dev libseccomp-dev build-essential python3 pkg-config \
-    git cmake libglib2.0-dev libigraph-dev tcpdump 
+    automake git cmake libglib2.0-dev libigraph-dev tcpdump 
 # nano net-tools curl netcat-traditional 
 
 WORKDIR /app/tor
@@ -13,5 +13,13 @@ COPY differential-privacy-tor /app/tor
 COPY configuration/.config/ /conf
 COPY configuration/tgen/ /app/
 COPY entrypoint.sh /entrypoint.sh
+
+RUN ./autogen.sh && \ 
+    ./configure --disable-manpage --disable-asciidoc \
+    --disable-html-manual --disable-unittests && \
+    make && \
+    make install
+
+
 
 ENTRYPOINT [ "/entrypoint.sh" ]

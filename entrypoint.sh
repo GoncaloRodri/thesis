@@ -3,14 +3,13 @@
 NODE_NAME=$1
 
 mkdir -p /app/logs/tor
+
 cp /app/source/"$NODE_NAME"/config/torrc /app/tor/torrc
 
 if [ "$NODE_NAME" != "client" ]; then
     cp -r /app/source/"$NODE_NAME"/crypto/* /app/tor/
-
 else
     ./install_tgen.sh
-
 fi
 
 if [ "$NODE_NAME" = "hidden_service" ]; then
@@ -19,17 +18,5 @@ if [ "$NODE_NAME" = "hidden_service" ]; then
 fi
 
 cd /app/tor || exit 1
-
-#./autogen.sh
-
-./configure \
-    --disable-manpage \
-    --disable-asciidoc \
-    --disable-html-manual \
-    --disable-unittests
-
-make
-
-make install
 
 (tor -f /app/tor/torrc) | tee /app/logs/tor/"$1".tor.log
