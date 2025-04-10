@@ -1,13 +1,32 @@
 #!/bin/bash
 
-mkdir /app/tor/logs
-mkdir /app/tcpdump
+NODE_NAME=$1
 
-#tcpdump -i eth0 port 9000 -w /app/tcpdump/$1.9000.pcap &
-#tcpdump -i eth0 port 9051 -w /app/tcpdump/$1.9051.pcap &
-tcpdump -i eth0 port 9111 -w /app/tcpdump/$1.9111.pcap &
-#tcpdump -i eth0 port 9112 -w /app/tcpdump/$1.9112.pcap &
-tcpdump -i eth0 -w /app/tcpdump/$1.all.pcap &
+mkdir -p /app/logs/tor
+cp /app/source/"$NODE_NAME"/config/torrc /app/tor/torrc
 
+if [ "$NODE_NAME" != "client" ]; then
+    cp -r /app/source/"$NODE_NAME"/crypto/* /app/tor/
+fi
 
-(tor -f torrc) | tee /app/tor/logs/$1.tor.log
+if [ "$NODE_NAME" = "hidden_service" ]; then
+    mkdir -p /root/.tor/hidden_service
+    cp -r /app/hidden_service/* /root/.tor/hidden_service/
+fi
+
+cd /app/tor || exit 1
+
+#./autogen.sh
+
+./configure \
+    --disable-manpage \
+    --disable-asciidoc \
+    --disabl-html-manual \
+    --disable-unittests
+
+make
+
+make install
+
+(tor -f /app/tor/torrc) | tee /app/logs/tor/"$1".tor.log
+sh -c "while true; do sleep 100; done"

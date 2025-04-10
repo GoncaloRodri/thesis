@@ -1,0 +1,4 @@
+#ORPort 0
+#DirPort 0
+ClientOnly 1
+SocksPort 0.0.0.0:9000

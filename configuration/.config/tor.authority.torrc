@@ -1,0 +1,6 @@
+AuthoritativeDirectory 1
+V3AuthoritativeDirectory 1
+ExitPolicy "reject *:*"
+TestingV3AuthInitialVotingInterval 60 seconds
+TestingV3AuthInitialVoteDelay 15 seconds
+TestingV3AuthInitialDistDelay 15 seconds
