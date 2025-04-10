@@ -1,7 +1,7 @@
 #!/bin/bash
 
 check_bootstrapped() {
-    BSED=$(grep -l -R "Bootstrapped 100%" dptor/* | wc -l)
+    BSED=$(grep -l -R "Bootstrapped 100%" logs/* | wc -l)
     if [ "$BSED" -eq 6 ]; then
         echo -e "\033[1;32m✅ Tor Network is bootstrapped!\033[0m"
     else
@@ -11,18 +11,18 @@ check_bootstrapped() {
 
 time_elapsed() {
     SECONDS=$((SECONDS - START_T))
-    echo -e "\033[1;36m🔶 ⏱️ $((SECONDS / 60)) seconds elapsed!\033[0m"
+    echo -e "\033[1;36m🔶 ⏱️ $((SECONDS / 60)) minutes and $((SECONDS % 60)) seconds elapsed!\033[0m"
 }
 
 kill_docker() {
     echo -e "\n🔷 🧹 Cleaning Docker Environment..."
 
     docker compose down --remove-orphans
-    docker stop $(docker ps -aq)
-    docker rm $(docker ps -aq)
-    docker rmi $(docker images -q)
-    docker network rm $(docker network ls -q)
-    docker volume rm $(docker volume ls -q)
+    docker stop "$(docker ps -aq)"
+    docker rm "$(docker ps -aq)"
+    docker rmi "$(docker images -q)"
+    docker network rm "$(docker network ls -q)"
+    docker volume rm "$(docker volume ls -q)"
 }
 
 set_network() {
@@ -37,7 +37,9 @@ set_network() {
 launch_compose() {
     echo -e "\n🔷 🧅 Launching Tor Network via Docker Compose..."
 
-    COMPOSE_BAKE=true docker compose up --build -d
+    docker build -t dptor_node -f docker/node.Dockerfile .
+
+    COMPOSE_BAKE=true docker compose up -d
 }
 
 install_tgen() {
@@ -45,6 +47,13 @@ install_tgen() {
 
     docker exec -d thesis-hs-1 sh -c "(cd /app/ && ./install-tgen.sh)"
     docker exec -d thesis-client-1 sh -c "(cd /app/ && ./install-tgen.sh)"
+}
+
+run_tgen() {
+    echo -e "\n🔷 📦 Running TGen..."
+
+    docker exec -d thesis-hs-1 sh -c "(tgen /app/server.tgenrc.graphml) | tee /app/logs/tgen/server.tgen.log"
+    docker exec thesis-client-1 sh -c "(tgen /app/client.tgenrc.graphml) | tee /app/logs/tgen/client.tgen.log"
 }
 
 cd ~/Documents/thesis/ || exit 1
@@ -65,8 +74,8 @@ install_tgen
 ##########################################
 
 echo -e "\n🔷 ⏳ Waiting for Tor Network to be ready..."
-sleep 30
-echo -e "\n\033[1;36m🔶 ⏱️ Waited 120 seconds!\033[0m"
+sleep 180
+echo -e "\n\033[1;36m🔶 ⏱️ Waited 3 minutes!\033[0m"
 
 while true; do
     check_bootstrapped
@@ -127,7 +136,3 @@ esac
 if [ "$STOP_DOCKER" = true ]; then
     docker compose down --remove-orphans
 fi
-
-######################################
-# Wireshark
-######################################

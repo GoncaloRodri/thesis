@@ -11,7 +11,7 @@ WORKDIR /app/tor
 
 COPY differential-privacy-tor /app/tor
 COPY configuration/.config/ /conf
-#COPY configuration/ /app/source
+COPY configuration/tgen/ /app/
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]

@@ -7,6 +7,10 @@ cp /app/source/"$NODE_NAME"/config/torrc /app/tor/torrc
 
 if [ "$NODE_NAME" != "client" ]; then
     cp -r /app/source/"$NODE_NAME"/crypto/* /app/tor/
+
+else
+    ./install_tgen.sh
+
 fi
 
 if [ "$NODE_NAME" = "hidden_service" ]; then
@@ -21,7 +25,7 @@ cd /app/tor || exit 1
 ./configure \
     --disable-manpage \
     --disable-asciidoc \
-    --disabl-html-manual \
+    --disable-html-manual \
     --disable-unittests
 
 make
@@ -29,4 +33,3 @@ make
 make install
 
 (tor -f /app/tor/torrc) | tee /app/logs/tor/"$1".tor.log
-sh -c "while true; do sleep 100; done"
