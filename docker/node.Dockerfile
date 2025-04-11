@@ -10,9 +10,6 @@ RUN apt update && apt install -y \
 WORKDIR /app/tor
 
 COPY differential-privacy-tor /app/tor
-COPY configuration/.config/ /conf
-COPY configuration/tgen/ /app/
-COPY entrypoint.sh /entrypoint.sh
 
 RUN ./autogen.sh && \ 
     ./configure --disable-manpage --disable-asciidoc \
@@ -20,6 +17,9 @@ RUN ./autogen.sh && \
     make && \
     make install
 
+COPY configuration/.config/ /conf
+COPY configuration/tgen/ /app/
+COPY entrypoint.sh /entrypoint.sh
 
 
 ENTRYPOINT [ "/entrypoint.sh" ]

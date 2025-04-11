@@ -2,3 +2,4 @@
 #DirPort 0
 ClientOnly 1
 SocksPort 0.0.0.0:9000
+SocksPolicy accept 127.0.0.1

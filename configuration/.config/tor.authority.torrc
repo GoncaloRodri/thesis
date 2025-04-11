@@ -1,5 +1,8 @@
+DirPort 9030
+
 AuthoritativeDirectory 1
 V3AuthoritativeDirectory 1
-TestingV3AuthInitialVotingInterval 30
-TestingV3AuthInitialVoteDelay 10
-TestingV3AuthInitialDistDelay 10
+TestingV3AuthInitialVotingInterval 15 seconds
+TestingV3AuthInitialVoteDelay 2 seconds
+TestingV3AuthInitialDistDelay 2 seconds
+

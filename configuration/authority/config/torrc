@@ -2,6 +2,6 @@ Nickname authority
 Address 10.5.0.5
 ContactInfo authority <authority AT localhost>
 
+%include /conf/tor.authority.torrc
 %include /conf/tor.common.torrc
 %include /conf/tor.relay.torrc
-%include /conf/tor.authority.torrc

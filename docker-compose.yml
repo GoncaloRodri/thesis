@@ -8,6 +8,11 @@ services:
     networks:
       net:
         ipv4_address: 10.5.0.5
+    # healthcheck:
+    #   test: "grep 'Published' /app/logs/tor/authority.tor.log || exit 1"
+    #   interval: 2s
+    #   retries: 30
+    #   start_period: 60s
 
   relay1:
     image: dptor_node  
@@ -18,6 +23,9 @@ services:
     networks:
       net:
         ipv4_address: 10.5.0.2
+    # depends_on:
+    #   authority:
+    #     condition: service_healthy
     
   relay2:
     image: dptor_node  
@@ -28,6 +36,9 @@ services:
     networks:
       net:
         ipv4_address: 10.5.0.3
+    # depends_on:
+    #   authority:
+    #     condition: service_healthy
 
   exit1:
     image: dptor_node
@@ -37,7 +48,10 @@ services:
       - ./logs/:/app/logs/
     networks:
       net:
-        ipv4_address: 10.5.0.4  
+        ipv4_address: 10.5.0.4
+    # depends_on:
+    #   authority:
+    #     condition: service_healthy  
 
   client:
     image: dptor_node
@@ -50,6 +64,9 @@ services:
     networks:
       net:
         ipv4_address: 10.5.0.6
+    # depends_on:
+    #   authority:
+    #     condition: service_healthy
 
   hs:
     image: dptor_node
@@ -61,6 +78,9 @@ services:
     networks:
       net:
         ipv4_address: 10.5.0.20
+    # depends_on:
+    #   authority:
+    #     condition: service_healthy
 
 networks:
   net:
