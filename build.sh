@@ -74,8 +74,8 @@ install_tgen
 ##########################################
 
 echo -e "\n🔷 ⏳ Waiting for Tor Network to be ready..."
-sleep 20
-echo -e "\n\033[1;36m🔶 ⏱️ Waited 20 seconds!\033[0m"
+sleep 40
+echo -e "\n\033[1;36m🔶 ⏱️ Waited 40 seconds!\033[0m"
 
 while true; do
     check_bootstrapped

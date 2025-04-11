@@ -1,3 +1,6 @@
 .vscode
 
 /logs
+
+/test/extract/data/
+/test/parsing/__pycache__

@@ -9,6 +9,7 @@ ControlPort 9051
 LogTimeGranularity 10
 HeartbeatPeriod 10
 SafeLogging 0
+CookieAuthentication 0
 
 #UseEntryGuards 1
 #NumEntryGuards 1

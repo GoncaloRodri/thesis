@@ -5,6 +5,7 @@ services:
     volumes:
       - ./configuration/:/app/source/
       - ./logs:/app/logs/
+      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.5
@@ -20,6 +21,7 @@ services:
     volumes:
       - ./configuration/:/app/source/
       - ./logs/:/app/logs/
+      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.2
@@ -33,6 +35,7 @@ services:
     volumes:
       - ./configuration/:/app/source/
       - ./logs/:/app/logs/
+      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.3
@@ -46,6 +49,7 @@ services:
     volumes:
       - ./configuration/:/app/source/
       - ./logs/:/app/logs/
+      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.4
@@ -61,6 +65,7 @@ services:
     volumes:
       - ./configuration/:/app/source/
       - ./logs/:/app/logs/
+      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.6
@@ -75,6 +80,7 @@ services:
       - ./configuration/:/app/source/
       - ./logs/:/app/logs/
       - ./configuration/hidden_service/crypto/:/app/hidden_service
+      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.20
