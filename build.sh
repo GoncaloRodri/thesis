@@ -74,7 +74,7 @@ install_tgen
 ##########################################
 
 echo -e "\n🔷 ⏳ Waiting for Tor Network to be ready..."
-sleep 40
+sleep 60
 echo -e "\n\033[1;36m🔶 ⏱️ Waited 40 seconds!\033[0m"
 
 while true; do
@@ -85,7 +85,7 @@ while true; do
     case "$exp" in
     [Ww]*)
         echo -e "\033[1;34m⏳ Waiting a bit longer...\033[0m"
-        sleep 30
+        sleep
         echo -e "\n\033[1;36m🔶 ⏱️ 45 seconds elapsed!\033[0m"
         continue
         ;;
@@ -103,6 +103,9 @@ while true; do
 done
 
 run_tgen
+
+echo -e "\n🔷  🧹 Stopping Docker"
+docker compose stop
 
 ########################################
 # Start TCPDUMP

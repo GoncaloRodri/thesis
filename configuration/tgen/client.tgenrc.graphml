@@ -25,7 +25,7 @@
     </node>
     <node id="stream">
       <data key="d5">1 mib</data>
-      <data key="d6">1 kib</data>
+      <data key="d6">1 mib</data>
     </node>
     <edge source="start" target="stream" />
     <edge source="pause" target="start" />
