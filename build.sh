@@ -75,7 +75,7 @@ install_tgen
 
 echo -e "\n🔷 ⏳ Waiting for Tor Network to be ready..."
 sleep 60
-echo -e "\n\033[1;36m🔶 ⏱️ Waited 40 seconds!\033[0m"
+echo -e "\n\033[1;36m🔶 ⏱️ Waited 60 seconds!\033[0m"
 
 while true; do
     check_bootstrapped
@@ -85,7 +85,7 @@ while true; do
     case "$exp" in
     [Ww]*)
         echo -e "\033[1;34m⏳ Waiting a bit longer...\033[0m"
-        sleep
+        sleep 45
         echo -e "\n\033[1;36m🔶 ⏱️ 45 seconds elapsed!\033[0m"
         continue
         ;;
