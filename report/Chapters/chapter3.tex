@@ -44,9 +44,11 @@ As stated previously, as the solution is an extension of the Tor project, the sy
 
 \section{Software Architecture}\label{sec:software_architecture}
 
+
+
 \section{Threat Model}\label{sec:threat_model}
 
-TTT is designed to strengthen the Tor network’s privacy protections and bolster its defenses against traffic analysis attacks, with a particular focus on fingerprinting and correlation threats. Our threat model assumes State-Level Adversaries are capable of observing Tor users' traffic patterns with the aim of de-anonymization, as illustrated in \autoref{fig:thread_model}. As discussed earlier in \autoref{sec:problem}, we identify traffic analysis as the principal threat to Tor — the very challenge that TTT seeks to address — with fingerprinting and traffic correlation attacks representing the primary vectors.
+TTT is designed to strengthen the Tor network's privacy protections and bolster its defenses against traffic analysis attacks, with a particular focus on fingerprinting and correlation threats. Our threat model assumes State-Level Adversaries are capable of observing Tor users' traffic patterns with the aim of de-anonymization, as illustrated in \autoref{fig:thread_model}. As discussed earlier in \autoref{sec:problem}, we identify traffic analysis as the principal threat to Tor — the very challenge that TTT seeks to address — with fingerprinting and traffic correlation attacks representing the primary vectors.
 
 In shaping our threat model, we closely follow the foundational Tor threat model outlined by~\cite{dingledine2004tor}. Accordingly, we consider adversaries who can monitor portions of network traffic, manipulate data flows, operate their own onion routers, and compromise a fraction of existing routers. The adversary's ultimate objective is the de-anonymization of users and the exposure of their browsing activities.
 
@@ -60,3 +62,5 @@ Building on the original assumptions put forth by~\citeauthor{dingledine2004tor}
   \includegraphics[width=\textwidth]{Chapters/Figures/Threat_Model.png}
   \caption{Threat Model over System Model}\label{fig:thread_model}
 \end{figure}
+
+\section{Threat Model Countermeasures}\label{sec:threat_model_countermeasures}
