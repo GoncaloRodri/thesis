@@ -69,6 +69,17 @@ Nevertheless, bridges are still vulnerable to traffic fingerprinting attacks.~\c
 
 To overcome this issue, Tor bridges support \textit{pluggable transports} (PT)~\cite{PlugTrans} which transform the Tor traffic flow between the client and the bridge, making traffic monitoring between these look innocent, instead of actual Tor traffic. Some examples of PTs are \textit{obfs4}, \textit{meek}, \textit{Snowflake} and \textit{WebTunnel}~\cite{Circumvention}.\@ \textit{obfs4} obfuscates Tor traffic to make it appear random, thwarting efforts by censors to detect it through Internet scanning; \textit{meek} disguises Tor traffic to resemble ordinary browsing activity on prominent websites; \textit{Snowflake} routes your connection through volunteer-operated proxies to make it look like you're placing a video call instead of using Tor; and \textit{WebTunnel} camouflages Tor traffic by making it indistinguishable from standard HTTPS requests, thereby creating the illusion of accessing a secure website.
 
+\subsection{Tor Hidden Services}\label{subsec:tor_hidden_services}
+Tor circuits, by their inherent design, do not ensure the anonymity of the receiver. This limitation arises from the fact that, for a client to reach a destination via an exit node, the recipient's IP address must be publicly accessible. To address this vulnerability, Tor introduces hidden services and the concept of a rendezvous point (RP) — a Tor relay node that facilitates recipient anonymity through the construction of dual circuits.
+
+Hidden services enable any entity to host a TCP-based service without disclosing its IP address. Clients wishing to access such services utilize a special onion service address, which is derived from the service's public key. This cryptographically generated address provides a secure means of routing without exposing network-layer identifiers.
+
+The fundamental mechanism underpinning hidden services involve the establishment of two distinct Tor circuits: one from the client to the rendezvous point and another from the hidden service to the same point. These circuits are constructed independently, and neither endpoint is aware of the other's IP address. The rendezvous point serves solely as an intermediary to facilitate communication between the two parties.
+
+This architecture inherits the sender anonymity traditionally offered by Tor circuits and extends it to receivers. Only the respective entry nodes of the circuits are aware of the origin of the traffic, and no single entity can link the sender and receiver. Notably, the exit node of the client circuit terminates at the rendezvous point, perceiving it as the ultimate recipient. Consequently, the client does not require knowledge of the hidden service's IP address, thereby ensuring the recipient's anonymity.
+
+In summary, the use of rendezvous points and independently constructed circuits within Tor's hidden service framework effectively achieves mutual anonymity, safeguarding both client and service identities during communication.
+
 \subsection{Tor Circuit Scheduling}\label{subsec:tor_scheduler}
 
 Traffic handling in Tor involves several buffers and schedulers.
