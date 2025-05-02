@@ -1,12 +1,12 @@
 from collections import defaultdict
 
 
-def parse_tor_log(file_path, start_time=None, end_time=None):
+def parse_tor_log(file_path, start_time=None, end_time=None, filter=False):
     print("Parsing file:", file_path)
 
     parsed_data = parse_file(file_path)
 
-    filtered_data = filter_data(parsed_data, start_time, end_time)
+    filtered_data = filter_data(parsed_data, start_time, end_time, filter)
 
     sorted_data = sort_data(filtered_data)
 
@@ -74,16 +74,15 @@ def parse_info(line, description, regex):
     )
 
 
-def filter_data(parsed_data, start_time=None, end_time=None):
+def filter_data(parsed_data, start_time=None, end_time=None, has_time_filter=False):
     filtered_data = defaultdict(list)
     for circid, entries in parsed_data.items():
         if (
             len(entries) > 400
         ):
             cmd_filtered = commands_filter(entries)
-            if time_filter(
-                cmd_filtered,
-                float(start_time), float(end_time + 1.0)
+            if (not has_time_filter) or time_filter(
+                cmd_filtered, float(start_time), float(end_time + 1.0)
             ):
                 filtered_data[circid] = cmd_filtered
     return filtered_data

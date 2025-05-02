@@ -4,9 +4,26 @@ import parsing.tor as tor
 from analyze import generate_data
 import plotting
 import json
+import argparse
 
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description="Parse and analyze Tor logs.")
+    parser.add_argument(
+        "--test",
+        type=str,
+        default="test",
+        help="Name of the test to be used for saving results.",
+    )
+    parser.add_argument(
+        "-f",
+        action="store_true",
+        help="Filter the logs to only include the time between the first and last packet.",
+    )
+    args = parser.parse_args()
+
+    test_name = args.test or "unknown"
 
     tgen_client_file = "../logs/tgen/client.tgen.log"
     tgen_server_file = "../logs/tgen/server.tgen.log"
@@ -31,10 +48,11 @@ if __name__ == "__main__":
             file_path,
             start_time=tgen_client_info["first_ts"],
             end_time=tgen_client_info["last_ts"],
+            filter=args.f,
         )
         if len(result) == 0:
             continue
-        final_result[name] = generate_data(result, name)
+        final_result[name] = generate_data(result, name, test_name)
 
         json_res = json.dumps(final_result[name], indent=2)
         with open(f"results/{name}.json", "w") as json_file:
@@ -45,7 +63,7 @@ if __name__ == "__main__":
 
     # Print and plot each relay circuit all together,
     # with timestamps as x-axis and assing a y value to each circuit
-    plotting.plot_relays(final_result)
+    plotting.plot_relays(final_result, test_name)
 
     print("Done!")
     print("Results saved in results/ folder.")

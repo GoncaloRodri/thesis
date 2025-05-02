@@ -27,5 +27,5 @@ BandwidthBurst 1024000
 
 Schedulers DPVanilla
 DPSchedulerJitter 0.5
-DPSchedulerRunIntervalMax 100
+DPSchedulerRunIntervalMax 10
 DPSchedulerRunIntervalMin 2

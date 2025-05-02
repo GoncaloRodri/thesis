@@ -3,4 +3,6 @@
 /logs
 
 /test/extract/data/
-/test/parsing/__pycache__
+/test/plots
+/test/**/__pycache__
+/test/__pycache__

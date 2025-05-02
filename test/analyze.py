@@ -2,16 +2,15 @@ import plotting
 import numpy as np
 
 
-def generate_data(result, name):
+def generate_data(result, name, test_name):
 
     res = {}
 
     plotting.plot_relay_circuits(
         circ_ids=[circ_id for circ_id in result.keys()],
-        ts=[
-            list(map(lambda x: float(x[1]), data)) for data in result.values()
-        ],
-        name=name
+        ts=[list(map(lambda x: float(x[1]), data)) for data in result.values()],
+        name=name,
+        test_name=test_name,
     )
 
     res["circ_ids"] = [circ_id for circ_id in result.keys()]
@@ -44,6 +43,7 @@ def generate_data(result, name):
             y=deltas,
             relay=name,
             circ_id=circ_id,
+            test_name=test_name,
         )
 
         counts, bins = np.histogram(
