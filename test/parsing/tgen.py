@@ -22,11 +22,19 @@ def get_server_info(file):
             last_ts = line.split(" ")[2]
             break
 
-    return {
-        "first_ts": float(fst_ts),  # - 3600.0,
-        "last_ts": float(last_ts),  # - 3600.0,
-        "time_elapsed": float(last_ts) - float(fst_ts),
-    }
+    return (
+        {
+            "first_ts": float(fst_ts),  # - 3600.0,
+            "last_ts": float(last_ts),  # - 3600.0,
+            "time_elapsed": float(last_ts) - float(fst_ts),
+        }
+        if fst_ts is not None or last_ts is not None
+        else {
+            "first_ts": None,
+            "last_ts": None,
+            "time_elapsed": None,
+        }
+    )
 
 
 def get_client_info(file):
@@ -37,12 +45,20 @@ def get_client_info(file):
             fst_ts = line.split(" ")[2]
             continue
 
-        if "[stream-success]" in line and fst_ts is not None:
+        if "[_tgenstream_log]" in line and fst_ts is not None:
             last_ts = line.split(" ")[2]
-            break
+            continue
 
-    return {
-        "first_ts": float(fst_ts),  # - 3600.0,
-        "last_ts": float(last_ts),  # - 3600.0,
-        "time_elapsed": float(last_ts) - float(fst_ts),
-    }
+    return (
+        {
+            "first_ts": float(fst_ts),  # - 3600.0,
+            "last_ts": float(last_ts),  # - 3600.0,
+            "time_elapsed": float(last_ts) - float(fst_ts),
+        }
+        if fst_ts is not None or last_ts is not None
+        else {
+            "first_ts": None,
+            "last_ts": None,
+            "time_elapsed": None,
+        }
+    )

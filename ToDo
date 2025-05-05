@@ -1,23 +1,18 @@
-# Must Do Now
-Set /keys directory of Tor to other but "./keys"
 
 # Priority 1
-[-] Use Tcpdump files and Wireshark to analyze the network traffic
-[-] Create a script to analyse timings between relays!
-[-] Add a Verification Function on 'build.sh' to verify that every node has(n't) bootstrapped!
-[-] Add Jitter to Tor Network
+[-] Ver Padding em TLS
+
+[-] Ver se shaft cells altera tamanho dos pacotes TLS
+[-] Ver se o tráfego de vários utilizadores se intercalam e se os pacotes TLS são iguais entre diversos segmentos da rede
+[-] Descobrir forma de nomear o que fazer com o shaft 
 
 # Priority 2
-[-] Optimize Dockerfile 
-[-] Try to abstract Dockerfiles for better scaling capabilities
-    [-] Check for abstraction on torrc files (same torrc for relays)
-[-] Optimize Torrc Files:
-    [-] Check Setting Pre Roles to Nodes
-
-# Priority 3
-[-] Beautify build.sh [Loading, Progress bar, Colors, Emojis, etc.]
 [-] Add README.md & LICENSE to the repository
 
 ## ALWAYS!
 [-] WORK MOREEEEE!
 [-] BE AWESOME!
+
+## Look Out
+ - WTF-PAD adds padding as a pluggable transport
+ - Break-Pad (Break‑Burst Padding) add padding directly to Tor and works has one-way and both-ways. "It works by sampling thresholds and padding‑burst sizes from probability distributions and inserting dummy “padding” packets whenever a long burst of incoming packets exceeds the threshold"

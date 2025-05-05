@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     test_name = args.test or "unknown"
 
-    tgen_client_file = "../logs/tgen/client.tgen.log"
+    tgen_client_file = "../logs/tgen/simple-client.tgen.log"
     tgen_server_file = "../logs/tgen/server.tgen.log"
     tgen_server_info, tgen_client_info = tgen.extract_tgen_info(
         tgen_server_file, tgen_client_file

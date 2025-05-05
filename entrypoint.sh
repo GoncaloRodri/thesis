@@ -17,6 +17,10 @@ if [ "$NODE_NAME" = "hidden_service" ]; then
     cp -r /app/hidden_service/* /root/.tor/hidden_service/
 fi
 
+mkdir -p /app/logs/wireshark/
+
+tcpdump -w /app/logs/wireshark/"$NODE_NAME".pcap -i eth0
+
 cd /app/tor || exit 1
 
 (tor -f /app/tor/torrc) | tee /app/logs/tor/"$1".tor.log
