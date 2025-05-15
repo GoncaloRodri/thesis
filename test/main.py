@@ -1,8 +1,7 @@
-from collections import defaultdict
 import parsing.tgen as tgen
-import parsing.tor as tor
-from analyze import generate_data
-import plotting
+from analyze import analyze, get_summary
+from plotting import plot
+from save import save
 import json
 import argparse
 
@@ -37,46 +36,26 @@ if __name__ == "__main__":
         ("../logs/tor/relay2.tor.log", "relay2"),
         ("../logs/tor/client.tor.log", "client"),
         ("../logs/tor/authority.tor.log", "authority"),
-        ("../logs/tor/hidden_service.tor.log", "hidden_service"),
     ]
 
-    final_result = defaultdict(dict)
+    if test_name == "hidden_service":
+        files.push(("../logs/tor/hidden_service.tor.log", "hidden_service"))
 
-    # Replace with the path to your text fil
-    for file_path, name in files:
-        result = tor.parse_tor_log(
-            file_path,
-            start_time=tgen_client_info["first_ts"],
-            end_time=tgen_client_info["last_ts"],
-            filter=args.f,
-        )
-        if len(result) == 0:
-            continue
-        final_result[name] = generate_data(result, name, test_name)
+    analyzed_data = analyze(files, tgen_client_info)
 
-        json_res = json.dumps(final_result[name], indent=2)
-        with open(f"results/{name}.json", "w") as json_file:
-            json_file.write(json_res)
+    legend = plot(analyzed_data, test_name)
 
-    with open("results/all.json", "w") as json_file:
-        json_file.write(json.dumps(final_result, indent=2))
+    save(
+        analyzed_data,
+        test_name,
+    )
 
-    # Print and plot each relay circuit all together,
-    # with timestamps as x-axis and assing a y value to each circuit
-    plotting.plot_relays(final_result, test_name)
+    summary = get_summary(legend, analyzed_data, test_name)
+
+    save(summary, test_name)
 
     print("Done!")
-    print("Results saved in results/ folder.")
-    print("Plots saved in plots/ folder.")
     print(
         "Total time elapsed:",
         tgen_client_info["last_ts"] - tgen_client_info["first_ts"],
     )
-
-    for name, data in final_result.items():
-        print(f"{name}:")
-        print(
-            "\tTotal time elapsed:",
-            data["end_time"] - data["start_time"],
-        )
-        print("\tNumber of circuits:", len(data["circuit_data"]))

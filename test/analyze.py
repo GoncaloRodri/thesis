@@ -1,75 +1,122 @@
 import plotting
 import numpy as np
+import parsing.tor as tor
+from datatypes import RawCircuitData, RelayData, CircuitData
 
 
-def generate_data(result, name, test_name):
+def analyze(files, tgen_client_info) -> dict[str, RelayData]:
+    analysis = {}
+    for file_path, name in files:
+        result = tor.parse_tor_log(
+            file_path,
+            start_time=tgen_client_info["first_ts"],
+            end_time=tgen_client_info["last_ts"],
+            filter=True,
+        )
+        if len(result) == 0:
+            continue
 
-    res = {}
+        raw_data = collect(result)
 
-    plotting.plot_relay_circuits(
-        circ_ids=[circ_id for circ_id in result.keys()],
-        ts=[list(map(lambda x: float(x[1]), data)) for data in result.values()],
-        name=name,
-        test_name=test_name,
-    )
+        analysis[name] = generate_data(raw_data, name)
 
-    res["circ_ids"] = [circ_id for circ_id in result.keys()]
-    res["circuit_data"] = {}
-    start_ts = None
-    end_ts = None
+    if len(analysis) == 0:
+        print("No data found in any of the files.")
+        return None
+
+    return analysis
+
+
+# Collects simple and raw data from relays and circuits, ready to be transformed into useful data
+
+
+def collect(result) -> list[RawCircuitData]:
+    collect = []
 
     for circ_id, data in result.items():
         if len(data) == 0:
-            print("No data for circ_id:", circ_id)
             continue
 
-        if start_ts is None or float(data[0][1]) < start_ts:
-            start_ts = float(data[0][1])
-
-        if end_ts is None or float(data[-1][1]) > end_ts:
-            end_ts = float(data[-1][1])
-
         deltas = []
+        timestamps = []
         for i in range(1, len(data)):
             delta = float(data[i][1]) - float(data[i - 1][1])
             deltas.append(delta)
+            timestamps.append(float(data[i][1]))
 
-        max_delta = max(deltas)
-        min_delta = min(deltas)
-        avg_delta = sum(deltas) / len(deltas)
-
-        plotting.plot_deltas(
-            x=[i for i in range(len(deltas))],
-            y=deltas,
-            relay=name,
-            circ_id=circ_id,
-            test_name=test_name,
+        collect.append(
+            {
+                "id": circ_id,
+                "deltas": deltas,
+                "timestamps": timestamps,
+                "number_of_packets": len(data),
+                "start_time": data[0][1],
+                "end_time": data[-1][1],
+            }
         )
 
-        counts, bins = np.histogram(
-            deltas
-        )
-        max_index = np.argmax(counts)
-        most_common_delta = (bins[max_index] + bins[max_index + 1]) / 2
+    return collect
 
-        res["circuit_data"][circ_id] = {
-            "number_of_packets": len(data),
-            "avg_delta": avg_delta,
-            "min_delta": min_delta,
-            "max_delta": max_delta,
-            "most_common_delta": most_common_delta,
-            "start_time": data[0][1],
-            "end_time": data[-1][1],
-            "total_time_elapsed": float(data[-1][1]) - float(data[0][1]),
-            "deltas": deltas,
-            "timestamps": [float(x[1]) for x in data],
+
+def generate_data(raw, name) -> RelayData:
+    relay: RelayData = {}
+
+    relay["name"] = name
+    relay["start_time"] = float("inf")
+    relay["end_time"] = float(0)
+    relay["circuit_data"] = {}
+
+    for raw_circuit in raw:
+        circ: CircuitData = {
+            "id": raw_circuit["id"],
+            "avg_delta": np.mean(raw_circuit["deltas"]),
+            "min_delta": np.min(raw_circuit["deltas"]),
+            "max_delta": np.max(raw_circuit["deltas"]),
+            "num_packets": raw_circuit["number_of_packets"],
+            "delta_variance": np.var(raw_circuit["deltas"]),
+            "delta_deviation": np.std(raw_circuit["deltas"]),
+            "total_elapsed_time": float(raw_circuit["end_time"])
+            - float(raw_circuit["start_time"]),
+            "deltas": raw_circuit["deltas"],
+            "timestamps": raw_circuit["timestamps"],
         }
 
-    res["start_time"] = start_ts
-    res["end_time"] = end_ts
-    res["total_time_elapsed"] = end_ts - start_ts
-    res["total_number_of_packets"] = sum(
-        [len(data) for data in result.values()]
+        relay["circuit_data"][raw_circuit["id"]] = circ
+        relay["start_time"] = (
+            float(raw_circuit["start_time"])
+            if float(raw_circuit["start_time"]) < float(relay["start_time"])
+            else relay["start_time"]
+        )
+        relay["end_time"] = max(relay["end_time"], float(raw_circuit["end_time"]))
+
+    relay["total_time_elapsed"] = float(relay["end_time"]) - float(relay["start_time"])
+    relay["total_number_of_packets"] = sum(
+        [circ["num_packets"] for circ in relay["circuit_data"].values()]
     )
-    res["total_number_of_circuits"] = len(result)
-    return res
+
+    return relay
+
+
+def get_summary(legend, data, test_name):
+    """
+    Get a summary of the data.
+    """
+
+    first = float("inf")
+    last = float(0)
+
+    for relay, relay_data in data.items():
+        first = min(first, float(relay_data["start_time"]))
+        last = max(last, float(relay_data["end_time"]))
+
+        for circuit_id, circuit_data in relay_data["circuit_data"].items():
+            del circuit_data["deltas"]
+            del circuit_data["timestamps"]
+
+    data["circuits_legend"] = legend
+    data["test_name"] = test_name
+    data["start_time"] = first
+    data["end_time"] = last
+    data["total_time_elapsed"] = last - first
+
+    return data

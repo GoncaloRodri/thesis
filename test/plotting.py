@@ -1,4 +1,98 @@
 import matplotlib.pyplot as plt
+from datatypes import RelayData
+
+
+def plot(data: dict[str, RelayData], test_name: str) -> None:
+    """
+    Plot the data for each relay and circuit.
+    """
+    circuits_legend = {}
+    for name, relay_data in data.items():
+        circuits_legend[name] = {}
+        if len(relay_data["circuit_data"]) == 0:
+            continue
+        for n, (circ_id, circuit_data) in enumerate(
+            relay_data["circuit_data"].items(), start=1
+        ):
+
+            circuits_legend[circ_id] = f"{name}-{n}"
+            plot_deltas(
+                relay=name,
+                circ_id=f"{name}-{n}",
+                test_name=test_name,
+                deltas=circuit_data["deltas"],
+            )
+
+        plot_timestamps(
+            relay=name,
+            circuits=[
+                f"{name}-{n}" for n in range(1, len(relay_data["circuit_data"]) + 1)
+            ],
+            test_name=test_name,
+            timestamps=[
+                circuit_data["timestamps"]
+                for circuit_data in relay_data["circuit_data"].values()
+            ],
+            start_time=relay_data["start_time"],
+        )
+
+    return circuits_legend
+
+
+def plot_deltas(
+    relay,
+    circ_id,
+    test_name,
+    deltas,
+):
+    plt.figure(figsize=(24, 6))
+    plt.plot(
+        list(range(len(deltas))),
+        deltas,
+        marker=".",
+        linestyle="-",
+        linewidth=0.4,
+        markersize=1,
+        alpha=0.7,
+    )
+    plt.yscale("log")
+    plt.xlabel("Packet Sequence Number")
+    plt.ylabel("Delta (ns)")
+    plt.title(f"Packet Delta for Circuit {circ_id}")
+    plt.grid(True, which="both", linestyle="", linewidth=0.1)
+    plt.tight_layout()
+    plt.savefig(f"plots/{test_name}/deltas.{circ_id}.png", format="png")
+    plt.close()
+
+
+def plot_timestamps(
+    relay,
+    circuits: list[str],
+    test_name,
+    timestamps: list[list[float]],
+    start_time: float = 0,
+):
+    plt.figure(figsize=(24, 6))
+    for i, ts in enumerate(timestamps):
+        plt.scatter(
+            list(range(len(ts))),
+            [timestamp - start_time for timestamp in ts],
+            marker=".",
+            linestyle="-",
+            linewidth=0.4,
+            alpha=0.7,
+            animated=True,
+            label=circuits[i],
+        )
+    plt.xscale("linear")
+    plt.xlabel("Packet Sequence Number")
+    plt.ylabel("Timestamp (ns)")
+    plt.title(f"Timestamp Overview for Relay {relay}")
+    plt.legend()
+    plt.grid(True, which="both", linestyle="", linewidth=0.1)
+    plt.tight_layout()
+    plt.savefig(f"plots/{test_name}/ts.{relay}.png", format="png")
+    plt.close()
 
 
 def plot_relays(info: dict, test_name: str) -> None:
@@ -50,25 +144,4 @@ def plot_relay_circuits(
     plt.grid(True)
     plt.tight_layout()
     plt.savefig(f"plots/relay_circuits/{test_name}-{name}.png", format="png")
-    plt.close()
-
-
-def plot_deltas(x, y, relay="example", circ_id="0", test_name="test") -> None:
-    plt.figure(figsize=(24, 6))
-    plt.plot(
-        x,
-        y,
-        marker=".",
-        linestyle="-", linewidth=0.2,
-        markersize=2,
-        alpha=0.7,
-        color="blue"
-    )
-    plt.yscale("log")
-    plt.xlabel("Packet Sequence Number")
-    plt.ylabel("Delta (ns)")
-    plt.title(f"Packet Delta for Circ ID {circ_id} of Relay {relay}")
-    plt.grid(True, which="both", linestyle="", linewidth=0.5)
-    plt.tight_layout()
-    plt.savefig(f"plots/relays/{relay}/{test_name}-{circ_id}.png", format="png")
     plt.close()

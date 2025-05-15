@@ -82,7 +82,7 @@ def filter_data(parsed_data, start_time=None, end_time=None, has_time_filter=Fal
         ):
             cmd_filtered = commands_filter(entries)
             if (not has_time_filter) or time_filter(
-                cmd_filtered, float(start_time), float(end_time + 1.0)
+                cmd_filtered, float(start_time - 5.0), float(end_time + 5.0)
             ):
                 filtered_data[circid] = cmd_filtered
     return filtered_data
