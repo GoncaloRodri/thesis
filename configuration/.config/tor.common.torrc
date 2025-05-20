@@ -26,6 +26,12 @@ BandwidthBurst 1024000
 ########################################
 
 Schedulers DPVanilla
-DPSchedulerJitter 0.5
+DPSchedulerJitter 0
 DPSchedulerRunIntervalMax 10
-DPSchedulerRunIntervalMin 2
+DPSchedulerRunIntervalMin 1
+
+########################################
+######### Packet Cell Padding ##########
+########################################
+
+DummyCellGeneration 50

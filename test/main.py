@@ -1,7 +1,7 @@
 import parsing.tgen as tgen
 from analyze import analyze, get_summary
 from plotting import plot
-from save import save
+from save import save, save_summary
 import json
 import argparse
 
@@ -20,6 +20,7 @@ if __name__ == "__main__":
         action="store_true",
         help="Filter the logs to only include the time between the first and last packet.",
     )
+
     args = parser.parse_args()
 
     test_name = args.test or "unknown"
@@ -50,9 +51,11 @@ if __name__ == "__main__":
         test_name,
     )
 
-    summary = get_summary(legend, analyzed_data, test_name)
+    summary = get_summary(
+        legend, analyzed_data, test_name, tgen_client_info["filesize"]
+    )
 
-    save(summary, test_name)
+    save_summary(summary, test_name)
 
     print("Done!")
     print(

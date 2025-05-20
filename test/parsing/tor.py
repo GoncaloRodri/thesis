@@ -38,7 +38,6 @@ def parse_line(line):
         ts = None
         cmd = None
         circid = None
-        direction = None
 
         # Extract "circid="
         if "circ_id=" in line:
@@ -52,11 +51,8 @@ def parse_line(line):
         if "command=" in line:
             cmd = parse_info(line, "command=", ", ")
 
-        if "direction=" in line:
-            direction = parse_info(line, "direction=", ",")
-
-        if circid and ts and cmd and direction:
-            return (circid, cmd, ts, direction)
+        if circid and ts and cmd:
+            return (circid, cmd, ts, "")
 
         print("Incomplete line:", line)
         return None
@@ -91,7 +87,7 @@ def filter_data(parsed_data, start_time=None, end_time=None, has_time_filter=Fal
 def commands_filter(entries):
     filtered_entries = []
     for entry in entries:
-        if entry[0] == "END":
+        if entry[0] == "relay" or entry[0] == "dummy":
             filtered_entries.append(entry)
     return filtered_entries
 
@@ -104,7 +100,10 @@ def time_filter(entries, start_time: float, end_time: float) -> bool:
         return True
 
     print("Time filter failed:")
-    print("\tFirst timestamp:", entries[0])
-    print(f"\t Circuit has early {start_time-first_ts} seconds")
-    print(f"\t Circuit has late {last_ts-end_time} seconds")
+    print(
+        "\tFirst timestamp:",
+        entries[0],
+        f"\t Circuit has early {start_time-first_ts} seconds",
+        f"\t Circuit has late {last_ts-end_time} seconds",
+    )
     return False

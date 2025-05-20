@@ -42,10 +42,6 @@ As stated previously, as the solution is an extension of the Tor project, the sy
   \caption{Differential Private Network System Model}\label{fig:system_model}
 \end{figure}
 
-\section{Software Architecture}\label{sec:software_architecture}
-
-
-
 \section{Threat Model}\label{sec:threat_model}
 
 TTT is designed to strengthen the Tor network's privacy protections and bolster its defenses against traffic analysis attacks, with a particular focus on fingerprinting and correlation threats. Our threat model assumes State-Level Adversaries are capable of observing Tor users' traffic patterns with the aim of de-anonymization, as illustrated in \autoref{fig:thread_model}. As discussed earlier in \autoref{sec:problem}, we identify traffic analysis as the principal threat to Tor — the very challenge that TTT seeks to address — with fingerprinting and traffic correlation attacks representing the primary vectors.
@@ -63,4 +59,22 @@ Building on the original assumptions put forth by~\citeauthor{dingledine2004tor}
   \caption{Threat Model over System Model}\label{fig:thread_model}
 \end{figure}
 
-\section{Threat Model Countermeasures}\label{sec:threat_model_countermeasures}
+\section{Software Architecture}\label{sec:software_architecture}
+
+\subsection{Tor Kist based Architecture}\label{sec:tor_kist_architecture}
+
+\subsection{TTT Architecture}\label{sec:ttt_architecture}
+
+\section{Parameterization}\label{sec:parameterization}
+
+\subsection{Used Techniques}\label{sec:used_techniques}
+
+\subsection{Jitter Parameterization}\label{sec:jitter_parameterization}
+
+\subsection{Packet Padding Cells Parameterization}\label{sec:packet_padding_parameterization}
+
+\section{Jitter Development Strategy}\label{sec:jitter_development_strategy}
+
+\section{Packet Padding Cells Development Strategy}\label{sec:packet_padding_cells_development_strategy}
+
+\section{Discussion}\label{sec:architeture_discussion}

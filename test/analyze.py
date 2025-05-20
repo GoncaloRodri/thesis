@@ -37,12 +37,16 @@ def collect(result) -> list[RawCircuitData]:
         if len(data) == 0:
             continue
 
+        dummy_data = 0
+
         deltas = []
         timestamps = []
         for i in range(1, len(data)):
             delta = float(data[i][1]) - float(data[i - 1][1])
             deltas.append(delta)
             timestamps.append(float(data[i][1]))
+            if data[i][0] == "dummy":
+                dummy_data += 1
 
         collect.append(
             {
@@ -52,6 +56,7 @@ def collect(result) -> list[RawCircuitData]:
                 "number_of_packets": len(data),
                 "start_time": data[0][1],
                 "end_time": data[-1][1],
+                "dummy_count": dummy_data,
             }
         )
 
@@ -65,6 +70,7 @@ def generate_data(raw, name) -> RelayData:
     relay["start_time"] = float("inf")
     relay["end_time"] = float(0)
     relay["circuit_data"] = {}
+    relay["dummy_count"] = 0
 
     for raw_circuit in raw:
         circ: CircuitData = {
@@ -77,10 +83,14 @@ def generate_data(raw, name) -> RelayData:
             "delta_deviation": np.std(raw_circuit["deltas"]),
             "total_elapsed_time": float(raw_circuit["end_time"])
             - float(raw_circuit["start_time"]),
+            "dummy_count": raw_circuit["dummy_count"],
+            "dummy_ratio": raw_circuit["dummy_count"]
+            / raw_circuit["number_of_packets"],
             "deltas": raw_circuit["deltas"],
             "timestamps": raw_circuit["timestamps"],
         }
 
+        relay["dummy_count"] += raw_circuit["dummy_count"]
         relay["circuit_data"][raw_circuit["id"]] = circ
         relay["start_time"] = (
             float(raw_circuit["start_time"])
@@ -93,21 +103,26 @@ def generate_data(raw, name) -> RelayData:
     relay["total_number_of_packets"] = sum(
         [circ["num_packets"] for circ in relay["circuit_data"].values()]
     )
+    relay["dummy_ratio"] = relay["dummy_count"] / relay["total_number_of_packets"]
 
     return relay
 
 
-def get_summary(legend, data, test_name):
+def get_summary(legend, data, test_name, filesize=None) -> dict[str, RelayData]:
     """
     Get a summary of the data.
     """
 
     first = float("inf")
     last = float(0)
+    num_packets = 0
+    num_dummy = 0
 
     for relay, relay_data in data.items():
         first = min(first, float(relay_data["start_time"]))
         last = max(last, float(relay_data["end_time"]))
+        num_packets += relay_data["total_number_of_packets"]
+        num_dummy += relay_data["dummy_count"]
 
         for circuit_id, circuit_data in relay_data["circuit_data"].items():
             del circuit_data["deltas"]
@@ -118,5 +133,16 @@ def get_summary(legend, data, test_name):
     data["start_time"] = first
     data["end_time"] = last
     data["total_time_elapsed"] = last - first
+    data["total_number_of_packets"] = num_packets
+    data["dummy_count"] = num_dummy
+    data["dummy_ratio"] = num_dummy / num_packets
+
+    if filesize:
+        data["filesize"] = {
+            "bytes": filesize,
+            "Kb": filesize / 1024,
+            "Mb": filesize / 1024 / 1024,
+            "Gb": filesize / 1024 / 1024 / 1024,
+        }
 
     return data

@@ -6,3 +6,5 @@
 /test/plots
 /test/**/__pycache__
 /test/__pycache__
+
+live.main.tex

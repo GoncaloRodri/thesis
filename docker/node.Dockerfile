@@ -19,7 +19,8 @@ RUN ./autogen.sh && \
 
 COPY configuration/.config/ /conf
 COPY configuration/tgen/ /app/
-COPY entrypoint.sh /entrypoint.sh
+COPY scripts/entrypoint.sh /entrypoint.sh
+COPY scripts/run-perf.sh /run-perf.sh
 
 
 ENTRYPOINT [ "/entrypoint.sh" ]

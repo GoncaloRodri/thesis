@@ -8,6 +8,6 @@ WORKDIR /app/
 
 COPY configuration/.config/ /conf
 COPY configuration/tgen/ /app/
-COPY entrypoint.sh /entrypoint.sh
+COPY scripts/entrypoint.sh /entrypoint.sh
 
 RUN cd /app/ && ./install-tgen.sh

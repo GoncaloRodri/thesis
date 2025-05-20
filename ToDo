@@ -1,10 +1,9 @@
 
 # Priority 1
-[-] Ver Padding em TLS
+[-] Configurar dinamicamente Jitter e/ou Packet Padding com Estado de Network
+[-] Implementar DP Packet Padding Cells Generation
+[-] Implementar DP Jitter on KIST Scheduler
 
-[-] Ver se shaft cells altera tamanho dos pacotes TLS
-[-] Ver se o tráfego de vários utilizadores se intercalam e se os pacotes TLS são iguais entre diversos segmentos da rede
-[-] Descobrir forma de nomear o que fazer com o shaft 
 
 # Priority 2
 [-] Add README.md & LICENSE to the repository
