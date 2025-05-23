@@ -1,0 +1,3 @@
+curl_logs_folder: ../../logs/curl
+tor_logs_folder: ../../logs/tor
+outliers_num_packets: 10

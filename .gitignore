@@ -7,4 +7,6 @@
 /test/**/__pycache__
 /test/__pycache__
 
+**/__pycache__
+
 live.main.tex
