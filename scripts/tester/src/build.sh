@@ -4,7 +4,7 @@
 source src/utils.sh
 
 BOOTSTRAP_SLEEP=1
-MAX_TIME_TO_BOOTSTRAP=200
+MAX_TIME_TO_BOOTSTRAP=150
 PERFORMANCE_BOOTSTRAP_COUNTER=5
 
 launch_tor_network() {
@@ -33,6 +33,7 @@ launch_tor_network() {
         done
         log_error "launch_tor_network()                                             " "Tor Network failed to bootstrap within $MAX_TIME_TO_BOOTSTRAP seconds. Retrying..."
         docker compose -f "$1" down --remove-orphans
+        sleep 20 
     done
 
     
@@ -58,18 +59,9 @@ set_configuration() {
     max_j=$(echo "$params" | jq -r '.max_jitter')
     sched=$(echo "$params" | jq -r '.scheduler')
 
-    echo "Dummy: $dummy"
-    echo "Jitter: $jitter"
-    echo "Min Jitter: $min_j"
-    echo "Max Jitter: $max_j"
-    echo "Scheduler: $sched"
-    echo "Config Path: $config_path"
-
     sed -E -i "s/(DummyCellGeneration )[0-9]+/\1${dummy}/g" "${config_path}"/.config/tor.common.torrc
     sed -E -i "s/(DPSchedulerJitter )[0-9]+/\1${jitter}/g" "${config_path}"/.config/tor.common.torrc
     sed -E -i "s/(DPSchedulerRunIntervalMin )[0-9]+/\1${min_j}/g" "${config_path}"/.config/tor.common.torrc
     sed -E -i "s/(DPSchedulerRunIntervalMax )[0-9]+/\1${max_j}/g" "${config_path}"/.config/tor.common.torrc
     sed -E -i "s/(Schedulers )[a-zA-Z0-9]+/\1${sched}/g" "${config_path}"/.config/tor.common.torrc
-
-    cat "${config_path}"/.config/tor.common.torrc
 }

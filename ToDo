@@ -1,3 +1,9 @@
+# ToBeDone ASAP
+Tester: 
+    Add extraction of values
+    Add repeat
+    Verify why bootstrapping loop is falling
+    Verify /logs write permissions
 
 # Priority 1
 [-] Configurar dinamicamente Jitter e/ou Packet Padding com Estado de Network

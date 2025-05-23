@@ -12,7 +12,7 @@ get_url() {
 }
 
 get_logfile() {
-    local logfile="${CONFIG["logs_dir"]}/curl_${1}_${2}_${3}.log"
+    local logfile="${CONFIG["logs_dir"]}curl_${1}_${2}_${3}.log"
     echo "$logfile"
 }
 
