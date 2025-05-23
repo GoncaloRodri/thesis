@@ -4,6 +4,7 @@ import parsers.curl as curl
 import parsers.tor as tor
 import json
 
+# python3 main.py --dummy-ratio 50 --jitter-ratio 50 --clients 1 --nodes 3 --test-number 1 --file-size 1Mib
 
 if __name__ == "__main__":
 
