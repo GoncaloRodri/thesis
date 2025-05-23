@@ -4,14 +4,14 @@ FROM ubuntu:latest
 RUN apt update && apt install -y \
     libssl-dev libevent-dev zlib1g-dev liblzma-dev libzstd-dev \
     libcap-dev libseccomp-dev build-essential python3 python3-stem pkg-config \
-    automake git cmake libglib2.0-dev libigraph-dev tcpdump 
-# nano net-tools curl netcat-traditional 
+    automake git cmake libglib2.0-dev libigraph-dev \ 
+    tcpdump curl python3-dev python3.12-venv python3-pip 
 
-WORKDIR /app/tor
+WORKDIR /app
 
 COPY differential-privacy-tor /app/tor
 
-RUN ./autogen.sh && \ 
+RUN cd /app/tor ./autogen.sh && \ 
     ./configure --disable-manpage --disable-asciidoc \
     --disable-html-manual --disable-unittests && \
     make && \
@@ -20,7 +20,7 @@ RUN ./autogen.sh && \
 COPY configuration/.config/ /conf
 COPY configuration/tgen/ /app/
 COPY scripts/entrypoint.sh /entrypoint.sh
-COPY scripts/run-perf.sh /run-perf.sh
+COPY scripts/ /app/
 
 
 ENTRYPOINT [ "/entrypoint.sh" ]

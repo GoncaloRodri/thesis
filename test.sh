@@ -22,6 +22,17 @@ JITTER_MIN=1
 JITTER_MAX=10
 JITTER_RATIO=50
 DUMMY_CELL_GEN_RATIO=50
+
+######################################################
+### cURL Configuration
+######################################################
+LOG_FILE="logs/curl.log"
+URLS=(
+    #http://ipv4.download.thinkbroadband.com/50KIB.zip
+    http://ipv4.download.thinkbroadband.com/1MB.zip
+    http://ipv4.download.thinkbroadband.com/5MB.zip
+)
+
 ####################################################
 ### Build
 ####################################################
@@ -36,7 +47,7 @@ set_configuration() {
 
 check_bootstrapped() {
     BSED=$(grep -l -R "Bootstrapped 100%" logs/* | wc -l)
-    if [ "$BSED" -eq 6 ] || { [ "$BSED" -eq 5 ] && [ "$SCENARIO" = "s" ]; }; then
+    if { [ "$BSED" -eq 6 ] && [ "$SCENARIO" = "hs" ]; } || [ "$BSED" -eq 5 ]; then
         echo -e "\033[1;32m✅ Tor Network is bootstrapped!\033[0m"
         return 1
     else
@@ -56,21 +67,28 @@ docker_clean() {
 }
 
 docker_build() {
+    if [ "$SCENARIO" = "p" ]; then
+        docker build -t dptor_onionperf -f docker/onionperf.Dockerfile .
+    fi
     docker build -t dptor_node -f docker/node.Dockerfile .
     docker network create \
         --driver=bridge \
         --subnet=10.5.0.0/16 \
         net
-
-    COMPOSE_BAKE=true docker compose -f "$COMPOSE_FILE" up -d
 }
 
 install_tgen() {
-
-    if [ "$SCENARIO" = "hidden_service" ] || [ "$SCENARIO" = "hs" ]; then
+    if [ "$SCENARIO" = "c" ] || [ "$SCENARIO" = "p" ]; then
+        return
+    elif [ "$SCENARIO" = "hs" ]; then
         docker exec -d thesis-hs-1 sh -c "(cd /app/ && ./install-tgen.sh)" || exit 1
     fi
     docker exec -d thesis-client-1 sh -c "(cd /app/ && ./install-tgen.sh)"
+}
+
+run_logger() {
+    echo -e "\n🔷 📦 Running Tor Control Logger..."
+    docker exec -d thesis-client-1 sh -c "python3 tor-ctl-logger.py -p 9051 -l /app/logs/client-ctl-logger.log"
 }
 
 build() {
@@ -78,7 +96,9 @@ build() {
 
     docker_clean
 
-    docker_build
+    COMPOSE_BAKE=true docker compose -f "$COMPOSE_FILE" up -d
+
+    run_logger
 
     install_tgen
 
@@ -101,11 +121,25 @@ build() {
 ####################################################
 ### Run
 ####################################################
+run_onionperf() {
+    docker exec -it thesis-onionperf-1 bash
+}
+
+run_curl() {
+    echo -e "\n Settings:\n  - DummyCellGeneration: $DUMMY_CELL_GEN_RATIO\n  - DPSchedulerJitter: $JITTER_RATIO\n  - DPSchedulerRunIntervalMin: $JITTER_MIN\n  - DPSchedulerRunIntervalMax: $JITTER_MAX\n  - Scheduler: $SCHEDULER\n" >>"$LOG_FILE"
+    for URL in "${URLS[@]}"; do
+        # shellcheck disable=SC2129
+        echo "[$(date '+%Y-%m-%d %H:%M:%S')] Requesting: $URL" >>"$LOG_FILE"
+        curl --socks5 127.0.0.1:9000 -w "HTTP Response: %{http_code}\nDNS resolution time: %{time_namelookup}s\nTCP connection time: %{time_connect}s\nSSL handshake time: %{time_appconnect}s\nTime until transfer began: %{time_pretransfer}s\nTime to first byte: %{time_starttransfer}s\nTotal time: %{time_total}s\nDownload speed: %{speed_download} bytes/sec\n" -o /dev/null "$URL" >>"$LOG_FILE"
+        echo -e "\n$(printf '%.0s-' {1..90})" >>"$LOG_FILE"
+    done
+}
+
 run_tcpdump() {
     if [ "$TCPDUMP" = true ]; then
         echo -e "\n🔷 📦 Running TCPDump..."
-        docker exec -d thesis-client-1 sh -c "(tcpdump -i eth0 port 9001 -w /app/logs/wireshark/$TEST-Dummy$DUMMY_CELL_GEN_RATIO-Jitter$JITTER_RATIO.client.pcap)"
-        docker exec -d thesis-relay1-1 sh -c "(tcpdump -i eth0 port 9001 -w /app/logs/wireshark/$TEST-Dummy$DUMMY_CELL_GEN_RATIO-Jitter$JITTER_RATIO.relay1.pcap)"
+        docker exec -d thesis-client-1 sh -c "(tcpdump -i eth0 port 9001 -w /app/logs/wireshark/$SIZE-Dummy$DUMMY_CELL_GEN_RATIO-Jitter$JITTER_RATIO.client.pcap)"
+        docker exec -d thesis-relay1-1 sh -c "(tcpdump -i eth0 port 9001 -w /app/logs/wireshark/$SIZE-Dummy$DUMMY_CELL_GEN_RATIO-Jitter$JITTER_RATIO.relay1.pcap)"
     fi
 }
 
@@ -117,6 +151,12 @@ run_tests() {
     elif [ "$SCENARIO" = "s" ]; then
         echo -e "\n🔷 📦 Running TGen for Simple Scenario"
         docker exec thesis-client-1 sh -c "(tgen /app/proxy.tgenrc.graphml) | tee /app/logs/tgen/simple-client.tgen.log"
+    elif [ "$SCENARIO" = "c" ]; then
+        echo -e "\n🔷 📦 Running Curl"
+        run_curl
+    elif [ "$SCENARIO" = "p" ]; then
+        echo -e "\n🔷 📦 Running OnionPerf"
+        run_onionperf
     else
         echo -e "\n 🔷 📦 Scenario not compatible!"
         echo -e "\033[1;31m❌ Exiting...\033[0m"
@@ -155,7 +195,6 @@ print_env() {
     echo -e "  - LOOP: $LOOP"
     echo -e "  - NUM_TEST: $NUM_TEST"
     echo -e "  - SCENARIO: $SCENARIO"
-    echo -e "  - COMPOSE_FILE: $COMPOSE_FILE"
     echo -e "  - BOOTSTRAP_SLEEP: $BOOTSTRAP_SLEEP"
     echo -e "  - INTERVAL_BETWEEN_TESTS: $INTERVAL_BETWEEN_TESTS"
     echo
@@ -171,9 +210,9 @@ print_env() {
 print_help() {
     echo -e "\n🔷 📦 Usage: $0 [options]"
     echo -e "Options:"
-    echo -e "  -s, --scenario <scenario>    Specify the scenario (hidden_service/hs or simple/s)"
-    echo -e "  -f, --file <compose_file>    Specify the compose file"
+    echo -e "  -s, --scenario <scenario>    Specify the scenario (hidden_service/hs or simple/s or curl/c)"
     echo -e "  -n, --num-tests <num_tests>  Specify the number of tests to run"
+    echo -e "  -b, --build                  Build the Docker containers"
     echo -e "  -h, --help                   Show this help message"
 
     echo -e "\n🔷 Tor Configuration"
@@ -187,8 +226,8 @@ print_help() {
 
 handle_args() {
     # Define short and long options
-    local SHORT_OPTS="s:f:n:l:t:a:byh"
-    local LONG_OPTS="scenario:,file:,num-tests:,loop:,dummy-cell-gen-ratio:,jitter-ratio:,jitter-min:,jitter-max:,scheduler:,test:,analyze:,build,yes,help,tcpdump"
+    local SHORT_OPTS="s:n:l:t:a:byh"
+    local LONG_OPTS="scenario:,num-tests:,loop:,dummy-cell-gen-ratio:,jitter-ratio:,jitter-min:,jitter-max:,scheduler:,test:,analyze:,build,yes,help,tcpdump"
 
     # Parse using getopt
     local PARSED_ARGS
@@ -241,28 +280,32 @@ handle_args() {
             fi
             shift 2
             ;;
+        --tcpdump)
+            TCPDUMP=true
+            ;;
         -s | --scenario)
-            SCENARIO="$2"
-            if [[ "$SCENARIO" = "hidden_service" || "$SCENARIO" = "hs" ]]; then
+            ARG="$2"
+            if [[ "$ARG" = "hidden_service" || "$ARG" = "hs" ]]; then
                 SCENARIO="hs"
                 COMPOSE_FILE="hs.docker-compose.yml"
-            elif [[ "$SCENARIO" = "simple" || "$SCENARIO" = "s" ]]; then
+            elif [[ "$ARG" = "simple" || "$ARG" = "s" ]]; then
                 SCENARIO="s"
                 COMPOSE_FILE="simple.docker-compose.yml"
+            elif [[ "$ARG" = "curl" || "$ARG" = "c" ]]; then
+                SCENARIO="c"
+                COMPOSE_FILE="curl.docker-compose.yml"
+            elif [[ "$ARG" = "onionperf" || "$ARG" = "p" ]]; then
+                SCENARIO="p"
+                COMPOSE_FILE="onionperf.docker-compose.yml"
             else
-                echo "Invalid scenario. Use 'hidden_service' or 'simple'."
+                echo "Invalid scenario. Use 'hidden_service', 'simple', 'curl' or 'onionperf'."
                 exit 1
             fi
             shift 2
             ;;
-        -f | --file)
-            if [ -n "$COMPOSE_FILE" ]; then
-                echo "WARNING: Multiple compose files specified. Using scenario file!"
-                shift 2
-                continue
-            fi
-            COMPOSE_FILE="$2"
-            shift 2
+        -b | --build)
+            docker_build
+            shift 1
             ;;
         -n | --num-tests)
             NUM_TEST="$2"
@@ -292,5 +335,5 @@ build
 
 for i in $(seq 1 "$NUM_TEST"); do
     run
-    analyze "$i"
+    #analyze "$i"
 done
