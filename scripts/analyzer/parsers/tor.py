@@ -14,8 +14,6 @@ def get_info(start_time=None, end_time=None):
             raise ValueError(f"Invalid file format: {filepath}. Expected .log file.")
         data = parse_log(filepath)
         all_circuits_info.extend(extract_circuits_data(sort_data(data)))
-    
-    print(json.dumps(all_circuits_info, indent=4))
     return extract_overall_data(all_circuits_info)
 
 
@@ -50,7 +48,7 @@ def extract_overall_data(circuits):
         "dummy_ratio": dummy_ratio,
         "total_dummys": total_dummys,
     }
-    
+
 def extract_circuits_data(data):
     circuit_data = []
     for circ_id, entries in data.items():

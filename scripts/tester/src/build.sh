@@ -4,12 +4,11 @@
 source src/utils.sh
 
 BOOTSTRAP_SLEEP=1
-MAX_TIME_TO_BOOTSTRAP=150
+MAX_TIME_TO_BOOTSTRAP=100
 PERFORMANCE_BOOTSTRAP_COUNTER=5
 
 launch_tor_network() {
-    while true;
-    do
+    while true; do
         COMPOSE_BAKE=true docker compose -f "$1" up -d
 
         local start end elapsed
@@ -18,8 +17,7 @@ launch_tor_network() {
         end=$(date +%s)
         elapsed=$((end - start))
 
-        while [ $elapsed -lt $MAX_TIME_TO_BOOTSTRAP ]; 
-        do
+        while [ $elapsed -lt $MAX_TIME_TO_BOOTSTRAP ]; do
             sleep "$BOOTSTRAP_SLEEP"
             a=$(check_bootstrapped)
             if [ "$a" -eq $PERFORMANCE_BOOTSTRAP_COUNTER ]; then
@@ -29,15 +27,14 @@ launch_tor_network() {
             elapsed=$((end - start))
             if [[ "$VERBOSE" == true ]]; then
                 echo -ne "⚠️ \e[33mWarning: Tor Network is not bootstrapped yet! ($a of $PERFORMANCE_BOOTSTRAP_COUNTER) [$elapsed s]\e[0m"\\r
-            fi        
+            fi
         done
         log_error "launch_tor_network()                                             " "Tor Network failed to bootstrap within $MAX_TIME_TO_BOOTSTRAP seconds. Retrying..."
         docker compose -f "$1" down --remove-orphans
-        sleep 20 
+        sleep 20
     done
 
-    
-    echo 
+    echo
 }
 
 docker_clean() {
@@ -49,7 +46,7 @@ docker_clean() {
 
 set_configuration() {
     local params config_path dummy jitter min_j max_j sched
-    
+
     params="$1"
     config_path="${CONFIG["absolute_path_dir"]}/${CONFIG["configuration_dir"]}"
 

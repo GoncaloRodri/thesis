@@ -9,8 +9,18 @@ import json
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Run test with given parameters")
-    parser.add_argument('--dummy-ratio', type=int, choices=range(101), required=True, help='Dummy traffic ratio (0-100)')
-    parser.add_argument('--jitter-ratio', type=int, choices=range(101), required=True, help='Jitter ratio (0-100)')
+    parser.add_argument(
+        "--dummy-ratio",
+        type=int,
+        required=True,
+        help="Dummy traffic ratio (0-100)",
+    )
+    parser.add_argument(
+        "--jitter-ratio",
+        type=int,
+        required=True,
+        help="Jitter ratio (0-100)",
+    )
     parser.add_argument('--clients', type=int, required=True, help='Number of clients')
     parser.add_argument('--nodes', type=int, required=True, help='Number of nodes')
     parser.add_argument('--test-number', type=int, required=True, help='Test number identifier')
@@ -44,8 +54,6 @@ if __name__ == "__main__":
     jitter_data = {
         "jitter": tor.get_info()
     }
-
-
 
     res |= curl_data
     res |= (jitter_data)
