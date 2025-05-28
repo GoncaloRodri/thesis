@@ -1,7 +1,2 @@
-Nickname client
-Address 10.5.0.6
-
-ContactInfo client <client AT localhost>
-
 %include /conf/tor.common.torrc
 %include /conf/tor.client.torrc

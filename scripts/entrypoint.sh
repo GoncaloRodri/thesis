@@ -17,4 +17,8 @@ fi
 
 cd /app/tor || exit 1
 
+sed -i "s/^Address .*/Address $(hostname -i)/" /conf/tor.common.torrc
+
+cat /conf/tor.common.torrc
+
 (tor -f /app/tor/torrc) | tee /app/logs/tor/"$1".tor.log

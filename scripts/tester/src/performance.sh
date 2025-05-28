@@ -12,7 +12,7 @@ get_url() {
 }
 
 get_logfile() {
-    local logfile="${CONFIG["logs_dir"]}curl/${1}_${2}_${3}.log"
+    local logfile="${CONFIG["absolute_path_dir"]}/tmp/curl/${1}_${2}_${3}.log"
     echo "$logfile"
 }
 
@@ -24,7 +24,7 @@ run_performance_experiment() {
         local params="$2"
 
         # Run the performance experiment
-        log_info "Launching '$name'\n"
+        log_info "Launching '$name-$i'"
 
         log_info "Cleaning up Docker containers and images..."
         docker_clean
@@ -52,7 +52,7 @@ run_performance_experiment() {
 
         extract_results "$dummy" "$jitter" "$clients" "$nodes" "$filesize" "$i"
         log_success "Results Extraction Completed!\n"
-        log_success "Performance Experiment '$name' Completed!\n"
+        log_success "Performance Experiment '$name-$i' Completed!\n"
         sleep 1
 
         if [ "${CONFIG["copy_logs"]}" = true ]; then
@@ -68,6 +68,13 @@ run_performance_experiment() {
     done
 }
 
+exec_curl() {
+    local url="$1"
+    local log_file="$2"
+    log_info "Executing cURL command for URL: $url"
+    curl --socks5 127.0.0.1:9000 -w "Time to first byte: %{time_starttransfer}s\nTotal time: %{time_total}s\nDownload speed: %{speed_download} bytes/sec\n" -s -o /dev/null "$url" >>"$log_file" || log_error "cURL command failed" "Check the log file: $log_file"
+}
+
 launch_curl_clients() {
     local test_name="$1"
     local nclients="$2"
@@ -75,17 +82,14 @@ launch_curl_clients() {
     local url
 
     url=$(get_url "$filesize")
-    echo "URL: $url"
     log_info "Launching $nclients cURL clients to download $filesize MB file from $url"
 
     for ((j = 0; j < nclients; j++)); do
         local log_file
         log_file=$(get_logfile "$test_name" "$filesize" "$j")
-        log_info "Launching cURL client $i"
-        curl --socks5 127.0.0.1:9000 -w "Time to first byte: %{time_starttransfer}s\nTotal time: %{time_total}s\nDownload speed: %{speed_download} bytes/sec\n" -o /dev/null "$url" >>"$log_file" &
+        exec_curl "$url" "$log_file" &
     done
 
-    log "Waiting for cURL clients to finish"
     wait
 }
 

@@ -44,7 +44,7 @@ log_fatal() {
 # Load YAML config
 load_config() {
     local config_file="$1"
-    
+
     # Load base config
     CONFIG+=(
         ["repeat"]=$(yq eval '.config.repeat' "$config_file")
@@ -60,48 +60,71 @@ load_config() {
     # Load experiments
     local experiments_count
     experiments_count=$(yq eval '.experiments | length' "$config_file")
-    for ((i=0; i<experiments_count; i++)); do
+    for ((i = 0; i < experiments_count; i++)); do
         EXPERIMENTS+=("$(yq eval ".experiments[$i]" "$config_file" -o=json)")
     done
 }
-
 
 show_help() {
     cat <<EOF
 Experimental Runner v1.0
 
-Usage: ./run_experiments.sh -c CONFIG_FILE [OPTIONS]
+Usage: ./monitor.sh -c CONFIG_FILE [OPTIONS]
 
 Options:
   -c, --config FILE    Specify YAML config file (required)
-  --repeat NUM         Override number of repetitions
-  --log_dir PATH       Override log directory
-  --no-copy            Disable log copying
+  -v, --verbose        Enable verbose output
   -h, --help           Show this help message
 
 Config File Structure:
   config:
-    repeat: 3
-    log_dir: "./logs"
-    copy_logs: true
-    copy_target: "/backup"
+    repeat: uint
+    logs_dir: string
+    docker_dir: string
+    copy_logs: boolean
+    results_dir: string
+    copy_target: string
+    absolute_path: string
+    configuration_dir: string
   
   experiments:
-    - name: "test1"
-      type: "performance|unobservability|resource_usage"
-      params: { ... }
+    - name: string
+      type: ["performance" | "unobservability" | "resource_usage"]
+      params: 
+        dummy: [0-100]
+        jitter: [0-100]
+        max_jitter: [0-100]
+        min_jitter: [0-100]
+        scheduler: ["DP_Vanilla"]
+        filesize: ["5Kib" | "1Mib" | "5Mib"]
+        nclients: uint
 EOF
 }
 
 show_config_help() {
     cat <<EOF
-TODO
-EOF
-}
-
-show_version() {
-    cat <<EOF
-TODO
+Config File Structure:
+  config:
+    repeat: uint
+    logs_dir: string
+    docker_dir: string
+    copy_logs: boolean
+    results_dir: string
+    copy_target: string
+    absolute_path: string
+    configuration_dir: string
+  
+  experiments:
+    - name: string
+      type: ["performance" | "unobservability" | "resource_usage"]
+      params: 
+        dummy: [0-100]
+        jitter: [0-100]
+        max_jitter: [0-100]
+        min_jitter: [0-100]
+        scheduler: ["DP_Vanilla"]
+        filesize: ["5Kib" | "1Mib" | "5Mib"]
+        nclients: uint
 EOF
 }
 
@@ -115,36 +138,32 @@ check_bootstrapped() {
 handle_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            -c|--config)
-                CONFIG_FILE="$2"
-                shift 2
-                ;;
-            -h|--help)
-                show_help
-                exit 0
-                ;;
-            --version)
-                show_version
-                exit 0
-                ;;
-            -v|--verbose)
-                VERBOSE=true
-                shift
-                ;;
-            -ch|--config-help)
-                show_config_help
-                exit 0
-                ;;
-            *)
-                log_error "Unknown option: $1"
-                show_help
-                exit 1
-                ;;
+        -c | --config)
+            CONFIG_FILE="$2"
+            shift 2
+            ;;
+        -h | --help)
+            show_help
+            exit 0
+            ;;
+        -v | --verbose)
+            VERBOSE=true
+            shift
+            ;;
+        -ch | --config-help)
+            show_config_help
+            exit 0
+            ;;
+        *)
+            log_error "Unknown option: $1"
+            show_help
+            exit 1
+            ;;
         esac
     done
 
     if [[ -z "${CONFIG_FILE}" ]]; then
-        log_fatal "Config file is required!" "Use -c or --config to specify it." "\n   Use -h or --help to see all options." 
+        log_fatal "Config file is required!" "Use -c or --config to specify it." "\n   Use -h or --help to see all options."
     fi
 
     load_config "$CONFIG_FILE"
@@ -198,6 +217,18 @@ verify_config() {
         log_error "verify_config()" "Copy Directory $copy_target does not exist!"
         mkdir -p "$copy_target" || log_fatal "Failed to create directory: $copy_target"
         log_success "Directory created: $copy_target"
+    fi
+
+    local tmp_dir="${abs_path}tmp"
+
+    if [ -d "$tmp_dir" ]; then
+        log_success "Temporary directory exists: $tmp_dir"
+    else
+        log_error "verify_config()" "Temporary directory $tmp_dir does not exist!"
+        mkdir -p "$tmp_dir" || log_fatal "Failed to create temporary directory: $tmp_dir"
+        mkdir -p "${tmp_dir}/curl" || log_fatal "Failed to create curl subdirectory in temporary directory: ${tmp_dir}/curl"
+        mkdir -p "${tmp_dir}/tor" || log_fatal "Failed to create torrc subdirectory in temporary directory: ${tmp_dir}/torrc"
+        log_success "Temporary directory created: $tmp_dir"
     fi
 
     log_success "Configuration verified successfully."

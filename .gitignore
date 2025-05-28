@@ -1,7 +1,8 @@
 .vscode
 
 /logs
-
+/backup
+/tmp
 /test/extract/data/
 /test/plots
 /test/**/__pycache__

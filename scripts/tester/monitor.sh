@@ -25,5 +25,5 @@ for experiment in "${EXPERIMENTS[@]}"; do
     else
         log_fatal "Experiment $experiment_name" "Unknown experiment type: $experiment_type"
     fi
-    
+
 done

@@ -11,8 +11,8 @@ HeartbeatPeriod 10
 SafeLogging 0
 CookieAuthentication 0
 
-MiddleNodes $469B163110A0DBFFA1A539114F2E5FCE798625A5,$0FE6A61F79F5AB22D265507B508588CC0F365326
-ExitNodes $81D7CEC787FC84642578F8D9224F99352265209A
+#MiddleNodes $469B163110A0DBFFA1A539114F2E5FCE798625A5,$0FE6A61F79F5AB22D265507B508588CC0F365326
+#ExitNodes $81D7CEC787FC84642578F8D9224F99352265209A
 
 AuthDirTestReachability 0
 
@@ -20,6 +20,8 @@ DisableDebuggerAttachment 0
 
 BandwidthRate 1024000
 BandwidthBurst 1024000
+
+Address 0.0.0.0
 
 ########################################
 ############## Scheduling ##############
@@ -34,4 +36,4 @@ DPSchedulerRunIntervalMin 1
 ######### Packet Cell Padding ##########
 ########################################
 
-DummyCellGeneration 50
+DummyCellGeneration 0

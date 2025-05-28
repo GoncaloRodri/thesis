@@ -1,0 +1,46 @@
+config:
+  absolute_path: /home/guga/Documents/thesis
+  repeat: 5
+  copy_logs: true
+  logs_dir: logs/
+  docker_dir: docker/
+  results_dir: results/
+  copy_target: backup/logs
+  configuration_dir: configuration/  
+
+experiments:
+  - name: "test-control"
+    type: "performance"
+    params:
+      dummy: 0
+      jitter: 0
+      max_jitter: 10
+      min_jitter: 1
+      scheduler: "DPVanilla"
+      filesize: "1MiB"
+      nclients: 5
+      nnodes: 3
+
+  # - name: "high-jitter"
+  #   type: "performance"
+  #   params:
+  #     dummy: 0
+  #     jitter: 100
+  #     max_jitter: 10
+  #     min_jitter: 1
+  #     scheduler: "DPVanilla"
+  #     filesize: "1MiB"
+  #     nclients: 5
+  #     nnodes: 3
+
+  # - name: "low-jitter"
+  #   type: "performance"
+  #   params:
+  #     dummy: 0
+  #     jitter: 10
+  #     max_jitter: 10
+  #     min_jitter: 1
+  #     scheduler: "DPVanilla"
+  #     filesize: "1MiB"
+  #     nclients: 5
+  #     nnodes: 3
