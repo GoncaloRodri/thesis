@@ -27,13 +27,13 @@ Address 0.0.0.0
 ############## Scheduling ##############
 ########################################
 
-Schedulers DPVanilla
-DPSchedulerJitter 0
-DPSchedulerRunIntervalMax 10
-DPSchedulerRunIntervalMin 1
+Schedulers 
+DPSchedulerJitter 
+DPSchedulerRunIntervalMax 
+DPSchedulerRunIntervalMin 
 
 ########################################
 ######### Packet Cell Padding ##########
 ########################################
 
-DummyCellGeneration 0
+DummyCellGeneration 

@@ -50,18 +50,19 @@ load_config() {
         ["repeat"]=$(yq eval '.config.repeat' "$config_file")
         ["logs_dir"]=$(yq eval '.config.logs_dir' "$config_file")
         ["copy_logs"]=$(yq eval '.config.copy_logs' "$config_file")
+        ["docker_dir"]=$(yq eval '.config.docker_dir' "$config_file")
         ["copy_target"]=$(yq eval '.config.copy_target' "$config_file")
         ["results_dir"]=$(yq eval '.config.results_dir' "$config_file")
-        ["docker_dir"]=$(yq eval '.config.docker_dir' "$config_file")
         ["absolute_path_dir"]=$(yq eval '.config.absolute_path' "$config_file")
+        ["top_website_path"]=$(yq eval '.config.top_website_path' "$config_file")
         ["configuration_dir"]=$(yq eval '.config.configuration_dir' "$config_file")
     )
 
     # Load experiments
     local experiments_count
     experiments_count=$(yq eval '.experiments | length' "$config_file")
-    for ((i = 0; i < experiments_count; i++)); do
-        EXPERIMENTS+=("$(yq eval ".experiments[$i]" "$config_file" -o=json)")
+    for ((u = 0; u < experiments_count; u++)); do
+        EXPERIMENTS+=("$(yq eval ".experiments[$u]" "$config_file" -o=json)")
     done
 }
 
@@ -98,6 +99,7 @@ Config File Structure:
         scheduler: ["DP_Vanilla"]
         filesize: ["5Kib" | "1Mib" | "5Mib"]
         nclients: uint
+        end_test_at: uint
 EOF
 }
 
@@ -226,9 +228,16 @@ verify_config() {
     else
         log_error "verify_config()" "Temporary directory $tmp_dir does not exist!"
         mkdir -p "$tmp_dir" || log_fatal "Failed to create temporary directory: $tmp_dir"
-        mkdir -p "${tmp_dir}/curl" || log_fatal "Failed to create curl subdirectory in temporary directory: ${tmp_dir}/curl"
-        mkdir -p "${tmp_dir}/tor" || log_fatal "Failed to create torrc subdirectory in temporary directory: ${tmp_dir}/torrc"
         log_success "Temporary directory created: $tmp_dir"
+    fi
+
+    rm -rf "${tmp_dir:?}"/* || log_fatal "Failed to clean temporary directory: $tmp_dir"
+
+    if [[ ! -d "${tmp_dir}/curl" ]]; then
+        mkdir -p "${tmp_dir}/curl" || log_fatal "Failed to create curl subdirectory in temporary directory: ${tmp_dir}/curl"
+    fi
+    if [[ ! -d "${tmp_dir}/tor" ]]; then
+        mkdir -p "${tmp_dir}/tor" || log_fatal "Failed to create hs subdirectory in temporary directory: ${tmp_dir}/tor"
     fi
 
     log_success "Configuration verified successfully."
