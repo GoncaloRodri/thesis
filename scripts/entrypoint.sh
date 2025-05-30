@@ -3,6 +3,7 @@
 NODE_NAME=$1
 
 mkdir -p /app/logs/tor
+mkdir -p /app/logs/wireshark/"$NODE_NAME"
 
 cp /app/source/"$NODE_NAME"/config/torrc /app/tor/torrc
 

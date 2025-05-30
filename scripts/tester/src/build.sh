@@ -8,6 +8,13 @@ MAX_TIME_TO_BOOTSTRAP=90
 PERFORMANCE_BOOTSTRAP_COUNTER=5
 
 launch_tor_network() {
+
+    if [ "$BUILD" == true ]; then
+        log_info "launch_tor_network()" "Building Docker images..."
+        docker build --no-cache -f "${CONFIG["absolute_path_dir"]}/docker/node.Dockerfile" -t dptor_node "${CONFIG["absolute_path_dir"]}" || log_fatal "launch_tor_network()" "Failed to build Docker image for curl.docker-compose.yml"
+    fi
+
+
     while true; do
         COMPOSE_BAKE=true docker compose -f "$1" up -d
 
@@ -39,8 +46,6 @@ launch_tor_network() {
 
 docker_clean() {
     cd "${CONFIG["absolute_path_dir"]}" || log_fatal "docker_clean()" "Failed to change directory to ${CONFIG["absolute_path_dir"]}"
-    docker compose -f simple.docker-compose.yml down --remove-orphans
-    docker compose -f hs.docker-compose.yml down --remove-orphans
     docker compose -f curl.docker-compose.yml down --remove-orphans
 }
 
@@ -56,9 +61,16 @@ set_configuration() {
     max_j=$(echo "$params" | jq -r '.max_jitter')
     sched=$(echo "$params" | jq -r '.scheduler')
 
-    sed -E -i "s/(DummyCellGeneration )[0-9]+/\1${dummy}/g" "${config_path}"/.config/tor.common.torrc
-    sed -E -i "s/(DPSchedulerJitter )[0-9]+/\1${jitter}/g" "${config_path}"/.config/tor.common.torrc
-    sed -E -i "s/(DPSchedulerRunIntervalMin )[0-9]+/\1${min_j}/g" "${config_path}"/.config/tor.common.torrc
-    sed -E -i "s/(DPSchedulerRunIntervalMax )[0-9]+/\1${max_j}/g" "${config_path}"/.config/tor.common.torrc
-    sed -E -i "s/(Schedulers )[a-zA-Z0-9]+/\1${sched}/g" "${config_path}"/.config/tor.common.torrc
+    #sed -E -i "s/(DummyCellGeneration )[0-9]+/\1${dummy}/g" "${config_path}"/.config/tor.common.torrc
+    #sed -E -i "s/(DPSchedulerJitter )[0-9]+/\1${jitter}/g" "${config_path}"/.config/tor.common.torrc
+    #sed -E -i "s/(DPSchedulerRunIntervalMin )[0-9]+/\1${min_j}/g" "${config_path}"/.config/tor.common.torrc
+    #sed -E -i "s/(DPSchedulerRunIntervalMax )[0-9]+/\1${max_j}/g" "${config_path}"/.config/tor.common.torrc
+    #sed -E -i "s/(Schedulers )[a-zA-Z0-9]+/\1${sched}/g" "${config_path}"/.config/tor.common.torrc
+
+    sed -i "s/^DummyCellGeneration .*/DummyCellGeneration ${dummy}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^DPSchedulerJitter .*/DPSchedulerJitter ${jitter}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^DPSchedulerRunIntervalMin .*/DPSchedulerRunIntervalMin ${min_j}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^DPSchedulerRunIntervalMax .*/DPSchedulerRunIntervalMax ${max_j}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^Schedulers .*/Schedulers ${sched}/" "${config_path}"/.config/tor.common.torrc
+
 }

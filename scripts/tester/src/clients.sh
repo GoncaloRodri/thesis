@@ -10,7 +10,7 @@ exec_curl() {
     log_file=$(get_logfile "$2" "$3")
 
     log_info "Executing cURL command for URL: $url"
-    curl --socks5 127.0.0.1:9000 -w "Time to first byte: %{time_starttransfer}s\nTotal time: %{time_total}s\nDownload speed: %{speed_download} bytes/sec\n" -f -s -o /dev/null "$url" >>"$log_file" || log_error "cURL command failed" "Check the log file: $log_file"
+    curl --socks5 127.0.0.1:9000 -s -w "URL: $url\nTime to first byte: %{time_starttransfer}s\nTotal time: %{time_total}s\nDownload speed: %{speed_download} bytes/sec\n" -o /dev/null "$url" >>"$log_file"
 }
 get_url() {
     local filesize="$1"
@@ -87,28 +87,32 @@ run_topwebclient() {
     local name="$1"
     local filesize="$2"
     local test_count="$3"
-    local urls="$4"
+    local tcpdump_mode="$4"
+    local client_id="$5"
+    shift 5
+    local urls=("$@")
 
-    log_info "Running top web client for $name..."
     for url in "${urls[@]}"; do
-        start_tcpdump "$filesize" "$url"
-        exec_curl "$url" "$name" "$test_count"
-        stop_tcpdump
+        if [[ -z "$url" ]]; then
+            log_error "run_topwebclient()" "URL is empty, skipping..."
+            continue
+        fi
+        start_tcpdump "$client_id" "$url"  "$tcpdump_mode"
+        exec_curl "$url" "$client_id" "$name-$test_count" "$test_count"
+        stop_tcpdump "${tcpdump_mode}"
     done
 }
 
 start_tcpdump() {
-    if [[ "$tcpdump_mode" ]]; then
-        log_info "Starting tcpdump..."
+    if [[ "$3" ]]; then
         for container in "${CONTAINERS[@]}"; do
-            start_tcpdump_on_relay "$container" "$1" "$2"
+            start_tcpdump_on_relay "$container" "$1" "$2" &
         done
     fi
 }
 
 stop_tcpdump() {
-    if [[ "$tcpdump_mode" ]]; then
-        log_info "Stopping tcpdump..."
+    if [[ "$1" ]]; then
         for container in "${CONTAINERS[@]}"; do
             stop_tcpdump_on_relay "$container"
         done
@@ -117,9 +121,9 @@ stop_tcpdump() {
 
 start_tcpdump_on_relay() {
     local relay_name="$1"
-    local size="$2"
+    local client="$2"
     local id="$3"
-    docker exec -d "thesis-${relay_name}-1" sh -c "(tcpdump -i eth0 -w /app/logs/wireshark/${relay_name}/${size}-${id}.pcap)"
+    docker exec -d "thesis-${relay_name}-1" sh -c "(tcpdump -i eth0 -w /app/logs/wireshark/${relay_name}/${client}-${id}.pcap)"
 }
 
 stop_tcpdump_on_relay() {
@@ -127,20 +131,9 @@ stop_tcpdump_on_relay() {
     docker exec -d "thesis-${relay_name}-1" sh -c "pkill tcpdump"
 }
 
-fetch_topweb_urls() {
-    local file_path="${CONFIG["absolute_path_dir"]}/${CONFIG["top_website_path"]}"
-
-    if [[ ! -f "$file_path" ]]; then
-        log_fatal "fetch_topweb_urls()" "Top websites file not found: $file_path"
-    fi
-
-    urls=()
-    while IFS= read -r line; do
-        urls+=("$line")
-    done <"$file_path"
-}
 
 launch_topweb_clients() {
+    echo "Launching top web clients..."
     local name="$1"
     local filesize="$2"
     local test_count="$3"
@@ -148,14 +141,29 @@ launch_topweb_clients() {
     local top_web_clients="$5"
     local tcpdump_mode="$6"
 
-    fetch_topweb_urls
-    if [[ ${#urls[@]} -eq 0 ]]; then
+    echo "Top web clients: $name with $top_web_clients clients, filesize: $filesize, test_count: $test_count, tcpdump_mode: $tcpdump_mode"
+
+    local file_path="${CONFIG["absolute_path_dir"]}/${CONFIG["top_website_path"]}"
+
+    echo "Launching top web clients for $name with $top_web_clients clients..."
+
+    if [[ ! -f "$file_path" ]]; then
+        log_fatal "fetch_topweb_urls()" "Top websites file not found: $file_path"
+    fi
+    echo "Fetching top websites from $file_path..."
+    websites=()
+    while IFS= read -r line; do
+        websites+=("$line")
+        echo -ne "Added URL: $line                      "\\r  
+    done < "$file_path"
+
+    if [[ ${#websites[@]} -eq 0 ]]; then
         log_fatal "launch_topweb_clients()" "No URLs found in the top websites file."
     fi
 
     log_info "Launching top $top_web_clients web clients for $name..."
     for ((k = 0; k < top_web_clients; k++)); do
-        run_topwebclient "$name" "$filesize" "$test_count" "$url" "$tcpdump_mode" &
+        run_topwebclient "$name" "$filesize" "$test_count" "$tcpdump_mode" "$k" "${websites[@]}"  &
     done
 
     wait

@@ -3,6 +3,7 @@
 declare -A CONFIG
 declare -a EXPERIMENTS
 VERBOSE=false
+BUILD=false
 
 log() {
     if [[ "$VERBOSE" == true ]]; then
@@ -53,6 +54,7 @@ load_config() {
         ["docker_dir"]=$(yq eval '.config.docker_dir' "$config_file")
         ["copy_target"]=$(yq eval '.config.copy_target' "$config_file")
         ["results_dir"]=$(yq eval '.config.results_dir' "$config_file")
+        ["tcpdump_mode"]=$(yq eval '.config.tcpdump_mode' "$config_file")
         ["absolute_path_dir"]=$(yq eval '.config.absolute_path' "$config_file")
         ["top_website_path"]=$(yq eval '.config.top_website_path' "$config_file")
         ["configuration_dir"]=$(yq eval '.config.configuration_dir' "$config_file")
@@ -150,6 +152,10 @@ handle_args() {
             ;;
         -v | --verbose)
             VERBOSE=true
+            shift
+            ;;
+        -b | --build)
+            BUILD=true
             shift
             ;;
         -ch | --config-help)

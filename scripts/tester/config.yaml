@@ -1,18 +1,18 @@
 config:
-  absolute_path: /home/guga/Documents/thesis
-  repeat: 5
+  absolute_path: /home/guga/thesis
+  repeat: 2
   copy_logs: true
   logs_dir: logs/
   docker_dir: docker/
   results_dir: results/
   copy_target: backup/
   configuration_dir: configuration/
-  top_website_path: websites.txt
+  top_website_path: mini.websites.txt
 
 experiments:
   - name: "control"
-    tcpdump: true
     end_test_at: 10
+    tcpdump_mode: true
     filesize: "1MiB"
     tor:
       dummy: 0
@@ -23,28 +23,4 @@ experiments:
     clients:
       bulk_clients: 0
       web_clients: 0
-      top_web_clients: 1
-
-  # - name: "high-jitter"
-  #   type: "performance"
-  #   params:
-  #     dummy: 0
-  #     jitter: 100
-  #     max_jitter: 10
-  #     min_jitter: 1
-  #     scheduler: "DPVanilla"
-  #     filesize: "1MiB"
-  #     nclients: 5
-  #     nnodes: 3
-
-  # - name: "low-jitter"
-  #   type: "performance"
-  #   params:
-  #     dummy: 0
-  #     jitter: 10
-  #     max_jitter: 10
-  #     min_jitter: 1
-  #     scheduler: "DPVanilla"
-  #     filesize: "1MiB"
-  #     nclients: 5
-  #     nnodes: 3
+      top_web_clients: 2
