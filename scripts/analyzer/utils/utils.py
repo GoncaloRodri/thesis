@@ -5,6 +5,17 @@ def get_config():
     with open("config.yaml", "r") as file:
         return yaml.safe_load(file)
 
+
+def get_main_folder() -> str:
+    """
+    Get the main folder path from the configuration file.
+
+    Returns:
+        str: Path to the main folder.
+    """
+    return get_config()["logs_dir"]
+
+
 def get_outliers_num_packers() -> int:
     """
     Get the number of outliers packets from the configuration file.

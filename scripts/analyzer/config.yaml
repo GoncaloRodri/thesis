@@ -1,3 +1,5 @@
-curl_logs_folder: ../../logs/curl
-tor_logs_folder: ../../logs/tor
+curl_logs_folder: curl
+tor_logs_folder: tor
+pcap_logs_folder: pcap
+logs_dir: /home/guga/Documents/thesis/backup/
 outliers_num_packets: 10

@@ -201,15 +201,6 @@ verify_config() {
         log_fatal "verify_config()" "Logs directory $logs_dir does not exist!"
     fi
 
-    local results_dir="${abs_path}${CONFIG["results_dir"]}"
-    if [[ -d "$results_dir" ]]; then
-        log_success "Directory exists: $results_dir"
-    else
-        log_error "verify_config()" "Results directory $results_dir does not exist!"
-        mkdir -p "$results_dir" || log_fatal "Failed to create directory: $results_dir"
-        log_success "Directory created: $results_dir"
-    fi
-
     local configuration_dir="${abs_path}${CONFIG["configuration_dir"]}"
     if [[ -d "$configuration_dir" ]]; then
         log_success "Directory exists: $configuration_dir"
@@ -235,15 +226,6 @@ verify_config() {
         log_error "verify_config()" "Temporary directory $tmp_dir does not exist!"
         mkdir -p "$tmp_dir" || log_fatal "Failed to create temporary directory: $tmp_dir"
         log_success "Temporary directory created: $tmp_dir"
-    fi
-
-    rm -rf "${tmp_dir:?}"/* || log_fatal "Failed to clean temporary directory: $tmp_dir"
-
-    if [[ ! -d "${tmp_dir}/curl" ]]; then
-        mkdir -p "${tmp_dir}/curl" || log_fatal "Failed to create curl subdirectory in temporary directory: ${tmp_dir}/curl"
-    fi
-    if [[ ! -d "${tmp_dir}/tor" ]]; then
-        mkdir -p "${tmp_dir}/tor" || log_fatal "Failed to create hs subdirectory in temporary directory: ${tmp_dir}/tor"
     fi
 
     log_success "Configuration verified successfully."

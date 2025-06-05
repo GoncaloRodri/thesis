@@ -22,3 +22,5 @@ for experiment in "${EXPERIMENTS[@]}"; do
     run "$name" "$tcpdump_mode" "$file_size" "$end_test_at" "$client_params" "$tor_params"
 
 done
+
+rm -rf "${CONFIG["absolute_path_dir"]}/tmp"

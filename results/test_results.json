@@ -1,0 +1,90 @@
+{
+    "perf-onweb-clean": {
+        "name": "perf-onweb-clean",
+        "file_size": "1MiB",
+        "tor_params": {
+            "dummy": 0,
+            "jitter": 0,
+            "max_jitter": 10,
+            "min_jitter": 1,
+            "scheduler": "DPVanilla"
+        },
+        "client_params": {
+            "bulk_clients": 1,
+            "web_clients": 1,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 0.09754425754424871,
+            "min": 0.069812,
+            "max": 0.734854,
+            "stddev": 0.03918160690622496,
+            "median": 0.09000105000000001
+        },
+        "throughput": {
+            "mean": 1671.7367116603655,
+            "min": 208.0,
+            "max": 2190.0,
+            "stddev": 288.7958183234158,
+            "median": 1699.0
+        },
+        "jitter": {
+            "mean": 0.09565265165164569,
+            "min": 5.245208740234375e-06,
+            "max": 54.15615725517273,
+            "stddev": 0.5713856162063926,
+            "variance": 0.5001828215323949
+        },
+        "total_time": {
+            "mean": 0.09763041304135364,
+            "min": 0.069853,
+            "max": 0.735034,
+            "stddev": 0.039191634794084926,
+            "median": 0.0900678
+        }
+    },
+    "perf-onweb-dirty": {
+        "name": "perf-onweb-dirty",
+        "file_size": "1MiB",
+        "tor_params": {
+            "dummy": 100,
+            "jitter": 100,
+            "max_jitter": 20,
+            "min_jitter": 1,
+            "scheduler": "DPVanilla"
+        },
+        "client_params": {
+            "bulk_clients": 50,
+            "web_clients": 50,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 0.12377970415808608,
+            "min": 0.067585,
+            "max": 1.145767,
+            "stddev": 0.04371445079093837,
+            "median": 0.11164100000000002
+        },
+        "throughput": {
+            "mean": 1331.2298948220232,
+            "min": 133.0,
+            "max": 2262.0,
+            "stddev": 299.57992521098276,
+            "median": 1369.55
+        },
+        "jitter": {
+            "mean": 0.009547238864078997,
+            "min": 5.245208740234375e-06,
+            "max": 45.30844783782959,
+            "stddev": 0.19196611763891144,
+            "variance": 0.07436377445394958
+        },
+        "total_time": {
+            "mean": 0.12385144836005128,
+            "min": 0.067624,
+            "max": 1.146112,
+            "stddev": 0.043726615912786294,
+            "median": 0.11170695
+        }
+    }
+}

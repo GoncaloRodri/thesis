@@ -1,56 +1,9 @@
 #!/bin/bash
 
 source src/utils.sh
+source src/request.sh
 
 CONTAINERS=("client" "relay1" "relay2" "exit1")
-
-exec_curl() {
-    local url="$1"
-    local log_file
-    log_file=$(get_logfile "$2" "$3")
-
-    log_info "Executing cURL command for URL: $url"
-    curl --socks5 127.0.0.1:9000 -s -w "URL: $url\nTime to first byte: %{time_starttransfer}s\nTotal time: %{time_total}s\nDownload speed: %{speed_download} bytes/sec\n" -o /dev/null "$url" >>"$log_file"
-}
-get_url() {
-    local filesize="$1"
-    echo "http://ipv4.download.thinkbroadband.com/${filesize}.zip"
-}
-
-get_logfile() {
-    local logfile="${CONFIG["absolute_path_dir"]}/tmp/curl/${1}_${2}.log"
-    echo "$logfile"
-}
-
-run_webclient() {
-    local url
-    local name="$1"
-    local filesize="$2"
-    local test_count="$3"
-
-    url=$(get_url "$filesize")
-    local counter=0
-    while true; do
-        sleep $((RANDOM % 30 + 1))
-        counter=$((counter + 1))
-        exec_curl "$url" "$name" "$test_count"
-    done
-}
-
-run_bulkclient() {
-    local url
-    local name="$1"
-    local filesize="$2"
-    local test_count="$3"
-
-    url=$(get_url "$filesize")
-    local counter=0
-    while true; do
-        counter=$((counter + 1))
-        exec_curl "$url" "$name" "$test_count"
-        sleep 0.5
-    done
-}
 
 launch_clients() {
     local name="$1"
@@ -61,24 +14,34 @@ launch_clients() {
     local web_clients="$6"
     local tcpdump_mode="$7"
 
-    pids=()
+    abs_path=${CONFIG["absolute_path_dir"]}
 
     for ((k = 0; k < web_clients; k++)); do
-        run_webclient "$name" "$filesize" "$test_count" "$tcpdump_mode" &
-        pids+=($!)
+        log_file_path="$abs_path/backup/${name}-${test_count}/curl.log"
+        timeout --preserve-status --kill-after=5s 30s \
+            bash -c '
+                trap "kill -- -$$" SIGTERM; 
+                cd "'"$abs_path"'"/scripts/tester
+                source src/utils.sh
+                source src/request.sh
+                run_webclient "'"$log_file_path"'" "'"$filesize"'" 
+            ' &
     done
 
-    for ((k = 0; k < bulk_clients; k++)); do
-        run_bulkclient "$name" "$filesize" "$test_count" "$tcpdump_mode" &
-        pids+=($!)
+    for ((l = 0; l < bulk_clients; l++)); do
+        log_file_path="$abs_path/backup/${name}-${test_count}/curl.log"
+        timeout --preserve-status --kill-after=5s 30s \
+            bash -c '
+                trap "kill -- -$$" SIGTERM; 
+                cd "'"$abs_path"'"/scripts/tester
+                source src/utils.sh
+                source src/request.sh
+                run_bulkclient "'"$log_file_path"'" "'"$filesize"'" 
+            ' &
     done
 
-    sleep "$test_timeout"
     log_info "Ending bulk clients for $name after $test_timeout seconds..."
-
-    for pid in "${pids[@]}"; do
-        kill -TERM "$pid" 2>/dev/null
-    done
+    wait
 
     log_success "All clients for $name have completed."
 }
@@ -97,7 +60,7 @@ run_topwebclient() {
             log_error "run_topwebclient()" "URL is empty, skipping..."
             continue
         fi
-        start_tcpdump "$client_id" "$url"  "$tcpdump_mode"
+        start_tcpdump "$client_id" "$url" "$tcpdump_mode"
         exec_curl "$url" "$client_id" "$name-$test_count" "$test_count"
         stop_tcpdump "${tcpdump_mode}"
     done
@@ -131,7 +94,6 @@ stop_tcpdump_on_relay() {
     docker exec -d "thesis-${relay_name}-1" sh -c "pkill tcpdump"
 }
 
-
 launch_topweb_clients() {
     echo "Launching top web clients..."
     local name="$1"
@@ -154,8 +116,8 @@ launch_topweb_clients() {
     websites=()
     while IFS= read -r line; do
         websites+=("$line")
-        echo -ne "Added URL: $line                      "\\r  
-    done < "$file_path"
+        echo -ne "Added URL: $line                      "\\r
+    done <"$file_path"
 
     if [[ ${#websites[@]} -eq 0 ]]; then
         log_fatal "launch_topweb_clients()" "No URLs found in the top websites file."
@@ -163,7 +125,7 @@ launch_topweb_clients() {
 
     log_info "Launching top $top_web_clients web clients for $name..."
     for ((k = 0; k < top_web_clients; k++)); do
-        run_topwebclient "$name" "$filesize" "$test_count" "$tcpdump_mode" "$k" "${websites[@]}"  &
+        run_topwebclient "$name" "$filesize" "$test_count" "$tcpdump_mode" "$k" "${websites[@]}" &
     done
 
     wait

@@ -1,62 +1,109 @@
 import argparse
+import os
 import utils.utils as utils
-import parsers.curl as curl
-import parsers.tor as tor
+import parsers.curl as curl_parser
+import parsers.tor as tor_parser
+import utils.metrics as metrics_utils
 import json
 
 # python3 main.py --dummy-ratio 50 --jitter-ratio 50 --clients 1 --nodes 3 --test-number 1 --file-size 1Mib
 
+
+def resolve_files(test_path):
+    info = {}
+    curl = None
+    tor = []
+
+    info_path = os.path.join(test_path, "info.json")
+    if os.path.isfile(info_path):
+        with open(info_path, "r") as f:
+            info = json.load(f)  #! WILL CRASH LOUDLY
+
+    curl_path = os.path.join(test_path, "curl.log")
+    if os.path.isfile(curl_path):
+        with open(curl_path, "r") as f:
+            curl = f.readlines()
+
+    tor_folder = os.path.join(test_path, "tor")
+    if os.path.isdir(tor_folder):
+        for file_name in os.listdir(tor_folder):
+            file_path = os.path.join(tor_folder, file_name)
+            if os.path.isfile(file_path):
+                abs_path = os.path.abspath(file_path)
+                tor.append(abs_path)
+
+    return info, curl, tor
+
+
+def analyzer_data(info, curl_lines, tor_files):
+    curl_data = {}
+    tor_data = {}
+    if curl_lines:
+        curl_data = curl_parser.get_info(curl_lines)
+
+    if tor_files:
+        tor_data = tor_parser.get_info(tor_files)
+
+    return info | curl_data | tor_data
+
+
+def merge_data(test_data):
+    data_per_test: dict[list] = {}
+    for test_name, data in test_data.items():
+        if data_per_test.get(data.get("name", test_name)):
+            data_per_test[data.get("name", test_name)].append(test_name)
+        else:
+            data_per_test[data.get("name", test_name)] = [test_name]
+
+    merged_data = {}
+
+    for test_name, test_list in data_per_test.items():
+        merged_data[test_name] = {
+            "name": test_data[test_list[0]].get("name"),
+            "file_size": test_data[test_list[0]].get("file_size"),
+            "tor_params": test_data[test_list[0]].get("tor_params"),
+            "client_params": test_data[test_list[0]].get("client_params"),
+            "latency": metrics_utils.merge_latency(test_list, test_data),
+            "throughput": metrics_utils.merge_throughput(test_list, test_data),
+            "jitter": metrics_utils.merge_jitter(test_list, test_data),
+            "total_time": metrics_utils.merge_total_time(test_list, test_data),
+        }
+
+    return merged_data
+
+
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description="Run test with given parameters")
-    parser.add_argument(
-        "--dummy-ratio",
-        type=int,
-        required=True,
-        help="Dummy traffic ratio (0-100)",
-    )
-    parser.add_argument(
-        "--jitter-ratio",
-        type=int,
-        required=True,
-        help="Jitter ratio (0-100)",
-    )
-    parser.add_argument('--clients', type=int, required=True, help='Number of clients')
-    parser.add_argument('--nodes', type=int, required=True, help='Number of nodes')
-    parser.add_argument('--test-number', type=int, required=True, help='Test number identifier')
-    parser.add_argument('--file-size', required=True, help='Size of the test file')
-    args = parser.parse_args()
+    test_results = {}
 
-    test_name = utils.get_test_name(
-        args.file_size,
-        args.dummy_ratio,
-        args.jitter_ratio,
-        args.clients,
-        args.nodes,
-        args.test_number
+    main_folder = utils.get_main_folder()
+
+    test_data = {}
+    for test_folder_name in os.listdir(main_folder):
+        test_path = os.path.join(main_folder, test_folder_name)
+
+        info, curl, tor = resolve_files(test_path)
+
+        test_data[test_folder_name] = analyzer_data(info, curl, tor)
+
+    json.dump(
+        test_data,
+        open(os.path.join(main_folder, "../results/test_data.json"), "w"),
+        indent=4,
     )
 
-    res = {
-        "args": {
-            "test_name": test_name,
-            "curl_log_file": utils.get_curl_log_files(),
-            "dummy_ratio": args.dummy_ratio,
-            "jitter_ratio": args.jitter_ratio,
-            "clients": args.clients,
-            "nodes": args.nodes,
-            "test_number": args.test_number,
-            "file_size": args.file_size,
-        }
-    }
+    test_results = merge_data(test_data)
 
-    curl_data = curl.get_info()
+    results_folder = os.path.join(main_folder, "../results")
+    os.makedirs(results_folder, exist_ok=True)
 
-    jitter_data = {
-        "jitter": tor.get_info()
-    }
+    json.dump(
+        test_results,
+        open(os.path.join(results_folder, "../results/test_results.json"), "w"),
+        indent=4,
+    )
 
-    res |= curl_data
-    res |= (jitter_data)
-    print(json.dumps(res, indent=4))
-    with open(f"{test_name}.json", "w") as f:
-        json.dump(res, f, indent=4)
+    print(
+        "Test results have been saved to:",
+        os.path.join(results_folder, "../results/test_results.json"),
+    )

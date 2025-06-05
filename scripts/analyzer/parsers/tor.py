@@ -4,25 +4,25 @@ import utils.math as math_utils
 import math
 import json
 
-def get_info(start_time=None, end_time=None):
-    tor_log_files = utils.get_tor_log_files()
-    if not tor_log_files:
-        raise FileNotFoundError("No Tor log files found!")
+
+def get_info(tor_log_files):
     all_circuits_info = []
     for filepath in tor_log_files:
         if not filepath.endswith(".log"):
             raise ValueError(f"Invalid file format: {filepath}. Expected .log file.")
         data = parse_log(filepath)
         all_circuits_info.extend(extract_circuits_data(sort_data(data)))
-    return extract_overall_data(all_circuits_info)
+    return compute_stats(all_circuits_info)
 
 
-def extract_overall_data(circuits):
+def compute_stats(circuits):
     total_packets = math_utils.get_sum(c["num_packets"] for c in circuits)
-    
+
     if total_packets == 0:
         raise ValueError("Total number of packets is zero. Cannot compute statistics.")
 
+    #! WARNING: THIS METRICS ARE ONLY CIRCUIT-WISE AND NOT OVER ALL NETWORK
+    #!          IN THIS EXPERIMENT, THIS IS AN OVERALL METRICS OVER EACH CIRCUIT STATS
     overall_min = math_utils.get_min(c["min_jitter"] for c in circuits)
     overall_max = math_utils.get_max(c["max_jitter"] for c in circuits)
     overall_mean = math_utils.get_sum(c["mean_jitter"] * c["num_packets"] for c in circuits) / total_packets
@@ -33,21 +33,22 @@ def extract_overall_data(circuits):
     ) / (total_packets - 1)
     overall_deviation = math.sqrt(overall_variance)
 
-
     total_dummys = math_utils.get_sum(c["dummy_packets"] for c in circuits)
     dummy_ratio = total_dummys / total_packets * 100
 
-
     return {
+        "jitter": {
+            "min": overall_min,
+            "max": overall_max,
+            "mean": overall_mean,
+            "variance": overall_variance,
+            "deviation": overall_deviation,
+        },
         "total_packets": total_packets,
-        "min_jitter": overall_min,
-        "max_jitter": overall_max,
-        "mean_jitter": overall_mean,
-        "variance_jitter": overall_variance,
-        "deviation_jitter": overall_deviation,
         "dummy_ratio": dummy_ratio,
         "total_dummys": total_dummys,
     }
+
 
 def extract_circuits_data(data):
     circuit_data = []

@@ -14,7 +14,6 @@ launch_tor_network() {
         docker build --no-cache -f "${CONFIG["absolute_path_dir"]}/docker/node.Dockerfile" -t dptor_node "${CONFIG["absolute_path_dir"]}" || log_fatal "launch_tor_network()" "Failed to build Docker image for curl.docker-compose.yml"
     fi
 
-
     while true; do
         COMPOSE_BAKE=true docker compose -f "$1" up -d
 
@@ -72,5 +71,7 @@ set_configuration() {
     sed -i "s/^DPSchedulerRunIntervalMin .*/DPSchedulerRunIntervalMin ${min_j}/" "${config_path}"/.config/tor.common.torrc
     sed -i "s/^DPSchedulerRunIntervalMax .*/DPSchedulerRunIntervalMax ${max_j}/" "${config_path}"/.config/tor.common.torrc
     sed -i "s/^Schedulers .*/Schedulers ${sched}/" "${config_path}"/.config/tor.common.torrc
+
+    cat "${config_path}"/.config/tor.common.torrc
 
 }

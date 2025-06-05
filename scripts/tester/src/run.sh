@@ -27,10 +27,13 @@ run() {
 
         # Run the performance experiment
         log_info "Launching '$name-$i'"
+        mkdir -p "${CONFIG["absolute_path_dir"]}/backup/$name-$i"
 
         log_info "Cleaning up Docker containers and images..."
         docker_clean
         log_success "Docker cleanup Completed!\n"
+
+        echo "$tor_params"
 
         log_info "Setting up Torrc Configuration..."
         set_configuration "$tor_params"
@@ -39,7 +42,6 @@ run() {
         log_info "Launching Virtual Tor Network..."
         launch_tor_network "${CONFIG["absolute_path_dir"]}/${DOCKER_COMPOSE_FILE}"
         log_success "Virtual Tor Network Launched!\n"
-
 
         if [ -n "$top_web_clients" ] && [ "$top_web_clients" -gt 0 ]; then
             log_info "Starting Top Websites Clients Experiment..."
@@ -55,7 +57,7 @@ run() {
         log_success "Performance Experiment Successful!\n"
 
         if [ "${CONFIG["copy_logs"]}" = true ]; then
-            save_logs "$name-$i"
+            save_logs "$name" "$i" "$file_size" "$tor_params" "$client_params"
         fi
 
     done
@@ -63,20 +65,29 @@ run() {
 
 save_logs() {
     tmp_dir="${CONFIG["absolute_path_dir"]}/tmp"
-    copy_dir="${CONFIG["absolute_path_dir"]}/${CONFIG["copy_target"]}$1"
+    logs_dir="${CONFIG["absolute_path_dir"]}/${CONFIG["logs_dir"]}"
+    copy_dir="${CONFIG["absolute_path_dir"]}/${CONFIG["copy_target"]}$1-$2"
     log_info "Copying logs to ${copy_dir}"
 
     mkdir -p "${copy_dir}"
     # Copy cURL logs
-    cp -r "${tmp_dir}/curl/" "${copy_dir}/curl"
+    #cp -r "${tmp_dir}/curl/" "${copy_dir}/curl"
 
     # Copy Tor logs
-    cp -r "${CONFIG["absolute_path_dir"]}/${CONFIG["logs_dir"]}tor/" "${copy_dir}/tor"
+    mkdir -p "${copy_dir}/tor"
+    cp -r "${logs_dir}tor" "${copy_dir}"
 
     # Copy pcap logs
-    mkdir -p "${copy_dir}/pcap"
-    zip -r "${copy_dir}/pcap/$1.zip" "${CONFIG["absolute_path_dir"]}/${CONFIG["logs_dir"]}wireshark/" || log_fatal "Failed to zip pcap logs"
+    zip -r "${copy_dir}/$1.zip" "${logs_dir}wireshark/" || log_fatal "Failed to zip pcap logs"
 
-    rm -rf "${tmp_dir:?}/*" || log_fatal "Failed to clean temporary directory: $tmp_dir"
+    rm -rf "${tmp_dir}/$1-$2" || log_fatal "Failed to clean temporary directory: $tmp_dir"
+
+    echo '{
+        "name": "'"$1"'",
+        "file_size": "'"$3"'",
+        "tor_params": '"$4"',
+        "client_params": '"$5"'
+    }' >"${copy_dir}/info.json"
+
     log_success "Logs copied to ${copy_dir} successfully!"
 }

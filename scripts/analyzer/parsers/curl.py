@@ -1,42 +1,47 @@
-
 import contextlib
+import re
+import json
+import numpy as np
 import utils.utils as utils
 
-def get_info() -> list[dict]:
 
-    filepaths = utils.get_curl_log_files()
+def get_info(data) -> list[dict]:
     results = []
-    if not filepaths:
-        raise FileNotFoundError("No curl log files found!")
-    for filepath in filepaths:
-        if not filepath.endswith(".log"):
-            raise ValueError(f"Invalid file format: {filepath}. Expected .log file.")
-        parsed_data = parse(filepath)
-        translated_data = translate(parsed_data)
-        results.append(translated_data)
+    if not data:
+        raise FileNotFoundError("No curl log file found!")
+    results = parse_curl_log(data)
+    return compute_stats(results)
 
-    return extract_overall_data(results)
 
-def extract_overall_data(curl_logs: list[dict]) -> dict:
-    total_bytes = sum(log.get("Throughput (bytes/s)", 0) for log in curl_logs)
-    total_time = sum(log.get("Total time (s)", 0) for log in curl_logs)
-    total_count = len(curl_logs)
-
+def compute_metrics(stats: dict) -> dict:
     return {
-        "total_bytes": total_bytes,
-        "total_time (s)": total_time,
-        "average_throughput (bytes/s)": total_bytes / total_count if total_count else 0,
-        "average_latency (s)": sum(log.get("Latency (s)", 0) for log in curl_logs) / total_count if total_count else 0,
+        "min": float(np.min(stats)),
+        "max": float(np.max(stats)),
+        "mean": float(np.mean(stats)),
+        "median": float(np.median(stats)),
+        "std": float(np.std(stats)),
+        "percentiles": {
+            "25th": float(np.percentile(stats, 25)),
+            "50th": float(np.percentile(stats, 50)),
+            "75th": float(np.percentile(stats, 75)),
+            "90th": float(np.percentile(stats, 90)),
+            "95th": float(np.percentile(stats, 95)),
+            "99th": float(np.percentile(stats, 99)),
+        },
     }
 
-def translate(curl_log: dict) -> dict:
+
+def compute_stats(curl_logs: list[dict]) -> dict:
+    latencies = [entry["latency"] for entry in curl_logs]
+    total_times = [entry["total_time"] for entry in curl_logs]
+    throughputs = [entry["throughput"] for entry in curl_logs]
+
     return {
-        "Throughput (bytes/s)": curl_log.get("Download speed"),
-        "Latency (s)": curl_log.get("Time to first byte"),
-        "Total time (s)": curl_log.get("Total time"),
-        "Start time (ns)": curl_log.get("Started at"),
-        "End time (ns)": curl_log.get("Ended at"),
+        "latency": compute_metrics(latencies),
+        "total_time": compute_metrics(total_times),
+        "throughput": compute_metrics(throughputs),
     }
+
 
 def parse(filepath: str) -> dict:
     result = {}
@@ -56,3 +61,28 @@ def parse(filepath: str) -> dict:
                         value = int(value)
                 result[key] = value
     return result
+
+
+def parse_curl_log(lines):
+    results = []
+    i = 0
+    while i < len(lines):
+        if lines[i].startswith("URL:"):
+            url = lines[i].strip().split("URL: ")[-1]
+            latency = float(re.search(r"([\d.]+)", lines[i + 1]).group(1))
+            total_time = float(re.search(r"([\d.]+)", lines[i + 2]).group(1))
+            throughput = int(re.search(r"(\d+)", lines[i + 3]).group(1))
+
+            results.append(
+                {
+                    "url": url,
+                    "latency": latency,
+                    "total_time": total_time,
+                    "throughput": throughput,
+                }
+            )
+            i += 4
+        else:
+            i += 1  # Skip malformed lines if any
+
+    return results
