@@ -5,7 +5,7 @@ source src/utils.sh
 source src/build.sh
 source src/clients.sh
 
-DOCKER_COMPOSE_FILE="curl.docker-compose.yml"
+DOCKER_COMPOSE_FILE="docker-compose.yml"
 
 run() {
     local repeat name tcpdump_mode end_test_at client_params tor_params
@@ -32,8 +32,6 @@ run() {
         log_info "Cleaning up Docker containers and images..."
         docker_clean
         log_success "Docker cleanup Completed!\n"
-
-        echo "$tor_params"
 
         log_info "Setting up Torrc Configuration..."
         set_configuration "$tor_params"

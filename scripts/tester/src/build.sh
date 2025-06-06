@@ -45,7 +45,7 @@ launch_tor_network() {
 
 docker_clean() {
     cd "${CONFIG["absolute_path_dir"]}" || log_fatal "docker_clean()" "Failed to change directory to ${CONFIG["absolute_path_dir"]}"
-    docker compose -f curl.docker-compose.yml down --remove-orphans
+    docker compose down --remove-orphans
 }
 
 set_configuration() {
@@ -71,7 +71,4 @@ set_configuration() {
     sed -i "s/^DPSchedulerRunIntervalMin .*/DPSchedulerRunIntervalMin ${min_j}/" "${config_path}"/.config/tor.common.torrc
     sed -i "s/^DPSchedulerRunIntervalMax .*/DPSchedulerRunIntervalMax ${max_j}/" "${config_path}"/.config/tor.common.torrc
     sed -i "s/^Schedulers .*/Schedulers ${sched}/" "${config_path}"/.config/tor.common.torrc
-
-    cat "${config_path}"/.config/tor.common.torrc
-
 }

@@ -81,27 +81,29 @@ Options:
 
 Config File Structure:
   config:
+    absolute_path: string
     repeat: uint
+    copy_logs: bool
     logs_dir: string
     docker_dir: string
-    copy_logs: boolean
-    results_dir: string
     copy_target: string
-    absolute_path: string
     configuration_dir: string
   
   experiments:
     - name: string
-      type: ["performance" | "unobservability" | "resource_usage"]
-      params: 
+      end_test_at: uint
+      filesize: ["5KB" | "1MB" | "5MB"]
+      tcpdump_mode: bool
+      tor:
         dummy: [0-100]
         jitter: [0-100]
         max_jitter: [0-100]
         min_jitter: [0-100]
-        scheduler: ["DP_Vanilla"]
-        filesize: ["5Kib" | "1Mib" | "5Mib"]
-        nclients: uint
-        end_test_at: uint
+        scheduler: ["Vanilla" | "KIST" | "DP_Vanilla" | "DP_Kist" ]
+      clients:
+        bulk_clients: uint
+        web_clients: uint
+        top_web_clients: uint
 EOF
 }
 

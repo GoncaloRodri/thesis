@@ -71,6 +71,37 @@ def merge_data(test_data):
 
     return merged_data
 
+def resume_results_per_test(results):
+    resume = {}
+    for test_name, test_results in results.items():
+        resume[test_name] = {
+            "latency": test_results["latency"]["mean"],
+            "throughput": test_results["throughput"]["mean"],
+            "total_time": test_results["total_time"]["mean"],
+            "jitter": test_results["jitter"]["mean"]
+        }
+
+    return resume
+
+def resume_results_per_metric(results):
+    latency = {}
+    throughput = {}
+    total_time = {}
+    jitter = {}
+
+    for test_name, test_results in results.items():
+        latency[test_name] = test_results["latency"]["mean"]
+        throughput[test_name] = test_results["throughput"]["mean"]
+        total_time[test_name] = test_results["total_time"]["mean"]
+        jitter[test_name] = test_results["jitter"]["mean"]
+
+    return {
+        "latency": latency,
+        "throughput": throughput,
+        "total_time": total_time,
+        "jitter": jitter,
+    }
+
 
 if __name__ == "__main__":
 
@@ -99,7 +130,19 @@ if __name__ == "__main__":
 
     json.dump(
         test_results,
-        open(os.path.join(results_folder, "../results/test_results.json"), "w"),
+        open(os.path.join(results_folder, "../results/detailed_results.json"), "w"),
+        indent=4,
+    )
+
+    json.dump(
+        resume_results_per_test(test_results),
+        open(os.path.join(results_folder, "../results/resumed_per_test.json"), "w"),
+        indent=4,
+    )
+
+    json.dump(
+        resume_results_per_metric(test_results),
+        open(os.path.join(results_folder, "../results/resumed_per_metric.json"), "w"),
         indent=4,
     )
 

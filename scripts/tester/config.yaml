@@ -1,6 +1,6 @@
 config:
   absolute_path: /home/guga/Documents/thesis
-  repeat: 10
+  repeat: 1
   copy_logs: true
   logs_dir: logs/
   docker_dir: docker/
@@ -9,10 +9,55 @@ config:
   top_website_path: mini.websites.txt
 
 experiments:
-  - name: "perf-onweb-clean"
-    end_test_at: 60
+  - name: "vanilla-control"
+    end_test_at: 300
     tcpdump_mode: false
-    filesize: "1MiB"
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      jitter: 0
+      max_jitter: 10
+      min_jitter: 1
+      scheduler: "Vanilla"
+    clients:
+      bulk_clients: 100
+      web_clients: 0
+      top_web_clients: 0
+
+  - name: "kist-control"
+    end_test_at: 300
+    tcpdump_mode: false
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      jitter: 0
+      max_jitter: 10
+      min_jitter: 1
+      scheduler: "KIST"
+    clients:
+      bulk_clients: 100
+      web_clients: 0
+      top_web_clients: 0
+
+  - name: "dpkist-clean"
+    end_test_at: 300
+    tcpdump_mode: false
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      jitter: 0
+      max_jitter: 10
+      min_jitter: 1
+      scheduler: "DPKist"
+    clients:
+      bulk_clients: 100
+      web_clients: 0
+      top_web_clients: 0
+
+  - name: "dpvanilla-clean"
+    end_test_at: 300
+    tcpdump_mode: false
+    filesize: "1MB"
     tor:
       dummy: 0
       jitter: 0
@@ -20,21 +65,36 @@ experiments:
       min_jitter: 1
       scheduler: "DPVanilla"
     clients:
-      bulk_clients: 1
-      web_clients: 1
+      bulk_clients: 100
+      web_clients: 0
       top_web_clients: 0
-  - name: "perf-onweb-dirty"
-    end_test_at: 60
+
+  - name: "dpkist-low"
+    end_test_at: 300
     tcpdump_mode: false
-    filesize: "1MiB"
+    filesize: "1MB"
     tor:
-      dummy: 100
-      jitter: 100
-      max_jitter: 20
+      dummy: 0
+      jitter: 25
+      max_jitter: 10
+      min_jitter: 1
+      scheduler: "DPKist"
+    clients:
+      bulk_clients: 100
+      web_clients: 0
+      top_web_clients: 0
+
+  - name: "dpvanilla-low"
+    end_test_at: 300
+    tcpdump_mode: false
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      jitter: 25
+      max_jitter: 10
       min_jitter: 1
       scheduler: "DPVanilla"
     clients:
-      bulk_clients: 50
-      web_clients: 50
+      bulk_clients: 100
+      web_clients: 0
       top_web_clients: 0
-

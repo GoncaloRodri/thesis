@@ -28,7 +28,7 @@ Address 0.0.0.0
 ########################################
 
 Schedulers DPVanilla
-DPSchedulerJitter 0
+DPSchedulerJitter 25
 DPSchedulerRunIntervalMax 10
 DPSchedulerRunIntervalMin 1
 
