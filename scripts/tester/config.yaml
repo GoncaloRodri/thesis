@@ -9,7 +9,7 @@ config:
   top_website_path: mini.websites.txt
 
 experiments:
-  - name: "test-uni"
+  - name: "vanilla-uni0.0-dummy0"
     end_test_at: 60
     tcpdump_mode: false
     filesize: "1MB"
@@ -19,26 +19,27 @@ experiments:
       min_jitter: 1
       target_jitter: 2
       dp_distribution: "UNIFORM"
-      dp_epsilon: 0.5
+      dp_epsilon: 0.0
       scheduler: "DPVanilla"
     clients:
       bulk_clients: 1
       web_clients: 0
       top_web_clients: 0
 
-  - name: "test-exp"
+  - name: "kist-uni0.0-dummy0"
     end_test_at: 60
     tcpdump_mode: false
     filesize: "1MB"
     tor:
-      dummy: 0
+      dummy: 50
       max_jitter: 10
       min_jitter: 1
       target_jitter: 2
       dp_distribution: "EXPONENTIAL"
       dp_epsilon: 0.5
-      scheduler: "DPVanilla"
+      scheduler: "DPKist"
     clients:
       bulk_clients: 1
       web_clients: 0
       top_web_clients: 0
+

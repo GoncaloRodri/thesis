@@ -101,7 +101,7 @@ Config File Structure:
         target_jitter: [min_jitter-max_jitter]
         dp_distribution: ["UNIFORM" | "EXPONENTIAL"]
         dp_epsilon: [0.0-1.0]
-        scheduler: ["Vanilla" | "KIST" | "DP_Vanilla" | "DP_Kist" ]
+        scheduler: ["Vanilla" | "KIST" | "DPVanilla" | "DPKist" ]
       clients:
         bulk_clients: uint
         web_clients: uint

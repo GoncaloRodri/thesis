@@ -4,8 +4,8 @@ services:
     command: ["authority"]
     volumes:
       - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
       - ./logs:/app/logs/
-      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.5
@@ -15,8 +15,8 @@ services:
     command: ["relay1"]  
     volumes:
       - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
       - ./logs/:/app/logs/
-      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.2
@@ -26,8 +26,8 @@ services:
     command: ["relay2"]  
     volumes:
       - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
       - ./logs/:/app/logs/
-      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.3
@@ -37,8 +37,8 @@ services:
     command: ["exit1"]
     volumes:
       - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
       - ./logs/:/app/logs/
-      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.4  
@@ -50,8 +50,8 @@ services:
       - 9000:9000
     volumes:
       - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
       - ./logs/:/app/logs/
-      - ./test/extract/:/app/extract/
     networks:
       net:
         ipv4_address: 10.5.0.6
