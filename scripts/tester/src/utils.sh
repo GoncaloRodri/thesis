@@ -92,45 +92,20 @@ Config File Structure:
   experiments:
     - name: string
       end_test_at: uint
-      filesize: ["5KB" | "1MB" | "5MB"]
       tcpdump_mode: bool
+      filesize: ["5KB" | "1MB" | "5MB"]
       tor:
         dummy: [0-100]
-        jitter: [0-100]
-        max_jitter: [0-100]
-        min_jitter: [0-100]
+        max_jitter: [0-inf]
+        min_jitter: [0-max_jitter]
+        target_jitter: [min_jitter-max_jitter]
+        dp_distribution: ["UNIFORM" | "EXPONENTIAL"]
+        dp_epsilon: [0.0-1.0]
         scheduler: ["Vanilla" | "KIST" | "DP_Vanilla" | "DP_Kist" ]
       clients:
         bulk_clients: uint
         web_clients: uint
         top_web_clients: uint
-EOF
-}
-
-show_config_help() {
-    cat <<EOF
-Config File Structure:
-  config:
-    repeat: uint
-    logs_dir: string
-    docker_dir: string
-    copy_logs: boolean
-    results_dir: string
-    copy_target: string
-    absolute_path: string
-    configuration_dir: string
-  
-  experiments:
-    - name: string
-      type: ["performance" | "unobservability" | "resource_usage"]
-      params: 
-        dummy: [0-100]
-        jitter: [0-100]
-        max_jitter: [0-100]
-        min_jitter: [0-100]
-        scheduler: ["DP_Vanilla"]
-        filesize: ["5Kib" | "1Mib" | "5Mib"]
-        nclients: uint
 EOF
 }
 
@@ -157,12 +132,9 @@ handle_args() {
             shift
             ;;
         -b | --build)
+            # shellcheck disable=SC2034
             BUILD=true
             shift
-            ;;
-        -ch | --config-help)
-            show_config_help
-            exit 0
             ;;
         *)
             log_error "Unknown option: $1"

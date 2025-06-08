@@ -49,26 +49,27 @@ docker_clean() {
 }
 
 set_configuration() {
-    local params config_path dummy jitter min_j max_j sched
+    local params config_path dummy min_j max_j sched target_j dp_dist dp_epsilon
 
     params="$1"
     config_path="${CONFIG["absolute_path_dir"]}/${CONFIG["configuration_dir"]}"
 
     dummy=$(echo "$params" | jq -r '.dummy')
-    jitter=$(echo "$params" | jq -r '.jitter')
     min_j=$(echo "$params" | jq -r '.min_jitter')
     max_j=$(echo "$params" | jq -r '.max_jitter')
     sched=$(echo "$params" | jq -r '.scheduler')
+    target_j=$(echo "$params" | jq -r '.target_jitter')
+    dp_dist=$(echo "$params" | jq -r '.dp_distribution')
+    dp_epsilon=$(echo "$params" | jq -r '.dp_epsilon')
 
-    #sed -E -i "s/(DummyCellGeneration )[0-9]+/\1${dummy}/g" "${config_path}"/.config/tor.common.torrc
-    #sed -E -i "s/(DPSchedulerJitter )[0-9]+/\1${jitter}/g" "${config_path}"/.config/tor.common.torrc
-    #sed -E -i "s/(DPSchedulerRunIntervalMin )[0-9]+/\1${min_j}/g" "${config_path}"/.config/tor.common.torrc
-    #sed -E -i "s/(DPSchedulerRunIntervalMax )[0-9]+/\1${max_j}/g" "${config_path}"/.config/tor.common.torrc
-    #sed -E -i "s/(Schedulers )[a-zA-Z0-9]+/\1${sched}/g" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^Schedulers .*/Schedulers ${sched}/" "${config_path}"/.config/tor.common.torrc
+
+    sed -i "s/^DPSchedulerDistribution .*/DPSchedulerDistribution ${dp_dist}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^DPSchedulerEpsilon .*/DPSchedulerEpsilon ${dp_epsilon}/" "${config_path}"/.config/tor.common.torrc
+
+    sed -i "s/^DPSchedulerMinJitter .*/DPSchedulerMinJitter ${min_j}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^DPSchedulerMaxJitter .*/DPSchedulerMaxJitter ${max_j}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^DPSchedulerTargetJitter .*/DPSchedulerTargetJitter ${target_j}/" "${config_path}"/.config/tor.common.torrc
 
     sed -i "s/^DummyCellGeneration .*/DummyCellGeneration ${dummy}/" "${config_path}"/.config/tor.common.torrc
-    sed -i "s/^DPSchedulerJitter .*/DPSchedulerJitter ${jitter}/" "${config_path}"/.config/tor.common.torrc
-    sed -i "s/^DPSchedulerRunIntervalMin .*/DPSchedulerRunIntervalMin ${min_j}/" "${config_path}"/.config/tor.common.torrc
-    sed -i "s/^DPSchedulerRunIntervalMax .*/DPSchedulerRunIntervalMax ${max_j}/" "${config_path}"/.config/tor.common.torrc
-    sed -i "s/^Schedulers .*/Schedulers ${sched}/" "${config_path}"/.config/tor.common.torrc
 }

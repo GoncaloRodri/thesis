@@ -23,17 +23,17 @@ BandwidthBurst 1024000
 
 Address 0.0.0.0
 
-########################################
 ############## Scheduling ##############
-########################################
-
 Schedulers DPVanilla
-DPSchedulerJitter 25
-DPSchedulerRunIntervalMax 10
-DPSchedulerRunIntervalMin 1
 
-########################################
+######### Differential Privacy #########
+DPSchedulerEpsilon 0.5
+DPSchedulerDistribution EXPONENTIAL
+
+################ Jitter ################
+DPSchedulerMinJitter 1
+DPSchedulerMaxJitter 10
+DPSchedulerTargetJitter 2
+
 ######### Packet Cell Padding ##########
-########################################
-
-DummyCellGeneration 0
+DummyCellGenProbability 0

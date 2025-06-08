@@ -9,92 +9,36 @@ config:
   top_website_path: mini.websites.txt
 
 experiments:
-  - name: "vanilla-control"
-    end_test_at: 300
+  - name: "test-uni"
+    end_test_at: 60
     tcpdump_mode: false
     filesize: "1MB"
     tor:
       dummy: 0
-      jitter: 0
       max_jitter: 10
       min_jitter: 1
-      scheduler: "Vanilla"
-    clients:
-      bulk_clients: 100
-      web_clients: 0
-      top_web_clients: 0
-
-  - name: "kist-control"
-    end_test_at: 300
-    tcpdump_mode: false
-    filesize: "1MB"
-    tor:
-      dummy: 0
-      jitter: 0
-      max_jitter: 10
-      min_jitter: 1
-      scheduler: "KIST"
-    clients:
-      bulk_clients: 100
-      web_clients: 0
-      top_web_clients: 0
-
-  - name: "dpkist-clean"
-    end_test_at: 300
-    tcpdump_mode: false
-    filesize: "1MB"
-    tor:
-      dummy: 0
-      jitter: 0
-      max_jitter: 10
-      min_jitter: 1
-      scheduler: "DPKist"
-    clients:
-      bulk_clients: 100
-      web_clients: 0
-      top_web_clients: 0
-
-  - name: "dpvanilla-clean"
-    end_test_at: 300
-    tcpdump_mode: false
-    filesize: "1MB"
-    tor:
-      dummy: 0
-      jitter: 0
-      max_jitter: 10
-      min_jitter: 1
+      target_jitter: 2
+      dp_distribution: "UNIFORM"
+      dp_epsilon: 0.5
       scheduler: "DPVanilla"
     clients:
-      bulk_clients: 100
+      bulk_clients: 1
       web_clients: 0
       top_web_clients: 0
 
-  - name: "dpkist-low"
-    end_test_at: 300
+  - name: "test-exp"
+    end_test_at: 60
     tcpdump_mode: false
     filesize: "1MB"
     tor:
       dummy: 0
-      jitter: 25
       max_jitter: 10
       min_jitter: 1
-      scheduler: "DPKist"
-    clients:
-      bulk_clients: 100
-      web_clients: 0
-      top_web_clients: 0
-
-  - name: "dpvanilla-low"
-    end_test_at: 300
-    tcpdump_mode: false
-    filesize: "1MB"
-    tor:
-      dummy: 0
-      jitter: 25
-      max_jitter: 10
-      min_jitter: 1
+      target_jitter: 2
+      dp_distribution: "EXPONENTIAL"
+      dp_epsilon: 0.5
       scheduler: "DPVanilla"
     clients:
-      bulk_clients: 100
+      bulk_clients: 1
       web_clients: 0
       top_web_clients: 0
