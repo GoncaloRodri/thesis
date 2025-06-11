@@ -19,8 +19,10 @@ for experiment in "${EXPERIMENTS[@]}"; do
     client_params=$(echo "$experiment" | jq -r '.clients')
     tor_params=$(echo "$experiment" | jq -r '.tor')
 
-    run "$name" "$tcpdump_mode" "$file_size" "$end_test_at" "$client_params" "$tor_params"
+    run_experiment "$name" "$tcpdump_mode" "$file_size" "$end_test_at" "$client_params" "$tor_params"
 
 done
+
+run_combinations
 
 rm -rf "${CONFIG["absolute_path_dir"]}/tmp"

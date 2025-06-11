@@ -9,7 +9,10 @@ config:
   top_website_path: mini.websites.txt
 
 experiments:
-  - name: "vanilla-uni0.0-dummy0"
+  ############################
+  # KIST Control Experiments #
+  ############################
+  - name: "control-kist-lc"
     end_test_at: 60
     tcpdump_mode: false
     filesize: "1MB"
@@ -19,27 +22,143 @@ experiments:
       min_jitter: 1
       target_jitter: 2
       dp_distribution: "UNIFORM"
-      dp_epsilon: 0.0
-      scheduler: "DPVanilla"
+      dp_epsilon: 0.5
+      scheduler: "KIST"
     clients:
-      bulk_clients: 1
-      web_clients: 0
+      bulk_clients: 10
+      web_clients: 10
       top_web_clients: 0
-
-  - name: "kist-uni0.0-dummy0"
+  - name: "control-kist-mc"
     end_test_at: 60
     tcpdump_mode: false
     filesize: "1MB"
     tor:
-      dummy: 50
+      dummy: 0
       max_jitter: 10
       min_jitter: 1
       target_jitter: 2
-      dp_distribution: "EXPONENTIAL"
+      dp_distribution: "UNIFORM"
       dp_epsilon: 0.5
-      scheduler: "DPKist"
+      scheduler: "KIST"
     clients:
-      bulk_clients: 1
-      web_clients: 0
+      bulk_clients: 50
+      web_clients: 50
+      top_web_clients: 0
+  - name: "control-kist-hc"
+    end_test_at: 60
+    tcpdump_mode: false
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      max_jitter: 10
+      min_jitter: 1
+      target_jitter: 2
+      dp_distribution: "UNIFORM"
+      dp_epsilon: 0.5
+      scheduler: "KIST"
+    clients:
+      bulk_clients: 100
+      web_clients: 100
+      top_web_clients: 0
+  - name: "control-kist-superc"
+    end_test_at: 60
+    tcpdump_mode: false
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      max_jitter: 10
+      min_jitter: 1
+      target_jitter: 2
+      dp_distribution: "UNIFORM"
+      dp_epsilon: 0.5
+      scheduler: "KIST"
+    clients:
+      bulk_clients: 150
+      web_clients: 150
       top_web_clients: 0
 
+  ###############################
+  # Vanilla Control Experiments #
+  ###############################
+  - name: "control-vanilla-lc"
+    end_test_at: 60
+    tcpdump_mode: false
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      max_jitter: 10
+      min_jitter: 1
+      target_jitter: 2
+      dp_distribution: "UNIFORM"
+      dp_epsilon: 0.5
+      scheduler: "Vanilla"
+    clients:
+      bulk_clients: 10
+      web_clients: 10
+      top_web_clients: 0
+  - name: "control-vanilla-mc"
+    end_test_at: 60
+    tcpdump_mode: false
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      max_jitter: 10
+      min_jitter: 1
+      target_jitter: 2
+      dp_distribution: "UNIFORM"
+      dp_epsilon: 0.5
+      scheduler: "Vanilla"
+    clients:
+      bulk_clients: 50
+      web_clients: 50
+      top_web_clients: 0
+  - name: "control-vanilla-hc"
+    end_test_at: 60
+    tcpdump_mode: false
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      max_jitter: 10
+      min_jitter: 1
+      target_jitter: 2
+      dp_distribution: "UNIFORM"
+      dp_epsilon: 0.5
+      scheduler: "Vanilla"
+    clients:
+      bulk_clients: 100
+      web_clients: 100
+      top_web_clients: 0
+  - name: "control-vanilla-superc"
+    end_test_at: 60
+    tcpdump_mode: false
+    filesize: "1MB"
+    tor:
+      dummy: 0
+      max_jitter: 10
+      min_jitter: 1
+      target_jitter: 2
+      dp_distribution: "UNIFORM"
+      dp_epsilon: 0.5
+      scheduler: "Vanilla"
+    clients:
+      bulk_clients: 150
+      web_clients: 150
+      top_web_clients: 0
+
+combinations:
+  tcpdump: false
+  filesize: ["1MB"]
+  end_test_at: 10
+  clients:
+    # [Bulk Clients, Web Clients, Top Web Clients]
+    - [10, 10, 0]
+    - [50, 50, 0]
+    - [100, 100, 0]
+  tor:
+    dummy: [0]
+    max_jitter: [10]
+    min_jitter: [1]
+    target_jitter: [2]
+    dp_distribution: ["UNIFORM", "NORMAL", "EXPONENTIAL"]
+    dp_epsilon: [0.1, 0.5, 1.0]
+    scheduler: ["DPKist", "DPVanilla"]

@@ -2,6 +2,8 @@
 
 declare -A CONFIG
 declare -a EXPERIMENTS
+declare -a COMBINATIONS
+
 VERBOSE=false
 BUILD=false
 
@@ -66,6 +68,9 @@ load_config() {
     for ((u = 0; u < experiments_count; u++)); do
         EXPERIMENTS+=("$(yq eval ".experiments[$u]" "$config_file" -o=json)")
     done
+    # shellcheck disable=SC2034
+    COMBINATIONS=("$(yq eval ".combinations" "$config_file" -o=json)")
+
 }
 
 show_help() {

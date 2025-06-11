@@ -16,7 +16,7 @@ launch_clients() {
 
     abs_path=${CONFIG["absolute_path_dir"]}
 
-    for ((k = 0; k < web_clients; k++)); do
+    for ((kl = 0; kl < web_clients; kl++)); do
         log_file_path="$abs_path/backup/${name}-${test_count}/curl.log"
         timeout --preserve-status --kill-after=5s "${test_timeout}s" \
             bash -c '
@@ -28,7 +28,7 @@ launch_clients() {
             ' &
     done
 
-    for ((l = 0; l < bulk_clients; l++)); do
+    for ((lk = 0; lk < bulk_clients; lk++)); do
         log_file_path="$abs_path/backup/${name}-${test_count}/curl.log"
         timeout --preserve-status --kill-after=5s "${test_timeout}s" \
             bash -c '
