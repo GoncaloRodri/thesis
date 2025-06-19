@@ -158,7 +158,6 @@ run_combinations() {
 
                                         #SCHED - DIST - EPSILON - DUMMY - CLIENT_RATIO - FILESIZE
                                         name="$(echo "$SCHEDULER_LIST" | jq -r ".[$p]")-$(echo "$DP_DIST_LIST" | jq -r ".[$n]")-$(echo "$DP_EPSILON_LIST" | jq -r ".[$o]")-$(echo "$DUMMY_LIST" | jq -r ".[$j]")dum-${i}of$NUM_CLIENTS-$file_size"
-
                                         run_experiment "$name" "$TCP_DUMP_MODE" "$file_size" "$END_TEST_AT" "$client_params" "$tor_params"
                                     done
                                 done

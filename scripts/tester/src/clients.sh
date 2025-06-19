@@ -41,6 +41,7 @@ launch_clients() {
     done
 
     log_info "Ending bulk clients for $name after $test_timeout seconds..."
+    sleep "$test_timeout"
     wait
 
     log_success "All clients for $name have completed."
