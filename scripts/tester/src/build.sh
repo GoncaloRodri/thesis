@@ -71,5 +71,5 @@ set_configuration() {
     sed -i "s/^DPSchedulerMaxJitter .*/DPSchedulerMaxJitter ${max_j}/" "${config_path}"/.config/tor.common.torrc
     sed -i "s/^DPSchedulerTargetJitter .*/DPSchedulerTargetJitter ${target_j}/" "${config_path}"/.config/tor.common.torrc
 
-    sed -i "s/^DummyCellGeneration .*/DummyCellGeneration ${dummy}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^DummyCellEpsilon .*/DummyCellEpsilon ${dummy}/" "${config_path}"/.config/tor.common.torrc
 }

@@ -3,7 +3,7 @@ DataDirectory .
 Log debug stdout
 AssumeReachable 1
 
-DirAuthority authority orport=9001 v3ident=251A6199439061376DBDEB65848324E2D5EC89C7 10.5.0.5:9030 A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1
+DirAuthority authority orport=9001 v3ident=251A6199439061376DBDEB65848324E2D5EC89C7 10.5.0.255:9030 A52CA5B56C64D864F6AE43E56F29ACBD5706DDA1
 
 ControlPort 9051
 LogTimeGranularity 10
@@ -21,14 +21,14 @@ DisableDebuggerAttachment 0
 BandwidthRate 1024000
 BandwidthBurst 1024000
 
-Address 0.0.0.0
+Address 10.5.0.3
 
 ############## Scheduling ##############
-Schedulers DPVanilla
+Schedulers DPKist
 
 ######### Differential Privacy #########
-DPSchedulerEpsilon 0.5
-DPSchedulerDistribution EXPONENTIAL
+DPSchedulerEpsilon 0.1
+DPSchedulerDistribution LAPLACE
 
 ################ Jitter ################
 DPSchedulerMinJitter 1
@@ -36,4 +36,4 @@ DPSchedulerMaxJitter 10
 DPSchedulerTargetJitter 2
 
 ######### Packet Cell Padding ##########
-DummyCellGenProbability 0
+DummyCellEpsilon 0.5

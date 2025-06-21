@@ -62,12 +62,12 @@ print_env() {
     echo -e "  - DPSchedulerJitter: $JITTER_RATIO"
     echo -e "  - DPSchedulerRunIntervalMin: $JITTER_MIN"
     echo -e "  - DPSchedulerRunIntervalMax: $JITTER_MAX"
-    echo -e "  - DummyCellGeneration: $DUMMY_CELL_GEN_RATIO"
+    echo -e "  - DummyCellEpsilon: $DUMMY_CELL_GEN_RATIO"
     echo
 }
 
 set_configuration() {
-    sed -E -i "s/(DummyCellGeneration )[0-9]+/\1$DUMMY_CELL_GEN_RATIO/g" configuration/.config/tor.common.torrc
+    sed -E -i "s/(DummyCellEpsilon )[0-9]+/\1$DUMMY_CELL_GEN_RATIO/g" configuration/.config/tor.common.torrc
     sed -E -i "s/(DPSchedulerJitter )[0-9]+/\1$JITTER_RATIO/g" configuration/.config/tor.common.torrc
     sed -E -i "s/(DPSchedulerRunIntervalMin )[0-9]+/\1$JITTER_MIN/g" configuration/.config/tor.common.torrc
     sed -E -i "s/(DPSchedulerRunIntervalMax )[0-9]+/\1$JITTER_MAX/g" configuration/.config/tor.common.torrc

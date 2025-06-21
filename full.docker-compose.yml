@@ -1,0 +1,159 @@
+services:
+  authority:
+    image: dptor_node
+    command: ["authority"]
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.255
+
+  relay1:
+    image: dptor_node  
+    command: ["relay1"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.101
+    
+  relay2:
+    image: dptor_node  
+    command: ["relay2"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.102
+
+  relay3:
+    image: dptor_node  
+    command: ["relay3"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.103
+    
+  relay4:
+    image: dptor_node  
+    command: ["relay4"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.104
+
+  relay5:
+    image: dptor_node  
+    command: ["relay5"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.105
+    
+  relay6:
+    image: dptor_node  
+    command: ["relay6"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.106
+
+  relay7:
+    image: dptor_node  
+    command: ["relay7"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.107
+    
+  relay8:
+    image: dptor_node  
+    command: ["relay8"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.108
+
+  relay9:
+    image: dptor_node  
+    command: ["relay9"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.109
+
+  exit1:
+    image: dptor_node
+    command: ["exit1"]
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.201
+  exit2:
+    image: dptor_node
+    command: ["exit2"]
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.202
+  exit3:
+    image: dptor_node
+    command: ["exit3"]
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.203
+
+  client:
+    image: dptor_node
+    command: ["client"]
+    ports:
+      - 9000:9000
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.250
+
+networks:
+  net:
+    external: true
+      
