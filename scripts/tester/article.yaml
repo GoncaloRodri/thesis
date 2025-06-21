@@ -1,0 +1,27 @@
+config:
+  absolute_path: /home/guga/Documents/thesis
+  repeat: 1
+  copy_logs: true
+  logs_dir: logs/
+  docker_dir: docker/
+  copy_target: backup/
+  configuration_dir: configuration/
+  top_website_path: mini.websites.txt
+
+combinations:
+  tcpdump: false
+  filesize: ["5120"]
+  end_test_at: 600
+  clients:
+    # [Bulk Clients, Web Clients, Top Web Clients]
+    - [50, 50, 0]
+    - [100, 100, 0]
+    - [250, 250, 0]
+  tor:
+    dummy: [0.0, 0.1, 0.3, 0.5, 0.75, 1.0, 2.0]
+    max_jitter: [10]
+    min_jitter: [1]
+    target_jitter: [2]
+    dp_distribution: ["LAPLACE"]
+    dp_epsilon: [0.0]
+    scheduler: ["DPKist", "DPVanilla"]

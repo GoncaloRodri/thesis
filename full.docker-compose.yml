@@ -109,6 +109,40 @@ services:
       net:
         ipv4_address: 10.5.0.109
 
+  relay10:
+    image: dptor_node  
+    command: ["relay10"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.110
+
+  relay11:
+    image: dptor_node  
+    command: ["relay11"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.111
+
+  relay12:
+    image: dptor_node  
+    command: ["relay12"]  
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.112
+
+
   exit1:
     image: dptor_node
     command: ["exit1"]
@@ -139,6 +173,17 @@ services:
     networks:
       net:
         ipv4_address: 10.5.0.203
+      
+  exit4:
+    image: dptor_node
+    command: ["exit4"]
+    volumes:
+      - ./configuration/:/app/source/
+      - ./configuration/.config:/conf/
+      - ./logs/:/app/logs/
+    networks:
+      net:
+        ipv4_address: 10.5.0.204
 
   client:
     image: dptor_node
