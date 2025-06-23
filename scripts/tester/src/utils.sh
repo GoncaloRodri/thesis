@@ -51,6 +51,7 @@ load_config() {
     # Load base config
     CONFIG+=(
         ["repeat"]=$(yq eval '.config.repeat' "$config_file")
+        ["clients"]=$(yq eval '.config.clients' "$config_file")
         ["logs_dir"]=$(yq eval '.config.logs_dir' "$config_file")
         ["copy_logs"]=$(yq eval '.config.copy_logs' "$config_file")
         ["docker_dir"]=$(yq eval '.config.docker_dir' "$config_file")
