@@ -1,14 +1,506 @@
 {
-    "test-uni": {
-        "latency": 0.32578325714285716,
-        "throughput": 1186222.0285714285,
-        "total_time": 1.3000023714285713,
-        "jitter": 0.003448533071618845
+    "DPKist-LAPLACE-0-0.25dum-1of2-5242880": {
+        "latency": 85.54633508588317,
+        "throughput": 227.78094575799722,
+        "total_time": 329.7217937100139,
+        "jitter": 0.0032419602350389465
     },
-    "test-exp": {
-        "latency": 0.32524953125,
-        "throughput": 939575.28125,
-        "total_time": 1.49358496875,
-        "jitter": 0.0037391140533031744
+    "DPVanilla-LAPLACE-0-1dum-0of2-51200": {
+        "latency": 72.49417388833204,
+        "throughput": 1182.792795614722,
+        "total_time": 149.356791891621,
+        "jitter": 0.0036854622304707614
+    },
+    "DPKist-LAPLACE-0-2dum-0of2-51200": {
+        "latency": 66.92083274061434,
+        "throughput": 1236.855342609609,
+        "total_time": 130.72970133342085,
+        "jitter": 0.004165155151780549
+    },
+    "DPVanilla-LAPLACE-0-1dum-0of2-1048576": {
+        "latency": 69.47075254385442,
+        "throughput": 576.8436754176611,
+        "total_time": 240.84097484218375,
+        "jitter": 0.0038676735029875256
+    },
+    "DPVanilla-LAPLACE-0-0.25dum-0of2-51200": {
+        "latency": 72.65259941146094,
+        "throughput": 1086.9148758953856,
+        "total_time": 147.88268537231386,
+        "jitter": 0.003409506502284731
+    },
+    "DPKist-LAPLACE-0-0.1dum-0of2-51200": {
+        "latency": 73.11917751296383,
+        "throughput": 366.68079490762307,
+        "total_time": 147.91281448253378,
+        "jitter": 0.0036304120854617006
+    },
+    "DPKist-LAPLACE-0-1dum-0of2-1048576": {
+        "latency": 66.72799130245635,
+        "throughput": 1564.891387984611,
+        "total_time": 255.82701619532406,
+        "jitter": 0.003964382201015907
+    },
+    "DPKist-LAPLACE-0-0.75dum-0of2-5242880": {
+        "latency": 74.12818602658885,
+        "throughput": 351.61997405966275,
+        "total_time": 266.9610422289235,
+        "jitter": 0.0032175929017190176
+    },
+    "DPKist-LAPLACE-0-0.25dum-0of2-51200": {
+        "latency": 71.21922620103092,
+        "throughput": 546.5291559278351,
+        "total_time": 147.77602127690076,
+        "jitter": 0.00327408017928165
+    },
+    "DPKist-LAPLACE-0-0.1dum-1of2-51200": {
+        "latency": 91.62636249538056,
+        "throughput": 614.6184191230386,
+        "total_time": 205.90397624915676,
+        "jitter": 0.004114260901533606
+    },
+    "DPKist-LAPLACE-0-0.75dum-1of2-1048576": {
+        "latency": 72.58763579038394,
+        "throughput": 854.2538913870633,
+        "total_time": 288.83425778312,
+        "jitter": 0.0035976977726663324
+    },
+    "DPVanilla-LAPLACE-0-0.75dum-1of2-1048576": {
+        "latency": 53.372311856733525,
+        "throughput": 740.8100695865738,
+        "total_time": 202.42212259046258,
+        "jitter": 0.0056393795238288665
+    },
+    "DPKist-LAPLACE-0-0dum-0of2-1048576": {
+        "latency": 67.82011234309736,
+        "throughput": 453.0813669650122,
+        "total_time": 235.57003379197178,
+        "jitter": 0.0032046374405471146
+    },
+    "DPVanilla-LAPLACE-0-2dum-1of2-51200": {
+        "latency": 90.49104903818103,
+        "throughput": 247.86186186186185,
+        "total_time": 193.5286381118261,
+        "jitter": 0.0032931929018764194
+    },
+    "DPVanilla-LAPLACE-0-0dum-0of2-1048576": {
+        "latency": 64.7612997110451,
+        "throughput": 495.2144207399406,
+        "total_time": 233.73134882041586,
+        "jitter": 0.003188290160258115
+    },
+    "DPVanilla-LAPLACE-0-2dum-0of2-1048576": {
+        "latency": 63.55517147475641,
+        "throughput": 2426.676114555654,
+        "total_time": 256.33683652553884,
+        "jitter": 0.003944941615822496
+    },
+    "DPKist-LAPLACE-0-0.5dum-1of2-5242880": {
+        "latency": 45.51171606158786,
+        "throughput": 1122.9477524810275,
+        "total_time": 206.00017926036193,
+        "jitter": 0.003959289296655612
+    },
+    "DPVanilla-LAPLACE-0-0.75dum-0of2-51200": {
+        "latency": 73.23118520736826,
+        "throughput": 624.396549043992,
+        "total_time": 148.8397523788279,
+        "jitter": 0.003595536485398555
+    },
+    "DPKist-LAPLACE-0-2dum-1of2-1048576": {
+        "latency": 65.48630863305836,
+        "throughput": 1731.3666361136573,
+        "total_time": 289.3538012047052,
+        "jitter": 0.0039375214613218135
+    },
+    "DPKist-LAPLACE-0-0dum-1of2-1048576": {
+        "latency": 79.34336934946758,
+        "throughput": 1397.9235237173282,
+        "total_time": 321.0836916689255,
+        "jitter": 0.003858675418933243
+    },
+    "DPVanilla-LAPLACE-0-1dum-1of2-1048576": {
+        "latency": 76.72327710058215,
+        "throughput": 1810.8082147477362,
+        "total_time": 288.2733163127425,
+        "jitter": 0.003301942169013036
+    },
+    "DPVanilla-LAPLACE-0-2dum-1of2-5242880": {
+        "latency": 78.16094929910005,
+        "throughput": 335.0809952355744,
+        "total_time": 266.4116619751191,
+        "jitter": 0.004181801467493381
+    },
+    "DPVanilla-LAPLACE-0-0.5dum-1of2-5242880": {
+        "latency": 44.06736209779442,
+        "throughput": 3512.938410320433,
+        "total_time": 217.8334040095714,
+        "jitter": 0.00419416084909138
+    },
+    "DPVanilla-LAPLACE-0-0.75dum-1of2-5242880": {
+        "latency": 35.99980730887718,
+        "throughput": 5068.312525334414,
+        "total_time": 187.56042546007296,
+        "jitter": 0.004534627593345696
+    },
+    "DPKist-LAPLACE-0-2dum-1of2-51200": {
+        "latency": 87.14548620980926,
+        "throughput": 550.7375591567475,
+        "total_time": 187.07633246737416,
+        "jitter": 0.0033325283876001993
+    },
+    "DPVanilla-LAPLACE-0-0.75dum-1of2-51200": {
+        "latency": 88.9262477793137,
+        "throughput": 964.9089282810213,
+        "total_time": 195.6789142797203,
+        "jitter": 0.0034569183527389615
+    },
+    "DPVanilla-LAPLACE-0-0.1dum-0of2-1048576": {
+        "latency": 70.75638899764469,
+        "throughput": 1670.8893001345896,
+        "total_time": 254.28686616790043,
+        "jitter": 0.0033264145965487663
+    },
+    "DPKist-LAPLACE-0-0dum-1of2-5242880": {
+        "latency": 69.79178729745783,
+        "throughput": 578.592064623426,
+        "total_time": 251.34880860822042,
+        "jitter": 0.0037894231845513812
+    },
+    "DPVanilla-LAPLACE-0-0.5dum-1of2-51200": {
+        "latency": 88.23379160170101,
+        "throughput": 205.29450771226755,
+        "total_time": 197.93746581274326,
+        "jitter": 0.003415345393166027
+    },
+    "DPKist-LAPLACE-0-0.5dum-0of2-51200": {
+        "latency": 66.39166465394511,
+        "throughput": 751.2474271012007,
+        "total_time": 138.52358485877645,
+        "jitter": 0.004157306223912487
+    },
+    "DPKist-LAPLACE-0-0.5dum-0of2-5242880": {
+        "latency": 70.37082833642691,
+        "throughput": 655.1365594961883,
+        "total_time": 260.4140901097116,
+        "jitter": 0.0035778223319509125
+    },
+    "DPKist-LAPLACE-0-1dum-0of2-51200": {
+        "latency": 76.91139210065715,
+        "throughput": 369.67286424106425,
+        "total_time": 153.49907529171344,
+        "jitter": 0.00339715725432691
+    },
+    "DPKist-LAPLACE-0-0dum-0of2-5242880": {
+        "latency": 67.62564809506652,
+        "throughput": 427.325110864745,
+        "total_time": 239.89047384478937,
+        "jitter": 0.0032298375077232586
+    },
+    "DPKist-LAPLACE-0-1dum-0of2-5242880": {
+        "latency": 71.62000082367297,
+        "throughput": 583.9563758389262,
+        "total_time": 244.16888216687005,
+        "jitter": 0.004071740747497784
+    },
+    "DPVanilla-LAPLACE-0-0.75dum-0of2-5242880": {
+        "latency": 72.36264704269081,
+        "throughput": 1652.822445019405,
+        "total_time": 263.64167199708925,
+        "jitter": 0.005184627934036106
+    },
+    "DPVanilla-LAPLACE-0-0.25dum-1of2-5242880": {
+        "latency": 79.56058041122384,
+        "throughput": 211.24920735573875,
+        "total_time": 298.89912652187695,
+        "jitter": 0.0033189746127962644
+    },
+    "DPVanilla-LAPLACE-0-0dum-0of2-51200": {
+        "latency": 64.52845268665867,
+        "throughput": 1201.2541650006665,
+        "total_time": 129.8408202361722,
+        "jitter": 0.0035858329313660795
+    },
+    "DPVanilla-LAPLACE-0-2dum-0of2-5242880": {
+        "latency": 71.00369995056799,
+        "throughput": 386.4230887319619,
+        "total_time": 258.6496348022721,
+        "jitter": 0.003278842541046627
+    },
+    "DPKist-LAPLACE-0-0.5dum-1of2-1048576": {
+        "latency": 63.731955192757866,
+        "throughput": 906.7022677395757,
+        "total_time": 274.5084341576445,
+        "jitter": 0.003824044671077484
+    },
+    "DPKist-LAPLACE-0-0.1dum-1of2-5242880": {
+        "latency": 27.48953825929368,
+        "throughput": 1088.625,
+        "total_time": 135.61034326370816,
+        "jitter": 0.004565234976785156
+    },
+    "DPKist-LAPLACE-0-0.25dum-0of2-1048576": {
+        "latency": 69.49805987824773,
+        "throughput": 1345.8978851963745,
+        "total_time": 267.7724903063444,
+        "jitter": 0.0038681112016620465
+    },
+    "DPKist-LAPLACE-0-0.5dum-1of2-51200": {
+        "latency": 84.84687989549181,
+        "throughput": 611.9991217798595,
+        "total_time": 190.0868633891979,
+        "jitter": 0.003755555721355488
+    },
+    "DPKist-LAPLACE-0-1dum-1of2-1048576": {
+        "latency": 42.311650576089335,
+        "throughput": 437.1434201883074,
+        "total_time": 180.74455946682724,
+        "jitter": 0.0037247476879041044
+    },
+    "DPVanilla-LAPLACE-0-0.1dum-0of2-51200": {
+        "latency": 74.12944940719542,
+        "throughput": 1104.3687653311529,
+        "total_time": 155.8397487687653,
+        "jitter": 0.003821279063111418
+    },
+    "DPVanilla-LAPLACE-0-1dum-1of2-51200": {
+        "latency": 66.29413437602989,
+        "throughput": 306.41502801274305,
+        "total_time": 145.37707562748545,
+        "jitter": 0.004363465423074363
+    },
+    "DPVanilla-LAPLACE-0-2dum-1of2-1048576": {
+        "latency": 82.0321714744991,
+        "throughput": 705.8885853066181,
+        "total_time": 314.62809067122043,
+        "jitter": 0.0031770256914643398
+    },
+    "DPVanilla-LAPLACE-0-0.25dum-0of2-5242880": {
+        "latency": 60.87925025562169,
+        "throughput": 1591.0469576719577,
+        "total_time": 242.82561704695766,
+        "jitter": 0.0037902084354933642
+    },
+    "DPVanilla-LAPLACE-0-0.1dum-1of2-5242880": {
+        "latency": 54.780745066294216,
+        "throughput": 2402.7206703910615,
+        "total_time": 250.166113673743,
+        "jitter": 0.003731834916535982
+    },
+    "DPVanilla-LAPLACE-0-1dum-1of2-5242880": {
+        "latency": 39.96554165509761,
+        "throughput": 3797.9906001446134,
+        "total_time": 203.90928491793204,
+        "jitter": 0.004407319913484973
+    },
+    "DPKist-LAPLACE-0-0.1dum-1of2-1048576": {
+        "latency": 85.84673506832087,
+        "throughput": 214.06866077498302,
+        "total_time": 332.1060270700204,
+        "jitter": 0.0032566117507831223
+    },
+    "DPKist-LAPLACE-0-0.75dum-1of2-5242880": {
+        "latency": 48.35286541309013,
+        "throughput": 2300.988197424893,
+        "total_time": 230.58614628469246,
+        "jitter": 0.004200620003348419
+    },
+    "DPKist-LAPLACE-0-2dum-1of2-5242880": {
+        "latency": 85.24415503689379,
+        "throughput": 262.80095209759,
+        "total_time": 322.433756970247,
+        "jitter": 0.0032357913736937717
+    },
+    "DPVanilla-LAPLACE-0-2dum-0of2-51200": {
+        "latency": 72.71966959829811,
+        "throughput": 443.9087441314554,
+        "total_time": 142.24451568251172,
+        "jitter": 0.003709264404395354
+    },
+    "DPKist-LAPLACE-0-2dum-0of2-5242880": {
+        "latency": 62.91221179420949,
+        "throughput": 1064.0005676979847,
+        "total_time": 243.39738484842465,
+        "jitter": 0.00373466102793932
+    },
+    "DPKist-LAPLACE-0-0.75dum-1of2-51200": {
+        "latency": 87.67991074703967,
+        "throughput": 531.0395204262877,
+        "total_time": 193.96454570233865,
+        "jitter": 0.0037565109723614793
+    },
+    "DPVanilla-LAPLACE-0-0dum-0of2-5242880": {
+        "latency": 57.131554167447916,
+        "throughput": 2189.5533854166665,
+        "total_time": 200.99548206822917,
+        "jitter": 0.0042698092891496455
+    },
+    "DPKist-LAPLACE-0-0dum-0of2-51200": {
+        "latency": 61.5700387366995,
+        "throughput": 851.207881773399,
+        "total_time": 119.94768169987684,
+        "jitter": 0.003712765246633671
+    },
+    "DPKist-LAPLACE-0-2dum-0of2-1048576": {
+        "latency": 62.49167791954024,
+        "throughput": 1224.5223835450695,
+        "total_time": 241.24343647247431,
+        "jitter": 0.0035927324775720843
+    },
+    "DPVanilla-LAPLACE-0-0dum-1of2-1048576": {
+        "latency": 62.10652767965482,
+        "throughput": 1574.6780857740587,
+        "total_time": 244.60059183054392,
+        "jitter": 0.004444609843996764
+    },
+    "DPKist-LAPLACE-0-0.1dum-0of2-5242880": {
+        "latency": 66.65250744646464,
+        "throughput": 1315.52784992785,
+        "total_time": 275.18036954689757,
+        "jitter": 0.00453978341236989
+    },
+    "DPVanilla-LAPLACE-0-0.5dum-0of2-1048576": {
+        "latency": 73.77812629765171,
+        "throughput": 1010.261055199756,
+        "total_time": 248.6251593592559,
+        "jitter": 0.004619776020204502
+    },
+    "DPVanilla-LAPLACE-0-0.25dum-1of2-1048576": {
+        "latency": 79.18980124275596,
+        "throughput": 208.96522858982615,
+        "total_time": 311.97880862363166,
+        "jitter": 0.0032958055423197826
+    },
+    "DPKist-LAPLACE-0-0.5dum-0of2-1048576": {
+        "latency": 63.361797173383316,
+        "throughput": 994.007185254608,
+        "total_time": 251.171811998438,
+        "jitter": 0.003701255438402604
+    },
+    "DPKist-LAPLACE-0-1dum-1of2-51200": {
+        "latency": 84.6808627179315,
+        "throughput": 334.1324378777703,
+        "total_time": 180.65352569912693,
+        "jitter": 0.004158026994182317
+    },
+    "DPKist-LAPLACE-0-0.25dum-0of2-5242880": {
+        "latency": 77.46054028501743,
+        "throughput": 333.1268292682927,
+        "total_time": 279.78748909198606,
+        "jitter": 0.003420383899347337
+    },
+    "DPVanilla-LAPLACE-0-0dum-1of2-5242880": {
+        "latency": 43.01305112779615,
+        "throughput": 1326.944757829216,
+        "total_time": 182.15962025131302,
+        "jitter": 0.0036815897879847338
+    },
+    "DPKist-LAPLACE-0-0.25dum-1of2-51200": {
+        "latency": 90.08772536441427,
+        "throughput": 328.7037474181174,
+        "total_time": 194.07562221776334,
+        "jitter": 0.003712117070913423
+    },
+    "DPVanilla-LAPLACE-0-0.75dum-0of2-1048576": {
+        "latency": 60.64365501265822,
+        "throughput": 1928.8195391106783,
+        "total_time": 225.16057388218113,
+        "jitter": 0.004550766428717467
+    },
+    "DPKist-LAPLACE-0-0.25dum-1of2-1048576": {
+        "latency": 76.76321327994994,
+        "throughput": 199.69752893337503,
+        "total_time": 296.13524930747576,
+        "jitter": 0.0033796037380500956
+    },
+    "DPKist-LAPLACE-0-0.75dum-0of2-1048576": {
+        "latency": 74.12815449528937,
+        "throughput": 344.73956931359356,
+        "total_time": 271.3002912025572,
+        "jitter": 0.0032694662858784524
+    },
+    "DPKist-LAPLACE-0-0.1dum-0of2-1048576": {
+        "latency": 69.81710723568216,
+        "throughput": 949.2605697151424,
+        "total_time": 270.93154395532235,
+        "jitter": 0.00390340813018146
+    },
+    "DPVanilla-LAPLACE-0-0.5dum-1of2-1048576": {
+        "latency": 41.882185509664694,
+        "throughput": 2804.037475345168,
+        "total_time": 211.47067162642995,
+        "jitter": 0.004520071533825838
+    },
+    "DPVanilla-LAPLACE-0-0.1dum-0of2-5242880": {
+        "latency": 72.6691948820059,
+        "throughput": 338.79383808587346,
+        "total_time": 266.9372615375287,
+        "jitter": 0.003305493075297263
+    },
+    "DPKist-LAPLACE-0-1dum-1of2-5242880": {
+        "latency": 60.40964480019398,
+        "throughput": 850.2166181700615,
+        "total_time": 257.47010604720333,
+        "jitter": 0.0036664273721250837
+    },
+    "DPVanilla-LAPLACE-0-0.5dum-0of2-51200": {
+        "latency": 77.79927963830445,
+        "throughput": 1052.1096844059407,
+        "total_time": 156.79518575665224,
+        "jitter": 0.0037679400273511795
+    },
+    "DPVanilla-LAPLACE-0-0.25dum-0of2-1048576": {
+        "latency": 62.762196807455425,
+        "throughput": 1554.9277147487844,
+        "total_time": 232.08865749205836,
+        "jitter": 0.00370315225470188
+    },
+    "DPVanilla-LAPLACE-0-1dum-0of2-5242880": {
+        "latency": 60.24923305581109,
+        "throughput": 3509.6439742410303,
+        "total_time": 255.90089677062252,
+        "jitter": 0.004717709007500716
+    },
+    "DPKist-LAPLACE-0-0dum-1of2-51200": {
+        "latency": 83.51214190293679,
+        "throughput": 507.7664260826282,
+        "total_time": 180.95946435540068,
+        "jitter": 0.003546848501902728
+    },
+    "DPVanilla-LAPLACE-0-0dum-1of2-51200": {
+        "latency": 72.1859488677174,
+        "throughput": 1139.2491304347825,
+        "total_time": 156.1463792325,
+        "jitter": 0.0037783754472422064
+    },
+    "DPKist-LAPLACE-0-0.75dum-0of2-51200": {
+        "latency": 74.74636671963994,
+        "throughput": 342.46546644844517,
+        "total_time": 155.52232384288052,
+        "jitter": 0.003337339637853688
+    },
+    "DPVanilla-LAPLACE-0-0.25dum-1of2-51200": {
+        "latency": 80.79018070970577,
+        "throughput": 1937.030888596106,
+        "total_time": 183.99468085902504,
+        "jitter": 0.004119549304385226
+    },
+    "DPVanilla-LAPLACE-0-0.5dum-0of2-5242880": {
+        "latency": 58.783715778252905,
+        "throughput": 1307.2467929138668,
+        "total_time": 255.00573141692124,
+        "jitter": 0.0045249755616243
+    },
+    "DPVanilla-LAPLACE-0-0.1dum-1of2-51200": {
+        "latency": 91.59438435929091,
+        "throughput": 199.89300411522635,
+        "total_time": 208.22714484631214,
+        "jitter": 0.003301277893558514
+    },
+    "DPVanilla-LAPLACE-0-0.1dum-1of2-1048576": {
+        "latency": 68.8998012647954,
+        "throughput": 1429.3892458572877,
+        "total_time": 276.86601791748393,
+        "jitter": 0.0034440749110482556
     }
 }
