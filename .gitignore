@@ -3,6 +3,7 @@
 /logs
 /results/old
 /scripts/ploter/*.png
+/scripts/ploter/**/*.png
 /backup
 /tmp
 /test/extract/data/

@@ -50,9 +50,9 @@ def parse_curl_log(lines):
         if lines[i].startswith("URL:"):
             url = lines[i].strip().split("URL: ")[-1]
             code = lines[i + 1].strip().split("Code: ")[-1]
-            latency = float(re.search(r"([\d.]+)", lines[i + 2]).group(1))
-            total_time = float(re.search(r"([\d.]+)", lines[i + 3]).group(1))
-            throughput = int(re.search(r"(\d+)", lines[i + 4]).group(1))
+            latency = float(re.search(r"([\d.]+)", lines[i + 2])[1])
+            total_time = float(re.search(r"([\d.]+)", lines[i + 3])[1])
+            throughput = int(re.search(r"(\d+)", lines[i + 4])[1])
 
             results.append(
                 {

@@ -14,8 +14,6 @@ launch_clients() {
     local web_clients="$6"
     local tcpdump_mode="$7"
 
-    local c="${CONFIG["clients"]}"
-
     abs_path=${CONFIG["absolute_path_dir"]}
 
     for ((kl = 0; kl < web_clients; kl++)); do
@@ -26,7 +24,7 @@ launch_clients() {
                 cd "'"$abs_path"'"/scripts/tester
                 source src/utils.sh
                 source src/request.sh
-                run_webclient "'"$log_file_path"'" "'"$filesize"'" "'"${c[@]}"'"
+                run_webclient "'"$log_file_path"'" "'"$filesize"'"
             ' &
     done
 
@@ -38,7 +36,7 @@ launch_clients() {
                 cd "'"$abs_path"'"/scripts/tester
                 source src/utils.sh
                 source src/request.sh
-                run_bulkclient "'"$log_file_path"'" "'"$filesize"'" "'"${c[@]}"'"
+                run_bulkclient "'"$log_file_path"'" "'"$filesize"'"
             ' &
     done
 

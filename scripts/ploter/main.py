@@ -1,98 +1,60 @@
 import json
-import matplotlib.pyplot as plt
+import src.parser as parser
+import src.plotter as plotter
 import pandas as pd
+import matplotlib as plt
+
+SHOW = False
 
 # Load the JSON file
 with open("../../results/detailed_results.json") as f:
     data = json.load(f)
 
-# Extract and flatten the data
-records = []
-for name, entry in data.items():
-    print(f"Processing {name}")
-    scheduler = entry["tor_params"]["scheduler"]
-    print(json.dumps(entry["tor_params"], indent=2))
-    is_control = not scheduler.startswith("DP")
-
-    # Assign dummy values for control
-    epsilon = entry["tor_params"].get("dp_epsilon", "control")
-    if is_control:
-        epsilon = "control"
-        distribution = "CONTROL"
-    else:
-        distribution = entry["tor_params"]["dp_distribution"]
-
-    clients = int(entry["client_params"]["bulk_clients"]) + int(entry["client_params"]["web_clients"])
-
-    record = {
-        "name": name,
-        "scheduler": scheduler,
-        "epsilon": str(epsilon),
-        "distribution": distribution,
-        "clients": clients,
-        "latency": entry["latency"]["mean"],
-        "throughput": entry["throughput"]["mean"],
-        "jitter": entry["jitter"]["mean"],
-        "total_time": entry["total_time"]["mean"],
-        "is_control": is_control,
-        "dummy": entry["tor_params"].get("dummy", False),
-        "filesize": entry["file_size"],
-    }
-    if record["filesize"] != "5120":
-        records.append(record)
-
-df = pd.DataFrame(records)
-
 # Unique DP distributions
-dp_distributions = df[~df["is_control"]]["distribution"].dropna().unique()
-
-
-# Plotting function
-def plot_metric_by_distribution(metric, dist, size):
-
-    if size == "51200":
-        sSize = "50 KiB"
-    elif size == "1048576":
-        sSize = "1 MiB"
-    elif size == "5242880":
-        sSize = "10 MiB"
-    else:
-        sSize = size
-
-    plt.figure(figsize=(10, 6))
-
-    subset = df[(df["distribution"] == dist) | (df["is_control"] == True)]
-
-    for (sched, eps, dummy, file_size), group in subset.groupby(
-        ["scheduler", "epsilon", "dummy", "filesize"]
-    ):
-        if file_size != size:
-            continue
-        group_sorted = group.sort_values("clients")
-        label = f"{sched} | εD={dummy}" if eps != "control" else f"{sched} (control)"
-        line_style = (
-            "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ".-"
-        )
-        plt.plot(
-            group_sorted["clients"],
-            group_sorted[metric],
-            marker="o",
-            label=label,
-            linestyle=line_style,
-        )
-
-    plt.title(f"{metric.capitalize()} vs Number of Clients ({sSize})")
-    plt.xlabel("Number of Clients")
-    plt.ylabel(metric.capitalize())
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.grid(True)
-    plt.tight_layout()
-    plt.savefig(f"{metric}_vs_clients_{dist}.png")
-    plt.show()
-
-
+data = parser.parse_detailed(data)
 # Generate plots for each metric, for each DP distribution
-for filesize in df["filesize"].unique():
-    for metric in ["latency", "throughput", "jitter", "total_time"]:
-        for dist in dp_distributions:
-            plot_metric_by_distribution(metric, dist, filesize)
+df = pd.DataFrame(data)
+
+filesizes = df["filesize"].unique()
+metrics = ["latency", "throughput", "jitter", "total_time"]
+distributions = df["distribution"].unique()
+schedulers = df["scheduler"].unique()
+
+print("Filesizes:", filesizes)
+print("Metrics:", metrics)
+print("Distributions:", distributions)
+print("Schedulers:", schedulers)
+
+# # Only Dummy (Distribution is irrelevant)
+for metric in metrics:
+    for filesize in filesizes:
+        plotter.plot_dummy(metric, filesize, df, SHOW)
+
+# # Only Jitter (One plot for each distribution)
+for metric in metrics:
+    for filesize in filesizes:
+        for dist in distributions:
+            plotter.plot_jitter_by_distribution(metric, dist, filesize, df, SHOW)
+
+# Only Jitter (Distributions in the same plot, fixed epsilon [0 & max])
+min_eps = df["epsilon"].min()
+max_eps = df["epsilon"].max()
+accepted_eps = [min_eps, max_eps]
+
+for metric in metrics:
+    for filesize in filesizes:
+        plotter.plot_jitter(metric, filesize, df, accepted_eps, SHOW)
+
+# Jitter + Dummy Side by Side (Max & Min Dummy + Max & Min Epsilon)
+min_dummy = df["dummy"].min()
+max_dummy = df["dummy"].max()
+accepted_dummy = [min_dummy, max_dummy]
+
+for metric in metrics:
+    for filesize in filesizes:
+        plotter.plot_jitter_dummy(
+            metric, filesize, df, accepted_dummy, accepted_eps, SHOW
+        )
+
+print("Plots generated successfully.")
+exit(0)
