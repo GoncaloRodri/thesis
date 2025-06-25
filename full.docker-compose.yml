@@ -195,21 +195,7 @@ services:
       - ./configuration/.config:/conf/
       - ./logs/:/app/logs/
     networks:
-      net:
-        ipv4_address: 10.5.0.250
-
-  client2:
-    image: dptor_node
-    command: ["client"]
-    ports:
-      - 9001:9000
-    volumes:
-      - ./configuration/:/app/source/
-      - ./configuration/.config:/conf/
-      - ./logs/:/app/logs/
-    networks:
-      net:
-        ipv4_address: 10.5.0.251
+      - net
 
 networks:
   net:
