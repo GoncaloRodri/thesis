@@ -19,6 +19,7 @@ fi
 cd /app/tor || exit 1
 
 sed -i "s/^Address .*/Address $(hostname -i)/" /conf/tor.common.torrc
+sed -i "s/^Nickname .*/Nickname $NODE_NAME/" /conf/tor.common.torrc
 
 cat /conf/tor.common.torrc
 

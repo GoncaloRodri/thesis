@@ -21,13 +21,14 @@ DisableDebuggerAttachment 0
 BandwidthRate 1024000
 BandwidthBurst 1024000
 
-Address 10.5.0.3
+Address 10.5.0.4
+Nickname exit1
 
 ############## Scheduling ##############
 Schedulers DPKist
 
 ######### Differential Privacy #########
-DPSchedulerEpsilon 0.1
+DPSchedulerEpsilon 0
 DPSchedulerDistribution LAPLACE
 
 ################ Jitter ################
@@ -36,4 +37,4 @@ DPSchedulerMaxJitter 10
 DPSchedulerTargetJitter 2
 
 ######### Packet Cell Padding ##########
-DummyCellEpsilon 0.5
+DummyCellEpsilon 0

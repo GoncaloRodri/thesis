@@ -72,16 +72,15 @@ def merge_data(test_data):
     return merged_data
 
 def resume_results_per_test(results):
-    resume = {}
-    for test_name, test_results in results.items():
-        resume[test_name] = {
+    return {
+        test_name: {
             "latency": test_results["latency"]["mean"],
             "throughput": test_results["throughput"]["mean"],
             "total_time": test_results["total_time"]["mean"],
-            "jitter": test_results["jitter"]["mean"]
+            "jitter": test_results["jitter"]["mean"],
         }
-
-    return resume
+        for test_name, test_results in results.items()
+    }
 
 def resume_results_per_metric(results):
     latency = {}

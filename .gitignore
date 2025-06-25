@@ -1,6 +1,8 @@
 .vscode
 
 /logs
+/results/old
+/scripts/ploter/*.png
 /backup
 /tmp
 /test/extract/data/

@@ -23,13 +23,6 @@ run_experiment() {
     web_clients=$(echo "$client_params" | jq -r '.web_clients')
     top_web_clients=$(echo "$client_params" | jq -r '.top_web_clients')
 
-    echo "Running performance experiment: $name"
-    echo "tcpdump_mode: $tcpdump_mode"
-    echo "end_test_at: $end_test_at"
-    echo "file_size: $file_size"
-    echo "client_params: $client_params"
-    echo "tor_params: $tor_params"
-
     for ((ii = 0; ii < $((repeat)); ii++)); do
 
         # Run the performance experiment

@@ -195,8 +195,7 @@ services:
       - ./configuration/.config:/conf/
       - ./logs/:/app/logs/
     networks:
-      net:
-        ipv4_address: 10.5.0.250
+      - net
 
 networks:
   net:
