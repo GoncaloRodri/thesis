@@ -38,6 +38,10 @@ def resolve_files(test_path):
 def analyzer_data(info, curl_lines, tor_files):
     curl_data = {}
     tor_data = {}
+
+    if not info or not curl_lines or not tor_files:
+        return {}
+
     if curl_lines:
         curl_data = curl_parser.get_info(curl_lines)
 
@@ -58,6 +62,10 @@ def merge_data(test_data):
     merged_data = {}
 
     for test_name, test_list in data_per_test.items():
+        if not len(test_data.get(test_list[0])):
+            print(f"Test data for {test_list[0]} is missing, skipping...")
+            continue
+
         merged_data[test_name] = {
             "name": test_data[test_list[0]].get("name"),
             "file_size": test_data[test_list[0]].get("file_size"),
@@ -67,7 +75,10 @@ def merge_data(test_data):
             "throughput": metrics_utils.merge_throughput(test_list, test_data),
             "jitter": metrics_utils.merge_jitter(test_list, test_data),
             "total_time": metrics_utils.merge_total_time(test_list, test_data),
+            "total_packets": metrics_utils.merge_total_packets(test_list, test_data),
         }
+        print(merged_data[test_name])
+
 
     return merged_data
 
@@ -123,6 +134,8 @@ if __name__ == "__main__":
     )
 
     test_results = merge_data(test_data)
+    print("Merged test results:", test_results)
+    print(json.dumps(test_results, indent=4))
 
     results_folder = os.path.join(main_folder, "../results")
     os.makedirs(results_folder, exist_ok=True)

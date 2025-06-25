@@ -6,8 +6,11 @@ source src/utils.sh
 BOOTSTRAP_SLEEP=1
 MAX_TIME_TO_BOOTSTRAP=90
 PERFORMANCE_BOOTSTRAP_COUNTER=18
+DOCKER_COMPOSE_FILE="full.docker-compose.yml"
 
 launch_tor_network() {
+
+    df="${CONFIG["absolute_path_dir"]}/${DOCKER_COMPOSE_FILE}"
 
     if [ "$BUILD" == true ]; then
         log_info "launch_tor_network()" "Building Docker images..."
@@ -15,7 +18,7 @@ launch_tor_network() {
     fi
 
     while true; do
-        COMPOSE_BAKE=true docker compose -f "$1" up -d
+        COMPOSE_BAKE=true docker compose -f "$df" up -d
 
         local start end elapsed
 
@@ -36,7 +39,7 @@ launch_tor_network() {
             fi
         done
         log_error "launch_tor_network()                                             " "Tor Network failed to bootstrap within $MAX_TIME_TO_BOOTSTRAP seconds. Retrying..."
-        docker compose -f "$1" down --remove-orphans
+        docker compose -f "$df" down --remove-orphans
         sleep 20
     done
 
@@ -45,7 +48,8 @@ launch_tor_network() {
 
 docker_clean() {
     cd "${CONFIG["absolute_path_dir"]}" || log_fatal "docker_clean()" "Failed to change directory to ${CONFIG["absolute_path_dir"]}"
-    docker compose down --remove-orphans
+    df="${CONFIG["absolute_path_dir"]}/${DOCKER_COMPOSE_FILE}"
+    docker compose -f $df down --remove-orphans
 }
 
 set_configuration() {

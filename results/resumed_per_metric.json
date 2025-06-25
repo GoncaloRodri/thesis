@@ -1,0 +1,14 @@
+{
+    "latency": {
+        "DPKist-LAPLACE-0-0dum-2Clients-1048576": 1.600905245762712
+    },
+    "throughput": {
+        "DPKist-LAPLACE-0-0dum-2Clients-1048576": 64271.911016949154
+    },
+    "total_time": {
+        "DPKist-LAPLACE-0-0dum-2Clients-1048576": 1.8070851694915258
+    },
+    "jitter": {
+        "DPKist-LAPLACE-0-0dum-2Clients-1048576": 0.18535945730486567
+    }
+}

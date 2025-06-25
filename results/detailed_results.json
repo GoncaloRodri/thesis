@@ -1,0 +1,53 @@
+{
+    "DPKist-LAPLACE-0-0dum-2Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0dum-2Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 1,
+            "web_clients": 1,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.600905245762712,
+            "min": 0.593632,
+            "max": 5.376004,
+            "stddev": 0.7555351779618121,
+            "median": 1.3613245
+        },
+        "throughput": {
+            "mean": 64271.911016949154,
+            "min": 94.0,
+            "max": 123191.0,
+            "stddev": 23178.201704598036,
+            "median": 64133.5
+        },
+        "jitter": {
+            "mean": 0.18535945730486567,
+            "min": 0.0,
+            "max": 157.27411580085754,
+            "stddev": 2.005688277904036,
+            "variance": 4.022785468121657
+        },
+        "total_time": {
+            "mean": 1.8070851694915258,
+            "min": 0.627582,
+            "max": 5.555636,
+            "stddev": 0.7509298350906312,
+            "median": 1.5788099999999998
+        },
+        "total_packets": {
+            "mean": 24047.0,
+            "min": 24047.0,
+            "max": 24047.0
+        }
+    }
+}

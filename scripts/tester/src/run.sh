@@ -5,8 +5,6 @@ source src/utils.sh
 source src/build.sh
 source src/clients.sh
 
-DOCKER_COMPOSE_FILE="docker-compose.yml"
-
 run_experiment() {
     local repeat name tcpdump_mode end_test_at client_params tor_params
 
@@ -38,7 +36,7 @@ run_experiment() {
         log_success "Torrc Configuration Completed!\n"
 
         log_info "Launching Virtual Tor Network..."
-        launch_tor_network "${CONFIG["absolute_path_dir"]}/${DOCKER_COMPOSE_FILE}"
+        launch_tor_network
         log_success "Virtual Tor Network Launched!\n"
 
         if [ -n "$top_web_clients" ] && [ "$top_web_clients" -gt 0 ]; then
@@ -46,7 +44,7 @@ run_experiment() {
             launch_topweb_clients "$name" "$file_size" "$ii" "$end_test_at" "$top_web_clients" "$tcpdump_mode"
         elif [ -n "$bulk_clients" ] && [ -n "$web_clients" ] && { [ "$bulk_clients" -gt 0 ] || [ "$web_clients" -gt 0 ]; }; then
             log_info "Starting Bulk/Web Clients Experiment..."
-            launch_clients "$name" "$file_size" "$ii" "$end_test_at" "$bulk_clients" "$web_clients" "$tcpdump_mode"
+            launch_clients "$name" "$file_size" "$ii" "$end_test_at" "$bulk_clients" "$web_clients" "$tcpdump_mode" 
         else
             # shellcheck disable=SC2140
             log_fatal "run_performance_experiment()" "Number of clients wrongly specified in the configuration. Set "bulk_clients" and "web_clients" or "top_web_clients" in the experiment params."
@@ -150,7 +148,8 @@ run_combinations() {
                                         file_size=$(echo "$FILESIZE_LIST" | jq -r ".[$q]")
 
                                         #SCHED - DIST - EPSILON - DUMMY - CLIENT_RATIO - FILESIZE
-                                        name="$(echo "$SCHEDULER_LIST" | jq -r ".[$p]")-$(echo "$DP_DIST_LIST" | jq -r ".[$n]")-$(echo "$DP_EPSILON_LIST" | jq -r ".[$o]")-$(echo "$DUMMY_LIST" | jq -r ".[$j]")dum-${i}of$NUM_CLIENTS-$file_size"
+                                        totalC="$(echo "$CLIENTS_LIST" | jq -r ".[$i][0] + .[$i][1] + .[$i][2]")"
+                                        name="$(echo "$SCHEDULER_LIST" | jq -r ".[$p]")-$(echo "$DP_DIST_LIST" | jq -r ".[$n]")-$(echo "$DP_EPSILON_LIST" | jq -r ".[$o]")-$(echo "$DUMMY_LIST" | jq -r ".[$j]")dum-${totalC}Clients-$file_size"
                                         run_experiment "$name" "$TCP_DUMP_MODE" "$file_size" "$END_TEST_AT" "$client_params" "$tor_params"
                                     done
                                 done

@@ -43,35 +43,16 @@ def compute_stats(curl_logs: list[dict]) -> dict:
     }
 
 
-def parse(filepath: str) -> dict:
-    result = {}
-    with open(filepath, 'r') as file:
-        for line in file:
-            if ':' in line:
-                key, value = line.strip().split(':', 1)
-                key = key.strip()
-                value = value.strip()
-                # Remove units like "s" and "bytes/sec", and convert to float or int if possible
-                if value.endswith('s'):
-                    value = float(value[:-1])
-                elif value.endswith('bytes/sec'):
-                    value = int(value.split()[0])
-                else:
-                    with contextlib.suppress(ValueError):
-                        value = int(value)
-                result[key] = value
-    return result
-
-
 def parse_curl_log(lines):
     results = []
     i = 0
     while i < len(lines):
         if lines[i].startswith("URL:"):
             url = lines[i].strip().split("URL: ")[-1]
-            latency = float(re.search(r"([\d.]+)", lines[i + 1]).group(1))
-            total_time = float(re.search(r"([\d.]+)", lines[i + 2]).group(1))
-            throughput = int(re.search(r"(\d+)", lines[i + 3]).group(1))
+            code = lines[i + 1].strip().split("Code: ")[-1]
+            latency = float(re.search(r"([\d.]+)", lines[i + 2]).group(1))
+            total_time = float(re.search(r"([\d.]+)", lines[i + 3]).group(1))
+            throughput = int(re.search(r"(\d+)", lines[i + 4]).group(1))
 
             results.append(
                 {
@@ -81,7 +62,7 @@ def parse_curl_log(lines):
                     "throughput": throughput,
                 }
             )
-            i += 4
+            i += 5
         else:
             i += 1  # Skip malformed lines if any
 

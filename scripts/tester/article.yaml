@@ -7,21 +7,25 @@ config:
   copy_target: backup/
   configuration_dir: configuration/
   top_website_path: mini.websites.txt
-  clients: ["9000", "9001"]
+  clients: 9000
 
 combinations:
   tcpdump: false
-  filesize: ["51200", "1048576", "5242880"]
+  #filesize: ["51200", "1048576", "5242880"]
+  filesize: ["1048576"]
   end_test_at: 600
   clients:
     # [Bulk Clients, Web Clients, Top Web Clients]
-    - [1000, 1000, 0]
-    - [1500, 1500, 0]
+    - [1, 0, 0]
+    - [2, 0, 0]
+    - [5, 0, 0]
+    - [10, 0, 0]
+    - [20, 0, 0]
   tor:
-    dummy: [0.0, 0.1, 0.25, 0.5, 0.75, 1.0, 2.0]
+    dummy: [0.0, 0.25, 0.5, 0.75, 1.0, 2.0]
     max_jitter: [10]
     min_jitter: [1]
     target_jitter: [2]
     dp_distribution: ["LAPLACE"]
-    dp_epsilon: [0.0]
-    scheduler: ["DPKist", "DPVanilla"]
+    dp_epsilon: [0.0, 1.0]
+    scheduler: ["DPKist"]

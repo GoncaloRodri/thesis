@@ -1,15 +1,6 @@
 import numpy as np
 import json
 
-def get_latency_metrics(test_results):
-    pass
-
-def get_throughput_metrics(test_results):
-    pass
-
-def get_jitter_metrics(circuits):
-    pass
-
 def merge_latency(keys, data):
     latencies = []
     for key in keys:
@@ -81,4 +72,23 @@ def merge_total_time(keys, data):
         "max": np.max([d["max"] for d in total_times]),
         "stddev": np.mean([d["std"] for d in total_times]),
         "median": np.mean([d["median"] for d in total_times])
+    }
+
+
+def merge_total_packets(keys, data):
+    total_packets = []
+    for key in keys:
+        if key in data and "total_packets" in data[key]:
+            total_packets.append(data[key].get("total_packets"))
+
+    print(f"Total packets: {total_packets}")
+
+    if not total_packets:
+        print("No total time data found for the provided keys.")
+        return {"mean": 0, "min": 0, "max": 0}
+    
+    return {
+        "mean": np.mean(total_packets),
+        "min": np.min(total_packets) * 1.0,
+        "max": np.max(total_packets) * 1.0,
     }
