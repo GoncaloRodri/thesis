@@ -8,7 +8,7 @@ exec_curl() {
 }
 get_url() {
     local filesize="$1"
-    echo "http://ipv4.download.thinkbroadband.com/${filesize}.zip"
+    echo "https://httpbin.org/bytes/${filesize}"
 }
 
 get_logfile() {
