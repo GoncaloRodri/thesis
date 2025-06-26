@@ -26,6 +26,7 @@ launch_clients() {
                 source src/request.sh
                 run_webclient "'"$log_file_path"'" "'"$filesize"'"
             ' &
+        client_pids+=($!)
     done
 
     for ((lk = 0; lk < bulk_clients; lk++)); do
@@ -38,11 +39,30 @@ launch_clients() {
                 source src/request.sh
                 run_bulkclient "'"$log_file_path"'" "'"$filesize"'"
             ' &
+        client_pids+=($!)
     done
 
     log_info "Ending bulk clients for $name after $test_timeout seconds..."
     sleep "$test_timeout"
+
+    log_info "Checking for lingering processes after timeout..."
+    debug_running_processes
+
+    log_info "Killing lingering processes for $name..."
+    for pid in "${client_pids[@]}"; do
+        if kill -0 "$pid" 2>/dev/null; then
+            log_info "Killing lingering process $pid"
+            kill -TERM "$pid" 2>/dev/null || true
+            sleep 1
+            kill -KILL "$pid" 2>/dev/null || true
+        fi
+    done
+
     wait
+    cleanup_test_processes
+
+    log_info "Double-checking for lingering processes after cleanup..."
+    debug_running_processes
 
     log_success "All clients for $name have completed."
 }

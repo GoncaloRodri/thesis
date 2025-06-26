@@ -210,3 +210,52 @@ verify_config() {
 
     log_success "Configuration verified successfully."
 }
+
+debug_running_processes() {
+    local name="$1"
+    log_info "=== DEBUG: Checking running processes for test: $name ==="
+
+    # Check for curl processes
+    echo "Curl processes:"
+    pgrep -f curl || echo "No curl processes found"
+
+    # Check for bash processes (your client scripts)
+    echo "Client script processes:"
+    pgrep -f "run_webclient\|run_bulkclient" || echo "No client script processes found"
+
+    # Check for timeout processes
+    echo "Timeout processes:"
+    pgrep -f timeout || echo "No timeout processes found"
+
+    # Check Docker container processes
+    echo "Docker processes in containers:"
+    for container in "${CONTAINERS[@]}"; do
+        echo "--- Container: thesis-${container}-1 ---"
+        docker exec "thesis-${container}-1" ps aux | grep -E "(curl|bash)" || echo "No relevant processes in $container"
+    done
+}
+
+cleanup_test_processes() {
+    local name="$1"
+    log_info "Cleaning up processes for test: $name"
+
+    # Kill curl processes
+    pkill -f curl 2>/dev/null || true
+
+    # Kill timeout processes
+    pkill -f timeout 2>/dev/null || true
+
+    # Kill client script processes
+    pkill -f "run_webclient\|run_bulkclient" 2>/dev/null || true
+
+    kill -KILL $(pgrep bash) 
+
+    # Clean up Docker container processes
+    for container in "${CONTAINERS[@]}"; do
+        docker exec "thesis-${container}-1" pkill -f curl 2>/dev/null || true
+        docker exec "thesis-${container}-1" pkill -f bash 2>/dev/null || true
+    done
+
+    # Wait a bit for cleanup
+    sleep 2
+}

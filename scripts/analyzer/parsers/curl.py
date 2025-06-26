@@ -46,6 +46,7 @@ def compute_stats(curl_logs: list[dict]) -> dict:
 def parse_curl_log(lines):
     results = []
     i = 0
+    non200curl = 0
     while i < len(lines):
         if lines[i].startswith("URL:"):
             url = lines[i].strip().split("URL: ")[-1]
@@ -54,16 +55,22 @@ def parse_curl_log(lines):
             total_time = float(re.search(r"([\d.]+)", lines[i + 3])[1])
             throughput = int(re.search(r"(\d+)", lines[i + 4])[1])
 
-            results.append(
-                {
-                    "url": url,
-                    "latency": latency,
-                    "total_time": total_time,
-                    "throughput": throughput,
-                }
-            )
+            if code == "200":
+                results.append(
+                    {
+                        "url": url,
+                        "latency": latency,
+                        "total_time": total_time,
+                        "throughput": throughput,
+                    }
+                )
+            else:
+                non200curl += 1
+
             i += 5
         else:
             i += 1  # Skip malformed lines if any
+
+    print(f"Non-200 responses found in curl logs: {non200curl}")
 
     return results

@@ -4,7 +4,7 @@ import src.plotter as plotter
 import pandas as pd
 import matplotlib as plt
 
-SHOW = False
+SHOW = True
 
 # Load the JSON file
 with open("../../results/detailed_results.json") as f:
@@ -28,7 +28,9 @@ print("Schedulers:", schedulers)
 # # Only Dummy (Distribution is irrelevant)
 for metric in metrics:
     for filesize in filesizes:
+        print(f"Plotting {metric} for filesize {filesize}...")
         plotter.plot_dummy(metric, filesize, df, SHOW)
+exit()
 
 # # Only Jitter (One plot for each distribution)
 for metric in metrics:
