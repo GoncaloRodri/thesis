@@ -16,7 +16,8 @@ data = parser.parse_detailed(data)
 df = pd.DataFrame(data)
 
 filesizes = df["filesize"].unique()
-metrics = ["latency", "throughput", "jitter", "total_time"]
+metrics = ["jitter", "latency_95", "throughput_95", "total_time_95"]
+# metrics = ["total_packets", "jitter", "jitter_variance", "jitter_stddev"]
 distributions = df["distribution"].unique()
 schedulers = df["scheduler"].unique()
 
@@ -25,12 +26,12 @@ print("Metrics:", metrics)
 print("Distributions:", distributions)
 print("Schedulers:", schedulers)
 
+
 # # Only Dummy (Distribution is irrelevant)
 for metric in metrics:
     for filesize in filesizes:
         print(f"Plotting {metric} for filesize {filesize}...")
         plotter.plot_dummy(metric, filesize, df, SHOW)
-exit()
 
 # # Only Jitter (One plot for each distribution)
 for metric in metrics:

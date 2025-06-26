@@ -57,7 +57,7 @@ def extract_circuits_data(data, fs):
         deltas.append(float(ts) - last_ts)
         last_ts = float(ts)
         connections[sender.split(":")[0]] = connections.get(sender.split(":")[0], 0) + 1
-    
+
     relay_data.append(
         {
             "filename": fs.split("/")[-1].replace(".tor.log", ""),
