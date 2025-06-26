@@ -5,7 +5,7 @@ source src/utils.sh
 exec_curl() {
     local url="$1"
     local log_file="$2"
-    curl --socks5 127.0.0.1:9000 -s -w "URL: $url\nCode: %{response_code}\nTime to first byte: %{time_starttransfer}s\nTotal time: %{time_total}s\nDownload speed: %{speed_download} bytes/sec\n" -o /dev/null "$url" >>"$log_file"
+    curl --socks5 127.0.0.1:9000 -s -H 'Cache-Control: no-cache' -w "URL: $url\nCode: %{response_code}\nTime to first byte: %{time_starttransfer}s\nTotal time: %{time_total}s\nDownload speed: %{speed_download} bytes/sec\n" -o /dev/null "$url" >>"$log_file"
 }
 get_url() {
     local filesize="$1"
