@@ -74,11 +74,22 @@ def merge_data(test_data):
             "latency": metrics_utils.merge_latency(test_list, test_data),
             "throughput": metrics_utils.merge_throughput(test_list, test_data),
             "jitter": metrics_utils.merge_jitter(test_list, test_data),
+            "latency_95": test_data[test_list[0]]
+            .get("latency")
+            .get("percentiles")
+            .get("95th"),
+            "throughput_95": test_data[test_list[0]]
+            .get("throughput")
+            .get("percentiles")
+            .get("95th"),
+            "total_time_95": test_data[test_list[0]]
+            .get("total_time")
+            .get("percentiles")
+            .get("95th"),
             "total_time": metrics_utils.merge_total_time(test_list, test_data),
             "total_packets": metrics_utils.merge_total_packets(test_list, test_data),
         }
         print(merged_data[test_name])
-
 
     return merged_data
 
