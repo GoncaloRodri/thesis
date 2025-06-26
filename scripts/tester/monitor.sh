@@ -25,4 +25,5 @@ done
 
 run_combinations
 
+
 rm -rf "${CONFIG["absolute_path_dir"]}/tmp"

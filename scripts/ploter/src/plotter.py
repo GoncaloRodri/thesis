@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 
 def plot_dummy(metric, filesize, data, show=False):
+    print(data)
     for (sched, eps, dummy, file_size), group in data.groupby(
         ["scheduler", "epsilon", "dummy", "filesize"]
     ):
@@ -8,10 +9,8 @@ def plot_dummy(metric, filesize, data, show=False):
             continue
         group_sorted = group.sort_values("clients")
         label = f"{sched} | εD={dummy}" if eps != "control" else f"{sched} (control)"
-        line_style = (
-            "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ".-"
-        )
-        print(group_sorted)
+        line_style = "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ":"
+        print(group_sorted[metric])
 
         plt.plot(
             group_sorted["clients"],
@@ -29,6 +28,7 @@ def plot_dummy(metric, filesize, data, show=False):
     plt.savefig(f"figures/dummy/{metric}_vs_clients_{get_file_sizes(filesize).lower().replace(" ", "_")}.png")
     if show:
         plt.show()
+    plt.clf()
 
 
 def plot_jitter_by_distribution(metric, dist, filesize, data, show=False):
@@ -39,9 +39,7 @@ def plot_jitter_by_distribution(metric, dist, filesize, data, show=False):
             continue
         group_sorted = group.sort_values("clients")
         label = f"{sched} | εS={eps}" if eps != "control" else f"{sched} (control)"
-        line_style = (
-            "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ".-"
-        )
+        line_style = "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ":"
         plt.plot(
             group_sorted["clients"],
             group_sorted[metric],
@@ -58,6 +56,7 @@ def plot_jitter_by_distribution(metric, dist, filesize, data, show=False):
     plt.savefig(f"figures/jitter/{metric}_vs_clients_{get_file_sizes(filesize).lower().replace(' ', '_')}_{dist}.png")
     if show:
         plt.show()
+    plt.clf()
 
 def plot_jitter(metric, filesize, data, accepted_eps, show=False):
     for (sched, eps, dummy, file_size, dist), group in data.groupby(
@@ -67,9 +66,7 @@ def plot_jitter(metric, filesize, data, accepted_eps, show=False):
             continue
         group_sorted = group.sort_values("clients")
         label = f"{sched} | εS={eps} | {dist.capitalize()}" if eps != "control" else f"{sched} (control)"
-        line_style = (
-            "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ".-"
-        )
+        line_style = "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ":"
         plt.plot(
             group_sorted["clients"],
             group_sorted[metric],
@@ -86,6 +83,7 @@ def plot_jitter(metric, filesize, data, accepted_eps, show=False):
     plt.savefig(f"figures/jitter/{metric}_vs_clients_{get_file_sizes(filesize).lower().replace(' ', '_')}.png")
     if show:
         plt.show()
+    plt.clf()
 
 
 def plot_jitter_dummy(metric, filesize, data, accepted_dummy, accepted_eps, show=False):
@@ -96,9 +94,7 @@ def plot_jitter_dummy(metric, filesize, data, accepted_dummy, accepted_eps, show
             continue
         group_sorted = group.sort_values("clients")
         label = f"{sched} | εD={dummy} | εS={eps} | {dist.capitalize()}" if eps != "control" else f"{sched} (control)"
-        line_style = (
-            "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ".-"
-        )
+        line_style = "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ":"
         plt.plot(
             group_sorted["clients"],
             group_sorted[metric],
@@ -115,6 +111,7 @@ def plot_jitter_dummy(metric, filesize, data, accepted_dummy, accepted_eps, show
     plt.savefig(f"figures/jitter_dummy/{metric}_vs_clients_{get_file_sizes(filesize).lower().replace(' ', '_')}.png")
     if show:
         plt.show()
+    plt.clf()
 
 ########################################
 # Helpers

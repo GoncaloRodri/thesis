@@ -16,7 +16,16 @@ data = parser.parse_detailed(data)
 df = pd.DataFrame(data)
 
 filesizes = df["filesize"].unique()
-metrics = ["jitter", "latency_95", "throughput_95", "total_time_95"]
+metrics = [
+    "jitter",
+    "latency_95",
+    "throughput_95",
+    "total_time_95",
+    "latency",
+    "throughput",
+    "total_time",
+]
+
 # metrics = ["total_packets", "jitter", "jitter_variance", "jitter_stddev"]
 distributions = df["distribution"].unique()
 schedulers = df["scheduler"].unique()

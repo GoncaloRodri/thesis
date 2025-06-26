@@ -1,220 +1,4 @@
 {
-    "DPKist-LAPLACE-0-1dum-2Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-1dum-2Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "1",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 2,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 2.0078615680751173,
-            "min": 0.572919,
-            "max": 6.75121,
-            "stddev": 1.0735073391019034,
-            "median": 1.739497
-        },
-        "throughput": {
-            "mean": 55672.86384976526,
-            "min": 14772.0,
-            "max": 122364.0,
-            "stddev": 21956.827798693124,
-            "median": 52835.0
-        },
-        "jitter": {
-            "mean": 0.17967643435391342,
-            "min": 0.0,
-            "max": 184.25837564468384,
-            "stddev": 2.3256009406994447,
-            "variance": 5.408419735382142
-        },
-        "latency_95": 4.367374249999999,
-        "throughput_95": 92633.25,
-        "total_time_95": 4.58658475,
-        "total_time": {
-            "mean": 2.2168199061032863,
-            "min": 0.836846,
-            "max": 6.932006,
-            "stddev": 1.0751519881740361,
-            "median": 1.938083
-        },
-        "total_packets": {
-            "mean": 61260.0,
-            "min": 61260.0,
-            "max": 61260.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.25dum-2Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.25dum-2Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.25",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 2,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 1.419281779964222,
-            "min": 0.605671,
-            "max": 4.594843,
-            "stddev": 0.6139674349107771,
-            "median": 1.213511
-        },
-        "throughput": {
-            "mean": 70006.00178890876,
-            "min": 21456.0,
-            "max": 125297.0,
-            "stddev": 20866.249705469752,
-            "median": 72124.0
-        },
-        "jitter": {
-            "mean": 0.1454986134438638,
-            "min": 0.0,
-            "max": 182.24578189849854,
-            "stddev": 1.8542424902914802,
-            "variance": 3.4382152128023504
-        },
-        "latency_95": 2.500572500000002,
-        "throughput_95": 104490.40000000001,
-        "total_time_95": 2.682680600000001,
-        "total_time": {
-            "mean": 1.629828983899821,
-            "min": 0.817257,
-            "max": 4.772446,
-            "stddev": 0.6150200327282348,
-            "median": 1.41977
-        },
-        "total_packets": {
-            "mean": 76873.0,
-            "min": 76873.0,
-            "max": 76873.0
-        }
-    },
-    "DPKist-LAPLACE-0-2dum-5Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-2dum-5Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "2",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 5,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 4.9189532751842755,
-            "min": 0.968657,
-            "max": 38.262585,
-            "stddev": 4.820180468062377,
-            "median": 3.430362
-        },
-        "throughput": {
-            "mean": 30460.71253071253,
-            "min": 2657.0,
-            "max": 87571.0,
-            "stddev": 16568.56348493183,
-            "median": 28126.0
-        },
-        "jitter": {
-            "mean": 0.13145227268833434,
-            "min": 0.0,
-            "max": 206.27392292022705,
-            "stddev": 2.0137835435449674,
-            "variance": 4.055324160252525
-        },
-        "latency_95": 14.950244099999997,
-        "throughput_95": 61976.6,
-        "total_time_95": 15.192542899999996,
-        "total_time": {
-            "mean": 5.133791034398035,
-            "min": 1.16933,
-            "max": 38.533505,
-            "stddev": 4.8282220280732755,
-            "median": 3.640701
-        },
-        "total_packets": {
-            "mean": 83919.0,
-            "min": 83919.0,
-            "max": 83919.0
-        }
-    },
-    "DPKist-LAPLACE-0-1dum-10Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-1dum-10Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "1",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 10,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 3.3811840280308343,
-            "min": 0.630004,
-            "max": 27.176023,
-            "stddev": 2.2049949326177956,
-            "median": 2.91472
-        },
-        "throughput": {
-            "mean": 36740.50455501051,
-            "min": 3743.0,
-            "max": 114342.0,
-            "stddev": 17746.545352785102,
-            "median": 32779.0
-        },
-        "jitter": {
-            "mean": 0.06839292864479396,
-            "min": 0.0,
-            "max": 184.26046991348267,
-            "stddev": 1.2641145790358295,
-            "variance": 1.5979856689309324
-        },
-        "latency_95": 7.3186899,
-        "throughput_95": 71863.3,
-        "total_time_95": 7.5970822,
-        "total_time": {
-            "mean": 3.5962848724597056,
-            "min": 0.895558,
-            "max": 27.351945,
-            "stddev": 2.2116172776125467,
-            "median": 3.123879
-        },
-        "total_packets": {
-            "mean": 160955.0,
-            "min": 160955.0,
-            "max": 160955.0
-        }
-    },
     "DPKist-LAPLACE-0-1dum-5Clients-1048576": {
         "name": "DPKist-LAPLACE-0-1dum-5Clients-1048576",
         "file_size": "1048576",
@@ -228,855 +12,45 @@
             "scheduler": "DPKist"
         },
         "client_params": {
-            "bulk_clients": 5,
-            "web_clients": 0,
+            "bulk_clients": 0,
+            "web_clients": 5,
             "top_web_clients": 0
         },
         "latency": {
-            "mean": 5.674110942857143,
-            "min": 0.721488,
-            "max": 36.071284,
-            "stddev": 5.598295099609001,
-            "median": 3.319593
+            "mean": 1.6878875025108224,
+            "min": 0.718157,
+            "max": 3.775763,
+            "stddev": 0.7579043599340286,
+            "median": 1.5099671666666667
         },
         "throughput": {
-            "mean": 29958.602597402598,
-            "min": 2824.0,
-            "max": 103132.0,
-            "stddev": 18182.87426682344,
-            "median": 29084.0
+            "mean": 62699.02652236653,
+            "min": 25647.0,
+            "max": 107169.0,
+            "stddev": 22448.17322584928,
+            "median": 60889.166666666664
         },
         "jitter": {
-            "mean": 0.14515752172916674,
+            "mean": 0.1805354696723009,
             "min": 0.0,
-            "max": 183.20900464057922,
-            "stddev": 2.5654713362959796,
-            "variance": 6.58164317735628
+            "max": 44.962002992630005,
+            "stddev": 1.0847866082298847,
+            "variance": 1.194331316563982
         },
-        "latency_95": 19.4693038,
-        "throughput_95": 63441.2,
-        "total_time_95": 19.6483468,
+        "latency_95": 2.72928345,
+        "throughput_95": 103449.99999999999,
+        "total_time_95": 2.90640785,
         "total_time": {
-            "mean": 5.893832127272728,
-            "min": 0.992901,
-            "max": 36.247916,
-            "stddev": 5.606279267303692,
-            "median": 3.520797
+            "mean": 1.8967449958730158,
+            "min": 0.955499,
+            "max": 3.992576,
+            "stddev": 0.758233463222621,
+            "median": 1.7105333333333335
         },
         "total_packets": {
-            "mean": 76024.0,
-            "min": 76024.0,
-            "max": 76024.0
-        }
-    },
-    "DPKist-LAPLACE-0-0dum-2Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0dum-2Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 2,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 1.4012064131205673,
-            "min": 0.624495,
-            "max": 5.429229,
-            "stddev": 0.6180274179380716,
-            "median": 1.1996669999999998
-        },
-        "throughput": {
-            "mean": 70729.78723404255,
-            "min": 17979.0,
-            "max": 119752.0,
-            "stddev": 20514.79566970201,
-            "median": 72664.5
-        },
-        "jitter": {
-            "mean": 0.15704844012157598,
-            "min": 0.0,
-            "max": 202.24699115753174,
-            "stddev": 2.0437573841541883,
-            "variance": 4.17694424528477
-        },
-        "latency_95": 2.59341765,
-        "throughput_95": 104486.85,
-        "total_time_95": 2.7789968000000003,
-        "total_time": {
-            "mean": 1.6101687624113474,
-            "min": 0.855099,
-            "max": 5.695477,
-            "stddev": 0.6185063824720715,
-            "median": 1.409204
-        },
-        "total_packets": {
-            "mean": 70339.0,
-            "min": 70339.0,
-            "max": 70339.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.75dum-1Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.75dum-1Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.75",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 1,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 1.2211343483870967,
-            "min": 0.623972,
-            "max": 3.307336,
-            "stddev": 0.48433462643797637,
-            "median": 1.088827
-        },
-        "throughput": {
-            "mean": 77733.64838709678,
-            "min": 29391.0,
-            "max": 122582.0,
-            "stddev": 19654.21815487948,
-            "median": 79513.0
-        },
-        "jitter": {
-            "mean": 0.2280748563086578,
-            "min": 0.0,
-            "max": 190.91252064704895,
-            "stddev": 2.4630215885508666,
-            "variance": 6.066475345667635
-        },
-        "latency_95": 2.1724400000000004,
-        "throughput_95": 107533.05,
-        "total_time_95": 2.4153492,
-        "total_time": {
-            "mean": 1.4307292903225808,
-            "min": 0.835357,
-            "max": 3.483957,
-            "stddev": 0.4838436451792675,
-            "median": 1.2878305
-        },
-        "total_packets": {
-            "mean": 50841.0,
-            "min": 50841.0,
-            "max": 50841.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.25dum-5Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.25dum-5Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.25",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 5,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 4.814175126849895,
-            "min": 0.791527,
-            "max": 40.535489,
-            "stddev": 5.631800220416712,
-            "median": 2.786575
-        },
-        "throughput": {
-            "mean": 34735.87526427061,
-            "min": 2509.0,
-            "max": 102901.0,
-            "stddev": 18890.103679394342,
-            "median": 33577.0
-        },
-        "jitter": {
-            "mean": 0.14255989402283123,
-            "min": 0.0,
-            "max": 191.08999705314636,
-            "stddev": 2.2955817355126626,
-            "variance": 5.269695504419329
-        },
-        "latency_95": 17.097190399999995,
-        "throughput_95": 68063.59999999999,
-        "total_time_95": 17.311331999999993,
-        "total_time": {
-            "mean": 5.025907591966173,
-            "min": 0.99513,
-            "max": 40.80104,
-            "stddev": 5.633527278002749,
-            "median": 3.049672
-        },
-        "total_packets": {
-            "mean": 81240.0,
-            "min": 81240.0,
-            "max": 81240.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.75dum-10Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.75dum-10Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.75",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 10,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 2.9886724138166896,
-            "min": 0.766145,
-            "max": 20.835439,
-            "stddev": 1.7507910512615839,
-            "median": 2.6702839999999997
-        },
-        "throughput": {
-            "mean": 39739.34610123119,
-            "min": 4870.0,
-            "max": 99707.0,
-            "stddev": 18229.53982163752,
-            "median": 35486.5
-        },
-        "jitter": {
-            "mean": 0.06101203751616906,
-            "min": 0.0,
-            "max": 197.13715314865112,
-            "stddev": 1.358962174456936,
-            "variance": 1.846778191604724
-        },
-        "latency_95": 5.724404700000001,
-        "throughput_95": 76529.5,
-        "total_time_95": 5.9359053500000005,
-        "total_time": {
-            "mean": 3.201728106019152,
-            "min": 1.027008,
-            "max": 21.023734,
-            "stddev": 1.7526061336308691,
-            "median": 2.8855595000000003
-        },
-        "total_packets": {
-            "mean": 179897.0,
-            "min": 179897.0,
-            "max": 179897.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.75dum-2Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.75dum-2Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.75",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 2,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 1.9117706556291392,
-            "min": 0.571405,
-            "max": 32.227951,
-            "stddev": 1.7023304011103657,
-            "median": 1.627868
-        },
-        "throughput": {
-            "mean": 58568.24282560706,
-            "min": 3151.0,
-            "max": 121795.0,
-            "stddev": 22349.183393296873,
-            "median": 55997.0
-        },
-        "jitter": {
-            "mean": 0.17779522202464013,
-            "min": 0.0,
-            "max": 184.24624705314636,
-            "stddev": 2.5426343096304795,
-            "variance": 6.464989232510066
-        },
-        "latency_95": 3.6689879999999992,
-        "throughput_95": 97483.99999999997,
-        "total_time_95": 3.8561979999999996,
-        "total_time": {
-            "mean": 2.1233253951434876,
-            "min": 0.840756,
-            "max": 32.49448,
-            "stddev": 1.7049574004110764,
-            "median": 1.828652
-        },
-        "total_packets": {
-            "mean": 65300.0,
-            "min": 65300.0,
-            "max": 65300.0
-        }
-    },
-    "DPKist-LAPLACE-0-0dum-10Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0dum-10Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 10,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 4.981575707596255,
-            "min": 0.780518,
-            "max": 28.055572,
-            "stddev": 4.395605299787368,
-            "median": 3.230784
-        },
-        "throughput": {
-            "mean": 30974.0395421436,
-            "min": 3626.0,
-            "max": 106603.0,
-            "stddev": 17634.093527110774,
-            "median": 29837.0
-        },
-        "jitter": {
-            "mean": 0.09211121194569527,
-            "min": 0.0,
-            "max": 183.23332357406616,
-            "stddev": 1.7392529112365416,
-            "variance": 3.025000689244785
-        },
-        "latency_95": 14.377669,
-        "throughput_95": 64736.0,
-        "total_time_95": 14.565824,
-        "total_time": {
-            "mean": 5.1970835182101975,
-            "min": 0.960566,
-            "max": 28.236913,
-            "stddev": 4.39971619061128,
-            "median": 3.431919
-        },
-        "total_packets": {
-            "mean": 123746.0,
-            "min": 123746.0,
-            "max": 123746.0
-        }
-    },
-    "DPKist-LAPLACE-0-0dum-1Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0dum-1Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 1,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 1.187030501577287,
-            "min": 0.574256,
-            "max": 4.722125,
-            "stddev": 0.4810030674619991,
-            "median": 1.05457
-        },
-        "throughput": {
-            "mean": 79680.76656151419,
-            "min": 20529.0,
-            "max": 123131.0,
-            "stddev": 20045.62267916237,
-            "median": 81295.0
-        },
-        "jitter": {
-            "mean": 0.22699768602033168,
-            "min": 0.0,
-            "max": 183.27148628234863,
-            "stddev": 2.7482800222814925,
-            "variance": 7.553043080871561
-        },
-        "latency_95": 2.1834515999999997,
-        "throughput_95": 111801.59999999999,
-        "total_time_95": 2.3828997999999997,
-        "total_time": {
-            "mean": 1.3947686056782334,
-            "min": 0.831629,
-            "max": 4.987951,
-            "stddev": 0.4811960401176899,
-            "median": 1.259603
-        },
-        "total_packets": {
-            "mean": 48422.0,
-            "min": 48422.0,
-            "max": 48422.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.75dum-5Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.75dum-5Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.75",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 5,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 4.6952024375,
-            "min": 0.922617,
-            "max": 30.354057,
-            "stddev": 4.8114063247324665,
-            "median": 3.0690115000000002
-        },
-        "throughput": {
-            "mean": 33915.1754032258,
-            "min": 3353.0,
-            "max": 92825.0,
-            "stddev": 18296.970093220832,
-            "median": 31169.0
-        },
-        "jitter": {
-            "mean": 0.13788739572201936,
-            "min": 0.0,
-            "max": 188.23748135566711,
-            "stddev": 2.3305901105321745,
-            "variance": 5.431650263310373
-        },
-        "latency_95": 16.571657000000002,
-        "throughput_95": 67485.25,
-        "total_time_95": 16.790214,
-        "total_time": {
-            "mean": 4.904834415322581,
-            "min": 1.103143,
-            "max": 30.532739,
-            "stddev": 4.817098112219066,
-            "median": 3.2852615
-        },
-        "total_packets": {
-            "mean": 79951.0,
-            "min": 79951.0,
-            "max": 79951.0
-        }
-    },
-    "DPKist-LAPLACE-0-0dum-20Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0dum-20Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 20,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 2.2865872233580373,
-            "min": 0.626126,
-            "max": 28.656062,
-            "stddev": 1.1949215587284963,
-            "median": 2.01997
-        },
-        "throughput": {
-            "mean": 48595.0260669563,
-            "min": 3540.0,
-            "max": 115561.0,
-            "stddev": 19927.93556087048,
-            "median": 45408.0
-        },
-        "jitter": {
-            "mean": 0.028510178021889335,
-            "min": 0.0,
-            "max": 197.23168325424194,
-            "stddev": 1.0511954900856935,
-            "variance": 1.1050119583765012
-        },
-        "latency_95": 4.440602199999999,
-        "throughput_95": 85998.6,
-        "total_time_95": 4.695032199999997,
-        "total_time": {
-            "mean": 2.519260510605673,
-            "min": 0.886105,
-            "max": 28.919643,
-            "stddev": 1.1966575082566016,
-            "median": 2.255083
-        },
-        "total_packets": {
-            "mean": 386681.0,
-            "min": 386681.0,
-            "max": 386681.0
-        }
-    },
-    "DPKist-LAPLACE-0-2dum-1Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-2dum-1Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "2",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 1,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 1.2989623691275167,
-            "min": 0.569052,
-            "max": 3.512613,
-            "stddev": 0.56149881587801,
-            "median": 1.104544
-        },
-        "throughput": {
-            "mean": 75345.75838926174,
-            "min": 26977.0,
-            "max": 122712.0,
-            "stddev": 21490.198637172114,
-            "median": 77928.0
-        },
-        "jitter": {
-            "mean": 0.23429558158265665,
-            "min": 0.0,
-            "max": 203.26286506652832,
-            "stddev": 3.357249541355813,
-            "variance": 11.271124482933818
-        },
-        "latency_95": 2.5371641499999997,
-        "throughput_95": 109424.25,
-        "total_time_95": 2.73372635,
-        "total_time": {
-            "mean": 1.5076978523489935,
-            "min": 0.834469,
-            "max": 3.795695,
-            "stddev": 0.5626239839333238,
-            "median": 1.3140269999999998
-        },
-        "total_packets": {
-            "mean": 47016.0,
-            "min": 47016.0,
-            "max": 47016.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.25dum-20Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.25dum-20Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.25",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 20,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 2.4461297045640893,
-            "min": 0.627582,
-            "max": 8.927741,
-            "stddev": 1.0855863728118886,
-            "median": 2.210554
-        },
-        "throughput": {
-            "mean": 43049.02131729981,
-            "min": 11248.0,
-            "max": 120432.0,
-            "stddev": 16326.919925835533,
-            "median": 40915.0
-        },
-        "jitter": {
-            "mean": 0.03045521880332794,
-            "min": 0.0,
-            "max": 182.22206354141235,
-            "stddev": 0.8039573052420956,
-            "variance": 0.6463473486521322
-        },
-        "latency_95": 4.556000899999999,
-        "throughput_95": 73602.0,
-        "total_time_95": 4.8884327999999995,
-        "total_time": {
-            "mean": 2.7472693670401744,
-            "min": 0.850272,
-            "max": 9.103246,
-            "stddev": 1.0992692778049895,
-            "median": 2.502746
-        },
-        "total_packets": {
-            "mean": 362255.0,
-            "min": 362255.0,
-            "max": 362255.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.5dum-10Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.5dum-10Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.5",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 10,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 3.469888645415473,
-            "min": 0.69546,
-            "max": 30.156555,
-            "stddev": 3.1068987720510397,
-            "median": 2.5536135
-        },
-        "throughput": {
-            "mean": 40064.393982808026,
-            "min": 3375.0,
-            "max": 106313.0,
-            "stddev": 20209.768710889366,
-            "median": 37239.5
-        },
-        "jitter": {
-            "mean": 0.06915169841677266,
-            "min": 0.0,
-            "max": 183.24690961837769,
-            "stddev": 1.4203864465129308,
-            "variance": 2.0174976574376307
-        },
-        "latency_95": 10.47671225,
-        "throughput_95": 78876.0,
-        "total_time_95": 10.746218749999999,
-        "total_time": {
-            "mean": 3.689280210601719,
-            "min": 0.963185,
-            "max": 30.335223,
-            "stddev": 3.1143811598750863,
-            "median": 2.749741
-        },
-        "total_packets": {
-            "mean": 159196.0,
-            "min": 159196.0,
-            "max": 159196.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.25dum-10Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.25dum-10Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.25",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 10,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 4.105530658666667,
-            "min": 0.715074,
-            "max": 30.102629,
-            "stddev": 4.07136852670971,
-            "median": 2.747233
-        },
-        "throughput": {
-            "mean": 37477.83022222222,
-            "min": 3381.0,
-            "max": 114907.0,
-            "stddev": 20672.755616835355,
-            "median": 34634.0
-        },
-        "jitter": {
-            "mean": 0.07649725144500104,
-            "min": 0.0,
-            "max": 184.22980499267578,
-            "stddev": 1.7482935417961885,
-            "variance": 3.056530308286261
-        },
-        "latency_95": 13.391759599999997,
-        "throughput_95": 78190.0,
-        "total_time_95": 13.580804999999998,
-        "total_time": {
-            "mean": 4.321785578666667,
-            "min": 0.89115,
-            "max": 30.281483,
-            "stddev": 4.074273079582509,
-            "median": 2.956604
-        },
-        "total_packets": {
-            "mean": 148416.0,
-            "min": 148416.0,
-            "max": 148416.0
-        }
-    },
-    "DPKist-LAPLACE-0-1dum-1Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-1dum-1Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "1",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 1,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 1.181860582278481,
-            "min": 0.60016,
-            "max": 3.58184,
-            "stddev": 0.46048865089056107,
-            "median": 1.058413
-        },
-        "throughput": {
-            "mean": 79345.83860759494,
-            "min": 26581.0,
-            "max": 120492.0,
-            "stddev": 19424.036594453963,
-            "median": 80925.0
-        },
-        "jitter": {
-            "mean": 0.22125712811586526,
-            "min": 0.0,
-            "max": 205.22421622276306,
-            "stddev": 2.4652577314078705,
-            "variance": 6.07749568226628
-        },
-        "latency_95": 2.149408,
-        "throughput_95": 108743.0,
-        "total_time_95": 2.36939,
-        "total_time": {
-            "mean": 1.3946890822784812,
-            "min": 0.849842,
-            "max": 3.852354,
-            "stddev": 0.45822505863706603,
-            "median": 1.2653604999999999
-        },
-        "total_packets": {
-            "mean": 49954.0,
-            "min": 49954.0,
-            "max": 49954.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.5dum-5Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.5dum-5Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.5",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 5,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 5.377422710300429,
-            "min": 0.912923,
-            "max": 28.428729,
-            "stddev": 5.319160485544632,
-            "median": 3.1574215
-        },
-        "throughput": {
-            "mean": 31651.255364806868,
-            "min": 3568.0,
-            "max": 92045.0,
-            "stddev": 18517.15649064852,
-            "median": 30413.0
-        },
-        "jitter": {
-            "mean": 0.15581784606831578,
-            "min": 0.0,
-            "max": 184.2504165172577,
-            "stddev": 2.0516480077690096,
-            "variance": 4.209259547782546
-        },
-        "latency_95": 17.9246655,
-        "throughput_95": 65642.0,
-        "total_time_95": 18.11069875,
-        "total_time": {
-            "mean": 5.588674656652361,
-            "min": 1.112493,
-            "max": 28.694342,
-            "stddev": 5.322141539013398,
-            "median": 3.366912
-        },
-        "total_packets": {
-            "mean": 73066.0,
-            "min": 73066.0,
-            "max": 73066.0
+            "mean": 8750.333333333334,
+            "min": 7892.0,
+            "max": 9654.0
         }
     },
     "DPKist-LAPLACE-0-0.5dum-2Clients-1048576": {
@@ -1092,315 +66,45 @@
             "scheduler": "DPKist"
         },
         "client_params": {
-            "bulk_clients": 2,
-            "web_clients": 0,
+            "bulk_clients": 0,
+            "web_clients": 2,
             "top_web_clients": 0
         },
         "latency": {
-            "mean": 1.4956108981481482,
-            "min": 0.601908,
-            "max": 20.955418,
-            "stddev": 1.2620308087800725,
-            "median": 1.2405840000000001
+            "mean": 1.5162789027777777,
+            "min": 0.954013,
+            "max": 2.609169,
+            "stddev": 0.44658375113857285,
+            "median": 1.4352161666666667
         },
         "throughput": {
-            "mean": 69440.37037037036,
-            "min": 4821.0,
-            "max": 121580.0,
-            "stddev": 21344.56939832385,
-            "median": 70714.5
+            "mean": 63205.44841269841,
+            "min": 35617.0,
+            "max": 85884.0,
+            "stddev": 13675.476292305933,
+            "median": 63133.666666666664
         },
         "jitter": {
-            "mean": 0.1549714333864547,
+            "mean": 0.20289048388818098,
             "min": 0.0,
-            "max": 203.1837682723999,
-            "stddev": 2.312780351000711,
-            "variance": 5.348952951974972
+            "max": 59.95356273651123,
+            "stddev": 1.2430663956015484,
+            "variance": 1.5456881166792298
         },
-        "latency_95": 2.6761591499999993,
-        "throughput_95": 103972.04999999999,
-        "total_time_95": 2.8825899999999995,
+        "latency_95": 2.1355792499999993,
+        "throughput_95": 85585.45,
+        "total_time_95": 2.3745781999999993,
         "total_time": {
-            "mean": 1.7062071870370372,
-            "min": 0.842239,
-            "max": 21.238644,
-            "stddev": 1.2622739571064083,
-            "median": 1.4480625
+            "mean": 1.7386690694444444,
+            "min": 1.192296,
+            "max": 2.874955,
+            "stddev": 0.456170198190128,
+            "median": 1.6587364999999998
         },
         "total_packets": {
-            "mean": 73642.0,
-            "min": 73642.0,
-            "max": 73642.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.5dum-20Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.5dum-20Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.5",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 20,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 2.55354890337206,
-            "min": 0.674196,
-            "max": 21.531243,
-            "stddev": 1.2888021650122374,
-            "median": 2.303123
-        },
-        "throughput": {
-            "mean": 42171.37942759989,
-            "min": 4698.0,
-            "max": 113997.0,
-            "stddev": 16553.016555381313,
-            "median": 39545.0
-        },
-        "jitter": {
-            "mean": 0.03168377850293223,
-            "min": 0.0,
-            "max": 204.2149031162262,
-            "stddev": 1.263624755783746,
-            "variance": 1.5967475234295316
-        },
-        "latency_95": 4.890921,
-        "throughput_95": 72979.8,
-        "total_time_95": 5.188127799999999,
-        "total_time": {
-            "mean": 2.848723209691131,
-            "min": 0.898263,
-            "max": 21.795255,
-            "stddev": 1.2901208862732703,
-            "median": 2.589438
-        },
-        "total_packets": {
-            "mean": 347878.0,
-            "min": 347878.0,
-            "max": 347878.0
-        }
-    },
-    "DPKist-LAPLACE-0-2dum-10Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-2dum-10Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "2",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 10,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 2.3255203877445934,
-            "min": 0.673055,
-            "max": 34.136179,
-            "stddev": 1.3660286612001762,
-            "median": 2.0665329999999997
-        },
-        "throughput": {
-            "mean": 48810.6333676622,
-            "min": 2984.0,
-            "max": 111959.0,
-            "stddev": 20346.231262686608,
-            "median": 45095.0
-        },
-        "jitter": {
-            "mean": 0.05578723311757113,
-            "min": 0.0,
-            "max": 168.41720175743103,
-            "stddev": 1.190203862180725,
-            "variance": 1.416585233549914
-        },
-        "latency_95": 4.5720959,
-        "throughput_95": 87301.54999999999,
-        "total_time_95": 4.804805449999998,
-        "total_time": {
-            "mean": 2.5373966168898043,
-            "min": 0.914618,
-            "max": 34.314795,
-            "stddev": 1.366081004586462,
-            "median": 2.270715
-        },
-        "total_packets": {
-            "mean": 206288.0,
-            "min": 206288.0,
-            "max": 206288.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.5dum-1Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.5dum-1Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.5",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 1,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 1.1553276978193145,
-            "min": 0.598961,
-            "max": 5.24066,
-            "stddev": 0.4421651117896167,
-            "median": 1.040603
-        },
-        "throughput": {
-            "mean": 80376.02180685358,
-            "min": 18597.0,
-            "max": 122873.0,
-            "stddev": 18589.18848436673,
-            "median": 82024.0
-        },
-        "jitter": {
-            "mean": 0.21606758640724832,
-            "min": 0.0,
-            "max": 169.1127369403839,
-            "stddev": 2.239691028888322,
-            "variance": 5.016215904882831
-        },
-        "latency_95": 1.98158,
-        "throughput_95": 110822.0,
-        "total_time_95": 2.229482,
-        "total_time": {
-            "mean": 1.3648000903426791,
-            "min": 0.833377,
-            "max": 5.506218,
-            "stddev": 0.44245430477515246,
-            "median": 1.248405
-        },
-        "total_packets": {
-            "mean": 50994.0,
-            "min": 50994.0,
-            "max": 50994.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.25dum-1Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.25dum-1Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.25",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 1,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 1.1822999396825398,
-            "min": 0.589987,
-            "max": 2.889512,
-            "stddev": 0.4206382695560303,
-            "median": 1.073446
-        },
-        "throughput": {
-            "mean": 79033.20634920635,
-            "min": 32485.0,
-            "max": 121218.0,
-            "stddev": 19254.537775740555,
-            "median": 79998.0
-        },
-        "jitter": {
-            "mean": 0.21787447213781067,
-            "min": 0.0,
-            "max": 195.19945311546326,
-            "stddev": 2.550599798962758,
-            "variance": 6.5055593344688605
-        },
-        "latency_95": 2.1195447,
-        "throughput_95": 109786.7,
-        "total_time_95": 2.3432426000000004,
-        "total_time": {
-            "mean": 1.3922832888888887,
-            "min": 0.844759,
-            "max": 3.152207,
-            "stddev": 0.42054415098481485,
-            "median": 1.280019
-        },
-        "total_packets": {
-            "mean": 51062.0,
-            "min": 51062.0,
-            "max": 51062.0
-        }
-    },
-    "DPKist-LAPLACE-0-0.75dum-20Clients-1048576": {
-        "name": "DPKist-LAPLACE-0-0.75dum-20Clients-1048576",
-        "file_size": "1048576",
-        "tor_params": {
-            "dummy": "0.75",
-            "max_jitter": "10",
-            "min_jitter": "1",
-            "target_jitter": "2",
-            "dp_distribution": "LAPLACE",
-            "dp_epsilon": "0",
-            "scheduler": "DPKist"
-        },
-        "client_params": {
-            "bulk_clients": 20,
-            "web_clients": 0,
-            "top_web_clients": 0
-        },
-        "latency": {
-            "mean": 2.3586196598075895,
-            "min": 0.552135,
-            "max": 26.637555,
-            "stddev": 1.14230009147559,
-            "median": 2.1341335
-        },
-        "throughput": {
-            "mean": 44110.84607161945,
-            "min": 3761.0,
-            "max": 128311.0,
-            "stddev": 16171.715013311452,
-            "median": 42053.0
-        },
-        "jitter": {
-            "mean": 0.03125149423331978,
-            "min": 0.0,
-            "max": 202.18340921401978,
-            "stddev": 1.1688953609979662,
-            "variance": 1.3663163649625656
-        },
-        "latency_95": 4.348396349999999,
-        "throughput_95": 74117.04999999999,
-        "total_time_95": 4.6741895499999995,
-        "total_time": {
-            "mean": 2.666184820951363,
-            "min": 0.798058,
-            "max": 27.223523,
-            "stddev": 1.1484828006707162,
-            "median": 2.4350095
-        },
-        "total_packets": {
-            "mean": 364820.0,
-            "min": 364820.0,
-            "max": 364820.0
+            "mean": 7942.0,
+            "min": 6354.0,
+            "max": 10339.0
         }
     },
     "DPKist-LAPLACE-0-0dum-5Clients-1048576": {
@@ -1416,45 +120,261 @@
             "scheduler": "DPKist"
         },
         "client_params": {
-            "bulk_clients": 5,
-            "web_clients": 0,
+            "bulk_clients": 0,
+            "web_clients": 5,
             "top_web_clients": 0
         },
         "latency": {
-            "mean": 4.577047992895205,
-            "min": 0.899941,
-            "max": 22.564418,
-            "stddev": 3.9741338384755216,
-            "median": 3.191161
+            "mean": 1.5695270346390269,
+            "min": 0.605536,
+            "max": 3.10733,
+            "stddev": 0.6540791639968401,
+            "median": 1.325963
         },
         "throughput": {
-            "mean": 32701.28952042629,
-            "min": 4486.0,
-            "max": 93537.0,
-            "stddev": 18563.45244491484,
-            "median": 30301.0
+            "mean": 66060.8374388657,
+            "min": 30350.0,
+            "max": 118245.0,
+            "stddev": 24080.902819325973,
+            "median": 66946.33333333333
         },
         "jitter": {
-            "mean": 0.1557671416930131,
+            "mean": 0.16030521421585947,
             "min": 0.0,
-            "max": 154.22210550308228,
-            "stddev": 1.8459725464092547,
-            "variance": 3.407614642096668
+            "max": 53.93008494377136,
+            "stddev": 1.045588614994709,
+            "variance": 1.1055679986957845
         },
-        "latency_95": 13.340027499999989,
-        "throughput_95": 69848.19999999998,
-        "total_time_95": 13.529126599999989,
+        "latency_95": 2.7181402,
+        "throughput_95": 116724.2,
+        "total_time_95": 2.9134909999999996,
         "total_time": {
-            "mean": 4.792078255772647,
-            "min": 1.094753,
-            "max": 22.823563,
-            "stddev": 3.9792185766011294,
-            "median": 3.3794
+            "mean": 1.7780270433436531,
+            "min": 0.865995,
+            "max": 3.373905,
+            "stddev": 0.6591823219270555,
+            "median": 1.5329566666666665
         },
         "total_packets": {
-            "mean": 71548.0,
-            "min": 71548.0,
-            "max": 71548.0
+            "mean": 8765.666666666666,
+            "min": 7709.0,
+            "max": 10460.0
+        }
+    },
+    "DPKist-LAPLACE-0-1dum-2Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-1dum-2Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "1",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 2,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.4312740512820514,
+            "min": 0.69835,
+            "max": 2.945346,
+            "stddev": 0.5078524237433287,
+            "median": 1.4695805
+        },
+        "throughput": {
+            "mean": 69518.71474358975,
+            "min": 32757.0,
+            "max": 116749.0,
+            "stddev": 21462.24632438057,
+            "median": 62863.0
+        },
+        "jitter": {
+            "mean": 0.20080685600264436,
+            "min": 0.0,
+            "max": 48.98538947105408,
+            "stddev": 1.2403245482142715,
+            "variance": 1.5434999737779778
+        },
+        "latency_95": 1.6380238,
+        "throughput_95": 98477.09999999999,
+        "total_time_95": 1.8746167,
+        "total_time": {
+            "mean": 1.6406326730769232,
+            "min": 0.877095,
+            "max": 3.125957,
+            "stddev": 0.5154945863301753,
+            "median": 1.6624338333333333
+        },
+        "total_packets": {
+            "mean": 7367.0,
+            "min": 6078.0,
+            "max": 8426.0
+        }
+    },
+    "DPKist-LAPLACE-0-0dum-10Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0dum-10Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 10,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.4090214700470687,
+            "min": 0.684263,
+            "max": 3.968725,
+            "stddev": 0.5726981963531806,
+            "median": 1.2379633333333333
+        },
+        "throughput": {
+            "mean": 70188.24090714591,
+            "min": 24674.0,
+            "max": 118500.0,
+            "stddev": 20242.57581758362,
+            "median": 71139.66666666667
+        },
+        "jitter": {
+            "mean": 0.1502297656854357,
+            "min": 0.0,
+            "max": 59.995136737823486,
+            "stddev": 1.063398847704146,
+            "variance": 1.1398324042237864
+        },
+        "latency_95": 2.00531355,
+        "throughput_95": 105248.09999999999,
+        "total_time_95": 2.272795,
+        "total_time": {
+            "mean": 1.621769178647839,
+            "min": 0.864135,
+            "max": 4.149985,
+            "stddev": 0.574288337798666,
+            "median": 1.4520771666666665
+        },
+        "total_packets": {
+            "mean": 10073.666666666666,
+            "min": 9911.0,
+            "max": 10342.0
+        }
+    },
+    "DPKist-LAPLACE-0-0dum-2Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0dum-2Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 2,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.7140949280303028,
+            "min": 0.668385,
+            "max": 4.418577,
+            "stddev": 0.8162585696566137,
+            "median": 1.5686691666666668
+        },
+        "throughput": {
+            "mean": 62414.84090909091,
+            "min": 21860.0,
+            "max": 110125.0,
+            "stddev": 22667.86034273263,
+            "median": 59032.666666666664
+        },
+        "jitter": {
+            "mean": 0.17692298093667783,
+            "min": 0.0,
+            "max": 42.981250286102295,
+            "stddev": 1.06992965799815,
+            "variance": 1.1774674920221353
+        },
+        "latency_95": 3.033950899999999,
+        "throughput_95": 103377.34999999999,
+        "total_time_95": 3.2476688499999993,
+        "total_time": {
+            "mean": 1.9220969204545455,
+            "min": 0.929847,
+            "max": 4.684144,
+            "stddev": 0.8081513425524713,
+            "median": 1.7443938333333335
+        },
+        "total_packets": {
+            "mean": 8610.0,
+            "min": 6581.0,
+            "max": 10524.0
+        }
+    },
+    "DPKist-LAPLACE-0-2dum-10Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-2dum-10Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "2",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 10,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.3625812811253155,
+            "min": 0.682933,
+            "max": 3.538862,
+            "stddev": 0.6247626696326023,
+            "median": 1.1319456666666665
+        },
+        "throughput": {
+            "mean": 73512.99220927809,
+            "min": 26910.0,
+            "max": 116468.0,
+            "stddev": 22762.68706127822,
+            "median": 76139.0
+        },
+        "jitter": {
+            "mean": 0.12755381760516685,
+            "min": 0.0,
+            "max": 59.989659547805786,
+            "stddev": 0.9007319824010812,
+            "variance": 0.825910317929908
+        },
+        "latency_95": 2.623283399999999,
+        "throughput_95": 109133.9,
+        "total_time_95": 2.8005012999999996,
+        "total_time": {
+            "mean": 1.578878770937262,
+            "min": 0.879209,
+            "max": 3.805208,
+            "stddev": 0.6253021396592304,
+            "median": 1.3465006666666668
+        },
+        "total_packets": {
+            "mean": 11827.666666666666,
+            "min": 9853.0,
+            "max": 13614.0
         }
     },
     "DPKist-LAPLACE-0-2dum-2Clients-1048576": {
@@ -1470,45 +390,963 @@
             "scheduler": "DPKist"
         },
         "client_params": {
-            "bulk_clients": 2,
-            "web_clients": 0,
+            "bulk_clients": 0,
+            "web_clients": 2,
             "top_web_clients": 0
         },
         "latency": {
-            "mean": 2.3087876045918367,
-            "min": 0.7396,
-            "max": 28.623349,
-            "stddev": 1.7043723099752177,
-            "median": 2.02923
+            "mean": 1.7317539185185187,
+            "min": 0.887326,
+            "max": 3.124474,
+            "stddev": 0.5515070776894803,
+            "median": 1.6603308333333333
         },
         "throughput": {
-            "mean": 49427.489795918365,
-            "min": 3554.0,
-            "max": 111765.0,
-            "stddev": 20369.224769843,
-            "median": 45758.5
+            "mean": 58912.62222222222,
+            "min": 30224.0,
+            "max": 92855.0,
+            "stddev": 16110.407009926823,
+            "median": 57171.0
         },
         "jitter": {
-            "mean": 0.19125771330824085,
+            "mean": 0.20158268451751013,
             "min": 0.0,
-            "max": 202.27395796775818,
-            "stddev": 2.3703614152317893,
-            "variance": 5.618613238819651
+            "max": 46.98730134963989,
+            "stddev": 1.1319084777449169,
+            "variance": 1.3119061763525781
         },
-        "latency_95": 4.4716537,
-        "throughput_95": 87349.7,
-        "total_time_95": 4.6642346,
+        "latency_95": 2.68758475,
+        "throughput_95": 78860.5,
+        "total_time_95": 2.9321075,
         "total_time": {
-            "mean": 2.5216140892857144,
-            "min": 0.916203,
-            "max": 28.808012,
-            "stddev": 1.7046081720799728,
-            "median": 2.2378255
+            "mean": 1.9329112407407407,
+            "min": 1.102789,
+            "max": 3.387953,
+            "stddev": 0.5557863533552546,
+            "median": 1.8446921666666665
         },
         "total_packets": {
-            "mean": 57833.0,
-            "min": 57833.0,
-            "max": 57833.0
+            "mean": 7081.666666666667,
+            "min": 5967.0,
+            "max": 8546.0
+        }
+    },
+    "DPKist-LAPLACE-0-0dum-1Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0dum-1Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 1,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.8493276944444446,
+            "min": 0.922035,
+            "max": 4.470655,
+            "stddev": 0.7051268734230051,
+            "median": 1.7017741666666666
+        },
+        "throughput": {
+            "mean": 59946.5,
+            "min": 21599.0,
+            "max": 93083.0,
+            "stddev": 14235.523060510744,
+            "median": 58373.166666666664
+        },
+        "jitter": {
+            "mean": 0.1918371201353486,
+            "min": 0.0,
+            "max": 51.98465085029602,
+            "stddev": 1.2270963937580497,
+            "variance": 1.5096947042689273
+        },
+        "latency_95": 4.160099349999999,
+        "throughput_95": 67761.2,
+        "total_time_95": 4.416720549999999,
+        "total_time": {
+            "mean": 2.05854275,
+            "min": 1.100093,
+            "max": 4.740766,
+            "stddev": 0.7077990928473098,
+            "median": 1.9093255000000002
+        },
+        "total_packets": {
+            "mean": 7123.666666666667,
+            "min": 6409.0,
+            "max": 8069.0
+        }
+    },
+    "DPKist-LAPLACE-0-0.75dum-1Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0.75dum-1Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0.75",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 1,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.4514826333333335,
+            "min": 0.653764,
+            "max": 2.375719,
+            "stddev": 0.5376896887682199,
+            "median": 1.3276033333333335
+        },
+        "throughput": {
+            "mean": 68264.08333333333,
+            "min": 40180.0,
+            "max": 111530.0,
+            "stddev": 21434.271120883775,
+            "median": 67828.0
+        },
+        "jitter": {
+            "mean": 0.18230758719114193,
+            "min": 0.0,
+            "max": 37.142669916152954,
+            "stddev": 1.0492982773838933,
+            "variance": 1.1025156031301322
+        },
+        "latency_95": 2.15439475,
+        "throughput_95": 99899.54999999999,
+        "total_time_95": 2.4066984,
+        "total_time": {
+            "mean": 1.669651016666667,
+            "min": 0.918131,
+            "max": 2.548511,
+            "stddev": 0.5331965587024209,
+            "median": 1.5507485
+        },
+        "total_packets": {
+            "mean": 8806.666666666666,
+            "min": 7666.0,
+            "max": 10425.0
+        }
+    },
+    "DPKist-LAPLACE-0-0.5dum-10Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0.5dum-10Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0.5",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 10,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.6279786574472608,
+            "min": 0.635323,
+            "max": 4.769998,
+            "stddev": 0.7776128388078147,
+            "median": 1.3633155
+        },
+        "throughput": {
+            "mean": 64508.685171900746,
+            "min": 20701.0,
+            "max": 113761.0,
+            "stddev": 22031.123579746072,
+            "median": 64928.833333333336
+        },
+        "jitter": {
+            "mean": 0.12055699941534244,
+            "min": 0.0,
+            "max": 55.99310898780823,
+            "stddev": 0.8920274947604541,
+            "variance": 0.7967400574287377
+        },
+        "latency_95": 2.43671055,
+        "throughput_95": 91720.3,
+        "total_time_95": 2.65953275,
+        "total_time": {
+            "mean": 1.8410400301025558,
+            "min": 0.900126,
+            "max": 4.946391,
+            "stddev": 0.783273302865072,
+            "median": 1.5816873333333332
+        },
+        "total_packets": {
+            "mean": 11225.333333333334,
+            "min": 9363.0,
+            "max": 14602.0
+        }
+    },
+    "DPKist-LAPLACE-0-2dum-5Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-2dum-5Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "2",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 5,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.533258400980392,
+            "min": 0.731341,
+            "max": 4.565299,
+            "stddev": 0.6637324122542924,
+            "median": 1.3456523333333335
+        },
+        "throughput": {
+            "mean": 67054.49477124184,
+            "min": 21574.0,
+            "max": 111566.0,
+            "stddev": 20517.553116495055,
+            "median": 67365.66666666667
+        },
+        "jitter": {
+            "mean": 0.163186949372552,
+            "min": 0.0,
+            "max": 55.99339199066162,
+            "stddev": 1.0525268680919575,
+            "variance": 1.1112604908108676
+        },
+        "latency_95": 2.2866999999999993,
+        "throughput_95": 92804.2,
+        "total_time_95": 2.550156999999999,
+        "total_time": {
+            "mean": 1.7433778117647059,
+            "min": 0.917836,
+            "max": 4.746321,
+            "stddev": 0.6622249424100062,
+            "median": 1.5457334999999999
+        },
+        "total_packets": {
+            "mean": 9653.0,
+            "min": 7914.0,
+            "max": 12954.0
+        }
+    },
+    "DPKist-LAPLACE-0-0.5dum-20Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0.5dum-20Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0.5",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 20,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.283298643713813,
+            "min": 0.536666,
+            "max": 2.92986,
+            "stddev": 0.47236773448991903,
+            "median": 1.1469495
+        },
+        "throughput": {
+            "mean": 73345.26910440216,
+            "min": 32036.0,
+            "max": 127551.0,
+            "stddev": 20415.05544576857,
+            "median": 74720.66666666667
+        },
+        "jitter": {
+            "mean": 0.10553250346627717,
+            "min": 0.0,
+            "max": 46.97952699661255,
+            "stddev": 0.7844249924503672,
+            "variance": 0.6198080357241325
+        },
+        "latency_95": 2.214761999999998,
+        "throughput_95": 109900.59999999999,
+        "total_time_95": 2.4400401999999985,
+        "total_time": {
+            "mean": 1.522650095533499,
+            "min": 0.80281,
+            "max": 3.196387,
+            "stddev": 0.47813623631847263,
+            "median": 1.3714581666666668
+        },
+        "total_packets": {
+            "mean": 14477.0,
+            "min": 12561.0,
+            "max": 16322.0
+        }
+    },
+    "DPKist-LAPLACE-0-0.75dum-20Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0.75dum-20Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0.75",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 20,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.2920384515623466,
+            "min": 0.568338,
+            "max": 4.113934,
+            "stddev": 0.5482330905987561,
+            "median": 1.1299576666666666
+        },
+        "throughput": {
+            "mean": 75132.78874472248,
+            "min": 23861.0,
+            "max": 122872.0,
+            "stddev": 21271.92193471467,
+            "median": 77665.16666666667
+        },
+        "jitter": {
+            "mean": 0.09941993616527241,
+            "min": 0.0,
+            "max": 53.9904465675354,
+            "stddev": 0.7963158562020967,
+            "variance": 0.6384510389444417
+        },
+        "latency_95": 2.1920349000000003,
+        "throughput_95": 108726.49999999999,
+        "total_time_95": 2.4003663,
+        "total_time": {
+            "mean": 1.5096948896134883,
+            "min": 0.833383,
+            "max": 4.291351,
+            "stddev": 0.554906104869993,
+            "median": 1.319514
+        },
+        "total_packets": {
+            "mean": 13657.0,
+            "min": 13170.0,
+            "max": 14317.0
+        }
+    },
+    "DPKist-LAPLACE-0-0.75dum-2Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0.75dum-2Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0.75",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 2,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.560084595238095,
+            "min": 0.679527,
+            "max": 3.706744,
+            "stddev": 0.7338202782762617,
+            "median": 1.3229875
+        },
+        "throughput": {
+            "mean": 67387.33333333333,
+            "min": 25768.0,
+            "max": 108324.0,
+            "stddev": 24564.373417157516,
+            "median": 69466.83333333333
+        },
+        "jitter": {
+            "mean": 0.21224938577178687,
+            "min": 0.0,
+            "max": 44.97296214103699,
+            "stddev": 1.2421902735901305,
+            "variance": 1.563128144179685
+        },
+        "latency_95": 3.308175699999999,
+        "throughput_95": 98763.0,
+        "total_time_95": 3.5749176999999994,
+        "total_time": {
+            "mean": 1.7852290535714284,
+            "min": 0.945305,
+            "max": 3.973771,
+            "stddev": 0.7319216650088762,
+            "median": 1.5407848333333334
+        },
+        "total_packets": {
+            "mean": 7054.0,
+            "min": 5915.0,
+            "max": 8597.0
+        }
+    },
+    "DPKist-LAPLACE-0-1dum-20Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-1dum-20Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "1",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 20,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.203815620263942,
+            "min": 0.58065,
+            "max": 2.989101,
+            "stddev": 0.4508258309634887,
+            "median": 1.0552703333333333
+        },
+        "throughput": {
+            "mean": 77825.81415689463,
+            "min": 32226.0,
+            "max": 129173.0,
+            "stddev": 20757.16987632259,
+            "median": 80487.66666666667
+        },
+        "jitter": {
+            "mean": 0.09418689916704255,
+            "min": 0.0,
+            "max": 41.96821045875549,
+            "stddev": 0.7392893662006816,
+            "variance": 0.5496327932830286
+        },
+        "latency_95": 2.1852647000000003,
+        "throughput_95": 107176.50000000001,
+        "total_time_95": 2.4016341,
+        "total_time": {
+            "mean": 1.4354184567348358,
+            "min": 0.792735,
+            "max": 3.177527,
+            "stddev": 0.461303529160672,
+            "median": 1.2741143333333333
+        },
+        "total_packets": {
+            "mean": 15611.666666666666,
+            "min": 14083.0,
+            "max": 17317.0
+        }
+    },
+    "DPKist-LAPLACE-0-1dum-10Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-1dum-10Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "1",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 10,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.5419575648384958,
+            "min": 0.704939,
+            "max": 17.363793,
+            "stddev": 1.3156119081449058,
+            "median": 1.2219093333333333
+        },
+        "throughput": {
+            "mean": 70039.78206403334,
+            "min": 5806.0,
+            "max": 115233.0,
+            "stddev": 20175.101955366375,
+            "median": 72789.66666666667
+        },
+        "jitter": {
+            "mean": 0.1428441108213699,
+            "min": 0.0,
+            "max": 59.99708080291748,
+            "stddev": 0.9782427024481487,
+            "variance": 0.9944409849667011
+        },
+        "latency_95": 2.566978799999998,
+        "throughput_95": 96332.69999999998,
+        "total_time_95": 2.7463163999999978,
+        "total_time": {
+            "mean": 1.7534917855688168,
+            "min": 0.888633,
+            "max": 17.634895,
+            "stddev": 1.3186688632765393,
+            "median": 1.41679
+        },
+        "total_packets": {
+            "mean": 11350.666666666666,
+            "min": 11070.0,
+            "max": 11587.0
+        }
+    },
+    "DPKist-LAPLACE-0-0dum-20Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0dum-20Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 20,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.352705641513351,
+            "min": 0.571786,
+            "max": 4.563346,
+            "stddev": 0.562377014819249,
+            "median": 1.144535
+        },
+        "throughput": {
+            "mean": 72486.47387794421,
+            "min": 21180.0,
+            "max": 122909.0,
+            "stddev": 20815.644650060207,
+            "median": 73681.83333333333
+        },
+        "jitter": {
+            "mean": 0.11311881290736592,
+            "min": 0.0,
+            "max": 49.981420040130615,
+            "stddev": 0.8510047758281503,
+            "variance": 0.7372923086858045
+        },
+        "latency_95": 2.5407282499999995,
+        "throughput_95": 99582.39999999998,
+        "total_time_95": 2.7173218999999995,
+        "total_time": {
+            "mean": 1.5620036640955715,
+            "min": 0.83313,
+            "max": 4.834562,
+            "stddev": 0.5574432402272916,
+            "median": 1.3918800000000002
+        },
+        "total_packets": {
+            "mean": 14400.333333333334,
+            "min": 12520.0,
+            "max": 16743.0
+        }
+    },
+    "DPKist-LAPLACE-0-0.75dum-5Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0.75dum-5Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0.75",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 5,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.8020724091503268,
+            "min": 0.67028,
+            "max": 5.685005,
+            "stddev": 0.9354933887811739,
+            "median": 1.6321753333333333
+        },
+        "throughput": {
+            "mean": 60420.36339869281,
+            "min": 17205.0,
+            "max": 108834.0,
+            "stddev": 22655.777745768504,
+            "median": 57352.333333333336
+        },
+        "jitter": {
+            "mean": 0.17036344606380013,
+            "min": 0.0,
+            "max": 48.983672857284546,
+            "stddev": 1.0738697403898227,
+            "variance": 1.1708586528663278
+        },
+        "latency_95": 3.4726399999999993,
+        "throughput_95": 98365.2,
+        "total_time_95": 3.670691599999999,
+        "total_time": {
+            "mean": 2.018412346405229,
+            "min": 0.940879,
+            "max": 5.951758,
+            "stddev": 0.9366945610356193,
+            "median": 1.8146829999999998
+        },
+        "total_packets": {
+            "mean": 9197.333333333334,
+            "min": 7938.0,
+            "max": 11463.0
+        }
+    },
+    "DPKist-LAPLACE-0-0.75dum-10Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0.75dum-10Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0.75",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 10,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.3598846276742582,
+            "min": 0.714476,
+            "max": 4.263281,
+            "stddev": 0.549741557257765,
+            "median": 1.1874441666666666
+        },
+        "throughput": {
+            "mean": 72035.68495514148,
+            "min": 23061.0,
+            "max": 114990.0,
+            "stddev": 19445.005183706013,
+            "median": 73440.33333333333
+        },
+        "jitter": {
+            "mean": 0.10753349529286388,
+            "min": 0.0,
+            "max": 51.98862957954407,
+            "stddev": 0.950346655108906,
+            "variance": 0.911891417833499
+        },
+        "latency_95": 2.05572775,
+        "throughput_95": 101280.5,
+        "total_time_95": 2.2325995,
+        "total_time": {
+            "mean": 1.5664173899240854,
+            "min": 0.890506,
+            "max": 4.440289,
+            "stddev": 0.550689451583382,
+            "median": 1.3983328333333336
+        },
+        "total_packets": {
+            "mean": 13137.666666666666,
+            "min": 10362.0,
+            "max": 14833.0
+        }
+    },
+    "DPKist-LAPLACE-0-0.5dum-1Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0.5dum-1Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0.5",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 1,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.3434945833333334,
+            "min": 0.67533,
+            "max": 1.994693,
+            "stddev": 0.23301068465213948,
+            "median": 1.342223
+        },
+        "throughput": {
+            "mean": 70224.0,
+            "min": 47129.0,
+            "max": 109632.0,
+            "stddev": 9025.00964967912,
+            "median": 70827.33333333333
+        },
+        "jitter": {
+            "mean": 0.16557655817442948,
+            "min": 0.0,
+            "max": 59.98787212371826,
+            "stddev": 1.1801359861898544,
+            "variance": 1.4755950801330322
+        },
+        "latency_95": 1.1316733,
+        "throughput_95": 109553.1,
+        "total_time_95": 1.31303515,
+        "total_time": {
+            "mean": 1.579463111111111,
+            "min": 0.934027,
+            "max": 2.172729,
+            "stddev": 0.17465149516439474,
+            "median": 1.5510103333333334
+        },
+        "total_packets": {
+            "mean": 9475.333333333334,
+            "min": 8376.0,
+            "max": 10170.0
+        }
+    },
+    "DPKist-LAPLACE-0-2dum-20Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-2dum-20Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "2",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 20,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.1332681614540412,
+            "min": 0.574308,
+            "max": 3.403174,
+            "stddev": 0.41932010569193134,
+            "median": 1.0093763333333332
+        },
+        "throughput": {
+            "mean": 81852.23113773258,
+            "min": 28600.0,
+            "max": 127398.0,
+            "stddev": 20311.048120557778,
+            "median": 83799.16666666667
+        },
+        "jitter": {
+            "mean": 0.09512907690464077,
+            "min": 0.0,
+            "max": 43.97693181037903,
+            "stddev": 0.7356403154229673,
+            "variance": 0.570208446633044
+        },
+        "latency_95": 2.0875607999999994,
+        "throughput_95": 109615.99999999999,
+        "total_time_95": 2.2691869999999996,
+        "total_time": {
+            "mean": 1.352051489843867,
+            "min": 0.803776,
+            "max": 3.580328,
+            "stddev": 0.4249869936820652,
+            "median": 1.2222915
+        },
+        "total_packets": {
+            "mean": 15427.333333333334,
+            "min": 13388.0,
+            "max": 18064.0
+        }
+    },
+    "DPKist-LAPLACE-0-2dum-1Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-2dum-1Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "2",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 1,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.3697880500000001,
+            "min": 0.802466,
+            "max": 3.187331,
+            "stddev": 0.42610027655321536,
+            "median": 1.3042983333333333
+        },
+        "throughput": {
+            "mean": 71114.01666666666,
+            "min": 30463.0,
+            "max": 95509.0,
+            "stddev": 15600.438721667646,
+            "median": 69670.66666666667
+        },
+        "jitter": {
+            "mean": 0.1637060021657691,
+            "min": 0.0,
+            "max": 45.982065200805664,
+            "stddev": 1.0090255954123566,
+            "variance": 1.0371995360444186
+        },
+        "latency_95": 3.0211428,
+        "throughput_95": 90668.6,
+        "total_time_95": 3.2146421999999997,
+        "total_time": {
+            "mean": 1.5901323166666665,
+            "min": 1.07214,
+            "max": 3.361379,
+            "stddev": 0.4233421811450464,
+            "median": 1.5135526666666665
+        },
+        "total_packets": {
+            "mean": 8926.666666666666,
+            "min": 7053.0,
+            "max": 11204.0
+        }
+    },
+    "DPKist-LAPLACE-0-1dum-1Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-1dum-1Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "1",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 1,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 1.94823,
+            "min": 0.695432,
+            "max": 4.985246,
+            "stddev": 0.8365208815773043,
+            "median": 1.6036131666666666
+        },
+        "throughput": {
+            "mean": 61712.1388888889,
+            "min": 19505.0,
+            "max": 116962.0,
+            "stddev": 18837.005488693612,
+            "median": 63594.5
+        },
+        "jitter": {
+            "mean": 0.1994051085833222,
+            "min": 0.0,
+            "max": 46.981685400009155,
+            "stddev": 1.1940250239032437,
+            "variance": 1.4728356420565765
+        },
+        "latency_95": 2.7822918,
+        "throughput_95": 51000.0,
+        "total_time_95": 2.9773868,
+        "total_time": {
+            "mean": 2.1635548055555556,
+            "min": 0.875493,
+            "max": 5.249683,
+            "stddev": 0.8593434147003775,
+            "median": 1.801036833333333
+        },
+        "total_packets": {
+            "mean": 7691.333333333333,
+            "min": 5767.0,
+            "max": 10569.0
+        }
+    },
+    "DPKist-LAPLACE-0-0.5dum-5Clients-1048576": {
+        "name": "DPKist-LAPLACE-0-0.5dum-5Clients-1048576",
+        "file_size": "1048576",
+        "tor_params": {
+            "dummy": "0.5",
+            "max_jitter": "10",
+            "min_jitter": "1",
+            "target_jitter": "2",
+            "dp_distribution": "LAPLACE",
+            "dp_epsilon": "0",
+            "scheduler": "DPKist"
+        },
+        "client_params": {
+            "bulk_clients": 0,
+            "web_clients": 5,
+            "top_web_clients": 0
+        },
+        "latency": {
+            "mean": 2.0914307571513455,
+            "min": 0.773764,
+            "max": 12.376684,
+            "stddev": 1.423031783129088,
+            "median": 1.7149341666666669
+        },
+        "throughput": {
+            "mean": 56480.90039045922,
+            "min": 8101.0,
+            "max": 107740.0,
+            "stddev": 22789.011102392633,
+            "median": 53149.666666666664
+        },
+        "jitter": {
+            "mean": 0.15501703827581417,
+            "min": 0.0,
+            "max": 42.976574182510376,
+            "stddev": 0.9191519458581247,
+            "variance": 0.8482363654551316
+        },
+        "latency_95": 3.7143377499999994,
+        "throughput_95": 84678.45,
+        "total_time_95": 3.90576265,
+        "total_time": {
+            "mean": 2.321991314828962,
+            "min": 0.95043,
+            "max": 12.640176,
+            "stddev": 1.424939626139053,
+            "median": 1.951136166666667
+        },
+        "total_packets": {
+            "mean": 9286.333333333334,
+            "min": 8965.0,
+            "max": 9773.0
         }
     }
 }
