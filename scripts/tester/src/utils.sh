@@ -226,13 +226,6 @@ debug_running_processes() {
     # Check for timeout processes
     echo "Timeout processes:"
     pgrep -f timeout || echo "No timeout processes found"
-
-    # Check Docker container processes
-    echo "Docker processes in containers:"
-    for container in "${CONTAINERS[@]}"; do
-        echo "--- Container: thesis-${container}-1 ---"
-        docker exec "thesis-${container}-1" ps aux | grep -E "(curl|bash)" || echo "No relevant processes in $container"
-    done
 }
 
 cleanup_test_processes() {
@@ -248,7 +241,7 @@ cleanup_test_processes() {
     # Kill client script processes
     pkill -f "run_webclient\|run_bulkclient" 2>/dev/null || true
 
-    kill -KILL $(pgrep bash) 
+    #kill -KILL $(pgrep bash) 
 
     # Clean up Docker container processes
     for container in "${CONTAINERS[@]}"; do

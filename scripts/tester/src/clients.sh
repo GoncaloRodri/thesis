@@ -43,7 +43,7 @@ launch_clients() {
     done
 
     log_info "Ending bulk clients for $name after $test_timeout seconds..."
-    sleep "$test_timeout"
+    sleep "$((test_timeout+10))"
 
     log_info "Checking for lingering processes after timeout..."
     debug_running_processes
@@ -59,7 +59,7 @@ launch_clients() {
     done
 
     wait
-    cleanup_test_processes
+    #cleanup_test_processes
 
     log_info "Double-checking for lingering processes after cleanup..."
     debug_running_processes
