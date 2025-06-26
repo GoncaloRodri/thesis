@@ -4,7 +4,7 @@
 source src/utils.sh
 
 BOOTSTRAP_SLEEP=1
-MAX_TIME_TO_BOOTSTRAP=60
+MAX_TIME_TO_BOOTSTRAP=90
 PERFORMANCE_BOOTSTRAP_COUNTER=18
 DOCKER_COMPOSE_FILE="full.docker-compose.yml"
 
@@ -68,12 +68,12 @@ set_configuration() {
 
     sed -i "s/^Schedulers .*/Schedulers ${sched}/" "${config_path}"/.config/tor.common.torrc
 
-    sed -i "s/^DPSchedulerDistribution .*/DPSchedulerDistribution ${dp_dist}/" "${config_path}"/.config/tor.common.torrc
-    sed -i "s/^DPSchedulerEpsilon .*/DPSchedulerEpsilon ${dp_epsilon}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^PrivSchedulerDistribution .*/PrivSchedulerDistribution ${dp_dist}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^PrivSchedulerEpsilon .*/PrivSchedulerEpsilon ${dp_epsilon}/" "${config_path}"/.config/tor.common.torrc
 
-    sed -i "s/^DPSchedulerMinJitter .*/DPSchedulerMinJitter ${min_j}/" "${config_path}"/.config/tor.common.torrc
-    sed -i "s/^DPSchedulerMaxJitter .*/DPSchedulerMaxJitter ${max_j}/" "${config_path}"/.config/tor.common.torrc
-    sed -i "s/^DPSchedulerTargetJitter .*/DPSchedulerTargetJitter ${target_j}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^PrivSchedulerMinJitter .*/PrivSchedulerMinJitter ${min_j}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^PrivSchedulerMaxJitter .*/PrivSchedulerMaxJitter ${max_j}/" "${config_path}"/.config/tor.common.torrc
+    sed -i "s/^PrivSchedulerTargetJitter .*/PrivSchedulerTargetJitter ${target_j}/" "${config_path}"/.config/tor.common.torrc
 
     sed -i "s/^DummyCellEpsilon .*/DummyCellEpsilon ${dummy}/" "${config_path}"/.config/tor.common.torrc
 }

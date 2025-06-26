@@ -2,6 +2,8 @@
 
 source src/utils.sh
 
+RANDOM_INTERVAL=5
+
 exec_curl() {
     local url="$1"
     local log_file="$2"
@@ -25,8 +27,8 @@ run_webclient() {
     url=$(get_url "$filesize")
     local counter=0
     while true; do
-        
-        sleep $((RANDOM % 30 + 1))
+
+        sleep $((RANDOM % RANDOM_INTERVAL + 1))
         counter=$((counter + 1))
         exec_curl "$url" "$log_file"
         ((webcount++))

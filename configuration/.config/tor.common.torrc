@@ -21,20 +21,20 @@ DisableDebuggerAttachment 0
 BandwidthRate 1024000
 BandwidthBurst 1024000
 
-Address 10.5.0.4
-Nickname exit1
+Address 10.5.0.105
+Nickname relay5
 
 ############## Scheduling ##############
-Schedulers DPKist
+Schedulers PRIV_KIST
 
 ######### Differential Privacy #########
-DPSchedulerEpsilon 0
-DPSchedulerDistribution LAPLACE
+PrivSchedulerEpsilon 0
+PrivSchedulerDistribution LAPLACE
 
 ################ Jitter ################
-DPSchedulerMinJitter 1
-DPSchedulerMaxJitter 10
-DPSchedulerTargetJitter 2
+PrivSchedulerMinJitter 1
+PrivSchedulerMaxJitter 10
+PrivSchedulerTargetJitter 2
 
 ######### Packet Cell Padding ##########
 DummyCellEpsilon 0
