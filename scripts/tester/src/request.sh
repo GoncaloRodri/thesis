@@ -49,3 +49,20 @@ run_bulkclient() {
         sleep 0.5
     done
 }
+
+run_localclient() {
+    local url
+    local log_file="$1"
+    local filesize="$2"
+    CURL_TEST_NUM=30
+
+    url=$(get_url "$filesize")
+    for ((curl_i = 0; curl_i < $((CURL_TEST_NUM)); curl_i++)); do
+        exec_curl "$url" "$log_file"
+        ratio=$(((curl_i + 1) * 100 / CURL_TEST_NUM))
+        echo -ne "⚠️ \e[33mExecuting Curl Requests [${ratio}%]\e[0m"\\r
+        sleep 1
+    done
+    echo -ne "⚠️ \e[33mExecuting Curl Requests [100%]\e[0m"\\r
+    log_info "run_localclient()" "Executed $CURL_TEST_NUM cURL requests successfully!"
+}

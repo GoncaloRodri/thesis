@@ -67,6 +67,15 @@ launch_clients() {
     log_success "All clients for $name have completed."
 }
 
+launch_localclients() {
+    local name="$1"
+    local filesize="$2"
+    local test_count="$3"
+    abs_path=${CONFIG["absolute_path_dir"]}
+    log_file_path="$abs_path/backup/${name}-${test_count}/curl.log"
+    run_localclient "$log_file_path" "$filesize"
+}
+
 run_topwebclient() {
     local name="$1"
     local filesize="$2"

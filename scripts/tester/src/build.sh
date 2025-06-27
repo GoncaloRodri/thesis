@@ -5,8 +5,8 @@ source src/utils.sh
 
 BOOTSTRAP_SLEEP=1
 MAX_TIME_TO_BOOTSTRAP=90
-PERFORMANCE_BOOTSTRAP_COUNTER=18
-DOCKER_COMPOSE_FILE="full.docker-compose.yml"
+PERFORMANCE_BOOTSTRAP_COUNTER=5
+DOCKER_COMPOSE_FILE="docker-compose.yml"
 
 launch_tor_network() {
 
