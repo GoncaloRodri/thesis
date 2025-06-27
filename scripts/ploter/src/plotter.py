@@ -1,24 +1,21 @@
 import matplotlib.pyplot as plt
 
 def plot_dummy(metric, filesize, data, show=False):
-    for (sched, eps, dummy, file_size), group in data.groupby(
-        ["scheduler", "epsilon", "dummy", "filesize"]
+    for (sched, eps, file_size), group in data.groupby(
+        ["scheduler", "epsilon", "filesize"]
     ):
         if file_size != filesize or eps != "0":
             continue
-        group_sorted = group.sort_values("clients")
-        label = f"{sched} | εD={dummy}" if eps != "control" else f"{sched} (control)"
-        line_style = (
-            "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ".-"
-        )
+        group_sorted = group.sort_values("dummy")
+        label = f"{sched}" if eps != "control" else f"{sched} (control)"
         print(group_sorted)
 
         plt.plot(
-            group_sorted["clients"],
+            group_sorted["dummy"],
             group_sorted[metric],
             marker="o",
             label=label,
-            linestyle=line_style,
+            linestyle=get_line_style(sched),
         )
     plt.title(f"{metric.capitalize()} vs Number of Clients ({get_file_sizes(filesize)})")
     plt.xlabel("Number of Clients")
@@ -32,22 +29,19 @@ def plot_dummy(metric, filesize, data, show=False):
 
 
 def plot_jitter_by_distribution(metric, dist, filesize, data, show=False):
-    for (sched, eps, dummy, file_size), group in data.groupby(
-        ["scheduler", "epsilon", "dummy", "filesize"]
+    for (sched, eps, file_size), group in data.groupby(
+        ["scheduler", "epsilon", "filesize"]
     ):
-        if file_size != filesize or dummy != "0":
+        if file_size != filesize:
             continue
         group_sorted = group.sort_values("clients")
         label = f"{sched} | εS={eps}" if eps != "control" else f"{sched} (control)"
-        line_style = (
-            "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ".-"
-        )
         plt.plot(
-            group_sorted["clients"],
+            group_sorted["dummy"],
             group_sorted[metric],
             marker="o",
             label=label,
-            linestyle=line_style,
+            linestyle=get_line_style(sched),
         )
     plt.title(f"{metric.capitalize()} vs Number of Clients ({get_file_sizes(filesize)})")
     plt.xlabel("Number of Clients")
@@ -60,22 +54,23 @@ def plot_jitter_by_distribution(metric, dist, filesize, data, show=False):
         plt.show()
 
 def plot_jitter(metric, filesize, data, accepted_eps, show=False):
-    for (sched, eps, dummy, file_size, dist), group in data.groupby(
-        ["scheduler", "epsilon", "dummy", "filesize", "distribution"]
+    for (sched, eps, file_size, dist), group in data.groupby(
+        ["scheduler", "epsilon", "filesize", "distribution"]
     ):
-        if file_size != filesize or dummy != "0" or eps not in accepted_eps:
+        if file_size != filesize or eps not in accepted_eps:
             continue
-        group_sorted = group.sort_values("clients")
-        label = f"{sched} | εS={eps} | {dist.capitalize()}" if eps != "control" else f"{sched} (control)"
-        line_style = (
-            "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ".-"
+        group_sorted = group.sort_values("dummy")
+        label = (
+            f"{sched} | εS={eps} | {dist.capitalize()}"
+            if eps != "control"
+            else f"{sched} (control)"
         )
         plt.plot(
-            group_sorted["clients"],
+            group_sorted["dummy"],
             group_sorted[metric],
             marker="o",
             label=label,
-            linestyle=line_style,
+            linestyle=get_line_style(sched),
         )
     plt.title(f"{metric.capitalize()} vs Number of Clients ({get_file_sizes(filesize)})")
     plt.xlabel("Number of Clients")
@@ -89,22 +84,23 @@ def plot_jitter(metric, filesize, data, accepted_eps, show=False):
 
 
 def plot_jitter_dummy(metric, filesize, data, accepted_dummy, accepted_eps, show=False):
-    for (sched, eps, dummy, file_size, dist), group in data.groupby(
-        ["scheduler", "epsilon", "dummy", "filesize", "distribution"]
+    for (sched, eps, file_size, dist), group in data.groupby(
+        ["scheduler", "epsilon", "filesize", "distribution"]
     ):
         if file_size != filesize or eps not in accepted_eps or dummy not in accepted_dummy:
             continue
-        group_sorted = group.sort_values("clients")
-        label = f"{sched} | εD={dummy} | εS={eps} | {dist.capitalize()}" if eps != "control" else f"{sched} (control)"
-        line_style = (
-            "--" if sched == "DPKist" else "-" if sched == "DPVanilla" else ".-"
+        group_sorted = group.sort_values("dummy")
+        label = (
+            f"{sched} | εS={eps} | {dist.capitalize()}"
+            if eps != "control"
+            else f"{sched} (control)"
         )
         plt.plot(
-            group_sorted["clients"],
+            group_sorted["dummy"],
             group_sorted[metric],
             marker="o",
             label=label,
-            linestyle=line_style,
+            linestyle=get_line_style(sched),
         )
     plt.title(f"{metric.capitalize()} vs Number of Clients ({get_file_sizes(filesize)})")
     plt.xlabel("Number of Clients")
@@ -119,6 +115,16 @@ def plot_jitter_dummy(metric, filesize, data, accepted_dummy, accepted_eps, show
 ########################################
 # Helpers
 ########################################
+
+
+def get_line_style(scheduler):
+    return (
+        "--"
+        if scheduler in ["PRIV_KIST", "DP_KIST"]
+        else "-" if scheduler in ["PRIV_Vanilla", "DP_Vanilla"] else ":"
+    )
+
+
 def get_units(metric):
     if metric == "latency":
         return "Latency (s)"
