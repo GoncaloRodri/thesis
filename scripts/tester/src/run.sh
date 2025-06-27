@@ -91,7 +91,6 @@ save_logs() {
 }
 
 run_combinations() {
-
     END_TEST_AT=$(echo "$COMBINATIONS" | jq '.end_test_at')
     TCP_DUMP_MODE=$(echo "$COMBINATIONS" | jq '.tcpdump')
 

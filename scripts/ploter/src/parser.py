@@ -33,9 +33,9 @@ def parse_detailed(data):
             "is_control": is_control,
             "dummy": entry["tor_params"].get("dummy", False),
             "filesize": entry["file_size"],
-            "jitter_variance": entry["jitter"]["variance"],
-            "jitter_stddev": entry["jitter"]["stddev"],
-            "total_packets": entry["total_packets"]["mean"],
+            # "jitter_variance": entry["jitter"]["variance"],
+            # "jitter_stddev": entry["jitter"]["stddev"],
+            # "total_packets": entry["total_packets"]["mean"],
         }
         if record["filesize"] != "5120":
             records.append(record)

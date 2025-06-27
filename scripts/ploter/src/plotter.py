@@ -10,6 +10,7 @@ def plot_dummy(metric, filesize, data, show=False):
         label = f"{sched}" if eps != "control" else f"{sched} (control)"
         print(group_sorted)
 
+
         plt.plot(
             group_sorted["dummy"],
             group_sorted[metric],
@@ -26,6 +27,7 @@ def plot_dummy(metric, filesize, data, show=False):
     plt.savefig(f"figures/dummy/{metric}_vs_clients_{get_file_sizes(filesize).lower().replace(" ", "_")}.png")
     if show:
         plt.show()
+    plt.clf()
 
 
 def plot_jitter_by_distribution(metric, dist, filesize, data, show=False):
@@ -52,6 +54,7 @@ def plot_jitter_by_distribution(metric, dist, filesize, data, show=False):
     plt.savefig(f"figures/jitter/{metric}_vs_clients_{get_file_sizes(filesize).lower().replace(' ', '_')}_{dist}.png")
     if show:
         plt.show()
+    plt.clf()
 
 def plot_jitter(metric, filesize, data, accepted_eps, show=False):
     for (sched, eps, file_size, dist), group in data.groupby(
@@ -65,6 +68,7 @@ def plot_jitter(metric, filesize, data, accepted_eps, show=False):
             if eps != "control"
             else f"{sched} (control)"
         )
+
         plt.plot(
             group_sorted["dummy"],
             group_sorted[metric],
@@ -81,6 +85,7 @@ def plot_jitter(metric, filesize, data, accepted_eps, show=False):
     plt.savefig(f"figures/jitter/{metric}_vs_clients_{get_file_sizes(filesize).lower().replace(' ', '_')}.png")
     if show:
         plt.show()
+    plt.clf()
 
 
 def plot_jitter_dummy(metric, filesize, data, accepted_dummy, accepted_eps, show=False):
@@ -95,6 +100,7 @@ def plot_jitter_dummy(metric, filesize, data, accepted_dummy, accepted_eps, show
             if eps != "control"
             else f"{sched} (control)"
         )
+
         plt.plot(
             group_sorted["dummy"],
             group_sorted[metric],
@@ -111,6 +117,7 @@ def plot_jitter_dummy(metric, filesize, data, accepted_dummy, accepted_eps, show
     plt.savefig(f"figures/jitter_dummy/{metric}_vs_clients_{get_file_sizes(filesize).lower().replace(' ', '_')}.png")
     if show:
         plt.show()
+    plt.clf()
 
 ########################################
 # Helpers
