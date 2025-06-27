@@ -5,7 +5,7 @@ def parse_detailed(data):
     records = []
     for name, entry in data.items():
         scheduler = entry["tor_params"]["scheduler"]
-        is_control = not scheduler.startswith("DP")
+        is_control = not scheduler.startswith("PRIV")
 
         # Assign dummy values for control
         epsilon = entry["tor_params"].get("dp_epsilon", "control")
