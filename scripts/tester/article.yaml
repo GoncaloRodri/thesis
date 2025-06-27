@@ -1,5 +1,5 @@
 config:
-  absolute_path: /home/ubuntu/thesis
+  absolute_path: /home/guga/Documents/thesis
   repeat: 1
   copy_logs: true
   logs_dir: logs/
@@ -12,20 +12,17 @@ config:
 combinations:
   tcpdump: false
   #filesize: ["51200", "1048576", "5242880"]
-  filesize: ["1048576"]
-  end_test_at: 600
+  filesize: ["1MB"]
+  end_test_at: 120
   clients:
     # [Bulk Clients, Web Clients, Top Web Clients]
-    - [1, 0, 0]
-    - [2, 0, 0]
-    - [5, 0, 0]
-    - [10, 0, 0]
-    - [20, 0, 0]
+    - [0, 5, 0]
+
   tor:
-    dummy: [0.0, 0.25, 0.5, 0.75, 1.0, 2.0]
+    dummy: [0.0, 0.1, 0.25, 0.5, 0.75, 1.0, 2.0, 10]
     max_jitter: [10]
     min_jitter: [1]
     target_jitter: [2]
     dp_distribution: ["LAPLACE"]
-    dp_epsilon: [0.0, 1.0]
-    scheduler: ["DPKist"]
+    dp_epsilon: [0.0]
+    scheduler: ["PRIV_KIST", "KIST"] # "PRIV_Vanilla"
