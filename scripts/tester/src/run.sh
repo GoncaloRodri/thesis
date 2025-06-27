@@ -44,7 +44,8 @@ run_experiment() {
             launch_topweb_clients "$name" "$file_size" "$ii" "$end_test_at" "$top_web_clients" "$tcpdump_mode"
         elif [ -n "$bulk_clients" ] && [ -n "$web_clients" ] && { [ "$bulk_clients" -gt 0 ] || [ "$web_clients" -gt 0 ]; }; then
             log_info "Starting Bulk/Web Clients Experiment..."
-            launch_clients "$name" "$file_size" "$ii" "$end_test_at" "$bulk_clients" "$web_clients" "$tcpdump_mode" 
+            launch_localclients "$name" "$file_size" "$ii"
+            log_info "Bulk/Web Clients Experiment Completed!"
         else
             # shellcheck disable=SC2140
             log_fatal "run_performance_experiment()" "Number of clients wrongly specified in the configuration. Set "bulk_clients" and "web_clients" or "top_web_clients" in the experiment params."
