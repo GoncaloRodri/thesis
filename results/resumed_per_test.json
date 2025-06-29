@@ -1,152 +1,98 @@
 {
-    "DPKist-LAPLACE-0-1dum-5Clients-1048576": {
-        "latency": 1.6878875025108224,
-        "throughput": 62699.02652236653,
-        "total_time": 1.8967449958730158,
-        "jitter": 0.1805354696723009
+    "PRIV_KIST-LAPLACE-0-0.25dum-1Clients-1MB": {
+        "latency": 0.0637703,
+        "throughput": 2039843.46,
+        "total_time": 0.5364435599999999,
+        "jitter": 0.012166193361988025
     },
-    "DPKist-LAPLACE-0-0.5dum-2Clients-1048576": {
-        "latency": 1.5162789027777777,
-        "throughput": 63205.44841269841,
-        "total_time": 1.7386690694444444,
-        "jitter": 0.20289048388818098
+    "KIST-LAPLACE-0-10dum-1Clients-1MB": {
+        "latency": 0.057236060000000005,
+        "throughput": 4273448.88,
+        "total_time": 0.27241487000000003,
+        "jitter": 0.015610813952042658
     },
-    "DPKist-LAPLACE-0-0dum-5Clients-1048576": {
-        "latency": 1.5695270346390269,
-        "throughput": 66060.8374388657,
-        "total_time": 1.7780270433436531,
-        "jitter": 0.16030521421585947
+    "KIST-LAPLACE-0-0.25dum-1Clients-1MB": {
+        "latency": 0.058654399999999995,
+        "throughput": 1999715.89,
+        "total_time": 0.5479831,
+        "jitter": 0.014142920379325234
     },
-    "DPKist-LAPLACE-0-1dum-2Clients-1048576": {
-        "latency": 1.4312740512820514,
-        "throughput": 69518.71474358975,
-        "total_time": 1.6406326730769232,
-        "jitter": 0.20080685600264436
+    "PRIV_KIST-LAPLACE-0-0dum-1Clients-1MB": {
+        "latency": 0.06318011999999999,
+        "throughput": 3896179.57,
+        "total_time": 0.28976109,
+        "jitter": 0.014087418403590854
     },
-    "DPKist-LAPLACE-0-0dum-10Clients-1048576": {
-        "latency": 1.4090214700470687,
-        "throughput": 70188.24090714591,
-        "total_time": 1.621769178647839,
-        "jitter": 0.1502297656854357
+    "PRIV_KIST-LAPLACE-0-10dum-1Clients-1MB": {
+        "latency": 0.055788469999999986,
+        "throughput": 3942553.12,
+        "total_time": 0.28419119000000004,
+        "jitter": 0.013697442995645601
     },
-    "DPKist-LAPLACE-0-0dum-2Clients-1048576": {
-        "latency": 1.7140949280303028,
-        "throughput": 62414.84090909091,
-        "total_time": 1.9220969204545455,
-        "jitter": 0.17692298093667783
+    "KIST-LAPLACE-0-2dum-1Clients-1MB": {
+        "latency": 0.05701955999999999,
+        "throughput": 2825690.1,
+        "total_time": 0.3925840099999999,
+        "jitter": 0.013876918603314543
     },
-    "DPKist-LAPLACE-0-2dum-10Clients-1048576": {
-        "latency": 1.3625812811253155,
-        "throughput": 73512.99220927809,
-        "total_time": 1.578878770937262,
-        "jitter": 0.12755381760516685
+    "PRIV_KIST-LAPLACE-0-0.75dum-1Clients-1MB": {
+        "latency": 0.044428010000000004,
+        "throughput": 2248840.01,
+        "total_time": 0.4782349200000002,
+        "jitter": 0.012380779935360697
     },
-    "DPKist-LAPLACE-0-2dum-2Clients-1048576": {
-        "latency": 1.7317539185185187,
-        "throughput": 58912.62222222222,
-        "total_time": 1.9329112407407407,
-        "jitter": 0.20158268451751013
+    "PRIV_KIST-LAPLACE-0-1dum-1Clients-1MB": {
+        "latency": 0.042091140000000006,
+        "throughput": 2282002.3,
+        "total_time": 0.46519560000000004,
+        "jitter": 0.012487557258001448
     },
-    "DPKist-LAPLACE-0-0dum-1Clients-1048576": {
-        "latency": 1.8493276944444446,
-        "throughput": 59946.5,
-        "total_time": 2.05854275,
-        "jitter": 0.1918371201353486
+    "PRIV_KIST-LAPLACE-0-2dum-1Clients-1MB": {
+        "latency": 0.059130150000000006,
+        "throughput": 2845196.02,
+        "total_time": 0.3834226400000001,
+        "jitter": 0.012647610502203714
     },
-    "DPKist-LAPLACE-0-0.75dum-1Clients-1048576": {
-        "latency": 1.4514826333333335,
-        "throughput": 68264.08333333333,
-        "total_time": 1.669651016666667,
-        "jitter": 0.18230758719114193
+    "KIST-LAPLACE-0-1dum-1Clients-1MB": {
+        "latency": 0.13414425,
+        "throughput": 2223506.31,
+        "total_time": 0.54846732,
+        "jitter": 0.018397948526360692
     },
-    "DPKist-LAPLACE-0-0.5dum-10Clients-1048576": {
-        "latency": 1.6279786574472608,
-        "throughput": 64508.685171900746,
-        "total_time": 1.8410400301025558,
-        "jitter": 0.12055699941534244
+    "KIST-LAPLACE-0-0dum-1Clients-1MB": {
+        "latency": 0.05328969999999999,
+        "throughput": 3936756.08,
+        "total_time": 0.28694241000000004,
+        "jitter": 0.013786110073706073
     },
-    "DPKist-LAPLACE-0-2dum-5Clients-1048576": {
-        "latency": 1.533258400980392,
-        "throughput": 67054.49477124184,
-        "total_time": 1.7433778117647059,
-        "jitter": 0.163186949372552
+    "KIST-LAPLACE-0-0.75dum-1Clients-1MB": {
+        "latency": 0.05712421000000001,
+        "throughput": 2220653.44,
+        "total_time": 0.48288303,
+        "jitter": 0.012612016787175842
     },
-    "DPKist-LAPLACE-0-0.5dum-20Clients-1048576": {
-        "latency": 1.283298643713813,
-        "throughput": 73345.26910440216,
-        "total_time": 1.522650095533499,
-        "jitter": 0.10553250346627717
+    "PRIV_KIST-LAPLACE-0-0.5dum-1Clients-1MB": {
+        "latency": 0.04484733000000001,
+        "throughput": 2152830.53,
+        "total_time": 0.50097007,
+        "jitter": 0.014691155617942504
     },
-    "DPKist-LAPLACE-0-0.75dum-20Clients-1048576": {
-        "latency": 1.2920384515623466,
-        "throughput": 75132.78874472248,
-        "total_time": 1.5096948896134883,
-        "jitter": 0.09941993616527241
+    "KIST-LAPLACE-0-0.1dum-1Clients-1MB": {
+        "latency": 0.06430292,
+        "throughput": 1958730.44,
+        "total_time": 0.5561253100000001,
+        "jitter": 0.01290010235506043
     },
-    "DPKist-LAPLACE-0-0.75dum-2Clients-1048576": {
-        "latency": 1.560084595238095,
-        "throughput": 67387.33333333333,
-        "total_time": 1.7852290535714284,
-        "jitter": 0.21224938577178687
+    "PRIV_KIST-LAPLACE-0-0.1dum-1Clients-1MB": {
+        "latency": 0.057756329999999995,
+        "throughput": 1949477.1,
+        "total_time": 0.55650314,
+        "jitter": 0.012900384464398628
     },
-    "DPKist-LAPLACE-0-1dum-20Clients-1048576": {
-        "latency": 1.203815620263942,
-        "throughput": 77825.81415689463,
-        "total_time": 1.4354184567348358,
-        "jitter": 0.09418689916704255
-    },
-    "DPKist-LAPLACE-0-1dum-10Clients-1048576": {
-        "latency": 1.5419575648384958,
-        "throughput": 70039.78206403334,
-        "total_time": 1.7534917855688168,
-        "jitter": 0.1428441108213699
-    },
-    "DPKist-LAPLACE-0-0dum-20Clients-1048576": {
-        "latency": 1.352705641513351,
-        "throughput": 72486.47387794421,
-        "total_time": 1.5620036640955715,
-        "jitter": 0.11311881290736592
-    },
-    "DPKist-LAPLACE-0-0.75dum-5Clients-1048576": {
-        "latency": 1.8020724091503268,
-        "throughput": 60420.36339869281,
-        "total_time": 2.018412346405229,
-        "jitter": 0.17036344606380013
-    },
-    "DPKist-LAPLACE-0-0.75dum-10Clients-1048576": {
-        "latency": 1.3598846276742582,
-        "throughput": 72035.68495514148,
-        "total_time": 1.5664173899240854,
-        "jitter": 0.10753349529286388
-    },
-    "DPKist-LAPLACE-0-0.5dum-1Clients-1048576": {
-        "latency": 1.3434945833333334,
-        "throughput": 70224.0,
-        "total_time": 1.579463111111111,
-        "jitter": 0.16557655817442948
-    },
-    "DPKist-LAPLACE-0-2dum-20Clients-1048576": {
-        "latency": 1.1332681614540412,
-        "throughput": 81852.23113773258,
-        "total_time": 1.352051489843867,
-        "jitter": 0.09512907690464077
-    },
-    "DPKist-LAPLACE-0-2dum-1Clients-1048576": {
-        "latency": 1.3697880500000001,
-        "throughput": 71114.01666666666,
-        "total_time": 1.5901323166666665,
-        "jitter": 0.1637060021657691
-    },
-    "DPKist-LAPLACE-0-1dum-1Clients-1048576": {
-        "latency": 1.94823,
-        "throughput": 61712.1388888889,
-        "total_time": 2.1635548055555556,
-        "jitter": 0.1994051085833222
-    },
-    "DPKist-LAPLACE-0-0.5dum-5Clients-1048576": {
-        "latency": 2.0914307571513455,
-        "throughput": 56480.90039045922,
-        "total_time": 2.321991314828962,
-        "jitter": 0.15501703827581417
+    "KIST-LAPLACE-0-0.5dum-1Clients-1MB": {
+        "latency": 0.05483634,
+        "throughput": 2121678.21,
+        "total_time": 0.50975831,
+        "jitter": 0.012355184917939807
     }
 }
