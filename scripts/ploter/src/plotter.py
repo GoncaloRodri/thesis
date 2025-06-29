@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
 
 def plot_dummy(metric, filesize, data, show=False):
-    for (sched, eps, file_size), group in data.groupby(
-        ["scheduler", "epsilon", "filesize"]
+    print(data)
+    for (sched, eps, file_size, dist), group in data.groupby(
+        ["scheduler", "epsilon", "filesize", "distribution"]
     ):
-        if file_size != filesize or eps != "0":
+        if file_size != filesize:
             continue
         group_sorted = group.sort_values("dummy")
         label = f"{sched}" if eps != "control" else f"{sched} (control)"
         print(group_sorted)
-
 
         plt.plot(
             group_sorted["dummy"],

@@ -56,6 +56,14 @@ services:
       net:
         ipv4_address: 10.5.0.6
 
+  httpbin:
+    image: kennethreitz/httpbin
+    ports:
+      - 8000:80
+    networks:
+      net:
+        ipv4_address: 10.5.0.200
+
 networks:
   net:
     driver: bridge

@@ -14,6 +14,20 @@ with open("../../results/detailed_results.json") as f:
 data = parser.parse_detailed(data)
 # Generate plots for each metric, for each DP distribution
 df = pd.DataFrame(data)
+df["clients"] = pd.to_numeric(df["clients"], errors="coerce")
+df["epsilon"] = pd.to_numeric(df["epsilon"], errors="coerce")  # keeps NaN for "control"
+df["jitter"] = pd.to_numeric(df["jitter"], errors="coerce")
+df["dummy"] = pd.to_numeric(df["dummy"], errors="coerce")
+df["latency"] = pd.to_numeric(df["latency"], errors="coerce")
+df["throughput"] = pd.to_numeric(df["throughput"], errors="coerce")
+df["total_time"] = pd.to_numeric(df["total_time"], errors="coerce")
+df["latency_95"] = pd.to_numeric(df["latency_95"], errors="coerce")
+df["throughput_95"] = pd.to_numeric(df["throughput_95"], errors="coerce")
+df["total_time_95"] = pd.to_numeric(df["total_time_95"], errors="coerce")
+
+print("Data loaded successfully.")
+print(df["clients"].dtype)
+
 
 filesizes = df["filesize"].unique()
 metrics = [

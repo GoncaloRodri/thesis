@@ -10,7 +10,8 @@ exec_curl() {
     curl --socks5 127.0.0.1:9000 -s -H 'Cache-Control: no-cache' -w "URL: $url\nCode: %{response_code}\nTime to first byte: %{time_starttransfer}s\nTotal time: %{time_total}s\nDownload speed: %{speed_download} bytes/sec\n" -o /dev/null "$url" >>"$log_file"
 }
 get_url() {
-    echo "http://ipv4.download.thinkbroadband.com/${1}.zip"
+    #echo "http://ipv4.download.thinkbroadband.com/${1}.zip"
+    echo "10.5.0.200:80/bytes/1073741824"
 }
 
 get_logfile() {
@@ -53,7 +54,7 @@ run_localclient() {
     local url
     local log_file="$1"
     local filesize="$2"
-    CURL_TEST_NUM=100
+    CURL_TEST_NUM=10
 
     url=$(get_url "$filesize")
     for ((curl_i = 0; curl_i < $((CURL_TEST_NUM)); curl_i++)); do
